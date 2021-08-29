@@ -1,5 +1,5 @@
 <template>
-  <app-layout backID="0">
+  <app-layout backID="5">
     <template v-slot:header_sec><h1>ISSO É O header_sec</h1></template>
     <template v-slot:main><h1>ISSO É A main</h1></template>
   </app-layout>
@@ -10,7 +10,7 @@ import AppLayout from "@/layouts/Public.vue";
  
 
 export default {
-  name: "Home",
+  name: "Contato",
   inject: ["URL_API"],
   methods: {
   },

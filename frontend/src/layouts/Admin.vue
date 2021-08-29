@@ -1,10 +1,13 @@
 <template>
-    <router-view />
+  <h1>SENHA SECRETA</h1>
 </template>
 
 <script>
 export default {
-};
+
+}
 </script>
 
-<style lang="scss"></style>
+<style>
+
+</style>
