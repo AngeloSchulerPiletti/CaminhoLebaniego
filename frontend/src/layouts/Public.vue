@@ -33,46 +33,53 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-    font-family: MonAmour;
-    src: url('../assets/fonts/MonAmour.ttf');
-}
-
-
-#pic_background{
+#pic_background {
   width: 100%;
   height: 100vh;
   max-height: 80vw;
 }
-.background{
+.background {
   background-size: cover;
   background-position-y: bottom;
   background-position-x: center;
   background-repeat: no-repeat;
 }
-.back-0{
-  background-image: url('../assets/images/template/walkerman.jpg');
+.back-0 {
+  background-image: url("../assets/images/template/walkerman.jpg");
 }
-.back-1{
+.back-1 {
   background-image: url("../assets/images/template/equipment.jpg");
 }
-.back-2{
-  background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url("../assets/images/template/santiago.jpg");
+.back-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../assets/images/template/santiago.jpg");
   background-size: cover;
   background-position-y: 70%;
   background-position-x: center;
   background-repeat: no-repeat;
 }
-.back-3{
-background-image: url("../assets/images/template/trekkingman.jpg");
+.back-3 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/images/template/trekkingman.jpg");
+  background-size: cover;
   background-position-y: top;
+  background-position-x: center;
+  background-repeat: no-repeat;
 }
-.back-4{
-background-image: url("../assets/images/template/writter.jpg");
+.back-4 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../assets/images/template/writter.jpg");
+  background-size: cover;
   background-position-y: 80%;
+  background-position-x: center;
+  background-repeat: no-repeat;
 }
-.back-5{
-background-image: url("../assets/images/template/mail.jpg");
+.back-5 {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../assets/images/template/mail.jpg");
+  background-size: cover;
   background-position-y: top;
+  background-position-x: center;
+  background-repeat: no-repeat;
 }
 </style>

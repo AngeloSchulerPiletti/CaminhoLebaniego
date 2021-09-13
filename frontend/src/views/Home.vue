@@ -1,7 +1,10 @@
 <template>
   <app-layout backID="0">
     <template v-slot:header_sec>
-      <h1>ISSO É O header_sec</h1>
+      <div id="bannerContent">
+        <h1>{{ pageData["title"] }}</h1>
+        <p>{{ pageData["paragraph"] }}</p>
+      </div>
     </template>
   </app-layout>
 </template>
@@ -13,8 +16,7 @@ import AppLayout from "@/layouts/Public.vue";
 export default {
   name: "inicio",
   inject: ["URL_API"],
-  methods: {
-  },
+  methods: {},
   mounted() {
     console.log(this.pageData);
   },
@@ -27,4 +29,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@include bannerContent;
+</style>

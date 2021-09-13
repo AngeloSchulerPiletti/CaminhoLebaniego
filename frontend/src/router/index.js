@@ -15,42 +15,49 @@ const routes = [
     path: '/',
     name: 'inicio',
     component: Home,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: '/caminho',
     name: 'caminho',
     component: Caminho,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: '/preparacao',
     name: 'preparacao',
     component: Preparacao,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: '/contato',
     name: 'contato',
     component: Contato,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: '/artigos',
     name: 'artigos',
     component: Artigos,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: '/experiencia',
     name: 'experiencia',
     component: Experiencia,
+    props: true,
     meta: {autoAxios: true},
   },
   {
     path: "/error404",
     name: 'error404',
     component: Error404,
+    props: true,
     meta: {autoAxios: false},
   },
 
@@ -62,7 +69,6 @@ const router = createRouter({
 })
 const URL_API = "http://127.0.0.1:8000/api/";
 router.beforeEach(async to => {
-  console.log(to);
   if(to.meta.autoAxios){
   await axios.get(`${URL_API}content/${to.name}`).then(response => {
     to.params.pageData = response.data
