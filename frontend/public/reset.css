@@ -54,3 +54,6 @@ button{
 	border: none;
 	outline: 0 0 0 0;
 }
+body{
+	background-color: #101010;
+}

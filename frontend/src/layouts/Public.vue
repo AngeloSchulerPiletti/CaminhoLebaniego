@@ -1,5 +1,6 @@
 <template>
-  <div id="website_container">
+  <transition name="fade">
+  <div id="website_container" v-if="show">
     <div id="pic_background" :class="'background back-' + backID">
       <header-component />
       <section id="header_content">
@@ -13,6 +14,7 @@
       <footer>Footer</footer>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
@@ -20,8 +22,11 @@ import Header from "@/components/Header";
 export default {
   data() {
     return {
-      //
+      show: false,
     };
+  },
+  mounted(){
+    this.show = true;
   },
   props: {
     backID: String,
@@ -33,6 +38,12 @@ export default {
 </script>
 
 <style lang="scss">
+.fade-enter-active, .fade-leave-active{
+  transition: opacity 700ms ease;
+}
+.fade-enter-from, .fade-leave-to{
+  opacity: 0;
+}
 #pic_background {
   width: 100%;
   height: 100vh;
