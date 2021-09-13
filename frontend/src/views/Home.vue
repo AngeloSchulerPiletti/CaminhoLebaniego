@@ -6,9 +6,11 @@
         <p>{{ pageData["paragraph"] }}</p>
       </div>
       <div id="actions">
-        <button class="btn_1" disabled="disabled">
-          Primeiros Passos
-        </button>
+          <router-link to="/preparacao">
+        <div class="btn_1">
+            Primeiros Passos
+        </div>
+          </router-link>
       </div>
     </template>
   </app-layout>
@@ -37,12 +39,12 @@ export default {
 <style lang="scss" scoped>
 @include bannerContent;
 
-#actions{
+#actions {
   position: absolute;
   bottom: 20%;
   right: 10vw;
 
-  .btn_1{
+  .btn_1 {
     background-color: $red;
     @include Font1;
     color: $white;
@@ -50,14 +52,13 @@ export default {
     padding: 15px 40px;
     border-radius: 12px;
     box-shadow: 0px 0px 15px $black;
-    cursor: pointer;
     animation: movingY 600ms ease-in-out 0ms infinite alternate-reverse both;
     transition: color 200ms, background-color 300ms;
-  
-    &:hover{
+
+    &:hover {
       animation-play-state: paused;
-      color: $red;
       background-color: $white;
+        color: $red;
     }
   }
 }
