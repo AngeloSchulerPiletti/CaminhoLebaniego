@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ViewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
+
+
+
+
+
+
+
 Route::get('/teste', function(){
     return json_encode(['teste'=> 'funcionou!']);
 });

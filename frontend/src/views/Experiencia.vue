@@ -14,7 +14,10 @@ export default {
   inject: ["URL_API"],
   methods: {},
   mounted() {
-    this.axios.get(`${this.URL_API}${this.$route.name}`).then(response => (console.log(response.data)));
+    console.log(this.pageData);
+  },
+  props: {
+    pageData: Object,
   },
   components: {
     AppLayout,

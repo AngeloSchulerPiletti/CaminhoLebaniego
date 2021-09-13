@@ -9,7 +9,6 @@
 <script>
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
- 
 
 export default {
   name: "inicio",
@@ -17,7 +16,10 @@ export default {
   methods: {
   },
   mounted() {
-    this.axios.get(`${this.URL_API}${this.$route.name}`).then(response => (console.log(response.data)));
+    console.log(this.pageData);
+  },
+  props: {
+    pageData: Object,
   },
   components: {
     AppLayout,
@@ -25,6 +27,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
