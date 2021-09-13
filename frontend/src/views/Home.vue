@@ -1,9 +1,11 @@
 <template>
   <app-layout backID="0">
-    <template v-slot:header_sec><h1>ISSO É O header_sec</h1></template>
-    <template v-slot:main><h1>ISSO É A main</h1></template>
+    <template v-slot:header_sec>
+      <h1>ISSO É O header_sec</h1>
+    </template>
   </app-layout>
 </template>
+
 <script>
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
@@ -15,7 +17,7 @@ export default {
   methods: {
   },
   mounted() {
-    //
+    this.axios.get(`${this.URL_API}teste`).then(response => (console.log(response)));
   },
   components: {
     AppLayout,
