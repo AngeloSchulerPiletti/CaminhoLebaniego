@@ -9,7 +9,7 @@
       <ul>
         <li><router-link to="/preparacao">Preparação</router-link></li>
         <li><router-link to="/caminho">O Caminho</router-link></li>
-        <li><router-link to="/autor">Experiência</router-link></li>
+        <li><router-link to="/experiencia">Experiência</router-link></li>
         <li><router-link to="/artigos">Artigos</router-link></li>
         <li><router-link to="/contato">Contato</router-link></li>
       </ul>

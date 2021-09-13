@@ -4,38 +4,38 @@ import Caminho from "@/views/Caminho.vue";
 import Artigos from "@/views/Artigos.vue";
 import Preparacao from "@/views/Preparacao.vue";
 import Contato from "@/views/Contato.vue";
-import Autor from "@/views/Autor.vue";
+import Experiencia from "@/views/Experiencia.vue";
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'inicio',
     component: Home
   },
   {
     path: '/caminho',
-    name: 'Caminho',
+    name: 'caminho',
     component: Caminho
   },
   {
     path: '/preparacao',
-    name: 'Preparacao',
+    name: 'preparacao',
     component: Preparacao
   },
   {
     path: '/contato',
-    name: 'Contato',
+    name: 'contato',
     component: Contato
   },
   {
     path: '/artigos',
-    name: 'Artigos',
+    name: 'artigos',
     component: Artigos
   },
   {
-    path: '/autor',
-    name: 'Autor',
-    component: Autor
+    path: '/experiencia',
+    name: 'experiencia',
+    component: Experiencia
   },
 
 ]

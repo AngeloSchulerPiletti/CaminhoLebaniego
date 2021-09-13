@@ -10,12 +10,12 @@ import AppLayout from "@/layouts/Public.vue";
  
 
 export default {
-  name: "Contato",
+  name: "contato",
   inject: ["URL_API"],
   methods: {
   },
   mounted() {
-    //
+    this.axios.get(`${this.URL_API}${this.$route.name}`).then(response => (console.log(response.data)));
   },
   components: {
     AppLayout,

@@ -54,22 +54,22 @@ export default {
   background-image: url('../assets/images/template/walkerman.jpg');
 }
 .back-1{
+  background-image: url("../assets/images/template/equipment.jpg");
+}
+.back-2{
   background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url("../assets/images/template/santiago.jpg");
   background-size: cover;
-  background-position-y: bottom;
+  background-position-y: 70%;
   background-position-x: center;
   background-repeat: no-repeat;
 }
-.back-2{
-  background-image: url("../assets/images/template/equipment.jpg");
-}
 .back-3{
-background-image: url("../assets/images/template/writter.jpg");
-  background-position-y: 80%;
-}
-.back-4{
 background-image: url("../assets/images/template/trekkingman.jpg");
   background-position-y: top;
+}
+.back-4{
+background-image: url("../assets/images/template/writter.jpg");
+  background-position-y: 80%;
 }
 .back-5{
 background-image: url("../assets/images/template/mail.jpg");

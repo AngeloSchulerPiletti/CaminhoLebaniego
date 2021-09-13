@@ -12,15 +12,19 @@ import AppLayout from "@/layouts/Public.vue";
  
 
 export default {
-  name: "Home",
+  name: "inicio",
   inject: ["URL_API"],
   methods: {
   },
   mounted() {
-    this.axios.get(`${this.URL_API}teste`).then(response => (console.log(response)));
+    this.axios.get(`${this.URL_API}${this.$route.name}`).then(response => (console.log(response.data)));
   },
   components: {
     AppLayout,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
