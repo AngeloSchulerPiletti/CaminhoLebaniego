@@ -6,7 +6,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     x="0px"
     y="0px"
-    viewBox="0 0 458.6 103"
+    viewBox="0 0 440 103"
     enable-background="new 0 0 458.6 103"
     xml:space="preserve"
   >
@@ -33,4 +33,10 @@
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+svg{
+  text{
+    fill: $white;
+  }
+}
+</style>

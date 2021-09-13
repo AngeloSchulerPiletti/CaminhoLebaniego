@@ -33,9 +33,14 @@ export default {
 </script>
 
 <style lang="scss">
-#website_container{
-
+@font-face {
+    font-family: MonAmour;
+    src: url('../assets/fonts/MonAmour.ttf');
 }
+
+// #website_container{
+
+// }
 #pic_background{
   width: 100vw;
   height: 100vh;
