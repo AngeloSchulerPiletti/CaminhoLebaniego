@@ -20,7 +20,7 @@ class ViewsController extends Controller
         switch ($pageContent) {
             case 'inicio':
                 $pageData['title'] = "Descubra o Caminho";
-                $pageData['paragraph'] = "Por mais longa que seja a caminhada o mais importante é dar o primeiro passo.";
+                $pageData['paragraph'] = "Por mais longa que seja a caminhada, o mais importante é dar o primeiro passo.";
                 break;
 
             case 'preparacao':
