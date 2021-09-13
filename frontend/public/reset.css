@@ -49,3 +49,7 @@ table {
 a{
 	text-decoration: none;
 }
+button{
+	border: none;
+	outline: 0 0 0 0;
+}

@@ -2,7 +2,7 @@
   <div id="website_container">
     <div id="pic_background" :class="'background back-' + backID">
       <header-component />
-      <section>
+      <section id="header_content">
         <slot name="header_sec"></slot>
       </section>
     </div>
@@ -37,6 +37,10 @@ export default {
   width: 100%;
   height: 100vh;
   max-height: 80vw;
+
+  display: flex;
+  flex-direction: column;
+
 }
 .background {
   background-size: cover;
@@ -81,5 +85,11 @@ export default {
   background-position-y: top;
   background-position-x: center;
   background-repeat: no-repeat;
+}
+
+
+#header_content{
+  position: relative;
+  flex-grow: 1;
 }
 </style>

@@ -35,7 +35,6 @@ header {
   gap: 5vw;
 
   padding: 0 10vw 5vw 10vw;
-  margin: auto;
 
   background: linear-gradient(180deg, #000000e0 40%, #00000000);
 
