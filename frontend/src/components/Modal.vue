@@ -45,10 +45,6 @@ export default {
   watch: {
     modalState() {},
   },
-  mounted() {
-    console.log(this.modalPage);
-    console.log(this.modalOptions);
-  },
   props: {
     modalPage: String,
     modalOptions: Object,
