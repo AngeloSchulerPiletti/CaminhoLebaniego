@@ -5,13 +5,13 @@
         <header-logo />
       </router-link>
     </div>
-    <nav>
+    <nav id="header_nav">
       <ul>
-        <li><router-link to="/caminho">O Caminho</router-link></li>
-        <li><router-link to="/preparacao">Preparação</router-link></li>
-        <li><router-link to="/experiencia">Experiência</router-link></li>
-        <li><router-link to="/artigos">Artigos</router-link></li>
-        <li><router-link to="/contato">Contato</router-link></li>
+        <router-link to="/caminho"><li>O Caminho</li></router-link>
+        <router-link to="/preparacao"><li>Preparação</li></router-link>
+        <router-link to="/experiencia"><li>Experiência</li></router-link>
+        <router-link to="/artigos"><li>Artigos</li></router-link>
+        <router-link to="/contato"><li>Contato</li></router-link>
       </ul>
     </nav>
   </header>
@@ -49,15 +49,41 @@ header {
       justify-content: space-around;
       height: 100%;
 
+      a.router-link-active {
+        li::before {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0%;
+          right: 0%;
+          border-bottom: 1px solid $red;
+        }
+      }
+
       li {
         height: 100%;
         padding-top: $pad_top;
         display: flex;
         align-items: center;
+        color: $white;
+        @include Font1;
 
-        a {
-          color: $white;
-          @include Font1;
+        position: relative;
+
+        &::before{
+          content: "";
+          position: absolute;
+          left: 50%;
+          right: 50%;
+          bottom: -5px;
+          border-bottom: 1px solid transparent;
+
+          transition: right 300ms, left 300ms;
+        }
+        &:hover::before{
+          left: 0%;
+          right: 0%;
+          border-bottom: 1px solid $red;
         }
       }
     }
