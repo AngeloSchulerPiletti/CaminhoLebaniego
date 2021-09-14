@@ -1,13 +1,16 @@
 <template>
   <app-layout backID="0">
     <template v-slot:header_sec>
-      <banner-content :pageData="pageData"/>
+      <banner-content :pageData="pageData" />
       <div id="actions">
-          <router-link to="/preparacao">
         <div class="btn_1">
-            Primeiros Passos
+          História do Caminho
         </div>
-          </router-link>
+        <router-link to="/preparacao">
+          <div class="btn_1">
+            Primeiros Passos
+          </div>
+        </router-link>
       </div>
     </template>
   </app-layout>
@@ -25,6 +28,9 @@ export default {
   props: {
     pageData: Object,
   },
+  mounted(){
+    console.log(this.$store.state.teste);
+  },
   components: {
     AppLayout,
     BannerContent,
@@ -33,12 +39,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include bannerContent;
-
 #actions {
   position: absolute;
   bottom: 20%;
-  right: 10vw;
+  right: 0;
+  left: 0;
+  padding: 0 10vw 0 10vw;
+
+  display: flex;
+  justify-content: space-between;
+  
 
   .btn_1 {
     background-color: $red;
@@ -48,13 +58,14 @@ export default {
     padding: 15px 40px;
     border-radius: 12px;
     box-shadow: 0px 0px 15px $black;
-    animation: movingY 600ms ease-in-out 0ms infinite alternate-reverse both;
+    animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
     transition: color 200ms, background-color 300ms;
+    cursor: pointer;
 
     &:hover {
       animation-play-state: paused;
       background-color: $white;
-        color: $red;
+      color: $red;
     }
   }
 }

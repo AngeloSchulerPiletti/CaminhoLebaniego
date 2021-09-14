@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
   <div id="website_container" v-if="show">
+    <great-modal modalPage="" modalOptions=""/>
     <div id="pic_background" :class="'background back-' + backID">
       <header-component />
       <section id="header_content">
@@ -19,6 +20,8 @@
 
 <script>
 import Header from "@/components/Header";
+import Modal from "@/components/Modal";
+
 export default {
   data() {
     return {
@@ -33,6 +36,7 @@ export default {
   },
   components: {
     "header-component": Header,
+    "great-modal": Modal,
   },
 };
 </script>

@@ -10,7 +10,7 @@
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
- 
+
 export default {
   name: "artigos",
   inject: ["URL_API"],
@@ -27,5 +27,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@include bannerContent;
 </style>
