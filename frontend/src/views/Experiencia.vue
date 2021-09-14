@@ -1,17 +1,16 @@
 <template>
   <app-layout backID="3">
     <template v-slot:header_sec>
-      <div id="bannerContent">
-        <h1>{{ pageData["title"] }}</h1>
-        <p>{{ pageData["paragraph"] }}</p>
-      </div></template>
+      <banner-content :pageData="pageData"/>
+    </template>
     <template v-slot:main><h1>ISSO É A main</h1></template>
   </app-layout>
 </template>
-<script>
 
+<script>
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
+import BannerContent from "@/components/header/BannerContent.vue";
 
 export default {
   name: "experiencia",
@@ -22,6 +21,7 @@ export default {
   },
   components: {
     AppLayout,
+    BannerContent,
   },
 };
 </script>
