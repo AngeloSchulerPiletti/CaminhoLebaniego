@@ -6,7 +6,7 @@
         <div class="btn_1" @click="$store.state.modalShow = true">
           História do Caminho
         </div>
-        <router-link to="/preparacao">
+        <router-link to="/caminho">
           <div class="btn_1">
             Primeiros Passos
           </div>
@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 #actions {
   position: absolute;
-  bottom: 20%;
+  bottom: 16%;
   right: 0;
   left: 0;
   padding: 0 10vw 0 10vw;
@@ -51,9 +51,9 @@ export default {
     background-color: $red;
     @include Font1;
     color: $white;
-    font-size: 24px;
-    padding: 15px 40px;
-    border-radius: 12px;
+    font-size: 22px;
+    padding: 12px 30px;
+    border-radius: 10px;
     box-shadow: 0px 0px 15px $black;
     animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
     transition: color 200ms, background-color 300ms;

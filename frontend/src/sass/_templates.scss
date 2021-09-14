@@ -70,4 +70,28 @@
         line-height: 1.4em;
         margin: 10px 0;
     }
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        li{
+            @include Font1;
+            font-size: 16px;
+            text-indent: 1.5em;
+            list-style: none;
+            
+            &::before{
+                content: "•";
+                color: $red;
+                margin-right: 5px;
+            }
+        }
+    }
+    strong{
+        font-weight: 700;
+    }
+    em{
+        font-style: italic;
+    }
 }
