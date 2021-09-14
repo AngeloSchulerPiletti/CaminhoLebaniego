@@ -34,7 +34,7 @@ class ViewsController extends Controller
                 $pageData['title'] = "Descubra o Caminho";
                 $pageData['paragraph'] = "Por mais longa que seja a caminhada, o mais importante é dar o primeiro passo.";
                 $pageData['modal'][0] = $this->getHTMLFromMD("modais/inicio_history.md");
-                $pageData['modal'][1] = ["Ler mais Artigos", "/artigos"];
+                $pageData['modal'][1] = ["Ler mais Artigos" => "/artigos"];
                 break;
 
             case 'preparacao':
