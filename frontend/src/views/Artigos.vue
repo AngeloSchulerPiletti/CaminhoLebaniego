@@ -18,9 +18,6 @@ export default {
   inject: ["URL_API"],
   methods: {
   },
-  mounted() {
-    console.log(this.pageData);
-  },
   props: {
     pageData: Object,
   },

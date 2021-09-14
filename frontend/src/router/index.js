@@ -67,7 +67,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
 const URL_API = "http://127.0.0.1:8000/api/";
+
 router.beforeEach(async to => {
   if(to.meta.autoAxios){
   await axios.get(`${URL_API}content/${to.name}`).then(response => {

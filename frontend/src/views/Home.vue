@@ -24,9 +24,6 @@ export default {
   name: "inicio",
   inject: ["URL_API"],
   methods: {},
-  mounted() {
-    console.log(this.pageData);
-  },
   props: {
     pageData: Object,
   },
