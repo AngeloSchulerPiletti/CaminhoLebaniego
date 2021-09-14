@@ -13,14 +13,11 @@
         </div>
         <div class="paragraphs_slider">
           <p :class="pClass">
-            O Caminho Lebaniego está situado na Espanha, na Cantabria, no
-            fantástico Parque Nacional Picos de Europa. Para os amantes de
-            trekking, belíssimas paisagens, porém exigentes pois ou se está
-            subindo, ou se está descendo.
+            {{sliderParagraphs.content}}
           </p>
           <div class="controllers">
-            <arrow class="back arrow" @click="changeParagraph(1)"/>
-            <arrow class="next arrow" @click="changeParagraph(2)"/>
+            <arrow class="back arrow" @click="changeParagraph(-1)"/>
+            <arrow class="next arrow" @click="changeParagraph(1)"/>
           </div>
         </div>
       </section>
@@ -39,16 +36,31 @@ export default {
   data(){
     return{
       pClass:"",
+      sliderParagraphs: {
+        content: "",
+        index: 0,
+        tam: 0,
+      },
     }
   },
-  mounted(){
-    console.log(this.pageData);
+  computed:{
+    availableParagraphs(){
+      this.sliderParagraphs.tam = Object.values(this.pageData['sliderParagraphs']).length;
+      if (this.sliderParagraphs.tam > 0) {
+        this.sliderParagraphs.content = Object.values(this.pageData['sliderParagraphs'])[this.sliderParagraphs.index];
+      }
+    }
+  },
+  watch: {
+    availableParagraphs(){},
   },
   methods: {
     changeParagraph(action){
       this.pClass = "active";
       setTimeout(() => {
-
+        var result = this.sliderParagraphs.index;
+        result += action;
+        this.sliderParagraphs.index += (result >= 0) ? (result < this.sliderParagraphs.tam ? action : 0) : 0;
         this.pClass = "";
       }, 850);  
     }
@@ -133,10 +145,10 @@ export default {
         transition: transform 300ms;
       }
       &:deep(.back):hover{
-        transform: scale(1.2);
+        transform: scale(1.1);
       }
       &:deep(.next):hover{
-        transform: scale(1.2) scaleX(-1);
+        transform: scale(1.1) scaleX(-1);
       }
       // .back{
 
