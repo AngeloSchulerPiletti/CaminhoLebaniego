@@ -16,7 +16,7 @@
         font-family="'MonAmour'"
         font-size="57.8749px"
       >
-        Caminho Lebaniego
+        <tspan>C</tspan>aminho <tspan>L</tspan>ebaniego
       </text>
       <text
         transform="matrix(1 0 0 1 28.1966 91.4202)"

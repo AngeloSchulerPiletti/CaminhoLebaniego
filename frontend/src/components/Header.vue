@@ -41,6 +41,26 @@ header {
   #logo_container {
     padding-top: $pad_top;
     // border-top: 2px solid $white;
+    svg:deep(text){
+      tspan{
+        transition: fill 600ms;
+      }
+     }
+    
+    &:hover{
+      svg:deep(text){
+        tspan{
+          fill: $red;
+        }
+      }
+    }
+    a.router-link-active {
+      svg:deep(text){
+        tspan{
+          fill: $red;
+        }
+      }
+    }
   }
   nav {
     ul {
@@ -70,7 +90,7 @@ header {
 
         position: relative;
 
-        &::before{
+        &::before {
           content: "";
           position: absolute;
           left: 50%;
@@ -80,7 +100,7 @@ header {
 
           transition: right 300ms, left 300ms;
         }
-        &:hover::before{
+        &:hover::before {
           left: 0%;
           right: 0%;
           border-bottom: 1px solid $red;
