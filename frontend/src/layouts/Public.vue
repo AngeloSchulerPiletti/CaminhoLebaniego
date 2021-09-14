@@ -1,20 +1,23 @@
 <template>
   <transition name="fade">
-  <div id="website_container" v-if="show">
-    <great-modal modalPage="" modalOptions=""/>
-    <div id="pic_background" :class="'background back-' + backID">
-      <header-component />
-      <section id="header_content">
-        <slot name="header_sec"></slot>
-      </section>
+    <div id="website_container" v-if="show">
+      <great-modal
+        :modalPage="modal['html']"
+        :modalOptions="modal['options']"
+      />
+      <div id="pic_background" :class="'background back-' + backID">
+        <header-component />
+        <section id="header_content">
+          <slot name="header_sec"></slot>
+        </section>
+      </div>
+      <div v-if="backID != 0">
+        <main>
+          <slot name="main"></slot>
+        </main>
+        <footer>Footer</footer>
+      </div>
     </div>
-    <div v-if="backID != 0">
-      <main>
-        <slot name="main"></slot>
-      </main>
-      <footer>Footer</footer>
-    </div>
-  </div>
   </transition>
 </template>
 
@@ -26,13 +29,24 @@ export default {
   data() {
     return {
       show: false,
+      modal: {
+        html: "",
+        options: {},
+      },
     };
   },
-  mounted(){
+  mounted() {
     this.show = true;
+    if (typeof this.modalContent == "object") {
+      this.modal.html =
+        typeof this.modalContent[0] == "string" ? this.modalContent[0] : "";
+      this.modal.options =
+        typeof this.modalContent[1] == "object" ? this.modalContent[1] : {};
+    }
   },
   props: {
     backID: String,
+    modalContent: Object,
   },
   components: {
     "header-component": Header,
@@ -42,10 +56,12 @@ export default {
 </script>
 
 <style lang="scss">
-.fade-enter-active, .fade-leave-active{
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 700ms ease;
 }
-.fade-enter-from, .fade-leave-to{
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 #pic_background {
@@ -55,7 +71,6 @@ export default {
 
   display: flex;
   flex-direction: column;
-
 }
 .background {
   background-size: cover;
@@ -102,8 +117,7 @@ export default {
   background-repeat: no-repeat;
 }
 
-
-#header_content{
+#header_content {
   position: relative;
   flex-grow: 1;
 }

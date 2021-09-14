@@ -1,5 +1,5 @@
 <template>
-  <app-layout backID="0">
+  <app-layout backID="0" :modalContent="pageData['modal']">
     <template v-slot:header_sec>
       <banner-content :pageData="pageData" />
       <div id="actions">
