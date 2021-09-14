@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <aside v-if="show" id="great_modal">
+    <aside v-if="show" id="great_modal" @click="closeModal">
       <div id="modal_container">
         <article
           id="markdown_article"
@@ -27,13 +27,20 @@
 export default {
   data() {
     return {
-      show: true,
+      show: false,
     };
   },
   computed: {
     modalState() {
-    //   this.show = this.$store.state.modalShow;
+        this.show = this.$store.state.modalShow;
     },
+  },
+  methods:{
+    closeModal(event){
+        if (event.path.length <= 7) {
+            this.$store.state.modalShow = false;
+        }
+    }
   },
   watch: {
     modalState() {},
@@ -59,12 +66,13 @@ export default {
   z-index: 100000;
   background-color: #000000a0;
 
+
   #modal_container {
     margin: 10vh 10vw 0 10vw;
     overflow-y: auto;
     border-radius: 7px;
     max-height: 90vh;
-    overflow-y: auto;
+
 
     #markdown_article {
       background-color: $white;
@@ -73,9 +81,9 @@ export default {
       max-height: 60vh;
       overflow-y: auto;
 
-      &:deep(){
+      &:deep() {
         @include markdownArticle;
-      } 
+      }
     }
     #modal_options {
       background-color: $gray3;

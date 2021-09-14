@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from '../store'
 import axios from "axios";
 import Home from '@/views/Home.vue';
 import Caminho from "@/views/Caminho.vue";
@@ -71,6 +72,7 @@ const router = createRouter({
 const URL_API = "http://127.0.0.1:8000/api/";
 
 router.beforeEach(async to => {
+  store.state.modalShow = false;
   if(to.meta.autoAxios){
   await axios.get(`${URL_API}content/${to.name}`).then(response => {
     to.params.pageData = response.data
