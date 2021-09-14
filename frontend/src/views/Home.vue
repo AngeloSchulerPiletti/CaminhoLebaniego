@@ -3,7 +3,7 @@
     <template v-slot:header_sec>
       <banner-content :pageData="pageData" />
       <div id="actions">
-        <div class="btn_1">
+        <div class="btn_1" @click="$store.state.modalShow = true">
           História do Caminho
         </div>
         <router-link to="/preparacao">
@@ -27,9 +27,6 @@ export default {
   methods: {},
   props: {
     pageData: Object,
-  },
-  mounted(){
-    console.log(this.$store.state.teste);
   },
   components: {
     AppLayout,
