@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Parsedown;
 
 class ViewsController extends Controller
 {
-    protected const ACCEPTED_PAGES = ["inicio", "preparacao", "caminho", "experiencia", "artigos", "contato"];
-
-    protected function getHTMLFromMD($md_path){
-        $mdParser = new Parsedown();
-        return $mdParser->text(file_get_contents(base_path('resources/markdown/'.$md_path)));
-    }
+    protected const ACCEPTED_PAGES = ["inicio", "preparacao", "caminho", "experiencia", "artigos", "contato"]; 
 
     public function getPageContent($pageContent)
     {
@@ -28,12 +22,13 @@ class ViewsController extends Controller
                     // "route_name" => "route",
                 ],
             ],
+            "sliderParagraphs" => [],
         ];
         switch ($pageContent) {
             case 'inicio':
                 $pageData['title'] = "Descubra o Caminho";
                 $pageData['paragraph'] = "Por mais longa que seja a caminhada, o mais importante é dar o primeiro passo.";
-                $pageData['modal'][0] = $this->getHTMLFromMD("modais/inicio_history.md");
+                $pageData['modal'][0] = getHTMLFromMD("modais/inicio_history.md");
                 $pageData['modal'][1] = ["Ler mais Artigos" => "/artigos"];
                 break;
 
@@ -43,6 +38,7 @@ class ViewsController extends Controller
 
             case 'caminho':
                 $pageData['title'] = "O que estará a sua frente";
+                $pageData["sliderParagraphs"] = explodeParagraphsFromTXT("caminho/sliderParagraphs.txt");
                 break;
 
             case 'experiencia':
