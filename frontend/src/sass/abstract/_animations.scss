@@ -1,0 +1,23 @@
+@keyframes movingY{
+    0%{
+        transform: translateY(-3%);
+    }
+    100%{
+        transform: translateY(3%);
+    }
+}
+
+
+// @mixin cornerToCorner($from1, $from2, $to1, $to2) {
+//     @keyframes squareAbove {
+//         0%{
+//             $from1: 
+//         }
+//         50%{
+
+//         }
+//         100%{
+
+//         }
+//     }
+// }
