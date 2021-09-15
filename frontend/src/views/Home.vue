@@ -20,11 +20,15 @@
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
+import { computed } from '@vue/reactivity';
 
 export default {
   name: "inicio",
   inject: ["URL_API"],
   methods: {},
+  mounted(){
+    this.$store.commit('setTitle', "Início");
+  },
   props: {
     pageData: Object,
   },

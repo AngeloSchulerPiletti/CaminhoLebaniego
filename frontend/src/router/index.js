@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store'
 import axios from "axios";
+import { useHead } from '@vueuse/head'
+
+/* ============= VIEWS ============== */
 import Home from '@/views/Home.vue';
 import Caminho from "@/views/Caminho.vue";
 import Artigos from "@/views/Artigos.vue";
@@ -17,7 +20,9 @@ const routes = [
     name: 'inicio',
     component: Home,
     props: true,
-    meta: {autoAxios: true},
+    meta: {
+      autoAxios: true,
+    },
   },
   {
     path: '/caminho',
