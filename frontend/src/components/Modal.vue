@@ -90,23 +90,6 @@ export default {
       justify-content: space-between;
       align-items: center;
 
-      .btn_2 {
-        @include Title2;
-        background-color: $red;
-        color: $white;
-        border: 2px solid $red;
-        border-radius: 1000px;
-        font-size: 14px;
-        padding: 7px 20px;
-        width: fit-content;
-
-        transition: background-color 400ms ease, color 300ms ease;
-
-        &:hover {
-          background-color: transparent;
-          color: $red;
-        }
-      }
     }
   }
 }

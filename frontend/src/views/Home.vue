@@ -46,24 +46,5 @@ export default {
   display: flex;
   justify-content: space-between;
   
-
-  .btn_1 {
-    background-color: $red;
-    @include Font1;
-    color: $white;
-    font-size: 22px;
-    padding: 12px 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px $black;
-    animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
-    transition: color 200ms, background-color 300ms;
-    cursor: pointer;
-
-    &:hover {
-      animation-play-state: paused;
-      background-color: $white;
-      color: $red;
-    }
-  }
 }
 </style>

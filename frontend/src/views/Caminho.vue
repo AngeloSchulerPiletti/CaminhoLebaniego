@@ -21,6 +21,22 @@
           </div>
         </div>
       </section>
+      <section id="sec2">
+        <div>
+          <img :src="'/src/assets/images/pages/caminho/img'+sliderImages1.imgIndex+'.jpg'" alt="">
+        </div>
+        <div>
+          <div>
+            <h2>sliderImages1.title</h2>
+            <p>sliderImages1.paragraph</p>
+          </div>
+          <div>
+            <div class="btn_3">
+              Próxima
+            </div>
+          </div>
+        </div>
+      </section>
     </template>
   </app-layout>
 </template>
@@ -40,6 +56,11 @@ export default {
         content: "",
         index: 0,
         tam: 0,
+      },
+      sliderImages1:{
+        imgIndex: "",
+        title: "",
+        paragraph: "",
       },
     }
   },
@@ -82,8 +103,8 @@ export default {
     display: flex;
     align-items: baseline;
     gap: 20px;
-    width: 80vw;
-    margin: auto;
+    width: 100%;
+    padding: 0 10vw;
     @include Drawed1;
 
     .special_char {
@@ -98,7 +119,7 @@ export default {
     }
   }
   .paragraphs_slider{
-    width: 80vw;
+    padding: 0 10vw;
     margin: auto;
 
     p{

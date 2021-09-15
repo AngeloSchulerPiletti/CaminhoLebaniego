@@ -71,6 +71,9 @@ export default {
 
   display: flex;
   flex-direction: column;
+  z-index: 100;
+  position: relative;
+  box-shadow: 0 0 10px 4px #000;
 }
 .background {
   background-size: cover;
