@@ -1,0 +1,53 @@
+{
+    "0": {
+        "codeName": "day1",
+        "title": "O Purgatório",
+        "from": "San Vicente de La Barquera",
+        "to": "Serdio",
+        "distance": "32",
+        "paragraphs": {
+            "0": "Nesse dia, para quem vem desde Santander, ou percorrendo o Caminho do Norte de Santiago, vamos nos despedindo do mar e entrando no continente. É um dia de transição entre o Mar Cantabrico e as montanhas, com belas paisagens e alguns monumentos historicos, principalmente em San Vicente de La Barquera, que é uma das cidades mais turísticas da Cantabria."
+        },
+        "totalImages": "4"
+    },
+    "1": {
+        "codeName": "day2",
+        "title": "A Reflexão",
+        "from": "Serdio",
+        "to": "Cicera",
+        "distance": "36.5",
+        "paragraphs": {
+            "0": "Aqui, chegando em Muñorrodero, temos a separação do Caminho do Norte de Santiago de Compostela e do Caminho Lebaniego, e onde trocamos as flechas amarelas pelas vermelhas. Logo após Muñorrodero começamos a acompanhar o Rio Nansa, até Camijanes, através de um belíssimo bosque, com várias passarelas de madeira e caminhos de saibro. Existem algumas variantes de acordo com o nível do rio. Atenção para isso, e para o fato de haver pouca disponibilidade de água e comércio no trecho, sendo prudente levar um lanche adquirido antes.", 
+            "1": "Em Ca Cabanzón nos chama a atenção sua torre medieval, do século VIII, que fazia parte do sistema de defesa da região de San Vicente de la Barquera. Depois passamos por Cades, onde podemos visitar uma Ferraria de 1752, onde existe um albergue e um bar.",
+            "2": "Na sequência, passamos por La Venta; Sobrelapeña; La Fuente, com a Igreja de Santa Juliana do Seculo XII e que conta com um albergue; Burio, passando por uma belíssima visão do vale; e finalmente a Cícera, onde encontramos albergue e restaurante. Para quem quiser um pouco mais de conforto, tem também uma hospedagem particular, igualmente dotada de bar e restaurante."
+        },
+        "totalImages": "4"
+    },
+    "2": {
+        "codeName": "day3",
+        "title": "A Morte",
+        "from": "Cicera",
+        "to": "Potes",
+        "distance": "23.6",
+        "paragraphs": {
+            "0": "Deste dia em diante, é quando o relevo do Parque Nacional Picos da Europa mais nos cobra. a paisagem é deslumbrante, mas as montanhas exigem preparo. Saindo de Cicera, caminhamos uns 10km por um bosque de carvalhos que parece saido de um filme medieval. Atravessei o mesmo embaixo de chuva, o que exige atenção redobrada e bom equipamento.",
+            "1": "Em Lebeña encontramos a Igreja de Santa Maria de Lebeña, construída no ano de 925. Na sequência passamos por Allende; Cabañes, que conta com um albergue de peregrinos; Pendes; Castro, onde encontramos a Ermita de San Francisco; Tama, que possui um bar/restaurante; Ojedo; e finalmente Potes.",
+            "2": "Em Potes, praticamente estamos no fim de nossa jornada, visto que o Monastério está a apenas 4km daqui. O albergue de Potes está situado numa localização privilegiada no centro da cidade. O peregrino que quiser se hospedar nele deve se dirigir ao Centro de Estudos Lebaniegos, junto à Igreja de San Vicente, de estilo gótico, e retirar a chave do albergue.",
+            "3": "Potes é uma ótima opção para ficar, pois possui diversas opções de restaurantes (vale provar o Cocido Lebaniego, prato típico, além das trutas) e se perder por suas ruas, sentindo a cultura local, com vários prédios e pontes medievais, tudo isso rodeado pelas montanhas do parque. No outro dia, poderá chegar cedo ao Monastério, e curtir um silêncio contemplativo, antes da chegada dos turistas."
+        },
+        "totalImages": "4"
+    },
+    "3": {
+        "codeName": "day4",
+        "title": "A Virtude",
+        "from": "Potes",
+        "to": "Santo Toribio de Liébana",
+        "distance": "4.2",
+        "paragraphs": {
+            "0": "De Potes a Santo Toríbio de Liébana são 4,2km, praticamente em aclive. Vale observar que o monastério em si não está situado em outra cidade. A sua base é Potes, estando ele retirado da mesma. Vale levar um lanche e água, pois junto ao mesmo há apenas uma pequena venda.",
+            "1": "O Monastério é formado por construções e reformas das mais variadas datas, em estilo gótico clássico e barroco. Suas primeiras edificações datam de antes do século X,  e a sua igreja foi concluída em 1256. A capela anexa, onde atualmente está o relicário foi construído no começo do século XVIII. É um conjunto arquitetônico que merece tempo para ser visto em seus detalhes. Junto à eles, está a Oficina de Atenção ao Peregrino, onde é fornecida a Lebaniega, que é um certificado fornecido à quem fez o caminho a pé.",
+            "2": "A missa ocorre diariamente ao meio dia, e nos sabados e vésperas de feriado, há outra às 19:00."
+        },
+        "totalImages": "4"
+    }
+}
