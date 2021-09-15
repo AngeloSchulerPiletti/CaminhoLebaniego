@@ -123,7 +123,6 @@ export default {
     display: flex;
     align-items: baseline;
     gap: 20px;
-    width: 100%;
     padding: 0 10vw;
     @include Drawed1;
 
