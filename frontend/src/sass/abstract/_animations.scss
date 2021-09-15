@@ -8,16 +8,23 @@
 }
 
 
-// @mixin cornerToCorner($from1, $from2, $to1, $to2) {
-//     @keyframes squareAbove {
-//         0%{
-//             $from1: 
-//         }
-//         50%{
-
-//         }
-//         100%{
-
-//         }
-//     }
-// }
+    @keyframes cornerTopRight {
+        0%{
+            top: 0;
+            right: 0;
+            bottom: 100%;
+            left: 100%;
+        }
+        50%{
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        100%{
+            top: 100%;
+            right: 100%;
+            bottom: 0;
+            left: 0;
+        }
+    }

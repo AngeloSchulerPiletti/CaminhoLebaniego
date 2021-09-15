@@ -247,13 +247,9 @@ export default {
       left: 100%;
 
       background-color: $red;
-      transition: bottom 300ms, left 300ms, top 300ms 300ms, right 300ms 300ms;
     }
     &.active::before {
-      bottom: 0;
-      left: 0;
-      top: 100%;
-      right: 100%;
+      animation: cornerTopRight 600ms ease 0ms 1 normal both;
     }
 
     img {
