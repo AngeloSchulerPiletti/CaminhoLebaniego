@@ -1,0 +1,140 @@
+<template>
+  <div class="wrapper">
+    <div class="title_special">
+      <div class="special_char">
+        O
+      </div>
+      <h1>Caminho Lebaniego</h1>
+    </div>
+    <div class="paragraphs_slider">
+      <p :class="pClass">
+        {{ sliderParagraphs[index]}}
+      </p>
+      <div class="controllers">
+        <arrow :class="'back arrow ' + pClass" @click="changeParagraph(-1)" />
+        <arrow :class="'next arrow ' + pClass" @click="changeParagraph(1)" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Arrow from "@/components/SVGs/Arrow";
+
+export default {
+  data() {
+    return {
+      pClass: "",
+      index: 0,
+    };
+  },
+  // mounted(){
+  //     console.log(this.sliderParagraphs);
+  // },
+  methods: {
+      changeParagraph(action) {
+      this.pClass = "active";
+      setTimeout(() => {
+        var result = this.index;
+        result += action;
+        this.index +=
+          result >= 0 ? (result < this.total ? action : 0) : 0;
+        this.pClass = "";
+      }, 850);
+    },
+  },
+  props: {
+    sliderParagraphs: Object,
+    total: Number,
+  },
+  components:{
+      Arrow,
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.wrapper {
+  .title_special {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 0 10vw;
+    @include Drawed1;
+
+    .special_char {
+      background-color: $red;
+      color: $white;
+      font-size: 90px;
+      padding: 10px 8px;
+    }
+    h1 {
+      font-size: 40px;
+      color: $white;
+    }
+  }
+  .paragraphs_slider {
+    padding: 0 10vw;
+    margin: auto;
+
+    p {
+      margin-top: 2vw;
+      position: relative;
+      color: $white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        left: 0;
+        right: 100%;
+        background-color: $red;
+        border-left: 3px solid $red;
+
+        transition: right 500ms ease;
+      }
+      &.active::before {
+        left: 0;
+        right: 0;
+      }
+    }
+    .controllers {
+      margin-top: 1vw;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+
+      &:deep(.arrow) {
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+
+        &.active {
+          pointer-events: none;
+        }
+
+        path {
+          fill: $white;
+        }
+
+        transition: transform 300ms;
+      }
+      &:deep(.back):hover {
+        transform: scale(1.1);
+      }
+      &:deep(.next):hover {
+        transform: scale(1.1) scaleX(-1);
+      }
+      // .back{
+
+      // }
+      .next {
+        transform: scale(1) scaleX(-1);
+      }
+    }
+  }
+}
+</style>

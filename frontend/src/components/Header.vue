@@ -7,11 +7,11 @@
     </div>
     <nav id="header_nav">
       <ul>
-        <router-link to="/caminho"><li>O Caminho</li></router-link>
-        <router-link to="/preparacao"><li>Preparação</li></router-link>
-        <router-link to="/experiencia"><li>Experiência</li></router-link>
-        <router-link to="/artigos"><li>Artigos</li></router-link>
-        <router-link to="/contato"><li>Contato</li></router-link>
+        <router-link to="/caminho"><li class="hover1">O Caminho</li></router-link>
+        <router-link to="/preparacao"><li class="hover1">Preparação</li></router-link>
+        <router-link to="/experiencia"><li class="hover1">Experiência</li></router-link>
+        <router-link to="/artigos"><li class="hover1">Artigos</li></router-link>
+        <router-link to="/contato"><li class="hover1">Contato</li></router-link>
       </ul>
     </nav>
   </header>
@@ -41,22 +41,22 @@ header {
   #logo_container {
     padding-top: $pad_top;
     // border-top: 2px solid $white;
-    svg:deep(text){
-      tspan{
+    svg:deep(text) {
+      tspan {
         transition: fill 600ms;
       }
-     }
-    
-    &:hover{
-      svg:deep(text){
-        tspan{
+    }
+
+    &:hover {
+      svg:deep(text) {
+        tspan {
           fill: $red;
         }
       }
     }
     a.router-link-active {
-      svg:deep(text){
-        tspan{
+      svg:deep(text) {
+        tspan {
           fill: $red;
         }
       }
@@ -89,22 +89,6 @@ header {
         @include Font1;
 
         position: relative;
-
-        &::before {
-          content: "";
-          position: absolute;
-          left: 50%;
-          right: 50%;
-          bottom: -5px;
-          border-bottom: 1px solid transparent;
-
-          transition: right 300ms, left 300ms;
-        }
-        &:hover::before {
-          left: 0%;
-          right: 0%;
-          border-bottom: 1px solid $red;
-        }
       }
     }
   }
