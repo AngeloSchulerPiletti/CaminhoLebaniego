@@ -39,10 +39,10 @@
     color: abs.$red;
   }
 }
-.btn_3{
-    @include abs.Title2;
+.btn_3 {
+  @include abs.Title2;
   color: abs.$white;
-    background-color: transparent;
+  background-color: transparent;
   border: 2px solid abs.$red;
   border-radius: 1000px;
   font-size: 14px;
@@ -53,6 +53,152 @@
   transition: background-color 400ms ease;
 
   &:hover {
-  background-color: abs.$red;
+    background-color: abs.$red;
   }
 }
+
+
+
+
+
+/*+--------------------------------------+
+  |            PSEUDO ELEMENTS           |
+  +--------------------------------------+*/
+.hover1{
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: -5px;
+    border-bottom: 1px solid transparent;
+
+    transition: right 300ms, left 300ms;
+  }
+  &:hover::before {
+    left: 0%;
+    right: 0%;
+    border-bottom: 1px solid abs.$red;
+  }
+}
+.hover2{
+  position: relative;
+  cursor: pointer;
+
+  &::before, &::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transition: right 300ms, left 300ms;
+  }
+  &::before {
+    bottom: -5px;
+    border-bottom: 1px solid transparent;
+  }
+  &::after{
+    top: -5px;
+    border-top: 3px solid transparent;
+  }
+  &:hover::before, &:hover::after{
+    left: 0%;
+    right: 0%;
+  }
+  &:hover::before {
+    border-bottom: 3px solid abs.$red;
+  }
+  &:hover::after{
+    border-top: 3px solid abs.$red;
+  }
+
+  &.active::before, &.active::after{
+    content: "";
+    position: absolute;
+    left: 0%;
+    right: 0%;
+  }
+  &.active::before{
+    border-bottom: 3px solid abs.$red;
+  }
+  &.active::after{
+    border-top: 3px solid abs.$red;
+  }
+}
+/*+--------------------------------------+
+  |            PSEUDO ELEMENTS           |
+  +--------------------------------------+*/
+
+
+
+
+/*+--------------------------------------+
+  |                TITLES                |
+  +--------------------------------------+*/
+.title1 {
+  @include abs.Drawed1;
+  font-size: 35px;
+  color: abs.$white;
+
+  &::first-letter {
+    color: abs.$red;
+  }
+}
+.title2{
+  @include abs.Drawed1;
+  font-size: 50px;
+  color: abs.$white;
+
+  &::first-letter {
+    color: abs.$red;
+  }
+
+}
+/*+--------------------------------------+
+  |                TITLES                |
+  +--------------------------------------+*/
+
+
+
+  
+/*+--------------------------------------+
+  |               PARAGRAPH              |
+  +--------------------------------------+*/
+
+/*+--------------------------------------+
+  |               PARAGRAPH              |
+  +--------------------------------------+*/
+
+
+  
+
+  
+/*+--------------------------------------+
+  |              SELECTORS               |
+  +--------------------------------------+*/
+  .selector1{
+    @include abs.Drawed1;
+    font-size: 28px;
+    color: abs.$white;
+
+    &::first-letter {
+      font-size: 2em;
+    }
+    &.active{
+      color: abs.$red;
+    }
+  }
+  .selector2{
+    @include abs.Drawed1;
+    font-size: 28px;
+    color: abs.$white;
+
+    &::first-letter {
+      font-size: 2em;
+    }
+  }
+/*+--------------------------------------+
+  |              SELECTORS               |
+  +--------------------------------------+*/
