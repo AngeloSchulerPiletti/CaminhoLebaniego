@@ -26,7 +26,7 @@ export default {
   name: "inicio",
   inject: ["URL_API"],
   methods: {},
-  mounted(){
+  created(){
     this.$store.commit('setTitle', "Início");
   },
   props: {

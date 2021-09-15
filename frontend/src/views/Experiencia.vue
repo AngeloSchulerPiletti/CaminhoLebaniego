@@ -16,6 +16,9 @@ export default {
   name: "experiencia",
   inject: ["URL_API"],
   methods: {},
+  created(){
+    this.$store.commit('setTitle', "Experiência");
+  },
   props: {
     pageData: Object,
   },

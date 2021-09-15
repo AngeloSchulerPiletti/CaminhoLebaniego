@@ -16,6 +16,9 @@ export default {
   inject: ["URL_API"],
   methods: {
   },
+  created(){
+    this.$store.commit('setTitle', "Preparação");
+  },
   props: {
     pageData: Object,
   },

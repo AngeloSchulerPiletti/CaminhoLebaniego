@@ -11,9 +11,12 @@ import Error from "@/views/error/Error";
 
 export default {
     name: "error404",
+  created(){
+    this.$store.commit('setTitle', "Erro 404");
+  },
 components: {
     Error,
-}
+},
 }
 </script>
 

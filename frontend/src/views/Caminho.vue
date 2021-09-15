@@ -130,6 +130,9 @@ export default {
       }, 600);
     },
   },
+  created(){
+    this.$store.commit('setTitle', "Caminho");
+  },
   props: {
     pageData: Object,
   },

@@ -1,5 +1,5 @@
 <template>
-    <router-view />
+  <router-view />
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 
 <style lang="scss">
 @font-face {
-    font-family: MonAmour;
-    src: url('./assets/fonts/MonAmour.ttf');
+  font-family: MonAmour;
+  src: url("./assets/fonts/MonAmour.ttf");
 }
 </style>
