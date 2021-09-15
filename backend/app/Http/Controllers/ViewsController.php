@@ -23,6 +23,7 @@ class ViewsController extends Controller
                 ],
             ],
             "sliderParagraphs" => [],
+            "sliderImages1" => [],
         ];
         switch ($pageContent) {
             case 'inicio':
@@ -38,7 +39,11 @@ class ViewsController extends Controller
 
             case 'caminho':
                 $pageData['title'] = "O que estará a sua frente";
-                $pageData["sliderParagraphs"] = explodeParagraphsFromTXT("caminho/sliderParagraphs.txt");
+                $sliderParagraphsArr = explodeParagraphsFromTXT("caminho/sliderParagraphs.txt");
+                $pageData["sliderParagraphs"] = [$sliderParagraphsArr, count($sliderParagraphsArr)];
+
+                $sliderImagesArr = getJsonAsArray('caminho/sliderImages1.json');
+                $pageData["sliderImages1"] = [$sliderImagesArr, count($sliderImagesArr)];
                 break;
 
             case 'experiencia':

@@ -15,3 +15,9 @@ if (!function_exists('explodeParagraphsFromTXT')) {
         return array_filter($paragraphs);
     }
 }
+
+if(!function_exists('getJsonAsArray')){
+    function getJsonAsArray($json_path){
+        return json_decode(file_get_contents(base_path('resources/json/'.$json_path)), true);
+    }
+}

@@ -56,3 +56,8 @@ button{
 	border: none;
 	outline: 0 0 0 0;
 }
+p{
+	@include Font1;
+	font-size: 15px;
+	line-height: 1.45em;
+}

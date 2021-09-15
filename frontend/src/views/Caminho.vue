@@ -22,16 +22,19 @@
         </div>
       </section>
       <section id="sec2">
-        <div>
-          <img :src="'/src/assets/images/pages/caminho/img'+sliderImages1.imgIndex+'.jpg'" alt="">
+        <div class="img_container">
+          <img :src="'./images/pages/caminho/img'+sliderImages1.index+'.jpg'" alt="">
         </div>
-        <div>
-          <div>
-            <h2>sliderImages1.title</h2>
-            <p>sliderImages1.paragraph</p>
+        <div class="asider">
+          <div class="top">
+            <h2>{{sliderImages1.title}}</h2>
+            <p>{{sliderImages1.paragraph}}</p>
           </div>
-          <div>
-            <div class="btn_3">
+          <div class="bottom">
+            <div class="btn_3" @click="changeImage(-1)">
+              Anterior
+            </div>
+            <div class="btn_3" @click="changeImage(1)">
               Próxima
             </div>
           </div>
@@ -58,22 +61,34 @@ export default {
         tam: 0,
       },
       sliderImages1:{
-        imgIndex: "",
         title: "",
         paragraph: "",
+        index: 0,
+        tam: 0,
       },
     }
   },
+  mounted(){
+    // console.log(this.pageData["sliderImages1"]);
+  },
   computed:{
     availableParagraphs(){
-      this.sliderParagraphs.tam = Object.values(this.pageData['sliderParagraphs']).length;
+      this.sliderParagraphs.tam = this.pageData['sliderParagraphs'][1];
       if (this.sliderParagraphs.tam > 0) {
-        this.sliderParagraphs.content = Object.values(this.pageData['sliderParagraphs'])[this.sliderParagraphs.index];
+        this.sliderParagraphs.content = Object.values(this.pageData['sliderParagraphs'][0])[this.sliderParagraphs.index];
       }
-    }
+    },
+    availableImages1(){
+      this.sliderImages1.tam = this.pageData["sliderImages1"][1];
+      if (this.sliderImages1.tam > 0) {
+        this.sliderImages1.title = this.pageData["sliderImages1"][0][this.sliderImages1.index].title;
+        this.sliderImages1.paragraph = this.pageData["sliderImages1"][0][this.sliderImages1.index].paragraph;
+      }
+    },
   },
   watch: {
     availableParagraphs(){},
+    availableImages1(){},
   },
   methods: {
     changeParagraph(action){
@@ -84,6 +99,11 @@ export default {
         this.sliderParagraphs.index += (result >= 0) ? (result < this.sliderParagraphs.tam ? action : 0) : 0;
         this.pClass = "";
       }, 850);  
+    },
+    changeImage(action){
+        var result = this.sliderImages1.index;
+        result += action;
+        this.sliderImages1.index += (result >= 0) ? (result < this.sliderImages1.tam ? action : -(this.sliderImages1.tam - 1)) : (this.sliderImages1.tam - 1);
     }
   },
   props: {
@@ -125,13 +145,10 @@ export default {
     p{
     margin-top: 2vw;
       position: relative;
-      @include Font1;
-      font-size: 16px;
       color: $white;
       padding: 10px 20px;
       display: flex;
       align-items: center;
-      line-height: 1.45em;
 
       &::before{
         content: "";
@@ -177,6 +194,51 @@ export default {
       .next{
         transform: scale(1) scaleX(-1);
       }
+    }
+  }
+}
+#sec2{
+  display: flex;
+  gap: 5vw;
+  margin-top: 8vw;
+  
+  .img_container{
+    box-shadow: 0 0 10px 2px #000;
+    img{
+    width: 40vw;
+    height: 30vw;
+      object-fit: cover;
+    }
+    
+  }
+  .asider{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 10vw;
+    padding: 20px 0;
+
+    .top{
+      color: $white;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h2{
+        @include Drawed1;
+        font-size: 35px;
+
+        &::first-letter{
+          color: $red;
+        }
+      }
+      p{
+        text-indent: 1em;
+      }
+    }
+    .bottom{
+      display: flex;
+      gap: 20px;
     }
   }
 }
