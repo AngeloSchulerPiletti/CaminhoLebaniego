@@ -2,6 +2,7 @@
   <div class="wrapper">
     <div class="top">
       <h2 class="title2">Trechos</h2>
+      <p>Para fazer o trecho entre San Vicente de La Barquera a Santo Toribio de Liébana, o Guia distribuído pelo Governo da Cantabria sugere<span class="highlighter1"> 3 ou 5 etapas</span> (dias). Mas na verdade, cada um define seu ritmo. Eu fiz esse trajeto em <span class="highlighter1">quatro dias</span>:</p>
     </div>
     <div class="controllers">
       <div
@@ -83,7 +84,16 @@ export default {
   gap: 2vw;
 
   .top {
-      padding-left: 10vw;
+      padding: 0 10vw;
+      display: flex;
+      flex-direction: column;
+        gap: 10px;
+
+      p{
+          color: $white;
+          font-size: 18px;
+          @include Font0;
+      }
   }
   .controllers {
     display: flex;
