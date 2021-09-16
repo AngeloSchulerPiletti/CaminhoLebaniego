@@ -11,11 +11,11 @@
           <slot name="header_sec"></slot>
         </section>
       </div>
-      <div v-if="backID != 0">
+      <div v-if="backID != 0" class="mainFooterWrapper">
         <main>
           <slot name="main"></slot>
         </main>
-        <footer>Footer</footer>
+        <footer-component />
       </div>
     </div>
   </transition>
@@ -24,6 +24,7 @@
 <script>
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
+import Footer from "@/components/Footer";
 
 export default {
   data() {
@@ -51,6 +52,7 @@ export default {
   components: {
     "header-component": Header,
     "great-modal": Modal,
+    "footer-component": Footer,
   },
 };
 </script>
@@ -74,6 +76,11 @@ export default {
   z-index: 100;
   position: relative;
   box-shadow: 0 0 10px 4px #000;
+
+  #header_content {
+    position: relative;
+    flex-grow: 1;
+  }
 }
 .background {
   background-size: cover;
@@ -120,8 +127,9 @@ export default {
   background-repeat: no-repeat;
 }
 
-#header_content {
-  position: relative;
-  flex-grow: 1;
+.mainFooterWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15vw;
 }
 </style>

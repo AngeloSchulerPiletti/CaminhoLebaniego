@@ -154,7 +154,33 @@
   &::first-letter {
     color: abs.$red;
   }
+}
+.title3{
+  @include abs.Title2;
+  font-size: 28px;
+  width: fit-content;
+  padding: 4px 10px;
 
+  position: relative;
+
+  &::before, &::after{
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+  }
+  &::before{
+    top: 0;
+    right: 0;
+    border-top: 1px solid abs.$black;
+    border-right: 1px solid abs.$black;
+  }
+  &::after{
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid abs.$black;
+    border-left: 1px solid abs.$black;
+  }
 }
 /*+--------------------------------------+
   |                TITLES                |
