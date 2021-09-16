@@ -25,6 +25,7 @@ class ViewsController extends Controller
             "sliderParagraphs" => [],
             "sliderImages1" => [],
             "dailyExcerpts" => [],
+            "observations" => [],
         ];
         switch ($pageContent) {
             case 'inicio':
@@ -48,6 +49,9 @@ class ViewsController extends Controller
                 
                 $dailyExcerptsArr = getJsonAsArray('caminho/dailyExcerpts.json');
                 $pageData["dailyExcerpts"] = [$dailyExcerptsArr, count($dailyExcerptsArr)];
+
+                $observationsArr = getJsonAsArray('caminho/observations.json');
+                $pageData["observations"] = [$observationsArr, count($observationsArr)]; 
                 break;
 
             case 'experiencia':
