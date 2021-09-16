@@ -34,6 +34,7 @@ footer{
     background-color: $white;
     padding: 55px 0;
     gap: 30px;
+    color: $blackest;
 
     .top{
         display: flex;
