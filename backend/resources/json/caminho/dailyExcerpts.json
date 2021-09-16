@@ -3,7 +3,6 @@
     "observation": "Para fazer o trecho entre San Vicente de La Barquera a Santo Toribio de Liébana, o Guia distribuído pelo Governo da Cantabria sugere<span class='highlighter1'> 3 ou 5 etapas</span> (dias). Mas na verdade, cada um define seu ritmo. Eu fiz esse trajeto em <span class='highlighter1'>quatro dias</span>:",
     "content": {
         "0": {
-            "codeName": "day1",
             "title": "O Purgatório",
             "trekData": {
                 "class": "hasTrekData",
@@ -17,7 +16,6 @@
             "totalImages": "4"
         },
         "1": {
-            "codeName": "day2",
             "title": "A Reflexão",
             "trekData": {
                 "class": "hasTrekData",
@@ -33,7 +31,6 @@
             "totalImages": "4"
         },
         "2": {
-            "codeName": "day3",
             "title": "A Morte",
             "trekData": {
                 "class": "hasTrekData",
@@ -50,7 +47,6 @@
             "totalImages": "4"
         },
         "3": {
-            "codeName": "day4",
             "title": "A Virtude",
             "trekData": {
                 "class": "hasTrekData",

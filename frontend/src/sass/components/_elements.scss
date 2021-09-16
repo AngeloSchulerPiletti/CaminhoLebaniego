@@ -57,14 +57,10 @@
   }
 }
 
-
-
-
-
 /*+--------------------------------------+
   |            PSEUDO ELEMENTS           |
   +--------------------------------------+*/
-.hover1{
+.hover1 {
   position: relative;
   cursor: pointer;
 
@@ -84,11 +80,12 @@
     border-bottom: 1px solid abs.$red;
   }
 }
-.hover2{
+.hover2 {
   position: relative;
   cursor: pointer;
 
-  &::before, &::after{
+  &::before,
+  &::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -99,40 +96,39 @@
     bottom: -5px;
     border-bottom: 1px solid transparent;
   }
-  &::after{
+  &::after {
     top: -5px;
     border-top: 3px solid transparent;
   }
-  &:hover::before, &:hover::after{
+  &:hover::before,
+  &:hover::after {
     left: 0%;
     right: 0%;
   }
   &:hover::before {
     border-bottom: 3px solid abs.$red;
   }
-  &:hover::after{
+  &:hover::after {
     border-top: 3px solid abs.$red;
   }
 
-  &.active::before, &.active::after{
+  &.active::before,
+  &.active::after {
     content: "";
     position: absolute;
     left: 0%;
     right: 0%;
   }
-  &.active::before{
+  &.active::before {
     border-bottom: 3px solid abs.$red;
   }
-  &.active::after{
+  &.active::after {
     border-top: 3px solid abs.$red;
   }
 }
 /*+--------------------------------------+
   |            PSEUDO ELEMENTS           |
   +--------------------------------------+*/
-
-
-
 
 /*+--------------------------------------+
   |                TITLES                |
@@ -146,7 +142,7 @@
     color: abs.$red;
   }
 }
-.title2{
+.title2 {
   @include abs.Drawed1;
   font-size: 50px;
   color: abs.$white;
@@ -155,41 +151,45 @@
     color: abs.$red;
   }
 }
-.title3{
+@mixin titleFamily3($color, $borderColor) {
   @include abs.Title2;
   font-size: 28px;
   width: fit-content;
   padding: 4px 10px;
-  color: abs.$blackest;
+  color: $color;
 
   position: relative;
 
-  &::before, &::after{
+  &::before,
+  &::after {
     content: "";
     position: absolute;
     height: 18px;
     width: 18px;
   }
-  &::before{
+  &::before {
     top: 0;
     right: 0;
-    border-top: 1px solid abs.$blackest;
-    border-right: 1px solid abs.$blackest;
+    border-top: 1px solid $borderColor;
+    border-right: 1px solid $borderColor;
   }
-  &::after{
+  &::after {
     bottom: 0;
     left: 0;
-    border-bottom: 1px solid abs.$blackest;
-    border-left: 1px solid abs.$blackest;
+    border-bottom: 1px solid $borderColor;
+    border-left: 1px solid $borderColor;
   }
+}
+.title3 {
+  @include titleFamily3(abs.$blackest, abs.$blackest);
+}
+.title3-1{
+  @include titleFamily3(abs.$white, abs.$red);
 }
 /*+--------------------------------------+
   |                TITLES                |
   +--------------------------------------+*/
 
-
-
-  
 /*+--------------------------------------+
   |               PARAGRAPH              |
   +--------------------------------------+*/
@@ -198,46 +198,41 @@
   |               PARAGRAPH              |
   +--------------------------------------+*/
 
-
-
-  
 /*+--------------------------------------+
   |              HIGHLIGHTER             |
   +--------------------------------------+*/
-  .highlighter1{
-    color: lighten(abs.$red, 8%);
-    font-weight: 700; 
-  }
+.highlighter1 {
+  color: lighten(abs.$red, 8%);
+  font-weight: 700;
+}
 /*+--------------------------------------+
   |              HIGHLIGHTER             |
   +--------------------------------------+*/
-  
 
-  
 /*+--------------------------------------+
   |              SELECTORS               |
   +--------------------------------------+*/
-  .selector1{
-    @include abs.Drawed1;
-    font-size: 28px;
-    color: abs.$white;
+.selector1 {
+  @include abs.Drawed1;
+  font-size: 28px;
+  color: abs.$white;
 
-    &::first-letter {
-      font-size: 2em;
-    }
-    &.active{
-      color: abs.$red;
-    }
+  &::first-letter {
+    font-size: 2em;
   }
-  .selector2{
-    @include abs.Drawed1;
-    font-size: 28px;
-    color: abs.$white;
+  &.active {
+    color: abs.$red;
+  }
+}
+.selector2 {
+  @include abs.Drawed1;
+  font-size: 28px;
+  color: abs.$white;
 
-    &::first-letter {
-      font-size: 2em;
-    }
+  &::first-letter {
+    font-size: 2em;
   }
+}
 /*+--------------------------------------+
   |              SELECTORS               |
   +--------------------------------------+*/

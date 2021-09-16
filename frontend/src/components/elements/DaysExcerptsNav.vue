@@ -22,7 +22,8 @@
       <div
         :class="'day_info ' + daysExcerptsData.content[index].trekData.class"
       >
-        <div class="p_wrapper">
+        <div class="text_wrapper">
+          <h3 class="title3-1" v-if="daysExcerptsData.content[index].title">{{daysExcerptsData.content[index].title}}</h3>
           <p
             v-for="(p, parIndex) in daysExcerptsData.content[index].paragraphs"
             :key="parIndex"
@@ -142,7 +143,8 @@ export default {
     }
     .day_info {
       padding: 0 5vw;
-      .p_wrapper {
+
+      .text_wrapper {
         display: flex;
         flex-direction: column;
         gap: 1em;

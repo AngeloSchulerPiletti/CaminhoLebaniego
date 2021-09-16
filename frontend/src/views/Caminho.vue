@@ -32,6 +32,12 @@
           :type="pageData.observations[0][0].type"
         />
       </section>
+      <section id="sec5">
+        <days-excerpts-nav 
+          :daysExcerptsData="pageData.trekObservations[0]"
+          :total="pageData.trekObservations[1]"
+          title="As Setas do Caminho"/>
+      </section>
     </template>
   </app-layout>
 </template>
@@ -89,5 +95,8 @@ export default {
     padding-left: 10vw;
     margin-bottom: 1vw;
   }
+}
+#sec5{
+  margin-top: 10vw;
 }
 </style>
