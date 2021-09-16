@@ -1,10 +1,13 @@
 <template>
   <div class="wrapper">
     <div class="top">
-      <h2 class="title2">Trechos</h2>
-      <p>Para fazer o trecho entre San Vicente de La Barquera a Santo Toribio de Liébana, o Guia distribuído pelo Governo da Cantabria sugere<span class="highlighter1"> 3 ou 5 etapas</span> (dias). Mas na verdade, cada um define seu ritmo. Eu fiz esse trajeto em <span class="highlighter1">quatro dias</span>:</p>
+      <h2 class="title2">{{ title }}</h2>
+      <p
+        v-if="daysExcerptsData.observation"
+        v-html="daysExcerptsData.observation"
+      ></p>
     </div>
-    <div class="controllers">
+    <div class="controllers" v-if="total && total > 1">
       <div
         :id="'day' + day"
         v-for="day in total"
@@ -16,31 +19,46 @@
       </div>
     </div>
     <div class="content_wrapper">
-      <div class="day_info">
+      <div
+        :class="'day_info ' + daysExcerptsData.content[index].trekData.class"
+      >
         <div class="p_wrapper">
           <p
-            v-for="(p, parIndex) in daysExcerptsData[index].paragraphs"
+            v-for="(p, parIndex) in daysExcerptsData.content[index].paragraphs"
             :key="parIndex"
           >
             {{ p }}
           </p>
         </div>
-        <div class="trek_info">
-          <p>Local de Partida: <span>{{ daysExcerptsData[index].from }}</span></p>
-          <p>Destino: <span>{{ daysExcerptsData[index].to }}</span></p>
-          <p>Distância: <span>{{ daysExcerptsData[index].distance }}Km</span></p>
+        <div class="trek_info" v-if="daysExcerptsData.content[index].trekData.class == 'hasTrekData'">
+          <p>
+            Local de Partida:
+            <span>{{ daysExcerptsData.content[index].trekData.from }}</span>
+          </p>
+          <p>
+            Destino:
+            <span>{{ daysExcerptsData.content[index].trekData.to }}</span>
+          </p>
+          <p>
+            Distância:
+            <span
+              >{{ daysExcerptsData.content[index].trekData.distance }}Km</span
+            >
+          </p>
         </div>
       </div>
-      <div class="img_colection">
+      <div class="img_colection" v-if="daysExcerptsData.imgsBasePath && daysExcerptsData.imgsBasePath != ''">
         <img
           :src="
-            './images/pages/caminho/excerpts/day' +
+            './images/pages'+daysExcerptsData.imgsBasePath+'day' +
               (index + 1) +
               '/img' +
               imgIndex +
               '.jpg'
           "
-          v-for="imgIndex in Number(daysExcerptsData[index].totalImages)"
+          v-for="imgIndex in Number(
+            daysExcerptsData.content[index].totalImages
+          )"
           :key="imgIndex"
           alt=""
         />
@@ -66,10 +84,10 @@ export default {
       event.target.classList.add("active");
       this.index = day - 1;
 
-      var imgColection = this.$el.querySelector('.img_colection');
-      imgColection.classList.add('active');
+      var imgColection = this.$el.querySelector(".img_colection");
+      imgColection.classList.add("active");
       setTimeout(() => {
-        imgColection.classList.remove('active');
+        imgColection.classList.remove("active");
       }, 400);
     },
   },
@@ -79,6 +97,8 @@ export default {
   props: {
     daysExcerptsData: Object,
     total: Number,
+    title: String,
+    imgsBasePath: String,
   },
 };
 </script>
@@ -90,16 +110,16 @@ export default {
   gap: 2vw;
 
   .top {
-      padding: 0 10vw;
-      display: flex;
-      flex-direction: column;
-        gap: 10px;
+    padding: 0 10vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-      p{
-          color: $white;
-          font-size: 18px;
-          @include Font0;
-      }
+    p {
+      color: $white;
+      font-size: 18px;
+      @include Font0;
+    }
   }
   .controllers {
     display: flex;
@@ -107,34 +127,35 @@ export default {
     padding: 5px 10vw;
     border-top: 2px solid $red;
     border-bottom: 2px solid $red;
-        box-shadow: 0 0 18px 0px #000;
-        margin-bottom: 2vw;
+    box-shadow: 0 0 18px 0px #000;
+    margin-bottom: 2vw;
   }
   .content_wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 8vw;
 
-    .day_info {
-      padding: 0 5vw;
+    .hasTrekData {
       display: grid;
       grid-template-columns: 7fr 3fr;
       gap: 5vw;
-
+    }
+    .day_info {
+      padding: 0 5vw;
       .p_wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
 
-          p{
-              color: $white;
-              text-indent: 1em;
-              text-align: justify;
-          }
+        p {
+          color: $white;
+          text-indent: 1em;
+          text-align: justify;
+        }
       }
       .trek_info {
-          background-color: $white;
-          padding: 20px;
+        background-color: $white;
+        padding: 20px;
         box-shadow: 0 0 12px 3px #000;
         display: flex;
         flex-direction: column;
@@ -142,56 +163,56 @@ export default {
         gap: 5px;
 
         p {
-            color: $black;
-            font-size: 1.1em;
-            @include Font0;
+          color: $black;
+          font-size: 1.1em;
+          @include Font0;
 
-            span{
-                // color: $white;
-                // font-size: 1.25em;
-            }
+          span {
+            // color: $white;
+            // font-size: 1.25em;
+          }
         }
       }
     }
     .img_colection {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 2vw;
-        padding: 0 6.5vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 2vw;
+      padding: 0 6.5vw;
 
-        img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-        position: relative;
+      position: relative;
 
-        &::before, &::after{
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          background-color: $red;
-        
-          transition: left 400ms, right 400ms;
-        }
-        &::before{
-          left: 0;
-          right: 100%;
-        }
-        &::after{
-          left: 100%;
-          right: 0;
-        }
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: $red;
 
-        &.active::before{
-          right: 30%;
-        }
-        &.active::after{
-          left: 30%;
-        }
-        
+        transition: left 400ms, right 400ms;
+      }
+      &::before {
+        left: 0;
+        right: 100%;
+      }
+      &::after {
+        left: 100%;
+        right: 0;
+      }
+
+      &.active::before {
+        right: 30%;
+      }
+      &.active::after {
+        left: 30%;
+      }
     }
   }
 }

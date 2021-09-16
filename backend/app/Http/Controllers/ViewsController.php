@@ -48,7 +48,7 @@ class ViewsController extends Controller
                 $pageData["sliderImages1"] = [$sliderImagesArr, count($sliderImagesArr)];
                 
                 $dailyExcerptsArr = getJsonAsArray('caminho/dailyExcerpts.json');
-                $pageData["dailyExcerpts"] = [$dailyExcerptsArr, count($dailyExcerptsArr)];
+                $pageData["dailyExcerpts"] = [$dailyExcerptsArr, count($dailyExcerptsArr['content'])];
 
                 $observationsArr = getJsonAsArray('caminho/observations.json');
                 $pageData["observations"] = [$observationsArr, count($observationsArr)]; 

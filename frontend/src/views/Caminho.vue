@@ -20,6 +20,7 @@
         <days-excerpts-nav
           :daysExcerptsData="pageData.dailyExcerpts[0]"
           :total="pageData.dailyExcerpts[1]"
+          title="Trechos"
         />
       </section>
       <section id="sec4">
