@@ -65,6 +65,12 @@ export default {
       this.lastActive = event.target;
       event.target.classList.add("active");
       this.index = day - 1;
+
+      var imgColection = this.$el.querySelector('.img_colection');
+      imgColection.classList.add('active');
+      setTimeout(() => {
+        imgColection.classList.remove('active');
+      }, 400);
     },
   },
   mounted() {
@@ -158,6 +164,34 @@ export default {
             height: 100%;
             object-fit: cover;
         }
+
+        position: relative;
+
+        &::before, &::after{
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          background-color: $red;
+        
+          transition: left 400ms, right 400ms;
+        }
+        &::before{
+          left: 0;
+          right: 100%;
+        }
+        &::after{
+          left: 100%;
+          right: 0;
+        }
+
+        &.active::before{
+          right: 30%;
+        }
+        &.active::after{
+          left: 30%;
+        }
+        
     }
   }
 }
