@@ -61,7 +61,9 @@
             daysExcerptsData.content[index].totalImages
           )"
           :key="imgIndex"
+          :id="'img'+imgIndex"
           alt=""
+          @click="showImg(imgIndex)"
         />
       </div>
     </div>
@@ -90,6 +92,10 @@ export default {
       setTimeout(() => {
         imgColection.classList.remove("active");
       }, 400);
+    },
+    showImg(imgIndex){
+      var img = this.$el.querySelector('#img'+imgIndex);
+      this.$store.commit('passingImgSrc', img.getAttribute('src'));
     },
   },
   mounted() {

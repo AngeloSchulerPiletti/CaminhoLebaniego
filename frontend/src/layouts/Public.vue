@@ -5,6 +5,7 @@
         :modalPage="modal['html']"
         :modalOptions="modal['options']"
       />
+      <modal-image/>
       <div id="pic_background" :class="'background back-' + backID">
         <header-component />
         <section id="header_content">
@@ -25,6 +26,7 @@
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
+import ModalImage from "@/components/elements/ModalImage";
 
 export default {
   data() {
@@ -53,6 +55,7 @@ export default {
     "header-component": Header,
     "great-modal": Modal,
     "footer-component": Footer,
+    ModalImage,
   },
 };
 </script>
