@@ -160,6 +160,7 @@
   font-size: 28px;
   width: fit-content;
   padding: 4px 10px;
+  color: abs.$blackest;
 
   position: relative;
 
@@ -172,14 +173,14 @@
   &::before{
     top: 0;
     right: 0;
-    border-top: 1px solid abs.$black;
-    border-right: 1px solid abs.$black;
+    border-top: 1px solid abs.$blackest;
+    border-right: 1px solid abs.$blackest;
   }
   &::after{
     bottom: 0;
     left: 0;
-    border-bottom: 1px solid abs.$black;
-    border-left: 1px solid abs.$black;
+    border-bottom: 1px solid abs.$blackest;
+    border-left: 1px solid abs.$blackest;
   }
 }
 /*+--------------------------------------+
