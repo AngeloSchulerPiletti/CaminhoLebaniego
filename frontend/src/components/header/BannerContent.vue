@@ -13,6 +13,7 @@
 
 <script>
 import TinyArrow from "@/components/SVGs/TinyArrow";
+import { scrollingTo, scrollToSec } from "@/modules/scrolling.js";
 
 export default {
   data() {
@@ -22,10 +23,7 @@ export default {
   },
   methods:{
       scrollHeight(){
-          window.scrollTo({
-              top: window.innerHeight,
-              behavior: 'smooth',
-          });
+          scrollingTo(window.innerHeight);
       }
   },
   computed: {
@@ -82,8 +80,7 @@ export default {
   $arrow_width: 150px;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: 2vw;
+  margin: auto;
   width: $arrow_width;
   height: $arrow_width;
   padding: $arrow_width/2;
@@ -103,17 +100,8 @@ export default {
     width: $arrow_width;
     animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
     
-    &:nth-child(1){
-//         background: radial-gradient(
-//     closest-side at 40%,
-//     rgba(0, 0, 0, 0.6) 30%,
-//     rgba(0, 0, 0, 0.4) 60%,
-//     rgba(0, 0, 0, 0.2) 75%,
-//     transparent
-//   );
-    }
     &:nth-child(2) {
-      top: $arrow_width/5;
+      top: $arrow_width/3;
     }
   }
 }
