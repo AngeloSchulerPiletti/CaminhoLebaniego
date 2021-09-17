@@ -78,6 +78,8 @@ const URL_API = "http://127.0.0.1:8000/api/";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;
+  store.state.hasScroll = "off";
+
   if(to.meta.autoAxios){
   await axios.get(`${URL_API}content/${to.name}`).then(response => {
     to.params.pageData = response.data
@@ -87,6 +89,11 @@ router.beforeEach(async to => {
   });
   }
 }
-)
+);
+router.afterEach((to, from) => {
+  setTimeout(() => {
+    store.commit('checkIfHasScroll');
+  }, 0);
+});
 
 export default router
