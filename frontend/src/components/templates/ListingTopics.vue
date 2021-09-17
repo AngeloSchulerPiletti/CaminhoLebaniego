@@ -13,6 +13,7 @@
               v-for="(content, title, index) in content"
               :key="title"
               @click="changeSelection(index)"
+              :id="'topic' + index"
             >
               {{ title }}
             </li>
@@ -54,6 +55,7 @@ export default {
 
       this.secTitle.broken =
         Object.keys(this.content)[num].slice(1, 2) == " " ? "off" : "on";
+      this.$el.querySelector("#topic" + num).classList.add("active");
     },
   },
   props: {
@@ -73,17 +75,42 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   .bottom {
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    gap: 2vw;
+    padding: 0 4vw 0 2vw;
+    margin-top: 3.5vw;
+
     aside {
       nav ul {
         li {
+          @include Title3;
+          border-bottom: 1px solid $red;
+          padding: 8px;
+          color: $white;
+          cursor: pointer;
+          line-height: 1.2em;
+
+          &.active {
+            border-left: 4px solid $red;
+          }
         }
       }
     }
     article {
-      h3 {
-      }
-      p {
-        color: $white;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+
+      section {
+        h3 {
+          margin-bottom: 10px;
+        }
+        p {
+          color: $white;
+          text-align: justify;
+          text-indent: 1em;
+        }
       }
     }
   }
