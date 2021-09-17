@@ -27,6 +27,7 @@ class ViewsController extends Controller
             "dailyExcerpts" => [],
             "observations" => [],
             "trekObservations" => [],
+            "topicsList" => [],
         ];
         switch ($pageContent) {
             case 'inicio':
@@ -38,6 +39,9 @@ class ViewsController extends Controller
 
             case 'preparacao':
                 $pageData['title'] = "Prepare-se";
+
+                $topicsListsArr = getJsonAsArray('preparacao/topicsList.json');
+                $pageData['topicsList'] = [$topicsListsArr, count($topicsListsArr)];
                 break;
 
             case 'caminho':
