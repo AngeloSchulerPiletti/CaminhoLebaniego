@@ -14,6 +14,7 @@
         <slider-images
           :sliderImagesData="pageData.sliderImages1[0]"
           :total="pageData.sliderImages1[1]"
+          alignment="left"
         />
       </section>
       <section id="sec3">
@@ -45,11 +46,11 @@
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
-import SliderParagraphs from "@/components/elements/SliderParagraphs";
-import SliderImages from "@/components/elements/SliderImages";
-import DaysExcerptsNav from "@/components/elements/DaysExcerptsNav";
-import Observation from "@/components/elements/Observation";
-import ErrorSection from "@/components/elements/errors/ErrorSection";
+import SliderParagraphs from "@/components/templates/SliderParagraphs";
+import SliderImages from "@/components/templates/SliderImages";
+import DaysExcerptsNav from "@/components/templates/DaysExcerptsNav";
+import Observation from "@/components/templates/Observation";
+import ErrorSection from "@/components/templates/errors/ErrorSection";
 
 export default {
   name: "caminho",
