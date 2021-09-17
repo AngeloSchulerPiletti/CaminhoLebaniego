@@ -53,8 +53,9 @@ export default {
     width: 80vw;
     text-align: justify;
     padding-bottom: 1.4vw;
-    margin-bottom: 2vw;
+    margin-bottom: 4vw;
     border-bottom: 2px solid $red;
+    box-shadow: inset 0 -10px 8px -5px $blackest;
   }
 }
 </style>
