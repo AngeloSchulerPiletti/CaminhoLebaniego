@@ -26,7 +26,7 @@
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
-import ModalImage from "@/components/elements/ModalImage";
+import ModalImage from "@/components/templates/ModalImage";
 
 export default {
   data() {
