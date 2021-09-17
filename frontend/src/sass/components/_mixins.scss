@@ -1,0 +1,27 @@
+@use "../abstract" as *;
+
+@mixin pseudoStyle1($side, $var) {
+  content: "";
+  position: absolute;
+  height: calc(100% - 2 *#{$var});
+  #{$side}: 0;
+  top: $var;
+  border-#{$side}: 1px solid $red;
+}
+
+@mixin pseudoStyle2($side, $pos) {
+  width: 20px;
+  height: 20px;
+  #{$side}: 0;
+  #{$pos}: 0;
+  border-#{$pos}: 1px solid $red;
+  border-#{$side}: 1px solid $red;
+}
+
+@mixin pseudoStyle3($side, $vertical, $var) {
+  #{$vertical}: 0;
+  #{$side}: 0;
+  width: 20%;
+  height: 20%;
+  border: 2px solid $red;
+}

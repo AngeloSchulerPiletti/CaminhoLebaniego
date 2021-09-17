@@ -1,4 +1,4 @@
-@use "./abstract" as abs;
+@use "./abstract" as *;
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -54,7 +54,7 @@ button{
 	outline: 0 0 0 0;
 }
 p{
-	@include abs.Font1;
+	@include Font1;
 	font-size: 16px;
 	line-height: 1.45em;
 }

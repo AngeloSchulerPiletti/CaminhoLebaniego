@@ -1,31 +1,31 @@
-@use "../abstract" as abs;
+@use "../abstract" as *;
 
 /*+-----------------------------------------------+
   |                   BUTTONS                     |
   +-----------------------------------------------+*/
 .btn_1 {
-  background-color: abs.$red;
-  @include abs.Font1;
-  color: abs.$white;
+  background-color: $red;
+  @include Font1;
+  color: $white;
   font-size: 22px;
   padding: 12px 30px;
   border-radius: 10px;
-  box-shadow: 0px 0px 15px abs.$black;
+  box-shadow: 0px 0px 15px $black;
   animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
   transition: color 200ms, background-color 300ms;
   cursor: pointer;
 
   &:hover {
     animation-play-state: paused;
-    background-color: abs.$white;
-    color: abs.$red;
+    background-color: $white;
+    color: $red;
   }
 }
 .btn_2 {
-  @include abs.Title2;
-  background-color: abs.$red;
-  color: abs.$white;
-  border: 2px solid abs.$red;
+  @include Title2;
+  background-color: $red;
+  color: $white;
+  border: 2px solid $red;
   border-radius: 1000px;
   font-size: 14px;
   padding: 7px 20px;
@@ -36,14 +36,14 @@
 
   &:hover {
     background-color: transparent;
-    color: abs.$red;
+    color: $red;
   }
 }
 .btn_3 {
-  @include abs.Title2;
-  color: abs.$white;
+  @include Title2;
+  color: $white;
   background-color: transparent;
-  border: 2px solid abs.$red;
+  border: 2px solid $red;
   border-radius: 1000px;
   font-size: 14px;
   padding: 7px 20px;
@@ -53,7 +53,7 @@
   transition: background-color 400ms ease;
 
   &:hover {
-    background-color: abs.$red;
+    background-color: $red;
   }
 }
 
@@ -77,7 +77,7 @@
   &:hover::before {
     left: 0%;
     right: 0%;
-    border-bottom: 1px solid abs.$red;
+    border-bottom: 1px solid $red;
   }
 }
 .hover2 {
@@ -106,10 +106,10 @@
     right: 0%;
   }
   &:hover::before {
-    border-bottom: 3px solid abs.$red;
+    border-bottom: 3px solid $red;
   }
   &:hover::after {
-    border-top: 3px solid abs.$red;
+    border-top: 3px solid $red;
   }
 
   &.active::before,
@@ -120,10 +120,10 @@
     right: 0%;
   }
   &.active::before {
-    border-bottom: 3px solid abs.$red;
+    border-bottom: 3px solid $red;
   }
   &.active::after {
-    border-top: 3px solid abs.$red;
+    border-top: 3px solid $red;
   }
 }
 /*+--------------------------------------+
@@ -134,25 +134,25 @@
   |                TITLES                |
   +--------------------------------------+*/
 .title1 {
-  @include abs.Drawed1;
+  @include Drawed1;
   font-size: 35px;
-  color: abs.$white;
+  color: $white;
 
   &::first-letter {
-    color: abs.$red;
+    color: $red;
   }
 }
 .title2 {
-  @include abs.Drawed1;
+  @include Drawed1;
   font-size: 50px;
-  color: abs.$white;
+  color: $white;
 
   &::first-letter {
-    color: abs.$red;
+    color: $red;
   }
 }
 @mixin titleFamily3($color, $borderColor) {
-  @include abs.Title2;
+  @include Title2;
   font-size: 28px;
   width: fit-content;
   padding: 4px 10px;
@@ -181,10 +181,23 @@
   }
 }
 .title3 {
-  @include titleFamily3(abs.$blackest, abs.$blackest);
+  @include titleFamily3($blackest, $blackest);
 }
 .title3-1{
-  @include titleFamily3(abs.$white, abs.$red);
+  @include titleFamily3($white, $red);
+}
+.title4{
+  @include Title1;
+  font-size: 34px;
+  text-transform: capitalize;
+  color: $white;
+  width: fit-content;
+
+  &::before{
+    content: ">";
+    color: $red;
+    margin-right: 10px;
+  }
 }
 /*+--------------------------------------+
   |                TITLES                |
@@ -202,7 +215,7 @@
   |              HIGHLIGHTER             |
   +--------------------------------------+*/
 .highlighter1 {
-  color: lighten(abs.$red, 8%);
+  color: lighten($red, 8%);
   font-weight: 700;
 }
 /*+--------------------------------------+
@@ -213,21 +226,21 @@
   |              SELECTORS               |
   +--------------------------------------+*/
 .selector1 {
-  @include abs.Drawed1;
+  @include Drawed1;
   font-size: 28px;
-  color: abs.$white;
+  color: $white;
 
   &::first-letter {
     font-size: 2em;
   }
   &.active {
-    color: abs.$red;
+    color: $red;
   }
 }
 .selector2 {
-  @include abs.Drawed1;
+  @include Drawed1;
   font-size: 28px;
-  color: abs.$white;
+  color: $white;
 
   &::first-letter {
     font-size: 2em;
