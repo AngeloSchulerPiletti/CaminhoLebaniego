@@ -28,6 +28,7 @@ class ViewsController extends Controller
             "observations" => [],
             "trekObservations" => [],
             "topicsList" => [],
+            "article" => "",
         ];
         switch ($pageContent) {
             case 'inicio':
@@ -64,6 +65,8 @@ class ViewsController extends Controller
 
             case 'experiencia':
                 $pageData['title'] = "Experiência Pessoal";
+
+                $pageData["article"] = file_get_contents(base_path('resources/html/experiencia/experiencia.html'));
                 break;
 
             case 'artigos':
