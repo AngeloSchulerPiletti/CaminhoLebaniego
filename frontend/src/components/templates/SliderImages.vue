@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div :class="'wrapper f_'+alignment">
     <div :class="'img_container ' + img1Class">
       <img
         :src="
@@ -36,6 +36,7 @@ export default {
     props:{
         sliderImagesData: Object,
         total: Number,
+        alignment: String,
     },
     methods:{
         changeImage(action) {
@@ -60,6 +61,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.f_left{
+  flex-direction: row;
+  .asider{
+    margin-right: 10vw;
+  }
+}
+.f_right{
+  flex-direction: row-reverse;
+  .asider{
+    margin-left: 10vw;
+  }
+}
+
 .wrapper {
   display: flex;
   gap: 5vw;
@@ -93,7 +107,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-right: 10vw;
     padding: 20px 0;
 
     .top {

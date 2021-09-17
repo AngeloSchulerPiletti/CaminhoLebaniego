@@ -1,11 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="title_special">
-      <div class="special_char">
-        O
-      </div>
-      <h1>Caminho Lebaniego</h1>
-    </div>
+    <title-special char="O" rest="Caminho Lebaniego" broken="off"/>
     <div class="paragraphs_slider">
       <p :class="pClass">
         {{ sliderParagraphs[index]}}
@@ -20,6 +15,7 @@
 
 <script>
 import Arrow from "@/components/SVGs/Arrow";
+import TitleSpecial from "@/components/elements/TitleSpecial.vue";
 
 export default {
   data() {
@@ -49,30 +45,13 @@ export default {
   },
   components:{
       Arrow,
+      TitleSpecial,
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
-  .title_special {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    padding: 0 10vw;
-    @include Drawed1;
-
-    .special_char {
-      background-color: $red;
-      color: $white;
-      font-size: 90px;
-      padding: 10px 8px;
-    }
-    h1 {
-      font-size: 40px;
-      color: $white;
-    }
-  }
   .paragraphs_slider {
     padding: 0 10vw;
     margin: auto;

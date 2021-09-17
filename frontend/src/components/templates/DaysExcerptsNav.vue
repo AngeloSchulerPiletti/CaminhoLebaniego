@@ -192,6 +192,12 @@ export default {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        cursor: pointer;
+        transition: opacity 400ms;
+
+        &:hover{
+          opacity: 0.5;
+        }
       }
 
       position: relative;
