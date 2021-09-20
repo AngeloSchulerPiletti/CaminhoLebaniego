@@ -10,11 +10,10 @@ function currentYPosition() {
 }
 
 
-function elmYPosition(sec_id, scope) {
+function elmYPosition(sec_id, scope, preMargin) {
     
     var elm = scope.querySelector('#'+sec_id);
-    // var elm = scope.getElementById(sec_id);
-    var margin = 0;
+    var margin = preMargin;
     var y = elm.offsetTop - margin;
     var node = elm;
     while (node.offsetParent && node.offsetParent != document.body) {
@@ -24,9 +23,9 @@ function elmYPosition(sec_id, scope) {
 }
 
 
-export function scrollToSec(sec_id, scope = document) {
+export function scrollToSec(sec_id, scope = document, preMargin = 0) {
         var startY = currentYPosition();
-        var stopY = elmYPosition(sec_id, scope);
+        var stopY = elmYPosition(sec_id, scope, preMargin);
         var distance = stopY > startY ? stopY - startY : startY - stopY;
         if (distance < 100) {
             scrollTo(0, stopY); return;
