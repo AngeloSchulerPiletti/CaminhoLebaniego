@@ -82,6 +82,10 @@ export default {
     margin-top: 3.5vw;
 
     aside {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 5%;
+      height: fit-content;
       nav ul {
         li {
           @include Title3;
