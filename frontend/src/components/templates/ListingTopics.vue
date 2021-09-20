@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <title-special
+    <title-special id="el_top"
       :char="secTitle.char"
       :rest="secTitle.rest"
       :broken="secTitle.broken"
@@ -12,7 +12,7 @@
             <li
               v-for="(content, title, index) in content"
               :key="title"
-              @click="changeSelection(index)"
+              @click="changeSelection(index, $event)"
               :id="'topic' + index"
             >
               {{ title }}
@@ -35,6 +35,7 @@
 
 <script>
 import TitleSpecial from "@/components/elements/TitleSpecial.vue";
+import { scrollToSec } from "@/modules/scrolling.js";
 
 export default {
   data() {
@@ -48,7 +49,7 @@ export default {
     };
   },
   methods: {
-    changeSelection(num) {
+    changeSelection(num, event = null) {
       this.secIndex = num;
       this.secTitle.char = Object.keys(this.content)[num].slice(0, 1);
       this.secTitle.rest = Object.keys(this.content)[num].slice(1);
@@ -56,6 +57,8 @@ export default {
       this.secTitle.broken =
         Object.keys(this.content)[num].slice(1, 2) == " " ? "off" : "on";
       this.$el.querySelector("#topic" + num).classList.add("active");
+
+      event === null ? null : scrollToSec('el_top', this.$el);
     },
   },
   props: {
@@ -64,7 +67,6 @@ export default {
   },
   mounted() {
     this.changeSelection(0);
-    // console.log(this.content);
   },
   components: {
     TitleSpecial,

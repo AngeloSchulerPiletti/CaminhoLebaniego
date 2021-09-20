@@ -28,7 +28,6 @@ export default {
   },
   computed: {
     checkHasScrollState() {
-      console.log("computed");
       return this.$store.state.hasScroll;
     },
   },
@@ -36,7 +35,6 @@ export default {
     checkHasScrollState: {
       immediate: true,
       handler(newval) {
-        console.log("watched: " + newval);
         this.hasScroll = newval;
       },
     },

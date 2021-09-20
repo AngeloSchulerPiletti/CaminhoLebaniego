@@ -14,9 +14,6 @@ export default {
     rest: String,
     broken: String,
   },
-  mounted(){
-    //   console.log(this.char, this.rest);
-  }
 };
 </script>
 

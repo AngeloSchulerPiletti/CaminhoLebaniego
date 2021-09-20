@@ -11,8 +11,10 @@ function currentYPosition() {
 
 
 function elmYPosition(sec_id, scope) {
-    var elm = scope.getElementById(sec_id);
-    var margin = screen.height/10 + scope.querySelector('header').offsetHeight;
+    
+    var elm = scope.querySelector('#'+sec_id);
+    // var elm = scope.getElementById(sec_id);
+    var margin = 0;
     var y = elm.offsetTop - margin;
     var node = elm;
     while (node.offsetParent && node.offsetParent != document.body) {

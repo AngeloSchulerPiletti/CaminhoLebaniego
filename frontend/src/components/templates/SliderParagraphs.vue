@@ -24,9 +24,6 @@ export default {
       index: 0,
     };
   },
-  // mounted(){
-  //     console.log(this.sliderParagraphs);
-  // },
   methods: {
       changeParagraph(action) {
       this.pClass = "active";
