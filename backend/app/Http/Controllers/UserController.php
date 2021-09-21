@@ -17,7 +17,7 @@ class UserController extends Controller
             'password' => 'required|string',
         ], [
             'required' => ':attribute é obrigatório',
-            'string' => 'insira algo válido'
+            'string' => 'Insira um :attribute válido'
         ], [
             'email' => 'E-mail',
             'password' => 'Senha',
@@ -34,12 +34,12 @@ class UserController extends Controller
             return response()->json(['error' => ['Dados inválidos']], 401);
         }
 
-        return response()->json(['user'=> $user, 'token' => $user->createToken('API_token')->plainTextToken]);
+        return response()->json(['user' => $user, 'token' => $user->createToken('API_token')->plainTextToken], 201);
     }
 
-    public function logout(Request $request){
-        $totalTokens = auth()->user()->tokens()->delete(); 
-
-        return response()->json(['message' => "Você foi deslogado e ".$totalTokens." foram apagados"]);
+    public function logout(Request $request)
+    {
+        $totalTokens = auth()->user()->tokens()->delete();
+        return response()->json(['message' => "Você foi deslogado e " . $totalTokens . " tokens foram apagados"]);
     }
 }
