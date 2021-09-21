@@ -9,7 +9,6 @@ import { createHead } from '@vueuse/head'
 const head = createHead()
 
 createApp(App)
-.provide('URL_API', "http://127.0.0.1:8000/api/")
 .use(store)
 .use(head)
 .use(router)
