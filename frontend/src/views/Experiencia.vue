@@ -25,7 +25,6 @@ import Article from "@/components/templates/Article.vue";
 
 export default {
   name: "experiencia",
-  inject: ["URL_API"],
   methods: {},
   created() {
     this.$store.commit("setTitle", "Experiência");

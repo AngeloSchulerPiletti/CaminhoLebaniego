@@ -54,7 +54,6 @@ import ErrorSection from "@/components/templates/errors/ErrorSection";
 
 export default {
   name: "caminho",
-  inject: ["URL_API"],
   data() {
     return {};
   },

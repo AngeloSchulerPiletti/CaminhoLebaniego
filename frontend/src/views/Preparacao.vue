@@ -18,7 +18,6 @@ import ListingTopics from "@/components/templates/ListingTopics";
  
 export default {
   name: "preparacao",
-  inject: ["URL_API"],
   methods: {
   },
   created(){

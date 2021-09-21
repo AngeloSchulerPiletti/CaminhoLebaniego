@@ -24,7 +24,6 @@ import { computed } from '@vue/reactivity';
 
 export default {
   name: "inicio",
-  inject: ["URL_API"],
   methods: {},
   created(){
     this.$store.commit('setTitle', "Início");

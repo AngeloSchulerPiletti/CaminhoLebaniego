@@ -13,7 +13,6 @@ import BannerContent from "@/components/header/BannerContent.vue";
 
 export default {
   name: "artigos",
-  inject: ["URL_API"],
   methods: {
   },
   created(){
