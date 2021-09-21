@@ -42,32 +42,31 @@ export default {
       },
     };
   },
-  mounted(){
-      console.log(localStorage);
-  },
   methods: {
-    submit: (scope) => {
+    submit: function() {
       console.log("submitado");
 
-      api.post("login", scope.formUser).then((response) => {
-          if (response.status === 200) {
-            scope.$store.state.user = response.data.user;
-            console.log(scope.$store.state.user);
-          }
-        console.log(response);
-        localStorage.token = response.data.token ? response.data.token : localStorage.token;
+      api.post("login", this.formUser).then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          this.$store.commit("setSessionData", {
+            user: response.data.user,
+            token: response.data.token,
+          });
+          // this.$store.state.sessionData.user = response.data.user;
+          // this.$store.state.sessionData.token = response.data.token;
+        }
 
         api.interceptors.request.use(
           (config) => {
-            config.headers.Authorization = `Bearer ${localStorage.token}`;
+            config.headers.Authorization = `Bearer ${this.$store.state.sessionData.token}`;
             return config;
           },
           (error) => {
             return Promise.reject(error);
           }
         );
-        console.log(localStorage);
-        api.get("teste", { token: response.data.token }).then(console.log);
+
+        api.get("teste").then(console.log);
       });
     },
   },

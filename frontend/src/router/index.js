@@ -29,56 +29,69 @@ const routes = [
     name: 'caminho',
     component: Caminho,
     props: true,
-    meta: {autoAxios: true},
+    meta: { autoAxios: true },
   },
   {
     path: '/preparacao',
     name: 'preparacao',
     component: Preparacao,
     props: true,
-    meta: {autoAxios: true},
+    meta: { autoAxios: true },
   },
   {
     path: '/contato',
     name: 'contato',
     component: Contato,
     props: true,
-    meta: {autoAxios: true},
+    meta: { autoAxios: true },
   },
   {
     path: '/artigos',
     name: 'artigos',
     component: Artigos,
     props: true,
-    meta: {autoAxios: true},
+    meta: { autoAxios: true },
   },
   {
     path: '/experiencia',
     name: 'experiencia',
     component: Experiencia,
     props: true,
-    meta: {autoAxios: true},
+    meta: { autoAxios: true },
   },
   {
     path: "/error404",
     name: 'error404',
     component: Error404,
     props: true,
-    meta: {autoAxios: false},
+    meta: { autoAxios: false },
   },
   {
     path: "/acesso",
     name: "login",
     component: Login,
-    meta: {autoAxios: false},
+    meta: { autoAxios: false },
+    beforeEnter: (to, from, next) => {
+      if (store.state.sessionData.user && store.state.sessionData.token) {
+        next("/area-do-administrador");
+      }
+      else {
+        next();
+      }
+    },
   },
   {
     path: "/area-do-administrador",
     name: "dashboard",
     component: Dashboard,
-    meta: {autoAxios: false,},
+    meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {
-      //Will check if user is authenticated
+      if (store.state.sessionData.user && store.state.sessionData.token) {
+        next();
+      }
+      else {
+        next('/acesso');
+      }
     },
   }
 
@@ -95,16 +108,17 @@ router.beforeEach(async to => {
   store.state.modalShow = false;
   store.state.hasScroll = "off";
 
-  if(to.meta.autoAxios){
-  await api.get(`content/${to.name}`).then(response => {
-    to.params.pageData = response.data
-  }).catch( error => {
-    router.push({name: 'error404'})
-    return false
-  });
+  if (to.meta.autoAxios) {
+    await api.get(`content/${to.name}`).then(response => {
+      to.params.pageData = response.data
+    }).catch(error => {
+      router.push({ name: 'error404' })
+      return false
+    });
   }
 }
 );
+
 router.afterEach((to, from) => {
   setTimeout(() => {
     store.commit('checkIfHasScroll');

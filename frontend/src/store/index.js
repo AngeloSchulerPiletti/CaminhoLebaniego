@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
   state: {
@@ -8,7 +9,10 @@ export default createStore({
     },
     imgSrc: "",
     hasScroll: "off",
-    user: undefined,
+    sessionData:{
+      user: undefined,
+      token: undefined,
+    }
   },
   mutations: {
     setTitle(state, addTitle) {
@@ -25,9 +29,14 @@ export default createStore({
         state.hasScroll = "off";
       }
     },
+    setSessionData(state, sessionData){
+      state.sessionData.user = sessionData.user;
+      state.sessionData.token = sessionData.token;
+    },
   },
   actions: {
   },
   modules: {
-  }
+  },
+  plugins: [createPersistedState()],
 })
