@@ -31,35 +31,35 @@ export default {
     changeParagraph(action) {
       var result = this.index;
       result += action;
-      console.log('result: '+result+' & '+'total: '+this.total);
 
       if (result >= 0 && result < this.total) {
-        this.pClass = "active";
-
-        setTimeout(() => {
-          this.index += action;
-          this.pClass = "";
-        }, 850);
+        this.changeIndex(action);
       }
 
       setTimeout(() => {
         if (result > 0 && result < this.total) {
-
-          var arrows = this.$el.querySelectorAll(".arrow");
-          arrows.forEach((el) => {
-            if (el.classList.contains("disabled")) {
-              el.classList.remove("disabled");
-            }
-          });
-
-        } 
-        if (result == 0) {
-          this.$el.querySelector(".back").classList.add("disabled");
+          this.enableDisabledArrow();
         }
-        if(result == this.total - 1){
-          this.$el.querySelector(".next").classList.add("disabled");
-        }
-      }, 870);
+
+        result == 0 ? this.disableArrowByClassName("back") : null;
+        result == this.total - 1 ? this.disableArrowByClassName("next") : null;
+      }, 450);
+    },
+    enableDisabledArrow() {
+      if (this.$el.querySelector(".disabled")) {
+        this.$el.querySelector(".disabled").classList.remove("disabled");
+      }
+    },
+    disableArrowByClassName(className) {
+      this.$el.querySelector("." + className).classList.add("disabled");
+    },
+    changeIndex(increaser) {
+      this.pClass = "active";
+
+      setTimeout(() => {
+        this.index += increaser;
+        this.pClass = "";
+      }, 450);
     },
   },
   props: {
@@ -96,7 +96,7 @@ export default {
         background-color: $red;
         border-left: 3px solid $red;
 
-        transition: right 500ms ease;
+        transition: right 220ms ease;
       }
       &.active::before {
         left: 0;
