@@ -8,6 +8,7 @@ export default createStore({
     },
     imgSrc: "",
     hasScroll: "off",
+    user: undefined,
   },
   mutations: {
     setTitle(state, addTitle) {
