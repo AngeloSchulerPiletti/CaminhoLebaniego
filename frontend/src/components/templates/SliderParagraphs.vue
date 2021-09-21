@@ -2,16 +2,35 @@
   <div class="wrapper">
     <title-special char="O" rest="Caminho Lebaniego" broken="off" />
     <div class="paragraphs_slider">
+      <div class="controllers">
+        <div
+          class="backest_controller arrow_containers"
+          @click="changeParagraphByValue(0)"
+        >
+          <arrow :class="'backest arrow ' + pClass" />
+          <arrow :class="'backest arrow ' + pClass" />
+        </div>
+        <div class="simples">
+          <arrow
+            :class="'back arrow disabled ' + pClass"
+            @click="changeParagraphByIncrease(-1)"
+          />
+          <arrow
+            :class="'next arrow toright ' + pClass"
+            @click="changeParagraphByIncrease(1)"
+          />
+        </div>
+        <div
+          class="nextest_controller arrow_containers"
+          @click="changeParagraphByValue(this.total - 1)"
+        >
+          <arrow :class="'nextest arrow toright ' + pClass" />
+          <arrow :class="'nextest arrow toright ' + pClass" />
+        </div>
+      </div>
       <p :class="pClass">
         {{ sliderParagraphs[index] }}
       </p>
-      <div class="controllers">
-        <arrow
-          :class="'back arrow disabled ' + pClass"
-          @click="changeParagraph(-1)"
-        />
-        <arrow :class="'next arrow ' + pClass" @click="changeParagraph(1)" />
-      </div>
     </div>
   </div>
 </template>
@@ -28,12 +47,38 @@ export default {
     };
   },
   methods: {
-    changeParagraph(action) {
+    changeParagraphByValue(value) {
+      if (value >= 0 && value < this.total) {
+        this.pClass = "active";
+
+        setTimeout(() => {
+          this.index = value;
+          this.pClass = "";
+        }, 450);
+      }
+      setTimeout(() => {
+        switch (value) {
+          case 0:
+            this.enableDisabledArrow();
+            this.disableArrowByClassName("back");
+            break;
+          case this.total - 1:
+            this.enableDisabledArrow();
+            this.disableArrowByClassName("next");
+            console.log("disabling next");
+            break;
+          default:
+            break;
+        }
+      }, 450);
+    },
+    changeParagraphByIncrease(action) {
+      console.log("called this");
       var result = this.index;
       result += action;
 
       if (result >= 0 && result < this.total) {
-        this.changeIndex(action);
+        this.increaseIndex(action);
       }
 
       setTimeout(() => {
@@ -53,7 +98,7 @@ export default {
     disableArrowByClassName(className) {
       this.$el.querySelector("." + className).classList.add("disabled");
     },
-    changeIndex(increaser) {
+    increaseIndex(increaser) {
       this.pClass = "active";
 
       setTimeout(() => {
@@ -103,11 +148,12 @@ export default {
         right: 0;
       }
     }
+
     .controllers {
       margin-top: 1vw;
       display: flex;
       gap: 10px;
-      justify-content: flex-end;
+      justify-content: space-between;
 
       &:deep(.arrow) {
         cursor: pointer;
@@ -122,24 +168,38 @@ export default {
           opacity: 0.3;
           cursor: default;
         }
+        &.toright {
+          transform: scaleX(-1);
+        }
 
         path {
           fill: $white;
         }
-
         transition: transform 300ms;
-      }
-      &:deep(.back):hover {
-        transform: scale(1.1);
-      }
-      &:deep(.next):hover {
-        transform: scale(1.1) scaleX(-1);
-      }
-      // .back{
 
-      // }
-      .next {
-        transform: scale(1) scaleX(-1);
+        &.back:hover {
+          transform: scale(1.1);
+        }
+        &.next:hover {
+          transform: scaleX(-1) scale(1.1);
+        }
+      }
+
+      .arrow_containers {
+        transition: transform 300ms;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      .backest_controller {
+        .arrow:nth-child(2) {
+          transform: translateX(-50%);
+        }
+      }
+      .nextest_controller {
+        .arrow:nth-child(2) {
+          transform: translateX(-50%) scaleX(-1);
+        }
       }
     }
   }
