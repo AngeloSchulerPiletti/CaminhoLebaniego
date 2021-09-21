@@ -5,7 +5,7 @@
       </div>
       <div class="center">
           <ul>
-              <router-link to="/"><li>Área do Administrador</li></router-link>
+              <router-link to="/area-do-administrador"><li>Área do Administrador</li></router-link>
               <router-link to="/"><li>Fale Conosco</li></router-link>
               <a href="https://www.linkedin.com/in/angelo-schuler-piletti/" target="_blank"><li>Quem desenvolveu o site?</li></a>
           </ul>
