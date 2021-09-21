@@ -1,12 +1,15 @@
 <template>
   <div class="wrapper">
-    <title-special char="O" rest="Caminho Lebaniego" broken="off"/>
+    <title-special char="O" rest="Caminho Lebaniego" broken="off" />
     <div class="paragraphs_slider">
       <p :class="pClass">
-        {{ sliderParagraphs[index]}}
+        {{ sliderParagraphs[index] }}
       </p>
       <div class="controllers">
-        <arrow :class="'back arrow ' + pClass" @click="changeParagraph(-1)" />
+        <arrow
+          :class="'back arrow disabled ' + pClass"
+          @click="changeParagraph(-1)"
+        />
         <arrow :class="'next arrow ' + pClass" @click="changeParagraph(1)" />
       </div>
     </div>
@@ -25,25 +28,48 @@ export default {
     };
   },
   methods: {
-      changeParagraph(action) {
-      this.pClass = "active";
+    changeParagraph(action) {
+      var result = this.index;
+      result += action;
+      console.log('result: '+result+' & '+'total: '+this.total);
+
+      if (result >= 0 && result < this.total) {
+        this.pClass = "active";
+
+        setTimeout(() => {
+          this.index += action;
+          this.pClass = "";
+        }, 850);
+      }
+
       setTimeout(() => {
-        var result = this.index;
-        result += action;
-        this.index +=
-          result >= 0 ? (result < this.total ? action : 0) : 0;
-        this.pClass = "";
-      }, 850);
+        if (result > 0 && result < this.total) {
+
+          var arrows = this.$el.querySelectorAll(".arrow");
+          arrows.forEach((el) => {
+            if (el.classList.contains("disabled")) {
+              el.classList.remove("disabled");
+            }
+          });
+
+        } 
+        if (result == 0) {
+          this.$el.querySelector(".back").classList.add("disabled");
+        }
+        if(result == this.total - 1){
+          this.$el.querySelector(".next").classList.add("disabled");
+        }
+      }, 870);
     },
   },
   props: {
     sliderParagraphs: Object,
     total: Number,
   },
-  components:{
-      Arrow,
-      TitleSpecial,
-  }
+  components: {
+    Arrow,
+    TitleSpecial,
+  },
 };
 </script>
 
@@ -90,6 +116,11 @@ export default {
 
         &.active {
           pointer-events: none;
+          opacity: 0.3;
+        }
+        &.disabled {
+          opacity: 0.3;
+          cursor: default;
         }
 
         path {
