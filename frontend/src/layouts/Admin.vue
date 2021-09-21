@@ -1,10 +1,19 @@
 <template>
-  <h1>SENHA SECRETA</h1>
+    <div>
+        <header-component />
+        <main>
+          <slot></slot>
+        </main>
+    </div>
 </template>
 
 <script>
-export default {
+import Header from "@/components/admin/Header";
 
+export default {
+    components:{
+        "header-component": Header,
+    }
 }
 </script>
 
