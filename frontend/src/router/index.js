@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store'
-import axios from "axios";
-import { useHead } from '@vueuse/head'
 
 /* ============= VIEWS ============== */
 import Home from '@/views/Home.vue';
@@ -11,6 +9,8 @@ import Preparacao from "@/views/Preparacao.vue";
 import Contato from "@/views/Contato.vue";
 import Experiencia from "@/views/Experiencia.vue";
 import Error404 from "@/views/error/Error404.vue";
+import Login from "@/views/admin/Login.vue";
+import Dashboard from "@/views/admin/Dashboard";
 
 
 
@@ -66,6 +66,21 @@ const routes = [
     props: true,
     meta: {autoAxios: false},
   },
+  {
+    path: "/acesso",
+    name: "login",
+    component: Login,
+    meta: {autoAxios: false},
+  },
+  {
+    path: "/area-do-administrador",
+    name: "dashboard",
+    component: Dashboard,
+    meta: {autoAxios: false,},
+    beforeEnter: (to, from, next) => {
+      //Will check if user is authenticated
+    },
+  }
 
 ]
 
@@ -74,14 +89,14 @@ const router = createRouter({
   routes
 })
 
-const URL_API = "http://127.0.0.1:8000/api/";
+import api from "@/service/api.js";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;
   store.state.hasScroll = "off";
 
   if(to.meta.autoAxios){
-  await axios.get(`${URL_API}content/${to.name}`).then(response => {
+  await api.get(`content/${to.name}`).then(response => {
     to.params.pageData = response.data
   }).catch( error => {
     router.push({name: 'error404'})
