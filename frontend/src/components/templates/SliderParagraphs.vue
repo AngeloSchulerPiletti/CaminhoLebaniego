@@ -10,8 +10,8 @@
           class="backest_controller arrow_containers"
           @click="changeParagraphByValue(0)"
         >
-          <arrow :class="'backest arrow ' + pClass" />
-          <arrow :class="'backest arrow ' + pClass" />
+          <arrow :class="'arrow ' + pClass" />
+          <arrow :class="'arrow ' + pClass" />
         </div>
         <div class="simples">
           <arrow
@@ -27,8 +27,8 @@
           class="nextest_controller arrow_containers"
           @click="changeParagraphByValue(this.total - 1)"
         >
-          <arrow :class="'nextest arrow toright ' + pClass" />
-          <arrow :class="'nextest arrow toright ' + pClass" />
+          <arrow :class="'arrow toright ' + pClass" />
+          <arrow :class="'arrow toright ' + pClass" />
         </div>
       </div>
     </div>
