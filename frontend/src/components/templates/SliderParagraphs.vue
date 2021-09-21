@@ -2,6 +2,9 @@
   <div class="wrapper">
     <title-special char="O" rest="Caminho Lebaniego" broken="off" />
     <div class="paragraphs_slider">
+      <p :class="pClass">
+        {{ sliderParagraphs[index] }}
+      </p>
       <div class="controllers">
         <div
           class="backest_controller arrow_containers"
@@ -12,7 +15,7 @@
         </div>
         <div class="simples">
           <arrow
-            :class="'back arrow disabled ' + pClass"
+            :class="'back arrow ' + pClass"
             @click="changeParagraphByIncrease(-1)"
           />
           <arrow
@@ -28,9 +31,6 @@
           <arrow :class="'nextest arrow toright ' + pClass" />
         </div>
       </div>
-      <p :class="pClass">
-        {{ sliderParagraphs[index] }}
-      </p>
     </div>
   </div>
 </template>
@@ -46,34 +46,17 @@ export default {
       index: 0,
     };
   },
+  mounted() {
+    this.setEnabledAndDisabledArrow();
+  },
   methods: {
     changeParagraphByValue(value) {
       if (value >= 0 && value < this.total) {
-        this.pClass = "active";
-
-        setTimeout(() => {
-          this.index = value;
-          this.pClass = "";
-        }, 450);
+        this.increaseIndex(value, true);
       }
-      setTimeout(() => {
-        switch (value) {
-          case 0:
-            this.enableDisabledArrow();
-            this.disableArrowByClassName("back");
-            break;
-          case this.total - 1:
-            this.enableDisabledArrow();
-            this.disableArrowByClassName("next");
-            console.log("disabling next");
-            break;
-          default:
-            break;
-        }
-      }, 450);
+      this.setEnabledAndDisabledArrow(450);
     },
     changeParagraphByIncrease(action) {
-      console.log("called this");
       var result = this.index;
       result += action;
 
@@ -81,14 +64,23 @@ export default {
         this.increaseIndex(action);
       }
 
+      this.setEnabledAndDisabledArrow(450);
+    },
+    setEnabledAndDisabledArrow(timeout = 0) {
       setTimeout(() => {
-        if (result > 0 && result < this.total) {
-          this.enableDisabledArrow();
+        var i = this.index;
+        switch (i) {
+          case 0:
+            this.disableArrowByClassName("back");
+            break;
+          case this.total - 1:
+            this.disableArrowByClassName("next");
+            break;
+            this.enableDisabledArrow;
+          default:
+            break;
         }
-
-        result == 0 ? this.disableArrowByClassName("back") : null;
-        result == this.total - 1 ? this.disableArrowByClassName("next") : null;
-      }, 450);
+      }, timeout);
     },
     enableDisabledArrow() {
       if (this.$el.querySelector(".disabled")) {
@@ -98,11 +90,11 @@ export default {
     disableArrowByClassName(className) {
       this.$el.querySelector("." + className).classList.add("disabled");
     },
-    increaseIndex(increaser) {
+    increaseIndex(increaser, nominal = false) {
       this.pClass = "active";
 
       setTimeout(() => {
-        this.index += increaser;
+        nominal ? (this.index = increaser) : (this.index += increaser);
         this.pClass = "";
       }, 450);
     },
