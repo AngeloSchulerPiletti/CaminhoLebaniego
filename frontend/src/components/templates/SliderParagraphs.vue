@@ -46,25 +46,25 @@ export default {
       index: 0,
     };
   },
-  mounted() {
-    this.setEnabledAndDisabledArrow();
+  watch: {
+    index: {
+      immediate: true,
+      handler(newVal) {
+        this.setEnabledAndDisabledArrow();
+      },
+    },
   },
   methods: {
     changeParagraphByValue(value) {
-      if (value >= 0 && value < this.total) {
+      if (value >= 0 && value < this.total && value != this.index) {
         this.increaseIndex(value, true);
       }
-      this.setEnabledAndDisabledArrow(450);
     },
     changeParagraphByIncrease(action) {
-      var result = this.index;
-      result += action;
-
-      if (result >= 0 && result < this.total) {
+      let result = this.index + action;
+      if (result >= 0 && result < this.total && result != this.index) {
         this.increaseIndex(action);
       }
-
-      this.setEnabledAndDisabledArrow(450);
     },
     setEnabledAndDisabledArrow(timeout = 0) {
       setTimeout(() => {
@@ -76,8 +76,8 @@ export default {
           case this.total - 1:
             this.disableArrowByClassName("next");
             break;
-            this.enableDisabledArrow;
           default:
+            this.enableDisabledArrow();
             break;
         }
       }, timeout);
@@ -145,7 +145,7 @@ export default {
       margin-top: 1vw;
       display: flex;
       gap: 10px;
-      justify-content: space-between;
+      justify-content: space-around;
 
       &:deep(.arrow) {
         cursor: pointer;
