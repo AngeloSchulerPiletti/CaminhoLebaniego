@@ -81,6 +81,7 @@ const routes = [
         next("/area-do-administrador");
       }
       else {
+        store.commit("setTitle", "Login");
         next();
       }
     },
@@ -114,6 +115,7 @@ const routes = [
         next('/');
       }
       else if (store.state.logged) {
+        store.commit("setTitle", "Admin");
         next();
       }
       else {
