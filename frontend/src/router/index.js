@@ -102,7 +102,7 @@ const router = createRouter({
   routes
 })
 
-import api from "@/service/api.js";
+import {api} from "@/service/api.js";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;
