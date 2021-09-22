@@ -74,7 +74,7 @@ const routes = [
     component: Login,
     meta: { autoAxios: false },
     beforeEnter: (to, from, next) => {
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         next('/');
       }
       else if (store.state.logged) {
@@ -90,18 +90,27 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: "", 
+        path: "",
         component: CreateArticle,
         name: "admin",
+        meta: {title: "Criar Artigo"},
       },
-      {path: "criar-artigo", component: CreateArticle,
-      name: "criar_artigos",},
-      {path: "alterar-paginas", component: ChangePages,
-      name: "alterar_paginas",}
+      {
+        path: "criar-artigo",
+        component: CreateArticle,
+        name: "criar_artigos",
+        meta: {title: "Criar Artigo"},
+      },
+      {
+        path: "alterar-paginas",
+        component: ChangePages,
+        name: "alterar_paginas",
+        meta: {title: "Alterar Página"},
+      }
     ],
     meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {
-      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         next('/');
       }
       else if (store.state.logged) {
@@ -120,7 +129,7 @@ const router = createRouter({
   routes
 })
 
-import {apiRequestProtocol} from "@/service/api.js";
+import { apiRequestProtocol } from "@/service/api.js";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;

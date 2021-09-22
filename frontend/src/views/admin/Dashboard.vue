@@ -9,9 +9,10 @@
 import Admin from "@/layouts/Admin";
 
 export default {
-  name: "dashboard",
-  props:{
-    pageTitle: String,
+  computed:{
+    pageTitle(){
+      return this.$route.meta.title;
+    }
   },
   components: {
     Admin,
