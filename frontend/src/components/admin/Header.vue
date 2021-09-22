@@ -6,8 +6,10 @@
       </router-link>
     </div>
     <div class="right">
-      
-      <button @click="logout" v-if="logged">LOGOUT</button>
+      <button class="btn_4" v-if="!logged" @click="$router.go(-1)">voltar</button>
+      <button class="btn_4" v-if="logged">criar artigo</button>
+      <button class="btn_4" v-if="logged">alterar páginas</button>
+      <button class="btn_4" @click="logout" v-if="logged">logout</button>
     </div>
   </header>
 </template>
@@ -64,17 +66,23 @@ export default {
 <style lang="scss" scoped>
 header {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  padding: 1.2vw 2vw 2vw 2vw;
+  grid-template-columns: 2fr 7fr;
+  padding: 1.2vw 5vw 2vw 2vw;
   gap: 3vw;
   background: linear-gradient($red, transparent);
+  margin-bottom: 10vh;
 
   #logo_container {
     @include headerLogo(0);
   }
   .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 40px;
+
     button {
-      color: $white;
+
     }
   }
 }
