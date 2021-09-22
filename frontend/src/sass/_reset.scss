@@ -58,3 +58,8 @@ p{
 	font-size: 16px;
 	line-height: 1.45em;
 }
+input, textarea, select{
+	&:target, &:focus{
+        outline: none;
+    }
+}
