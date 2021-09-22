@@ -60,6 +60,33 @@
     pointer-events: none;
   }
 }
+.btn_4{
+  @include Title1;
+  color: $red;
+  font-size: 15px;
+  padding: 4px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: transparent;
+    border-radius: 4px;
+
+    transition: background-color 300ms, transform 300ms;
+  }
+  &:hover::before{
+    background-color: $white;
+    transform: translateX(-180%);
+  }
+}
 
 /*+--------------------------------------+
   |            PSEUDO ELEMENTS           |
