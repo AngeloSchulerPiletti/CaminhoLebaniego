@@ -35,7 +35,7 @@
 
 <script>
 import Admin from "@/layouts/Admin";
-import { api } from "@/service/api.js";
+import { apiRequireProtocol } from "@/service/api.js";
 
 export default {
   name: "login",
@@ -53,14 +53,20 @@ export default {
       console.log("submitado");
       this.disabled = "disabled";
 
-      api.post("login", this.formUser).then((response) => {
+      apiRequireProtocol().post("login", this.formUser).then((response) => {
         this.disabled = "";
 
         if (response.status >= 200 && response.status < 300) {
           this.$store.commit("setSessionData", {
             user: response.data.user,
             token: response.data.token,
+            logged: true,
           });
+
+          // setAuthorizationToken(
+          //   response.data.token,
+          //   api_instance
+          // );
 
           this.$router.push("/area-do-administrador");
         }
@@ -75,7 +81,6 @@ export default {
 
 <style lang="scss">
 #login_container {
-
   form {
     display: flex;
     flex-direction: column;
@@ -85,7 +90,7 @@ export default {
     width: 50vw;
     max-width: 400px;
 
-    h1{
+    h1 {
       position: relative;
       z-index: 10;
     }

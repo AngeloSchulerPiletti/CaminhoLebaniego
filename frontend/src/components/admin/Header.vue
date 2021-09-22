@@ -6,7 +6,9 @@
       </router-link>
     </div>
     <div class="right">
-      <button class="btn_4" v-if="!logged" @click="$router.go(-1)">voltar</button>
+      <button class="btn_4" v-if="!logged" @click="$router.go(-1)">
+        voltar
+      </button>
       <button class="btn_4" v-if="logged">criar artigo</button>
       <button class="btn_4" v-if="logged">alterar páginas</button>
       <button class="btn_4" @click="logout" v-if="logged">logout</button>
@@ -16,7 +18,7 @@
 
 <script>
 import HeaderLogo from "@/components/SVGs/HeaderLogo.vue";
-import { api, setAuthorizationToken } from "@/service/api";
+import { apiRequireProtocol } from "@/service/api";
 
 export default {
   data() {
@@ -26,35 +28,28 @@ export default {
   },
   computed: {
     tokenAndUser() {
-      return this.$store.state.sessionData.user &&
-        this.$store.state.sessionData.token
-        ? true
-        : false;
+      return this.$store.state.logged;
     },
   },
   watch: {
     tokenAndUser: {
       immediate: true,
       handler(newVal) {
-        this.logged = newVal ? true : false;
+        this.logged = newVal;
       },
     },
   },
   methods: {
     logout() {
-      var authorizedRequest = setAuthorizationToken(
-        this.$store.state.sessionData.token,
-        api
-      );
-
-      authorizedRequest.post("logout").then((response) => {
+      apiRequireProtocol(this.$store.state.sessionData.token).post("logout").then((response) => {
         this.$store.commit("setSessionData", {
           user: undefined,
           token: undefined,
-        });
+          logged: false,
+        })
 
         this.$router.push("/caminho");
-      });
+      }).catch(error => console.log(error));
     },
   },
   components: {
@@ -82,7 +77,6 @@ header {
     gap: 40px;
 
     button {
-
     }
   }
 }

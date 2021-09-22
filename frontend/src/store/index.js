@@ -12,7 +12,8 @@ export default createStore({
     sessionData:{
       user: undefined,
       token: undefined,
-    }
+    },
+    logged: false,
   },
   mutations: {
     setTitle(state, addTitle) {
@@ -32,6 +33,7 @@ export default createStore({
     setSessionData(state, sessionData){
       state.sessionData.user = sessionData.user;
       state.sessionData.token = sessionData.token;
+      state.logged = sessionData.logged;
     },
   },
   actions: {

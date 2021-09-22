@@ -102,14 +102,14 @@ const router = createRouter({
   routes
 })
 
-import {api} from "@/service/api.js";
+import {apiRequireProtocol} from "@/service/api.js";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;
   store.state.hasScroll = "off";
 
   if (to.meta.autoAxios) {
-    await api.get(`content/${to.name}`).then(response => {
+    await apiRequireProtocol().get(`content/${to.name}`).then(response => {
       to.params.pageData = response.data
     }).catch(error => {
       router.push({ name: 'error404' })
