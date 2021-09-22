@@ -35,7 +35,7 @@
 
 <script>
 import Admin from "@/layouts/Admin";
-import { apiRequireProtocol } from "@/service/api.js";
+import { apiRequestProtocol } from "@/service/api.js";
 
 export default {
   name: "login",
@@ -53,7 +53,7 @@ export default {
       console.log("submitado");
       this.disabled = "disabled";
 
-      apiRequireProtocol().post("login", this.formUser).then((response) => {
+      apiRequestProtocol().post("login", this.formUser).then((response) => {
         this.disabled = "";
 
         if (response.status >= 200 && response.status < 300) {

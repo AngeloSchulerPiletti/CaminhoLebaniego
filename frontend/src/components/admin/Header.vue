@@ -18,7 +18,7 @@
 
 <script>
 import HeaderLogo from "@/components/SVGs/HeaderLogo.vue";
-import { apiRequireProtocol } from "@/service/api";
+import { apiRequestProtocol } from "@/service/api";
 
 export default {
   data() {
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     logout() {
-      apiRequireProtocol(this.$store.state.sessionData.token).post("logout").then((response) => {
+      apiRequestProtocol(this.$store.state.sessionData.token).post("logout").then((response) => {
         this.$store.commit("setSessionData", {
           user: undefined,
           token: undefined,
