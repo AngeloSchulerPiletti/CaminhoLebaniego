@@ -49,7 +49,12 @@
         </div>
         <div class="input_container">
           <label for="images">Adicione as Imagens Zipadas ao Artigo</label>
-          <input @change="uploadFile" ref="file" type="file" name="images" id="images" />
+          <input
+            @change="uploadFile"
+            type="file"
+            name="images"
+            id="images"
+          />
         </div>
       </div>
       <div class="actions">
@@ -64,6 +69,8 @@
 
 <script>
 import Dashboard from "@/views/admin/Dashboard";
+import { apiRequestProtocol } from "@/service/api.js";
+
 export default {
   data() {
     return {
@@ -72,16 +79,32 @@ export default {
         description: null,
         text: null,
         tags: null,
-        images: null,
         draft: "false",
       },
+        images: null,
       disabled: "",
     };
   },
   methods: {
     submit() {
+      this.disabled = "disabled";
+      this.$store.commit("setTitle", "Enviando Artigo...");
+
       console.log(this.article);
-      console.log("sended");
+
+      var formData = new FormData();
+      this.images ? formData.append('image', this.images) : null; 
+      Object.keys(this.article).forEach(key => {
+        formData.append(key, this.article.key)
+      });
+
+      apiRequestProtocol(this.$store.state.sessionData.token)
+        .post("novo-artigo", formData, {'Content-type': 'multipart/form-data'})
+        .then((response) => {
+          this.disabled = "";
+          console.log(response);
+          this.$store.commit("setTitle", "Admin");
+        });
     },
     clean() {
       console.log("clean");
@@ -93,10 +116,9 @@ export default {
         draft: "false",
       };
     },
-    uploadFile() {
-      this.article.images = this.$refs.file.files[0];
+    uploadFile(event) {
+      this.images = event.target.files[0];
     },
-
   },
   components: {
     Dashboard,

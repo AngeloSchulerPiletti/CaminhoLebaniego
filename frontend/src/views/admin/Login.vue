@@ -63,11 +63,6 @@ export default {
             logged: true,
           });
 
-          // setAuthorizationToken(
-          //   response.data.token,
-          //   api_instance
-          // );
-
           this.$router.push("/area-do-administrador");
         }
       });
