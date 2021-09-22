@@ -30,7 +30,7 @@
 
 @mixin headerLogo($pad_top) {
     padding-top: $pad_top;
-    // border-top: 2px solid $white;
+
     svg:deep(text) {
       tspan {
         transition: fill 600ms;
