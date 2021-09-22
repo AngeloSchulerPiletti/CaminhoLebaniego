@@ -4,34 +4,58 @@
       <div class="inputs">
         <div class="input_container">
           <label for="title">Título do Artigo</label>
-          <input type="text" id="title" name="title" placeholder="Exemplo de Título"/>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Exemplo de Título"
+            v-model="article.title"
+          />
         </div>
         <div class="input_container">
           <label for="description">Descrição</label>
-          <textarea name="description" id="description" placeholder="Adicione aqui uma descrição para o seu artigo!"></textarea>
+          <textarea
+            name="description"
+            id="description"
+            placeholder="Adicione aqui uma descrição para o seu artigo!"
+            v-model="article.description"
+          ></textarea>
         </div>
         <div class="input_container">
           <label for="text">Artigo</label>
-          <textarea name="text" id="text" placeholder="Escreva seu artigo conforme as regras de formatação pré-estabelecidas"></textarea>
+          <textarea
+            name="text"
+            id="text"
+            placeholder="Escreva seu artigo conforme as regras de formatação pré-estabelecidas"
+            v-model="article.text"
+          ></textarea>
         </div>
         <div class="input_container">
           <label for="tags">TAGS do Artigo</label>
-          <input type="text" id="tags" name="tags" placeholder="Insira tags, separando-as por vírgula"/>
+          <input
+            type="text"
+            id="tags"
+            name="tags"
+            placeholder="Insira tags, separando-as por vírgula"
+            v-model="article.tags"
+          />
         </div>
         <div class="input_container">
           <label for="draft">Salvar como Rascunho?</label>
-          <select name="draft" id="draft">
+          <select name="draft" id="draft" v-model="article.draft">
             <option value="true">Sim</option>
             <option value="false" selected>Não</option>
           </select>
         </div>
         <div class="input_container">
           <label for="images">Adicione as Imagens Zipadas ao Artigo</label>
-          <input type="file" name="images" id="images">
+          <input @change="uploadFile" ref="file" type="file" name="images" id="images" />
         </div>
       </div>
       <div class="actions">
-        <button :class="'btn_3 ' + disabled" type="submit" @click="submit">Criar</button>
+        <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
+          Criar
+        </button>
         <button class="btn_3" @click="clean">Limpar</button>
       </div>
     </form>
@@ -43,17 +67,36 @@ import Dashboard from "@/views/admin/Dashboard";
 export default {
   data() {
     return {
-      article: {},
+      article: {
+        title: null,
+        description: null,
+        text: null,
+        tags: null,
+        images: null,
+        draft: "false",
+      },
       disabled: "",
     };
   },
   methods: {
     submit() {
-        console.log('sended');
+      console.log(this.article);
+      console.log("sended");
     },
-    clean(){
-        console.log('clean');
-    }
+    clean() {
+      console.log("clean");
+      this.article = {
+        title: null,
+        description: null,
+        text: null,
+        tags: null,
+        draft: "false",
+      };
+    },
+    uploadFile() {
+      this.article.images = this.$refs.file.files[0];
+    },
+
   },
   components: {
     Dashboard,
