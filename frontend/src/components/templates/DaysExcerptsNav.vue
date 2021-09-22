@@ -51,7 +51,7 @@
       <div class="img_colection" v-if="daysExcerptsData.imgsBasePath && daysExcerptsData.imgsBasePath != ''">
         <img
           :src="
-            './images/pages'+daysExcerptsData.imgsBasePath+'day' +
+            'http://localhost:8000/images/pages'+daysExcerptsData.imgsBasePath+'day' +
               (index + 1) +
               '/img' +
               imgIndex +

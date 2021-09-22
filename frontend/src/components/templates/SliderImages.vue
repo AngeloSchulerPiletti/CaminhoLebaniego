@@ -3,7 +3,7 @@
     <div :class="'img_container ' + img1Class">
       <img
         :src="
-          './images/pages/caminho/slider/img' + index + '.jpg'
+          'http://localhost:8000/images/pages/caminho/slider/img' + index + '.jpg'
         "
         alt=""
       />
