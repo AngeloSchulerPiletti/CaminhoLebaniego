@@ -82,56 +82,7 @@ export default {
 <style lang="scss">
 #login_container {
   form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: fit-content;
-    margin: auto;
-    width: 50vw;
-    max-width: 400px;
-
-    h1 {
-      position: relative;
-      z-index: 10;
-    }
-    .inputs {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding: 2vw;
-      background-color: $white;
-      border-radius: 10px;
-      box-shadow: 0px 0px 3vw 1.5vw $blackest;
-
-      .input_container {
-        @include Font0;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-
-        label {
-          font-size: 14px;
-        }
-        input {
-          font-size: 16px;
-          padding: 4px;
-          border: none;
-          border-bottom: 1px solid $black;
-
-          &:target,
-          &:focus {
-            border-bottom: 1px solid $red;
-          }
-        }
-      }
-    }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-
-      // button {
-      // }
-    }
+    @include form1;
   }
 }
 </style>

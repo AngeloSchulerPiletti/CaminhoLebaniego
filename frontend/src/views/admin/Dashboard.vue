@@ -1,6 +1,6 @@
 <template>
   <admin>
-    <h2>{{pageTitle}}</h2>
+    <h2 class="title4">{{pageTitle}}</h2>
     <router-view></router-view>
   </admin>
 </template>
@@ -20,4 +20,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+h2{
+  padding: 0 4vw;
+  margin-bottom: 4vw;
+}
+</style>
