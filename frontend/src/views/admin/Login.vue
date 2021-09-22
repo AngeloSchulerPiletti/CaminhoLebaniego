@@ -82,7 +82,7 @@ export default {
 <style lang="scss">
 #login_container {
   form {
-    @include form1;
+    @include form1(50vw, 400px);
   }
 }
 </style>

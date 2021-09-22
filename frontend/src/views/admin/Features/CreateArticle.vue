@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="submit">
+    <form @submit.prevent>
       <div class="inputs">
         <div class="input_container">
           <label for=""></label>
@@ -8,7 +8,8 @@
         </div>
       </div>
       <div class="actions">
-        <button :class="'btn_3 ' + disabled" type="submit">Criar</button>
+        <button :class="'btn_3 ' + disabled" type="submit" @click="submit">Criar</button>
+        <button class="btn_3" @click="clean">Limpar</button>
       </div>
     </form>
   </div>
@@ -24,7 +25,12 @@ export default {
     };
   },
   methods: {
-    submit() {},
+    submit() {
+        console.log('sended');
+    },
+    clean(){
+        console.log('clean');
+    }
   },
   components: {
     Dashboard,
@@ -34,6 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 form {
-  @include form1;
+  @include form1(50vw, 700px);
 }
 </style>

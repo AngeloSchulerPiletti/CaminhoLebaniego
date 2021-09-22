@@ -55,14 +55,14 @@
 
 
 
-@mixin form1 {
+@mixin form1($width, $maxWidth) {
   display: flex;
     flex-direction: column;
     gap: 20px;
     width: fit-content;
     margin: auto;
-    width: 50vw;
-    max-width: 400px;
+    width: $width;
+    max-width: $maxWidth;
 
     h1 {
       position: relative;
