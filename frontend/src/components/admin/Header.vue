@@ -1,50 +1,49 @@
 <template>
-  <header v-if="show">
+  <header>
     <h1>AQUI é o HEADER</h1>
-    <button @click="logout">LOGOUT</button>
+    <button @click="logout" v-if="logged">LOGOUT</button>
   </header>
 </template>
 
 <script>
-import api from "@/service/api";
+import { api, setAuthorizationToken } from "@/service/api";
 export default {
-  data(){
-    return{
-      show: false,
-    }
+  data() {
+    return {
+      logged: false,
+    };
   },
-  computed:{
-    tokenAndUser(){
-      return (this.$store.state.sessionData.user && this.$store.state.sessionData.token) ? true : false;
-    }
+  computed: {
+    tokenAndUser() {
+      return this.$store.state.sessionData.user &&
+        this.$store.state.sessionData.token
+        ? true
+        : false;
+    },
   },
-  watch:{
+  watch: {
     tokenAndUser: {
       immediate: true,
-      handler(newVal){
-        console.log('computed: '+newVal);
-        this.show =  newVal ? true : false;
-      }
-    }
+      handler(newVal) {
+        this.logged = newVal ? true : false;
+      },
+    },
   },
   methods: {
     logout() {
-      api.interceptors.request.use(
-        (config) => {
-          config.headers.Authorization = `Bearer ${this.$store.state.sessionData.token}`;
-          return config;
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
+      var authorizedRequest = setAuthorizationToken(
+        this.$store.state.sessionData.token,
+        api
       );
-      api.post("/logout").then(response => {
-        if (response.status >= 200 && response.status < 300) {
-          this.$store.commit("setSessionData", {
-            user: undefined,
-            token: undefined,
-          });
-        }
+
+      authorizedRequest.post("logout").then((response) => {
+
+        this.$store.commit("setSessionData", {
+          user: undefined,
+          token: undefined,
+        });
+
+        this.$router.push("/caminho");
       });
     },
   },
