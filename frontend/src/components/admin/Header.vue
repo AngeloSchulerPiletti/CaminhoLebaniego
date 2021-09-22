@@ -10,6 +10,7 @@
         voltar
       </button>
       <button class="btn_4" @click="$router.push({name: 'criar_artigos'})" v-if="logged">criar artigo</button>
+      <button class="btn_4" @click="$router.push({name: 'alterar_artigos'})" v-if="logged">alterar artigos</button>
       <button class="btn_4" @click="$router.push({name: 'alterar_paginas'})" v-if="logged">alterar páginas</button>
       <button class="btn_4" @click="logout" v-if="logged">logout</button>
     </div>

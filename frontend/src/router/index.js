@@ -13,6 +13,7 @@ import Login from "@/views/admin/Login.vue";
 import Dashboard from "@/views/admin/Dashboard";
 import CreateArticle from "@/views/admin/Features/CreateArticle";
 import ChangePages from "@/views/admin/Features/ChangePages";
+import ChangeArticles from "@/views/admin/Features/ChangeArticles";
 
 
 
@@ -107,7 +108,13 @@ const routes = [
         component: ChangePages,
         name: "alterar_paginas",
         meta: {title: "Alterar Página"},
-      }
+      },
+      {
+        path: "alterar-artigos",
+        component: ChangeArticles,
+        name: "alterar_artigos",
+        meta: {title: "Alterar Artigos"},
+      },
     ],
     meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {
