@@ -1,9 +1,14 @@
 <template>
-  <div :class="'wrapper f_'+alignment">
+  <div :class="'wrapper f_' + alignment">
     <div :class="'img_container ' + img1Class">
       <img
+        :class="{'hided' : (img-1) !== this.index}"
+        v-for="img in total"
+        :key="img"
         :src="
-          'http://localhost:8000/images/pages/caminho/slider/img' + index + '.jpg'
+          'http://localhost:8000/images/pages/caminho/slider/img' +
+            (img - 1) +
+            '.jpg'
         "
         alt=""
       />
@@ -27,19 +32,14 @@
 
 <script>
 export default {
-    data(){
-        return{
-            img1Class: "",
-            index: 0,
-        }
-    },
-    props:{
-        sliderImagesData: Object,
-        total: Number,
-        alignment: String,
-    },
-    methods:{
-        changeImage(action) {
+  data() {
+    return {
+      img1Class: "",
+      index: 0,
+    };
+  },
+  methods: {
+    changeImage(action) {
       this.img1Class = "active";
 
       setTimeout(() => {
@@ -56,20 +56,25 @@ export default {
         this.img1Class = "";
       }, 600);
     },
-    }
+  },
+  props: {
+    sliderImagesData: Object,
+    total: Number,
+    alignment: String,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.f_left{
+.f_left {
   flex-direction: row;
-  .asider{
+  .asider {
     margin-right: 10vw;
   }
 }
-.f_right{
+.f_right {
   flex-direction: row-reverse;
-  .asider{
+  .asider {
     margin-left: 10vw;
   }
 }
@@ -101,6 +106,10 @@ export default {
       width: 40vw;
       height: 30vw;
       object-fit: cover;
+
+      &.hided{
+        display: none;
+      }
     }
   }
   .asider {
