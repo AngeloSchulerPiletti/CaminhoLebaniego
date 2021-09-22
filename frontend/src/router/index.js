@@ -74,7 +74,10 @@ const routes = [
     component: Login,
     meta: { autoAxios: false },
     beforeEnter: (to, from, next) => {
-      if (store.state.logged) {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        next('/');
+      }
+      else if (store.state.logged) {
         next("/area-do-administrador");
       }
       else {
@@ -98,7 +101,10 @@ const routes = [
     ],
     meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {
-      if (store.state.logged) {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        next('/');
+      }
+      else if (store.state.logged) {
         next();
       }
       else {
