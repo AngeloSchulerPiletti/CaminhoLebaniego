@@ -2,6 +2,7 @@
   <admin>
     <div id="login_container">
       <form @submit.prevent="submit(this)">
+        <h1 class="title4">Login</h1>
         <div class="inputs">
           <div class="input_container">
             <label for="email">Email</label>
@@ -74,6 +75,7 @@ export default {
 
 <style lang="scss">
 #login_container {
+
   form {
     display: flex;
     flex-direction: column;
@@ -83,6 +85,10 @@ export default {
     width: 50vw;
     max-width: 400px;
 
+    h1{
+      position: relative;
+      z-index: 10;
+    }
     .inputs {
       display: flex;
       flex-direction: column;
