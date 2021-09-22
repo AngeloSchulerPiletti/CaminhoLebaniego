@@ -1,4 +1,13 @@
 <template>
+<div>
+    <div v-if="$store.state.logged" id="admin_header">
+      <p>
+      Bem vindo, {{$store.state.sessionData.user.name}}. Você é admin e está logado!
+      </p>
+      <p @click="$router.push({name: 'admin'})">
+        Ir para a área do admin
+      </p>
+    </div>
   <header>
     <div id="logo_container">
       <router-link to="/">
@@ -15,6 +24,8 @@
       </ul>
     </nav>
   </header>
+
+</div>
 </template>
 
 <script>
@@ -27,8 +38,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$pad_top: 1vw;
+#admin_header{
+  background-color: $red;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 12px;
 
+  p:nth-child(2){
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+$pad_top: 1vw;
 header {
   display: grid;
   grid-template-columns: 4fr 9fr;
