@@ -11,6 +11,8 @@ import Experiencia from "@/views/Experiencia.vue";
 import Error404 from "@/views/error/Error404.vue";
 import Login from "@/views/admin/Login.vue";
 import Dashboard from "@/views/admin/Dashboard";
+import CreateArticle from "@/views/admin/Features/CreateArticle";
+import ChangePages from "@/views/admin/Features/ChangePages";
 
 
 
@@ -72,7 +74,7 @@ const routes = [
     component: Login,
     meta: { autoAxios: false },
     beforeEnter: (to, from, next) => {
-      if (store.state.sessionData.user && store.state.sessionData.token) {
+      if (store.state.logged) {
         next("/area-do-administrador");
       }
       else {
@@ -82,11 +84,21 @@ const routes = [
   },
   {
     path: "/area-do-administrador",
-    name: "dashboard",
     component: Dashboard,
+    children: [
+      {
+        path: "", 
+        component: CreateArticle,
+        name: "admin",
+      },
+      {path: "criar-artigo", component: CreateArticle,
+      name: "criar_artigos",},
+      {path: "alterar-paginas", component: ChangePages,
+      name: "alterar_paginas",}
+    ],
     meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {
-      if (store.state.sessionData.user && store.state.sessionData.token) {
+      if (store.state.logged) {
         next();
       }
       else {
