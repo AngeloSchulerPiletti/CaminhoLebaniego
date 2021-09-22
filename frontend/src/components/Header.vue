@@ -39,28 +39,7 @@ header {
   background: linear-gradient(180deg, #000000e0 40%, #00000000);
 
   #logo_container {
-    padding-top: $pad_top;
-    // border-top: 2px solid $white;
-    svg:deep(text) {
-      tspan {
-        transition: fill 600ms;
-      }
-    }
-
-    &:hover {
-      svg:deep(text) {
-        tspan {
-          fill: $red;
-        }
-      }
-    }
-    a.router-link-active {
-      svg:deep(text) {
-        tspan {
-          fill: $red;
-        }
-      }
-    }
+    @include headerLogo($pad_top);
   }
   nav {
     ul {

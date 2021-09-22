@@ -1,12 +1,21 @@
 <template>
   <header>
-    <h1>AQUI é o HEADER</h1>
-    <button @click="logout" v-if="logged">LOGOUT</button>
+    <div id="logo_container">
+      <router-link to="/">
+        <header-logo />
+      </router-link>
+    </div>
+    <div class="right">
+      
+      <button @click="logout" v-if="logged">LOGOUT</button>
+    </div>
   </header>
 </template>
 
 <script>
+import HeaderLogo from "@/components/SVGs/HeaderLogo.vue";
 import { api, setAuthorizationToken } from "@/service/api";
+
 export default {
   data() {
     return {
@@ -37,7 +46,6 @@ export default {
       );
 
       authorizedRequest.post("logout").then((response) => {
-
         this.$store.commit("setSessionData", {
           user: undefined,
           token: undefined,
@@ -47,11 +55,27 @@ export default {
       });
     },
   },
+  components: {
+    HeaderLogo,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-button {
-  color: $white;
+header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 1.2vw 2vw 2vw 2vw;
+  gap: 3vw;
+  background: linear-gradient($red, transparent);
+
+  #logo_container {
+    @include headerLogo(0);
+  }
+  .right {
+    button {
+      color: $white;
+    }
+  }
 }
 </style>
