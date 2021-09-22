@@ -55,6 +55,11 @@
 
 
 
+@mixin defaultInputsStyle {
+  font-size: 16px;
+  padding: 4px;
+  border: none;
+}
 @mixin form1($width, $maxWidth) {
   display: flex;
     flex-direction: column;
@@ -86,16 +91,47 @@
         label {
           font-size: 14px;
         }
+
+
         input {
-          font-size: 16px;
-          padding: 4px;
-          border: none;
+          @include defaultInputsStyle;
           border-bottom: 1px solid $black;
+
+          &[type="file"]{
+            border: none;
+
+            
+          }
 
           &:target,
           &:focus {
             border-bottom: 1px solid $red;
           }
+        }
+        select{
+          @include defaultInputsStyle;
+          border: 1px solid $black;
+          width: fit-content;
+          margin-top: 4px;
+        }
+        textarea{
+          @include Font0;
+          @include defaultInputsStyle;
+          resize: vertical;
+          border: 1px solid $black;
+
+          &#text{
+            height: 35vh;
+          }
+          &#description{
+            height: 16vh;
+          }
+
+          &:target,
+          &:focus {
+            border: 1px solid $red;
+          }
+
         }
       }
     }
