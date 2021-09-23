@@ -10,8 +10,10 @@ class ArticleController extends Controller
         if ($request->file('image')) {
             $name = $request->file('image')->getClientOriginalName();
             $extension = $request->file('image')->getClientOriginalExtension();
-            return response()->json([$name=> $extension]);
+            ddh($request);
+            return response()->json([$name=> $extension, "isso?" => $request->text]);
         }else{
+            ddh($request);
             return response()->json(['failed']);
         }
     }
