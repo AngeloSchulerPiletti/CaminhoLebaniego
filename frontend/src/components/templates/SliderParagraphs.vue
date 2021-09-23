@@ -23,13 +23,13 @@
             @click="changeParagraphByIncrease(1)"
           />
         </div>
-        <div
+        <!-- <div
           class="nextest_controller arrow_containers"
           @click="changeParagraphByValue(this.total - 1)"
         >
           <arrow :class="'arrow toright ' + pClass" />
           <arrow :class="'arrow toright ' + pClass" />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -145,7 +145,7 @@ export default {
       margin-top: 1vw;
       display: flex;
       gap: 10px;
-      justify-content: space-around;
+      justify-content: space-between;
 
       &:deep(.arrow) {
         cursor: pointer;
