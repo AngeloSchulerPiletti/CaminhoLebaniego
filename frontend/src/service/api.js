@@ -4,7 +4,7 @@ import axios from "axios";
 //     delete axios.defaults.headers.common["Authorization"];
 // }
 
-export function apiRequestProtocol(token = null) {
+export function apiRequestProtocol(token = null, headers = null) {
     var api_instance = axios.create({
         baseURL: "http://127.0.0.1:8000/api/",
     });
@@ -20,5 +20,10 @@ export function apiRequestProtocol(token = null) {
             }
         );
     } 
+    if (headers){
+      Object.keys(headers).forEach(header => {
+        api_instance.defaults.headers.common[header] = headers[header];
+      });
+    }
     return api_instance;
 }

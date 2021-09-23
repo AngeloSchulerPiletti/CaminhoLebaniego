@@ -90,19 +90,13 @@ export default {
       this.disabled = "disabled";
       this.$store.commit("setTitle", "Enviando Artigo...");
 
-      console.log(this.article);
-
       var formData = new FormData();
-      this.images ? formData.append('image', this.images) : null; 
-      Object.keys(this.article).forEach(key => {
-        formData.append(key, this.article.key)
-      });
+      this.images ? formData.append('image', this.images) : null;
 
       apiRequestProtocol(this.$store.state.sessionData.token)
         .post("novo-artigo", formData, {'Content-type': 'multipart/form-data'})
         .then((response) => {
           this.disabled = "";
-          console.log(response);
           this.$store.commit("setTitle", "Admin");
         });
     },
