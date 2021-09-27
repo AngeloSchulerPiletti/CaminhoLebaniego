@@ -53,17 +53,67 @@ if (!function_exists('tag_parser')) {
 if (!function_exists('article_text_to_html')) {
     function article_text_to_html($text)
     {
-        $text = preg_replace_callback('/([*]{2})(.+)([*]{2})/', function($matches){
+        $text .= "\u{000A}";
+
+        $text = preg_replace_callback('/(<-)(.+)(->)/U', function($matches){
+            return make_opened_html_tag('hr', $matches[2]);
+        }, $text);
+
+        $text = preg_replace_callback('/\$(.+)\[(.+)\]\$/U', function($matches){
+            return make_closer_html_tag('a', $matches[1], " ", attr_arr_to_attr_html(['href' => $matches[2]]));
+        }, $text);
+
+        $text = preg_replace_callback('/([*]{2})(.+)([*]{2})/U', function ($matches) {
             return make_closer_html_tag('em', $matches[2]);
         }, $text);
-        
-        
-        $text = preg_replace_callback('/([*]{1})(.+)([*]{1})/', function($matches){
+
+        $text = preg_replace_callback('/([*]{1})(.+)([*]{1})/U', function ($matches) {
             return make_closer_html_tag('strong', $matches[2]);
         }, $text);
 
+        $text = preg_replace_callback('/([#]{1,6})(.+)([\r\n]{1})/', function ($matches) {
+            $counter = strlen($matches[1]);
+            return make_closer_html_tag('h' . $counter, $matches[2]);
+        }, $text);
+
+        //  '/([-]{4}[\r\n]{1})([-]{1}(.+)[\r\n]{1})([-]{4}[\r\n]{1})/'
+        $text = preg_replace_callback('/([-]{4}[\r\n]{1})(.+)([-]{4}[\r\n]{1})/Us', function ($matches) {
+            $ul_items = preg_replace_callback('/([-]{1})(.+)([\r\n]{1})/U', function($matches2){
+                return make_closer_html_tag('li', $matches2[2]);
+            }, $matches[2]);
+
+            return make_closer_html_tag('ul', $ul_items);
+        }, $text);
+
+        $text = preg_replace_callback('/(<![\r\n]{1})(.+)(!>[\r\n]{1})/Us', function ($matches) {
+            $inside_p = preg_replace_callback('/(.+)[\r\n]{1}/', function($matches2){
+                return make_closer_html_tag('p', $matches2[1], 'inside_p');
+            }, $matches[2]);
+            return make_closer_html_tag('div', $inside_p, "warn");
+        }, $text);
+
+        $text = preg_replace_callback('/(<\"[\r\n]{1})(.+)(\">[\r\n]{1})/Us', function ($matches) {
+            $inside_p = preg_replace_callback('/(.+)[\r\n]{1}/', function($matches2){
+                return make_closer_html_tag('p', $matches2[1], 'inside_p');
+            }, $matches[2]);
+            return make_closer_html_tag('div', $inside_p, "quotes");
+        }, $text);
+
+        $img_counter = 0;
+        $text = preg_replace_callback('/<\/(.+)\/>\n/U', function($matches) use (&$img_counter) {
+            $img_counter++;
+            return make_opened_html_tag('img', $matches[1], attr_arr_to_attr_html(["src" => "só pra teste"]));
+        }, $text);
+
+        $text = preg_replace_callback('/\@\@(.+)([\r\n]{1})/U', function ($matches) {
+            return make_closer_html_tag('p', $matches[1]);
+        }, $text);
+
+        $text = preg_replace_callback('/\n/', function($matches){
+            return make_opened_html_tag('br');
+        }, $text);
 
         ddh([$text]);
-        return [/*Text in html, images count*/];
+        return [$text, $img_counter];
     }
 }
