@@ -43,8 +43,8 @@
         <div class="input_container">
           <label for="draft">Salvar como Rascunho?</label>
           <select name="draft" id="draft" v-model="article.draft">
-            <option value="true">Sim</option>
-            <option value="false" selected>Não</option>
+            <option value="on">Sim</option>
+            <option value="off" selected>Não</option>
           </select>
         </div>
         <div class="input_container">
@@ -54,6 +54,7 @@
             type="file"
             name="images"
             id="images"
+            accept=".zip,.rar"
           />
         </div>
       </div>
@@ -75,11 +76,11 @@ export default {
   data() {
     return {
       article: {
-        title: null,
-        description: null,
-        text: null,
-        tags: null,
-        draft: "false",
+        title: "AAAAAAAAAAAAAAAAAAAAAAA",
+        description: "AAAAAAAAAAAAAAAAAAAAAAA",
+        text: "AAAAAAAAAAAAAAAAAAAAAAA",
+        tags: "AAAAAAAAAAAAAAAAAAAAAAA",
+        draft: "off",
       },
         images: null,
       disabled: "",
@@ -92,6 +93,9 @@ export default {
 
       var formData = new FormData();
       this.images ? formData.append('image', this.images) : null;
+      Object.keys(this.article).forEach(input => {
+        this.article[input] ? formData.append(input, this.article[input]) : null;
+      });
 
       apiRequestProtocol(this.$store.state.sessionData.token)
         .post("novo-artigo", formData, {'Content-type': 'multipart/form-data'})
@@ -107,7 +111,7 @@ export default {
         description: null,
         text: null,
         tags: null,
-        draft: "false",
+        draft: "off",
       };
     },
     uploadFile(event) {
