@@ -30,7 +30,9 @@
         },
         "files": [
             "app/Helpers/FileParser.php",
-            "app/Helpers/DebugerApi.php"
+            "app/Helpers/DebugerApi.php",
+            "app/Helpers/ArticleParser.php",
+            "app/Helpers/HtmlTagGenerator.php"
         ]
     },
     "autoload-dev": {
