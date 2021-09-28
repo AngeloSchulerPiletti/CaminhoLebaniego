@@ -3,6 +3,7 @@ import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
   state: {
+    urlBase: "http://127.0.0.1:8000/",
     modalShow: false,
     htmlMetaData: {
       titleTemplate: "%% | Caminho Lebaniego",
