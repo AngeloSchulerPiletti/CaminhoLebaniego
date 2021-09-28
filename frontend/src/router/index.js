@@ -15,6 +15,8 @@ import CreateArticle from "@/views/admin/Features/CreateArticle";
 import ChangePages from "@/views/admin/Features/ChangePages";
 import ChangeArticles from "@/views/admin/Features/ChangeArticles";
 import ArtigoShow from "@/views/ArtigoShow";
+import ManageDraft from "@/views/admin/Features/ManageDraft";
+import ManageTrash from "@/views/admin/Features/ManageTrash";
 
 
 
@@ -122,6 +124,18 @@ const routes = [
         name: "alterar_artigos",
         meta: { title: "Alterar Artigos" },
       },
+      {
+        path: "lixeira",
+        component: ManageTrash,
+        name: "trash",
+        meta: { title: "Sua Lixeira" },
+      },
+      {
+        path: "rascunhos",
+        component: ManageDraft,
+        name: "drafts",
+        meta: { title: "Seus Rascunhos" }
+      }
     ],
     meta: { autoAxios: false, },
     beforeEnter: (to, from, next) => {

@@ -78,6 +78,7 @@ header {
     gap: 40px;
 
     button {
+      
     }
   }
 }

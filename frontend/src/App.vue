@@ -12,4 +12,5 @@ export default {
   font-family: MonAmour;
   src: url("./assets/fonts/MonAmour.ttf");
 }
+
 </style>

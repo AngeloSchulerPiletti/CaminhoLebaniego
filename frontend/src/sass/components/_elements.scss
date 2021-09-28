@@ -63,11 +63,12 @@
 .btn_4{
   @include Title1;
   color: $red;
-  font-size: 15px;
-  padding: 4px 15px;
+  font-size: 1vw;
+  padding: 0.35vw 1.2vw;
   border-radius: 4px;
   cursor: pointer;
   text-transform: uppercase;
+  background-color: $white;
 
   position: relative;
   &::before{
