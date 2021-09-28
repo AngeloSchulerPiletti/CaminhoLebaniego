@@ -4,8 +4,21 @@
 
 <script>
 export default {
+  watch: {
+    article(newval) {
+      setTimeout(() => {
+        var imgs = this.$el.querySelectorAll("img");
+        for (let i = 0; i < imgs.length; i++) {
+          imgs[i].src = `${this.$store.state.urlBase}${this.imgs_path}/${this.imgs_names[i]}`;
+        }
+      }, 0);
+
+    },
+  },
   props: {
     article: String,
+    imgs_path: String,
+    imgs_names: Object,
   },
 };
 </script>
@@ -23,14 +36,15 @@ export default {
       margin: 0.6em 0;
     }
     .img_container {
-        position: relative;
-        $img_padding: 10px;
-        padding: $img_padding;
+      position: relative;
+      $img_padding: 10px;
+      padding: $img_padding;
 
-        &::before, &::after{
-            position:absolute;
-            content: "";
-        }
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+      }
 
       img {
         object-fit: contain;
@@ -38,13 +52,13 @@ export default {
         height: 100%;
       }
       &.left {
-          margin-right: auto;
+        margin-right: auto;
       }
       &.center {
-          margin: auto;
+        margin: auto;
       }
       &.right {
-          margin-left: auto;
+        margin-left: auto;
       }
 
       &.small {
@@ -56,61 +70,58 @@ export default {
       &.big {
         width: 50%;
       }
-        
 
       &.left.style1 {
-          &::before{
-              @include pseudoStyle1(left, $img_padding);
-          }
+        &::before {
+          @include pseudoStyle1(left, $img_padding);
+        }
       }
-      &.right.style1{
-          &::before{
-              @include pseudoStyle1(right, $img_padding);
-          }
+      &.right.style1 {
+        &::before {
+          @include pseudoStyle1(right, $img_padding);
+        }
       }
       &.left.style2 {
-          &::before{
-              @include pseudoStyle2(top, left);
-          }
+        &::before {
+          @include pseudoStyle2(top, left);
+        }
       }
-      &.right.style2{
-          &::before{
-              @include pseudoStyle2(top, right);
-          }
+      &.right.style2 {
+        &::before {
+          @include pseudoStyle2(top, right);
+        }
       }
       &.left.style3 {
-          &::before{
-              @include pseudoStyle3(left, bottom, $img_padding);
-          }
-          &::after{
-              @include pseudoStyle3(right, top, $img_padding);
-          }
+        &::before {
+          @include pseudoStyle3(left, bottom, $img_padding);
+        }
+        &::after {
+          @include pseudoStyle3(right, top, $img_padding);
+        }
       }
-      &.right.style3{
-          &::before{
-              @include pseudoStyle3(right, bottom, $img_padding);
-          }
-          &::after{
-              @include pseudoStyle3(left, top, $img_padding);
-          }
+      &.right.style3 {
+        &::before {
+          @include pseudoStyle3(right, bottom, $img_padding);
+        }
+        &::after {
+          @include pseudoStyle3(left, top, $img_padding);
+        }
       }
-
     }
 
-    em{
-        font-style: italic;
+    em {
+      font-style: italic;
     }
-    strong{
-        font-weight: 800;
-        
+    strong {
+      font-weight: 800;
     }
 
-    hr{
-        background-color: $red;
-        height: 1px;
-        outline: 0 0 0 0;
-        border: none;
-        margin: 1vw 0;
+    hr {
+      background-color: $red;
+      height: 1px;
+      outline: 0 0 0 0;
+      border: none;
+      margin: 1vw 0;
     }
   }
 }
