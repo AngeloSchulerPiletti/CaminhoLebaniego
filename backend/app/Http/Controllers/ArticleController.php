@@ -10,6 +10,16 @@ use ZipArchive;
 
 class ArticleController extends Controller
 {
+    public function index($url){
+        $article = DB::table('articles')->where('url', $url)->first();
+        if ($article) {
+            $article->images_names = explode(',', $article->images_names);
+            return $article;
+        }
+        return response()->json(['error' => ['Não encontramos nenhum artigo']], 404);
+    }
+
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
