@@ -14,6 +14,7 @@ import Dashboard from "@/views/admin/Dashboard";
 import CreateArticle from "@/views/admin/Features/CreateArticle";
 import ChangePages from "@/views/admin/Features/ChangePages";
 import ChangeArticles from "@/views/admin/Features/ChangeArticles";
+import ArtigoShow from "@/views/ArtigoShow";
 
 
 
@@ -56,6 +57,12 @@ const routes = [
     meta: { autoAxios: true },
   },
   {
+    path: '/artigo',
+    name: 'artigo-show',
+    component: ArtigoShow,
+    props: true,
+  },
+  {
     path: '/experiencia',
     name: 'experiencia',
     component: Experiencia,
@@ -95,25 +102,25 @@ const routes = [
         path: "",
         component: CreateArticle,
         name: "admin",
-        meta: {title: "Criar Artigo"},
+        meta: { title: "Criar Artigo" },
       },
       {
         path: "criar-artigo",
         component: CreateArticle,
         name: "criar_artigos",
-        meta: {title: "Criar Artigo"},
+        meta: { title: "Criar Artigo" },
       },
       {
         path: "alterar-paginas",
         component: ChangePages,
         name: "alterar_paginas",
-        meta: {title: "Alterar Página"},
+        meta: { title: "Alterar Página" },
       },
       {
         path: "alterar-artigos",
         component: ChangeArticles,
         name: "alterar_artigos",
-        meta: {title: "Alterar Artigos"},
+        meta: { title: "Alterar Artigos" },
       },
     ],
     meta: { autoAxios: false, },
@@ -145,12 +152,15 @@ router.beforeEach(async to => {
   store.state.hasScroll = "off";
 
   if (to.meta.autoAxios) {
-    await apiRequestProtocol().get(`content/${to.name}`).then(response => {
-      to.params.pageData = response.data
-    }).catch(error => {
-      router.push({ name: 'error404' })
-      return false
-    });
+    await apiRequestProtocol()
+      .get(`content/${to.name}`)
+      .then(response => {
+        to.params.pageData = response.data
+      })
+      .catch(error => {
+        router.push({ name: 'error404' })
+        return false
+      });
   }
 }
 );
