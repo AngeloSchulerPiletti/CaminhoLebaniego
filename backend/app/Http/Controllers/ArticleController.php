@@ -40,7 +40,7 @@ class ArticleController extends Controller
             $url = title_parser($request->title);
             $exists = DB::table('articles')->where('url', $url)->first();
             if ($exists) {
-                $currentID = (DB::table('articles')->orderByDesc('id')->first() + 1);
+                $currentID = (DB::table('articles')->orderByDesc('id')->first()->id + 1);
                 $url = title_parser($url, $currentID);
             }
             $article->url = $url;
@@ -64,6 +64,11 @@ class ArticleController extends Controller
                 $zip->extractTo($path);
                 
                 $imgs_name = array_slice(scandir($path), 2);
+
+                foreach ($imgs_name as $name) {
+                    $ext = explode('.', $name)[1];
+                    in_array($ext, ['jpg','png','svg','jpeg','.gif']) ? null : abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                }
 
 
                 $text = article_img_treatment($text, $imgs_name, $public_path);

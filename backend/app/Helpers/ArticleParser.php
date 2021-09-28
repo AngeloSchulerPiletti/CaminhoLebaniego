@@ -116,7 +116,7 @@ if(!function_exists('check_num_of_article_imgs')){
     function check_num_of_article_imgs($text, $imgs_on_zip){
         $result = preg_match_all('/<\/(.+)\/>/U', $text);
         if($result != $imgs_on_zip){
-            abort(400);
+            abort(400, "O número de imagens no artigo não é o mesmo número de imagens enviadas");
         }
     }
 }
