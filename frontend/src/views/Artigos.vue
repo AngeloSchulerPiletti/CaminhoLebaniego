@@ -3,13 +3,16 @@
     <template v-slot:header_sec>
       <banner-content :pageData="pageData"/>
     </template>
-    <template v-slot:main><h1>ISSO É A main</h1></template>
+    <template v-slot:main>
+      <articles-list/>
+    </template>
   </app-layout>
 </template>
 <script>
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
+import ArticlesList from "@/components/templates/ArticlesList";
 
 export default {
   name: "artigos",
@@ -17,6 +20,7 @@ export default {
   },
   created(){
     this.$store.commit('setTitle', "Artigos");
+    
   },
   props: {
     pageData: Object,
@@ -24,6 +28,7 @@ export default {
   components: {
     AppLayout,
     BannerContent,
+    ArticlesList,
   },
 };
 </script>
