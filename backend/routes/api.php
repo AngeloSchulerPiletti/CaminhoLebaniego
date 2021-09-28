@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ArticleListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use App\Http\Controllers\ArticleController;
    |     ASK FOR CONTENT      | 
    +==========================+*/
 Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
+Route::get('/lista-de-artigos/{page?}/{perpage?}', [ArticleListController::class, 'getArticles']);
+Route::get('/artigo/{url}', [ArticleController::class, 'index']);
 
 
 
