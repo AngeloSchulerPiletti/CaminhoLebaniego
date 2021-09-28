@@ -53,23 +53,30 @@ class ArticleController extends Controller
                 if ($res === TRUE) {
                     $imgs_counter = $zip->numFiles;
                 } else {
-                    return response()->json(['error'=> ['Ocorreu um erro com seu arquivo .zip']]);
+                    return response()->json(['error' => ['Ocorreu um erro com seu arquivo .zip']]);
                 }
 
                 check_num_of_article_imgs($text, $imgs_counter);
 
-                $public_path = 'storage/articles/'.$url;
-                $relative_path = 'storage/app/public/articles/'.$url;
+                $public_path = 'storage/articles/' . $url;
+                $relative_path = 'storage/app/public/articles/' . $url;
                 $path = base_path($relative_path);
                 $zip->extractTo($path);
-                
+
                 $imgs_name = array_slice(scandir($path), 2);
 
                 foreach ($imgs_name as $name) {
                     $ext = explode('.', $name)[1];
-                    in_array($ext, ['jpg','png','svg','jpeg','.gif']) ? null : abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                    if (!in_array($ext, ['jpg', 'png', 'svg', 'jpeg', '.gif'])) {
+                        $files = glob($path.'/*'); // get all file names
+                        foreach ($files as $file) { // iterate files
+                            if (is_file($file)) {
+                                unlink($file); // delete file
+                            }
+                        }
+                        abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                    }
                 }
-
 
                 $text = article_img_treatment($text, $imgs_name, $public_path);
                 $article->images_path = $public_path;
@@ -80,7 +87,7 @@ class ArticleController extends Controller
             $article->unformatted_text = $request->text;
             $article->save();
 
-            return response()->json(['success'=>'Você criou um artigo!']);
+            return response()->json(['success' => 'Você criou um artigo!']);
         }
     }
 }
