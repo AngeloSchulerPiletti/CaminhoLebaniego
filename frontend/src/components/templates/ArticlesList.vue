@@ -7,12 +7,21 @@
         Carregando...
     </div>
     <div v-else class="list_container">
-        <div v-for="(article, index) in articlesList" :key="index" @click="goToArticle(article.url)">
+        <div v-for="(article, index) in articlesList" :key="index">
+          <div class="content_container" @click="goToArticle(article.url)">
             <h2>{{article.title}}</h2>
             <p>{{article.description}}</p>
             <div class="tags container">
               <span @click="searchFor(tag)" v-for="tag in article.tags" :key="tag">{{tag}}</span>
             </div>
+          </div>
+          <div v-if="$store.state.logged && canControll" class="controll_container">
+            <ul>
+              <li @click="callControll('del')">Deletar</li>
+              <li @click="callControll('viz')">Vizualizar</li>
+              <li @click="callControll('edi')">Editar</li>
+            </ul>
+          </div>
         </div>
     </div>
   </section>
@@ -48,10 +57,15 @@ export default {
         this.$router.push({name: 'artigo-show', query: { titulo: url }});
     },
     searchFor(tag){
-
+      console.log('asking to search for '+tag);
+    },
+    callControll(action){
+      console.log('asking for '+action+' article');
     },
   },
-  props: {},
+  props: {
+    canControll: Boolean,
+  },
 };
 </script>
 
