@@ -5,7 +5,7 @@ if (!function_exists('attr_arr_to_attr_html')) {
     function attr_arr_to_attr_html($attributes){
         $attrs = " ";
         foreach ($attributes as $att => $value) {
-            $attrs .= ' "'.$att.'"="'.$value.'"';
+            $attrs .= ' '.$att.'="'.$value.'"';
         }
         return $attrs;
     }
