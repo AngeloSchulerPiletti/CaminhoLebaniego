@@ -8,7 +8,11 @@
     </div>
     <div v-else class="list_container">
         <div v-for="(article, index) in articlesList" :key="index" @click="goToArticle(article.url)">
-            {{article}}
+            <h2>{{article.title}}</h2>
+            <p>{{article.description}}</p>
+            <div class="tags container">
+              <span @click="searchFor(tag)" v-for="tag in article.tags" :key="tag">{{tag}}</span>
+            </div>
         </div>
     </div>
   </section>
@@ -42,6 +46,9 @@ export default {
     },
     goToArticle(url){
         this.$router.push({name: 'artigo-show', query: { titulo: url }});
+    },
+    searchFor(tag){
+
     },
   },
   props: {},
