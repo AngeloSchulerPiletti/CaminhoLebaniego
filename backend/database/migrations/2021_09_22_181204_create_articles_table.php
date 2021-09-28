@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->longText('unformatted_text');
             $table->longText('formatted_text');
             $table->string('images_path');
+            $table->string('images_names');
             $table->tinyText('description');
             $table->integer('status'); //1- published | 2- rascunho | 3- deleted 
             $table->string('url')->unique(); 
