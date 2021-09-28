@@ -13,23 +13,7 @@ class ViewsController extends Controller
         if (!in_array($pageContent, $this::ACCEPTED_PAGES)) {
             abort(404, "Por favor, corrija a URL de destino da requisição para a API.");
         }
-        $pageData = [
-            "title" => "",
-            "paragraph" => "",
-            "modal" => [
-                "",
-                [
-                    // "route_name" => "route",
-                ],
-            ],
-            "sliderParagraphs" => [],
-            "sliderImages1" => [],
-            "dailyExcerpts" => [],
-            "observations" => [],
-            "trekObservations" => [],
-            "topicsList" => [],
-            "article" => "",
-        ];
+        $pageData = [];
         switch ($pageContent) {
             case 'inicio':
                 $pageData['title'] = "Descubra o Caminho";
