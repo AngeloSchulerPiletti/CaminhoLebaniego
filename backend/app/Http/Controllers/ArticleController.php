@@ -11,7 +11,12 @@ use ZipArchive;
 class ArticleController extends Controller
 {
     public function index($url){
-        $article = DB::table('articles')->where('url', $url)->first();
+        if (!auth()->user()) {
+            $article = DB::table('articles')->where('url', $url)->where('status', 1)->first();
+        }
+        else{
+            $article = DB::table('articles')->where('url', $url)->first();
+        }
         if ($article) {
             $article->images_names = explode(',', $article->images_names);
             return $article;
