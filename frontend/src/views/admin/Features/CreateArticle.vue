@@ -76,10 +76,10 @@ export default {
   data() {
     return {
       article: {
-        title: "AAAAAAAAAAAAAAAAAAAAAAA",
-        description: "AAAAAAAAAAAAAAAAAAAAAAA",
-        text: "AAAAAAAAAAAAAAAAAAAAAAA",
-        tags: "AAAAAAAAAAAAAAAAAAAAAAA",
+        title: "Título de exemplo do artigo",
+        description: "Essaé uma descrição que serve apenas de exemplo para descrições futuras. Ás vezes podem ser maiores, ou menores. Tudo depende de quem escreve!",
+        text: "Test",
+        tags: "Artigo, Exemplo de artigo, Segundo Artigo, Mais um artigo, Teste",
         draft: "off",
       },
         images: null,
