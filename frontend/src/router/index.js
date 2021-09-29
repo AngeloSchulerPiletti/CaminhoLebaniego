@@ -17,6 +17,7 @@ import ChangeArticles from "@/views/admin/Features/ChangeArticles";
 import ArtigoShow from "@/views/ArtigoShow";
 import ManageDraft from "@/views/admin/Features/ManageDraft";
 import ManageTrash from "@/views/admin/Features/ManageTrash";
+import SearchResult from "@/views/SearchResult";
 
 
 
@@ -76,7 +77,13 @@ const routes = [
     name: 'error404',
     component: Error404,
     props: true,
-    meta: { autoAxios: false },
+  },
+  {
+    path: "/resultados-de-busca/:query",
+    name: 'search_result',
+    component: SearchResult,
+    props: true,
+    meta: { autoAxios: true },
   },
   {
     path: "/acesso",

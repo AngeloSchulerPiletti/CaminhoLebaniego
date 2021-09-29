@@ -27,9 +27,8 @@ use App\Http\Controllers\ArticleListController;
    |     ASK FOR CONTENT      | 
    +==========================+*/
 Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
-Route::get('/lista-de-artigos/{page?}/{perpage?}', [ArticleListController::class, 'getArticles']);
+Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}', [ArticleListController::class, 'getArticles']);
 Route::get('/artigo/{url}', [ArticleController::class, 'index']);
-Route::get('/buscar/{keywords}/{page?}/{perpage?}', [ArticleListController::class, 'getArticlesByQuery']);
 
 
 

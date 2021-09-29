@@ -54,18 +54,21 @@ export default {
       page: 1,
       perpage: 10,
       articlesList: {},
+      query: "todos",
     };
   },
   mounted() {
+    if (this.$route.params.query) {
+      this.query = this.$route.params.query;
+    }
     this.requestArticleList();
   },
   methods: {
     requestArticleList() {
       apiRequestProtocol()
-        .get(`lista-de-artigos/${this.page}/${this.perpage}`)
+        .get(`lista-de-artigos/${this.query}/${this.page}/${this.perpage}`)
         .then((response) => {
           this.articlesList = response.data;
-          console.log(response.data);
         })
         .catch((error) => {
           this.articlesList = false;
@@ -75,11 +78,21 @@ export default {
       this.$router.push({ name: "artigo-show", query: { titulo: url } });
     },
     searchFor(tag) {
-      console.log("asking to search for " + tag);
+      console.log('here');
+        this.$router.push({
+          name: "search_result",
+          params: { query: tag },
+        });
     },
     callControll(action) {
       console.log("asking for " + action + " article");
     },
+  },
+  watch:{
+    'this.$route.params.query'(newval){
+      console.log('watched: '+newval);
+      this.query = newval;
+    }
   },
   props: {
     canControll: Boolean,

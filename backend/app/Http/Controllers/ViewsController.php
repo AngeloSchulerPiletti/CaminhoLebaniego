@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ViewsController extends Controller
 {
-    protected const ACCEPTED_PAGES = ["inicio", "preparacao", "caminho", "experiencia", "artigos", "contato"]; 
+    protected const ACCEPTED_PAGES = ["inicio", "preparacao", "caminho", "experiencia", "artigos", "contato", "search_result"]; 
 
     public function getPageContent($pageContent)
     {
@@ -59,6 +59,11 @@ class ViewsController extends Controller
 
             case 'contato':
                 $pageData['title'] = "Quer perguntar algo?";
+                break;
+
+            
+            case 'search_result':
+                $pageData['title'] = "Aqui está o resultado de suas buscas";
                 break;
 
             default:

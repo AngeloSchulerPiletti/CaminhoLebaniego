@@ -20,7 +20,6 @@ export default {
   },
   created(){
     this.$store.commit('setTitle', "Artigos");
-    
   },
   props: {
     pageData: Object,

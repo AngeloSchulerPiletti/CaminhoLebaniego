@@ -49,8 +49,9 @@ export default {
           .get(`buscar/${query}`)
           .then((response) => {
             console.log(response);
+            // FECHA O MODAL
+            // ENVIA DATA COMO PROPS PRO SEARCH RESULT
           });
-        // FAZ A BUSCA -> then(closeModal())
       }
     },
   },
