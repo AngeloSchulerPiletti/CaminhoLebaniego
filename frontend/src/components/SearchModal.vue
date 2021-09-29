@@ -33,6 +33,7 @@ export default {
   computed: {
     modalState() {
       this.show = this.$store.state.searchModalShow;
+      return this.show;
     },
   },
   methods: {
@@ -46,9 +47,9 @@ export default {
     },
   },
   watch: {
-    modalState: {
-      immediate: true,
-      handler() {},
+    modalState(newval){
+        console.log(newval);
+        newval ? document.body.style.overflowY = "hidden" : document.body.style.overflowY = "auto";
     },
   },
   components: { SearchIcon },
@@ -75,6 +76,7 @@ export default {
     padding: 2vw;
     max-height: 80vh;
     margin: 0 auto;
+    box-shadow: 0 0 6vw 2vw #000;
 
     display: flex;
     flex-direction: column;

@@ -1,27 +1,32 @@
 <template>
-    <transition name="fade">
-  <div class="wrapper" v-if="$store.state.imgSrc != ''" @click="closeModal($event)">
-    <div class="img_container">
-      <img :src="$store.state.imgSrc" alt="" />
+  <transition name="fade">
+    <div
+      class="wrapper"
+      v-if="$store.state.imgSrc != ''"
+      @click="closeModal($event)"
+    >
+      <div class="img_container">
+        <img :src="$store.state.imgSrc" alt="" />
+      </div>
     </div>
-  </div>
-    </transition>
+  </transition>
 </template>
 
 <script>
 export default {
-  methods:{
-      closeModal(event){
-          if(event.target.className == "wrapper"){
-              this.$store.commit('passingImgSrc', "")
-          }
+  methods: {
+    closeModal(event) {
+      if (event.target.className == "wrapper") {
+        this.$store.commit("passingImgSrc", "");
       }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 500ms ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
@@ -29,7 +34,7 @@ export default {
 }
 
 .wrapper {
-  background-color: #000000B0;
+  background-color: #000000b0;
   position: fixed;
   top: 0;
   bottom: 0;
