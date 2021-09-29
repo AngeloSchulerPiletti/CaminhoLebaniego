@@ -18,7 +18,8 @@ class ArticleController extends Controller
             $article = DB::table('articles')->where('url', $url)->first();
         }
         if ($article) {
-            $article->images_names = explode(',', $article->images_names);
+            $article = comma_string_to_array($article, 'images_names');
+            $article = comma_string_to_array($article, 'tags');
             return $article;
         }
         return response()->json(['error' => ['Não encontramos nenhum artigo']], 404);

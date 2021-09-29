@@ -112,10 +112,11 @@ if (!function_exists('article_text_to_html')) {
 }
 
 
-if(!function_exists('check_num_of_article_imgs')){
-    function check_num_of_article_imgs($text, $imgs_on_zip){
+if (!function_exists('check_num_of_article_imgs')) {
+    function check_num_of_article_imgs($text, $imgs_on_zip)
+    {
         $result = preg_match_all('/<\/(.+)\/>/U', $text);
-        if($result != $imgs_on_zip){
+        if ($result != $imgs_on_zip) {
             abort(400, "O número de imagens no artigo não é o mesmo número de imagens enviadas");
         }
     }
@@ -127,10 +128,27 @@ if (!function_exists('article_img_treatment')) {
     {
         $imgs_on_text = 0;
         $text = preg_replace_callback('/<\/(.+)\/>/U', function ($matches) use (&$imgs_on_text, $imgs_path, $imgs_name) {
-            return make_opened_html_tag('img', $matches[1], attr_arr_to_attr_html(["src" => $imgs_path.'/'.$imgs_name[$imgs_on_text]]));
+            return make_opened_html_tag('img', $matches[1], attr_arr_to_attr_html(["src" => $imgs_path . '/' . $imgs_name[$imgs_on_text]]));
             $imgs_on_text++;
         }, $text);
 
         return $text;
+    }
+}
+
+
+
+if (!function_exists('comma_string_to_array')) {
+    function comma_string_to_array($articles, $property, $more_than_one = false)
+    {
+        if ($more_than_one) {
+            foreach ($articles as $article) {
+                $article->$property = explode(',', $article->$property);
+            }
+            return $articles;
+        }
+
+        $articles->$property = explode(',', $articles->$property);
+        return $articles;
     }
 }

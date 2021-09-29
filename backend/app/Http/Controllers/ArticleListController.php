@@ -10,7 +10,8 @@ class ArticleListController extends Controller
     static function getArticles($page = 1, $perpage = 10)
     {
         $articles_selection = DB::table('articles')->where('status', 1)->orderByDesc('updated_at')->skip($perpage * ($page - 1))->take($perpage)->get();
-        
+        $articles_selection = comma_string_to_array($articles_selection, 'tags', true);
+
         return $articles_selection;
     }
 }
