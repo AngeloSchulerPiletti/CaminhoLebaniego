@@ -122,7 +122,7 @@ const routes = [
         path: "alterar-artigos",
         component: ChangeArticles,
         name: "alterar_artigos",
-        meta: { title: "Alterar Artigos" },
+        meta: { title: "Alterar Artigos Publicados" },
       },
       {
         path: "lixeira",
