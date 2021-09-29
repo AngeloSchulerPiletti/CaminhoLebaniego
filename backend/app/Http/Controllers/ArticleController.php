@@ -18,8 +18,8 @@ class ArticleController extends Controller
             $article = DB::table('articles')->where('url', $url)->first();
         }
         if ($article) {
-            $article = comma_string_to_array($article, 'images_names');
-            $article = comma_string_to_array($article, 'tags');
+            $article = chared_string_to_array($article, 'images_names', ',');
+            $article = chared_string_to_array($article, 'tags', ',');
             return $article;
         }
         return response()->json(['error' => ['Não encontramos nenhum artigo']], 404);
@@ -50,8 +50,8 @@ class ArticleController extends Controller
 
             $article->title = $request->title;
             $article->description = $request->description;
-            $article->tags = $request->tags;
             $article->status = ($request->draft == "on") ? 2 : 1;
+            $article->tags = $request->tags;
 
             $url = title_parser($request->title);
             $exists = DB::table('articles')->where('url', $url)->first();

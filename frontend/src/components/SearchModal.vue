@@ -1,27 +1,28 @@
 <template>
-<transition name="fade">
-  <section class="wrapper" v-if="show" @click="closeModal($event)">
-    <div class="content_container">
-      <h2 class="title4-1">Procurar artigos</h2>
-      <div class="searcher">
-        <input
-          type="text"
-          name="search"
-          id="search_field"
-          placeholder="Ex: Caminho do Norte"
-          v-model="query"
-        />
-        <div class="btn_2" @click="searchFor(query)">
-          buscar
+  <transition name="fade">
+    <section class="wrapper" v-if="show" @click="closeModal($event)">
+      <div class="content_container">
+        <h2 class="title4-1">Procurar artigos</h2>
+        <div class="searcher">
+          <input
+            type="text"
+            name="search"
+            id="search_field"
+            placeholder="Ex: Caminho do Norte"
+            v-model="query"
+          />
+          <div class="btn_2" @click="searchFor(query)">
+            buscar
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-</transition>
+    </section>
+  </transition>
 </template>
 
 <script>
 import SearchIcon from "@/components/SVGs/SearchIcon.vue";
+import { apiRequestProtocol } from "@/service/api";
 
 export default {
   data() {
@@ -43,13 +44,21 @@ export default {
       }
     },
     searchFor(query) {
-      // FAZ A BUSCA -> then(closeModal())
+      if (query) {
+        apiRequestProtocol()
+          .get(`buscar/${query}`)
+          .then((response) => {
+            console.log(response);
+          });
+        // FAZ A BUSCA -> then(closeModal())
+      }
     },
   },
   watch: {
-    modalState(newval){
-        console.log(newval);
-        newval ? document.body.style.overflowY = "hidden" : document.body.style.overflowY = "auto";
+    modalState(newval) {
+      newval
+        ? (document.body.style.overflowY = "hidden")
+        : (document.body.style.overflowY = "auto");
     },
   },
   components: { SearchIcon },
@@ -94,12 +103,9 @@ export default {
         width: 30vw;
         padding: 0.7em 0.7em 0.3em 0.7em;
       }
-     
     }
   }
 }
-
-
 
 /*+------------------------------------+
   |             TRANSITIONS            |

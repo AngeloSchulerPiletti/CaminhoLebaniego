@@ -31,6 +31,35 @@ if (!function_exists('title_parser')) {
     }
 }
 
+
+if (!function_exists('tag_converter')) {
+    function tag_converter($tags)
+    {
+        $changes = array(
+            'Š' => 's', 'š' => 's', 'Ð' => 'dj', '' => 'z', '' => 'z', 'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ã' => 'a', 'Ä' => 'a',
+            'Å' => 'a', 'Æ' => 'a', 'Ç' => 'c', 'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'Ì' => 'i', 'Í' => 'i', 'Î' => 'i',
+            'Ï' => 'i', 'Ñ' => 'n', 'Ń' => 'n', 'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Õ' => 'o', 'Ö' => 'o', 'Ø' => 'o', 'Ù' => 'u',
+            'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'Ý' => 'y', 'Þ' => 'b', 'ß' => 'ss', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a',
+            'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i',
+            'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ń' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o',
+            'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ƒ' => 'f',
+            'ă' => 'a', 'î' => 'i', 'â' => 'a', 'ș' => 's', 'ț' => 't', 'Ă' => 'A', 'Î' => 'I', 'Â' => 'A', 'Ș' => 'S', 'Ț' => 'T',
+            //Another Chars
+            ' ' => '-', '!' => '', '?' => '', '+' => '', '/' => '-', '"' => '', "'" => '', '*' => '', '&' => '', '@' => '', '#' => '',
+            '(' => '', ')' => '', '¨' => '', ',' => '-', '.' => '', '§' => '', '%' => '', '<' => '', '>' => '', '\\' => '', '|' => '',
+            ':' => '',
+            //Uppercase to Lowercase
+            'A' => 'a', 'B' => 'b', 'C' => 'c', 'D' => 'd', 'E' => 'e', 'F' => 'f', 'G' => 'g', 'H' => 'h', 'I' => 'i',
+            'J' => 'j', 'K' => 'k', 'L' => 'l', 'M' => 'm', 'N' => 'n', 'O' => 'o', 'P' => 'p', 'Q' => 'q', 'R' => 'r',
+            'S' => 's', 'T' => 't', 'U' => 'u', 'V' => 'v', 'W' => 'w', 'X' => 'x', 'Y' => 'y', 'Z' => 'z',
+        );
+
+        $tags = strtr($tags, $changes);
+        return $tags;
+    }
+}
+
+
 /**
  * Tag an string and transforms into a tag array
  * 
@@ -41,8 +70,8 @@ if (!function_exists('title_parser')) {
 if (!function_exists('tag_parser')) {
     function tag_parser($tags)
     {
-        $match = array_filter(preg_split('/[\s,]+/', $tags));
-        return $match;
+        $resultArr = array_filter(preg_split('/[\s,]+/', $tags));
+        return $resultArr;
     }
 }
 
@@ -138,17 +167,17 @@ if (!function_exists('article_img_treatment')) {
 
 
 
-if (!function_exists('comma_string_to_array')) {
-    function comma_string_to_array($articles, $property, $more_than_one = false)
+if (!function_exists('chared_string_to_array')) {
+    function chared_string_to_array($articles, $property, $char, $more_than_one = false)
     {
         if ($more_than_one) {
             foreach ($articles as $article) {
-                $article->$property = explode(',', $article->$property);
+                $article->$property = array_unique(array_filter(explode($char, $article->$property)));
             }
             return $articles;
         }
 
-        $articles->$property = explode(',', $articles->$property);
+        $articles->$property = array_unique(array_filter(explode($char, $articles->$property)));
         return $articles;
     }
 }
