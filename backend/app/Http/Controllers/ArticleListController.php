@@ -21,11 +21,11 @@ class ArticleListController extends Controller
             return response()->json(['error' => 'Você precisa fazer uma busca válida']);
         }
         $articles_selection = DB::table('articles')->where('status', 1)->orderBy('updated_at')->skip($perpage * ($page - 1))->take($perpage)->get();
-        $query = tag_parser($query);
+        $query = tag_parser(tag_converter($query));
 
         foreach ($articles_selection as $key => $article) {
             $article->tags = tag_converter($article->tags);
-            $article = chared_string_to_array($article, 'tags', '-');
+            $article->tags = tag_parser($article->tags);
 
 
             if (count(array_intersect($article->tags, $query)) < 1) {

@@ -70,7 +70,7 @@ if (!function_exists('tag_converter')) {
 if (!function_exists('tag_parser')) {
     function tag_parser($tags)
     {
-        $resultArr = array_filter(preg_split('/[\s,]+/', $tags));
+        $resultArr = array_filter(explode('-', $tags));
         return $resultArr;
     }
 }
