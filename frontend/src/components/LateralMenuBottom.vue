@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
 
 aside {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 15vh;
   transform: translateX(100%);

@@ -1,13 +1,13 @@
 <template>
   <section class="wrapper">
-    <div v-if="!articlesList">
+    <div v-if="articlesList.length < 1">
         Tivemos um problema ao carregar os artigos
     </div>
     <div v-else-if="Object.keys(articlesList) < 1">
         Carregando...
     </div>
     <div v-else class="list_container">
-        <div v-for="(article, index) in articlesList" :key="index">
+        <div class="card" v-for="(article, index) in articlesList" :key="index">
           <div class="content_container" @click="goToArticle(article.url)">
             <h2>{{article.title}}</h2>
             <p>{{article.description}}</p>
@@ -69,4 +69,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card{
+  background-color: white;
+  margin: 5vw 0;
+}
+</style>
