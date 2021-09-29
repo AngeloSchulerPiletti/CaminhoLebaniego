@@ -1,15 +1,112 @@
 <template>
-  <section class="wrapper">
-      
+<transition name="fade">
+  <section class="wrapper" v-if="show" @click="closeModal($event)">
+    <div class="content_container">
+      <h2 class="title4-1">Procurar artigos</h2>
+      <div class="searcher">
+        <input
+          type="text"
+          name="search"
+          id="search_field"
+          placeholder="Ex: Caminho do Norte"
+          v-model="query"
+        />
+        <div class="btn_2" @click="searchFor(query)">
+          buscar
+        </div>
+      </div>
+    </div>
   </section>
+</transition>
 </template>
 
 <script>
-export default {
+import SearchIcon from "@/components/SVGs/SearchIcon.vue";
 
-}
+export default {
+  data() {
+    return {
+      show: false,
+      query: null,
+    };
+  },
+  computed: {
+    modalState() {
+      this.show = this.$store.state.searchModalShow;
+    },
+  },
+  methods: {
+    closeModal(event = null) {
+      if (!event || event.path.length <= 7) {
+        this.$store.state.searchModalShow = false;
+      }
+    },
+    searchFor(query) {
+      // FAZ A BUSCA -> then(closeModal())
+    },
+  },
+  watch: {
+    modalState: {
+      immediate: true,
+      handler() {},
+    },
+  },
+  components: { SearchIcon },
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+.wrapper {
+  position: fixed;
+  background-color: #000000d0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
 
+  display: flex;
+  align-items: center;
+
+  .content_container {
+    background-color: $white;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 2vw;
+    max-height: 80vh;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+
+    .searcher {
+      display: flex;
+      align-items: center;
+      gap: 2vw;
+
+      input {
+        @include Font0;
+        border-bottom: 1px solid $red;
+        font-size: 18px;
+        width: 30vw;
+        padding: 0.7em 0.7em 0.3em 0.7em;
+      }
+     
+    }
+  }
+}
+
+
+
+/*+------------------------------------+
+  |             TRANSITIONS            |
+  +------------------------------------+*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 300ms;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

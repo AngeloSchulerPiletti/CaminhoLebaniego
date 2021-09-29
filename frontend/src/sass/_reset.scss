@@ -63,6 +63,7 @@ p{
 	line-height: 1.45em;
 }
 input, textarea, select{
+	border: 0;
 	&:target, &:focus{
         outline: none;
     }

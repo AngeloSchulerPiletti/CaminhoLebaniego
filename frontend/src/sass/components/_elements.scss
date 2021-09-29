@@ -221,18 +221,24 @@
 .title3-2{
   @include titleFamily3(#000, $red);
 }
-.title4{
+@mixin titleFamily4($color, $arrowColor) {
   @include Title1;
   font-size: 34px;
   text-transform: capitalize;
-  color: $white;
+  color: $color;
   width: fit-content;
 
   &::before{
     content: ">";
-    color: $red;
+    color: $arrowColor;
     margin-right: 10px;
   }
+}
+.title4{
+ @include titleFamily4($white, $red);
+}
+.title4-1{
+  @include titleFamily4($black, $red);
 }
 /*+--------------------------------------+
   |                TITLES                |

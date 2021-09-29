@@ -5,6 +5,7 @@
         :modalPage="modal['html']"
         :modalOptions="modal['options']"
       />
+      <search-modal />
       <modal-image/>
       <div id="pic_background" :class="'background back-' + backID">
         <header-component />
@@ -27,6 +28,7 @@ import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
 import ModalImage from "@/components/templates/ModalImage";
+import SearchModal from "@/components/SearchModal";
 
 export default {
   data() {
@@ -56,6 +58,7 @@ export default {
     "great-modal": Modal,
     "footer-component": Footer,
     ModalImage,
+    SearchModal,
   },
 };
 </script>

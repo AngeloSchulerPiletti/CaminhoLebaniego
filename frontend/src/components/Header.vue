@@ -33,7 +33,7 @@
             ><li class="hover1">Contato</li></router-link
           >
         </ul>
-        <div class="search_btn">
+        <div class="search_btn" @click="$store.state.searchModalShow = true">
           <search-icon />
         </div>
       </nav>
