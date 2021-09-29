@@ -4,7 +4,7 @@
       <banner-content :pageData="pageData"/>
     </template>
     <template v-slot:main>
-      <articles-list :canControll="false"/>
+      <articles-list :canControll="false" title="Todos os artigos"/>
     </template>
   </app-layout>
 </template>
