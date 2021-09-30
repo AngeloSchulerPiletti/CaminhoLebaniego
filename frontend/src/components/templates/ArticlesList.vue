@@ -3,10 +3,10 @@
     <div class="title" v-if="title">
       <h1 class="title2">{{ title }}</h1>
     </div>
-    <div v-if="articlesList.length < 1">
+    <div v-if="articlesList === false">
       Tivemos um problema ao carregar os artigos
     </div>
-    <div v-else-if="Object.keys(articlesList) < 1">
+    <div v-else-if="Object.keys(articlesList).length < 1">
       Carregando...
     </div>
     <div v-else class="list_container">
@@ -65,8 +65,9 @@ export default {
   },
   methods: {
     requestArticleList() {
+      let status = this.status ? this.status : "";
       apiRequestProtocol()
-        .get(`lista-de-artigos/${this.query}/${this.page}/${this.perpage}`)
+        .get(`lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`)
         .then((response) => {
           this.articlesList = response.data;
         })
@@ -78,7 +79,6 @@ export default {
       this.$router.push({ name: "artigo-show", query: { titulo: url } });
     },
     searchFor(tag) {
-      console.log('here');
         this.$router.push({
           name: "search_result",
           params: { query: tag },
@@ -97,6 +97,7 @@ export default {
   props: {
     canControll: Boolean,
     title: String,
+    status: Number,
   },
 };
 </script>

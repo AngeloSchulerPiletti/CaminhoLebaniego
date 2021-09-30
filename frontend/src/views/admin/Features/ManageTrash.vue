@@ -1,13 +1,18 @@
 <template>
-    <h1>here is trash</h1>
+<div>
+    <articles-list :canControll="true" :status="3"/>
+</div>
 </template>
 
 <script>
+import ArticlesList from "@/components/templates/ArticlesList";
 export default {
-
+      components:{
+            ArticlesList,
+      }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
