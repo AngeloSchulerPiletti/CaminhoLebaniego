@@ -45,13 +45,8 @@ export default {
     },
     searchFor(query) {
       if (query) {
-        apiRequestProtocol()
-          .get(`buscar/${query}`)
-          .then((response) => {
-            console.log(response);
-            // FECHA O MODAL
-            // ENVIA DATA COMO PROPS PRO SEARCH RESULT
-          });
+        this.closeModal();
+        this.$router.push({ name: "search_result", params: { query: query } });
       }
     },
   },
