@@ -5,7 +5,7 @@
         Bem vindo, {{ $store.state.sessionData.user.name }}. Você é admin e está
         logado!
       </p>
-      <p @click="$router.push({ name: 'admin' })">
+      <p @click="$router.push('/area-do-administrador')">
         Ir para a área do admin
       </p>
     </div>
