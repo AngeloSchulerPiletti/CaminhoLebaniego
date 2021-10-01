@@ -3,10 +3,10 @@
     <div class="title" v-if="title">
       <h1 class="title2">{{ title }}</h1>
     </div>
-    <div v-if="articlesList === false">
+    <div v-if="articlesList === false" class="problem">
       Tivemos um problema ao carregar os artigos
     </div>
-    <div v-else-if="Object.keys(articlesList).length < 1">
+    <div v-else-if="Object.keys(articlesList).length < 1" class="loading">
       Carregando...
     </div>
     <div v-else class="list_container">
@@ -125,6 +125,12 @@ export default {
 <style lang="scss" scoped>
 .title {
   margin: 0 5vw;
+}
+.problem, .loading{
+  @include Font1_I;
+  color: $white;
+  font-size: 20px;
+  margin: 0 4vw;
 }
 .list_container {
   display: flex;
