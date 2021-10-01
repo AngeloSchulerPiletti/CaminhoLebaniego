@@ -117,6 +117,7 @@ const routes = [
         path: "criar-artigo",
         component: CreateArticle,
         name: "criar_artigos",
+        props: true,
         meta: { title: "Criar Artigo" },
       },
       {

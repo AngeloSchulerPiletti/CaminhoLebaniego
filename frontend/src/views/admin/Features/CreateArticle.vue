@@ -88,6 +88,19 @@ export default {
       disabled: "",
     };
   },
+  computed: {
+    checkArticleId() {
+      return this.articleId;
+    },
+  },
+  watch: {
+    checkArticleId: {
+      immediate: true,
+      handler(newval) {
+        if (newval) this.requestArticleToEdit(newval);
+      },
+    },
+  },
   methods: {
     submit() {
       this.disabled = "disabled";
@@ -123,6 +136,23 @@ export default {
     uploadFile(event) {
       this.images = event.target.files[0];
     },
+    requestArticleToEdit(articleId) {
+      let token = this.$store.state.logged
+        ? this.$store.state.sessionData.token
+        : null;
+      apiRequestProtocol(token)
+        .get(`artigo-pelo-id/${articleId}`)
+        .then((response) => {
+          this.article.title = response.data.title;
+          this.article.description = response.data.description;
+          this.article.text = response.data.text;
+          this.article.tags = response.data.tags;
+          this.article.text = response.data.unformatted_text;
+        });
+    },
+  },
+  props: {
+    articleId: String,
   },
   components: {
     Dashboard,

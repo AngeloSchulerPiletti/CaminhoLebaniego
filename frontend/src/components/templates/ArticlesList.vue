@@ -36,7 +36,7 @@
         >
           <ul>
             <li @click="callControll('deletar-artigo', article.id)" v-if="$route.name == 'alterar_artigos' || $route.name == 'drafts'">Deletar</li>
-            <li >Editar</li>
+            <li @click="askForEdit(article.id)">Editar</li>
             <li @click="callControll('restaurar-artigo', article.id)" v-if="$route.name == 'trash'">Restaurar</li>
             <li @click="callControll('excluir-artigo', article.id)" v-if="$route.name == 'trash'">Excluir</li>
             <li @click="callControll('publicar-artigo', article.id)" v-if="$route.name == 'drafts'">Publicar</li>
@@ -103,6 +103,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    askForEdit(articleId){
+      this.$router.push({name: 'criar_artigos', params: {articleId: articleId}});
     },
   },
   watch: {
