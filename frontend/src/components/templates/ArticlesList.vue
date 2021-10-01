@@ -105,7 +105,7 @@ export default {
         });
     },
     askForEdit(articleId){
-      this.$router.push({name: 'criar_artigos', params: {articleId: articleId}});
+      this.$router.push({name: 'criar_artigos', params: {articleId: articleId, pageTitle: "Editar Artigo"}});
     },
   },
   watch: {

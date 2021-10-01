@@ -1,76 +1,78 @@
 <template>
-  <div>
-    <form @submit.prevent>
-      <div class="inputs">
-        <div class="input_container">
-          <label for="title">Título do Artigo</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            placeholder="Exemplo de Título"
-            v-model="article.title"
-          />
+  <admin pageTitle="Criar Artigo">
+    <div>
+      <form @submit.prevent>
+        <div class="inputs">
+          <div class="input_container">
+            <label for="title">Título do Artigo</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Exemplo de Título"
+              v-model="article.title"
+            />
+          </div>
+          <div class="input_container">
+            <label for="description">Descrição</label>
+            <textarea
+              name="description"
+              id="description"
+              placeholder="Adicione aqui uma descrição para o seu artigo!"
+              v-model="article.description"
+            ></textarea>
+          </div>
+          <div class="input_container">
+            <label for="text">Artigo</label>
+            <textarea
+              name="text"
+              id="text"
+              placeholder="Escreva seu artigo conforme as regras de formatação pré-estabelecidas"
+              v-model="article.text"
+            ></textarea>
+          </div>
+          <div class="input_container">
+            <label for="tags">TAGS do Artigo</label>
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              placeholder="Insira tags, separando-as por vírgula"
+              v-model="article.tags"
+            />
+          </div>
+          <div class="input_container">
+            <label for="draft">Salvar como Rascunho?</label>
+            <select name="draft" id="draft" v-model="article.draft">
+              <option value="on">Sim</option>
+              <option value="off" selected>Não</option>
+            </select>
+          </div>
+          <div class="input_container">
+            <label for="images">Adicione as Imagens Zipadas ao Artigo</label>
+            <input
+              @change="uploadFile"
+              type="file"
+              name="images"
+              id="images"
+              accept=".zip,.rar"
+            />
+          </div>
         </div>
-        <div class="input_container">
-          <label for="description">Descrição</label>
-          <textarea
-            name="description"
-            id="description"
-            placeholder="Adicione aqui uma descrição para o seu artigo!"
-            v-model="article.description"
-          ></textarea>
+        <div class="actions">
+          <button class="btn_3" @click="clean">Limpar</button>
+          <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
+            {{ articleId ? "Editar" : "Criar" }}
+          </button>
         </div>
-        <div class="input_container">
-          <label for="text">Artigo</label>
-          <textarea
-            name="text"
-            id="text"
-            placeholder="Escreva seu artigo conforme as regras de formatação pré-estabelecidas"
-            v-model="article.text"
-          ></textarea>
-        </div>
-        <div class="input_container">
-          <label for="tags">TAGS do Artigo</label>
-          <input
-            type="text"
-            id="tags"
-            name="tags"
-            placeholder="Insira tags, separando-as por vírgula"
-            v-model="article.tags"
-          />
-        </div>
-        <div class="input_container">
-          <label for="draft">Salvar como Rascunho?</label>
-          <select name="draft" id="draft" v-model="article.draft">
-            <option value="on">Sim</option>
-            <option value="off" selected>Não</option>
-          </select>
-        </div>
-        <div class="input_container">
-          <label for="images">Adicione as Imagens Zipadas ao Artigo</label>
-          <input
-            @change="uploadFile"
-            type="file"
-            name="images"
-            id="images"
-            accept=".zip,.rar"
-          />
-        </div>
-      </div>
-      <div class="actions">
-        <button class="btn_3" @click="clean">Limpar</button>
-        <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
-          {{articleId ? 'Editar' : 'Criar'}}
-        </button>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div></admin
+  >
 </template>
 
 <script>
-import Dashboard from "@/views/admin/Dashboard";
 import { apiRequestProtocol } from "@/service/api.js";
+import Admin from "@/layouts/Admin";
 
 export default {
   data() {
@@ -103,10 +105,9 @@ export default {
   },
   methods: {
     submit() {
-      if(this.articleId){
+      if (this.articleId) {
         this.edit();
-      }
-      else{
+      } else {
         this.create();
       }
     },
@@ -136,7 +137,7 @@ export default {
           this.article.text = response.data.unformatted_text;
         });
     },
-    create(){
+    create() {
       this.disabled = "disabled";
       this.$store.commit("setTitle", "Enviando Artigo...");
 
@@ -160,7 +161,7 @@ export default {
           this.$store.commit("setTitle", "Admin");
         });
     },
-    edit(){
+    edit() {
       this.disabled = "disabled";
       this.$store.commit("setTitle", "Enviando Artigo...");
 
@@ -189,7 +190,7 @@ export default {
     articleId: String,
   },
   components: {
-    Dashboard,
+    Admin,
   },
 };
 </script>

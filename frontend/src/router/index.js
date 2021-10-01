@@ -10,7 +10,7 @@ import Contato from "@/views/Contato.vue";
 import Experiencia from "@/views/Experiencia.vue";
 import Error404 from "@/views/error/Error404.vue";
 import Login from "@/views/admin/Login.vue";
-import Dashboard from "@/views/admin/Dashboard";
+import Admin from "@/layouts/Admin";
 import CreateArticle from "@/views/admin/Features/CreateArticle";
 import ChangePages from "@/views/admin/Features/ChangePages";
 import ChangeArticles from "@/views/admin/Features/ChangeArticles";
@@ -104,61 +104,38 @@ const routes = [
     },
   },
   {
-    path: "/area-do-administrador",
-    component: Dashboard,
-    children: [
-      {
-        path: "",
-        component: CreateArticle,
-        name: "admin",
-        meta: { title: "Criar Artigo" },
-      },
-      {
-        path: "criar-artigo",
-        component: CreateArticle,
-        name: "criar_artigos",
-        props: true,
-        meta: { title: "Criar Artigo" },
-      },
-      {
-        path: "alterar-paginas",
-        component: ChangePages,
-        name: "alterar_paginas",
-        meta: { title: "Alterar Página" },
-      },
-      {
-        path: "alterar-artigos",
-        component: ChangeArticles,
-        name: "alterar_artigos",
-        meta: { title: "Alterar Artigos Publicados" },
-      },
-      {
-        path: "lixeira",
-        component: ManageTrash,
-        name: "trash",
-        meta: { title: "Sua Lixeira" },
-      },
-      {
-        path: "rascunhos",
-        component: ManageDraft,
-        name: "drafts",
-        meta: { title: "Seus Rascunhos" }
-      }
-    ],
-    meta: { autoAxios: false, },
-    beforeEnter: (to, from, next) => {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        next('/');
-      }
-      else if (store.state.logged) {
-        store.commit("setTitle", "Admin");
-        next();
-      }
-      else {
-        next('/acesso');
-      }
-    },
-  }
+    path: "/area-do-administrador/criar-artigo",
+    alias: "/area-do-administrador",
+    component: CreateArticle,
+    name: "criar_artigos",
+    props: true,
+    meta: { autoAxios: false, mobileDenied: true},
+  },
+  {
+    path: "/area-do-administrador/alterar-paginas",
+    component: ChangePages,
+    name: "alterar_paginas",
+    meta: { autoAxios: false, mobileDenied: true},
+  },
+  {
+    path: "/area-do-administrador/alterar-artigos",
+    component: ChangeArticles,
+    name: "alterar_artigos",
+    meta: { autoAxios: false, mobileDenied: true},
+  },
+  {
+    path: "/area-do-administrador/lixeira",
+    component: ManageTrash,
+    name: "trash",
+    meta: { autoAxios: false, mobileDenied: true},
+  },
+  {
+    path: "/area-do-administrador/rascunhos",
+    component: ManageDraft,
+    name: "drafts",
+    meta: { autoAxios: false, mobileDenied: true},
+  },
+
 
 ]
 
@@ -183,6 +160,19 @@ router.beforeEach(async to => {
         router.push({ name: 'error404' })
         return false
       });
+  }
+  if(to.meta.mobileDenied){
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      router.push('/');
+      return false;
+    }
+    else if (store.state.logged) {
+      store.commit("setTitle", "Admin");
+    }
+    else {
+      router.push('/acesso');
+      return false;
+    }
   }
 }
 );
