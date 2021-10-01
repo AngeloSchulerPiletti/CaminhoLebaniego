@@ -59,10 +59,10 @@
         </div>
       </div>
       <div class="actions">
+        <button class="btn_3" @click="clean">Limpar</button>
         <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
           Criar
         </button>
-        <button class="btn_3" @click="clean">Limpar</button>
       </div>
     </form>
   </div>
@@ -77,12 +77,14 @@ export default {
     return {
       article: {
         title: "Título de exemplo do artigo",
-        description: "Essaé uma descrição que serve apenas de exemplo para descrições futuras. Ás vezes podem ser maiores, ou menores. Tudo depende de quem escreve!",
+        description:
+          "Essaé uma descrição que serve apenas de exemplo para descrições futuras. Ás vezes podem ser maiores, ou menores. Tudo depende de quem escreve!",
         text: "Test",
-        tags: "Artigo, Exemplo de artigo, Segundo Artigo, Mais um artigo, Teste",
+        tags:
+          "Artigo, Exemplo de artigo, Segundo Artigo, Mais um artigo, Teste",
         draft: "off",
       },
-        images: null,
+      images: null,
       disabled: "",
     };
   },
@@ -92,13 +94,17 @@ export default {
       this.$store.commit("setTitle", "Enviando Artigo...");
 
       var formData = new FormData();
-      this.images ? formData.append('image', this.images) : null;
-      Object.keys(this.article).forEach(input => {
-        this.article[input] ? formData.append(input, this.article[input]) : null;
+      this.images ? formData.append("image", this.images) : null;
+      Object.keys(this.article).forEach((input) => {
+        this.article[input]
+          ? formData.append(input, this.article[input])
+          : null;
       });
 
       apiRequestProtocol(this.$store.state.sessionData.token)
-        .post("novo-artigo", formData, {'Content-type': 'multipart/form-data'})
+        .post("novo-artigo", formData, {
+          "Content-type": "multipart/form-data",
+        })
         .then((response) => {
           this.disabled = "";
           this.$store.commit("setTitle", "Admin");
