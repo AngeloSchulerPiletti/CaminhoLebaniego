@@ -29,13 +29,15 @@ use App\Http\Controllers\ArticleListController;
 
 Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
 Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}/{status?}', [ArticleListController::class, 'getArticles']);
-Route::get('/artigo/{url}', [ArticleController::class, 'index']);
+Route::get('/artigo/{url}',        [ArticleController::class, 'index']);
+Route::get('/artigo-pelo-id/{id}', [ArticleController::class, 'getArticleById']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
    Route::get('deletar-artigo/{id}',   [ArticleController::class, 'logic_deletation']);
    Route::get('excluir-artigo/{id}',   [ArticleController::class, 'fisic_deletation']);
    Route::get('restaurar-artigo/{id}', [ArticleController::class, 'restore']);
    Route::get('publicar-artigo/{id}',  [ArticleController::class, 'publish']);
+   Route::get('editar-artigo/{id}',    [ArticleController::class, 'edit']);
 });
 
 

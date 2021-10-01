@@ -26,6 +26,13 @@ class ArticleController extends Controller
     }
 
 
+    public function getArticleById($id){
+        $article = DB::table('articles')->where('id', $id)->first();
+        if(!$article) return response()->json(['error' => ['O ID enviado é inválido']]);
+        return $article;
+    }
+
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -153,5 +160,14 @@ class ArticleController extends Controller
         $result = DB::table('articles')->where('id', $id)->update(['status' => '1']);
         if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
         return response()->json(['message' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
+    }
+
+    public function edit($id){
+        ddh('worked! ID: '.$id);
+        //REVALIDAR ARTIGO NOVO
+        //EXCLUIR AS FOTOS ANTIGAS (se houver) 
+        //SALVAR FOTOS NOVAS (se houver)
+        //SALVAR NOVAS INFORMAÇÕES
+
     }
 }
