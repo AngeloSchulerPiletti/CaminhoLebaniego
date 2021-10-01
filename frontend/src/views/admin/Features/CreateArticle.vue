@@ -61,7 +61,7 @@
       <div class="actions">
         <button class="btn_3" @click="clean">Limpar</button>
         <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
-          Criar
+          {{articleId ? 'Editar' : 'Criar'}}
         </button>
       </div>
     </form>
