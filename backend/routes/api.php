@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
    Route::get('excluir-artigo/{id}',   [ArticleController::class, 'fisic_deletation']);
    Route::get('restaurar-artigo/{id}', [ArticleController::class, 'restore']);
    Route::get('publicar-artigo/{id}',  [ArticleController::class, 'publish']);
-   Route::get('editar-artigo/{id}',    [ArticleController::class, 'edit']);
+   Route::post('editar-artigo/{id}',   [ArticleController::class, 'edit']);
 });
 
 

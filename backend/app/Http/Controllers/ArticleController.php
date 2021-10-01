@@ -26,9 +26,10 @@ class ArticleController extends Controller
     }
 
 
-    public function getArticleById($id){
+    public function getArticleById($id)
+    {
         $article = DB::table('articles')->where('id', $id)->first();
-        if(!$article) return response()->json(['error' => ['O ID enviado é inválido']]);
+        if (!$article) return response()->json(['error' => ['O ID enviado é inválido']]);
         return $article;
     }
 
@@ -52,67 +53,66 @@ class ArticleController extends Controller
 
         if ($validator->fails()) {
             return response()->json(['error' => [$validator->errors()]]);
-        } else {
-            $article = new Article();
-
-            $article->title = $request->title;
-            $article->description = $request->description;
-            $article->status = ($request->draft == "on") ? 2 : 1;
-            $article->tags = $request->tags;
-
-            $url = title_parser($request->title);
-            $exists = DB::table('articles')->where('url', $url)->first();
-            if ($exists) {
-                $currentID = (DB::table('articles')->orderByDesc('id')->first()->id + 1);
-                $url = title_parser($url, $currentID);
-            }
-            $article->url = $url;
-
-            $text = article_text_to_html($request->text);
-
-            if ($request->file('image')) {
-                $zip = new ZipArchive;
-                $res = $zip->open($request->file('image'));
-                if ($res === TRUE) {
-                    $imgs_counter = $zip->numFiles;
-                } else {
-                    return response()->json(['error' => ['Ocorreu um erro com seu arquivo .zip']]);
-                }
-
-                check_num_of_article_imgs($text, $imgs_counter);
-
-                $public_path = 'storage/articles/' . $url;
-                $relative_path = 'storage/app/public/articles/' . $url;
-                $path = base_path($relative_path);
-                $zip->extractTo($path);
-
-                $imgs_name = array_slice(scandir($path), 2);
-
-                foreach ($imgs_name as $name) {
-                    $ext = explode('.', $name)[1];
-                    if (!in_array($ext, ['jpg', 'png', 'svg', 'jpeg', '.gif'])) {
-                        $files = glob($path . '/*'); // get all file names
-                        foreach ($files as $file) { // iterate files
-                            if (is_file($file)) {
-                                unlink($file); // delete file
-                            }
-                        }
-                        abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
-                    }
-                }
-
-                $text = article_img_treatment($text, $imgs_name, $public_path);
-                $article->images_path = $public_path;
-                $article->images_absolute_path = $relative_path;
-                $article->images_names = join(',', $imgs_name);
-            }
-
-            $article->formatted_text = $text;
-            $article->unformatted_text = $request->text;
-            $article->save();
-
-            return response()->json(['success' => 'Você criou um artigo!']);
         }
+        $article = new Article();
+
+        $article->title = $request->title;
+        $article->description = $request->description;
+        $article->status = ($request->draft == "on") ? 2 : 1;
+        $article->tags = $request->tags;
+
+        $url = title_parser($request->title);
+        $exists = DB::table('articles')->where('url', $url)->first();
+        if ($exists) {
+            $currentID = (DB::table('articles')->orderByDesc('id')->first()->id + 1);
+            $url = title_parser($url, $currentID);
+        }
+        $article->url = $url;
+
+        $text = article_text_to_html($request->text);
+
+        if ($request->file('image')) {
+            $zip = new ZipArchive;
+            $res = $zip->open($request->file('image'));
+            if ($res === TRUE) {
+                $imgs_counter = $zip->numFiles;
+            } else {
+                return response()->json(['error' => ['Ocorreu um erro com seu arquivo .zip']]);
+            }
+
+            check_num_of_article_imgs($text, $imgs_counter);
+
+            $public_path = 'storage/articles/' . $url;
+            $relative_path = 'storage/app/public/articles/' . $url;
+            $path = base_path($relative_path);
+            $zip->extractTo($path);
+
+            $imgs_name = array_slice(scandir($path), 2);
+
+            foreach ($imgs_name as $name) {
+                $ext = explode('.', $name)[1];
+                if (!in_array($ext, ['jpg', 'png', 'svg', 'jpeg', '.gif'])) {
+                    $files = glob($path . '/*'); // get all file names
+                    foreach ($files as $file) { // iterate files
+                        if (is_file($file)) {
+                            unlink($file); // delete file
+                        }
+                    }
+                    abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                }
+            }
+
+            $text = article_img_treatment($text, $imgs_name, $public_path);
+            $article->images_path = $public_path;
+            $article->images_absolute_path = $relative_path;
+            $article->images_names = join(',', $imgs_name);
+        }
+
+        $article->formatted_text = $text;
+        $article->unformatted_text = $request->text;
+        $article->save();
+
+        return response()->json(['success' => 'Você criou um artigo!']);
     }
 
     public function logic_deletation($id)
@@ -131,7 +131,7 @@ class ArticleController extends Controller
 
         $messages = [];
         if (isset($article->images_absolute_path)) {
-            $files = glob(base_path($article->images_absolute_path).'/*');
+            $files = glob(base_path($article->images_absolute_path) . '/*');
             foreach ($files as $file) {
                 if (is_file($file)) unlink($file);
             }
@@ -140,7 +140,7 @@ class ArticleController extends Controller
         }
 
         $result = DB::table('articles')->delete($id);
-        if($result) $messages[] = "Artigo excluído com sucesso";
+        if ($result) $messages[] = "Artigo excluído com sucesso";
         else $messages[] = "Artigo não pôde ser excluído";
 
         return response()->json(['message' => $messages]);
@@ -162,12 +162,107 @@ class ArticleController extends Controller
         return response()->json(['message' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
     }
 
-    public function edit($id){
-        ddh('worked! ID: '.$id);
-        //REVALIDAR ARTIGO NOVO
-        //EXCLUIR AS FOTOS ANTIGAS (se houver) 
-        //SALVAR FOTOS NOVAS (se houver)
-        //SALVAR NOVAS INFORMAÇÕES
+    public function edit($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:150',
+            'description' => 'required|string|max:500',
+            'text' => 'required|string',
+            'tags' => 'required|string|max:800',
+            'draft' => 'required|string',
+            'image' => 'file|mimetypes:application/zip',
+        ], [
+            'required' => 'Preencha o campo :attribute',
+            'string' => 'O campo :attribute precisa ser uma string',
+            'max' => 'O campo :attribute precisa ser menor que :max',
+            'file' => 'A :attribute precisa ser um arquivo',
+            'mimetypes' => 'O arquivo precisa ser do tipo zip'
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json(['error' => [$validator->errors()]]);
+        }
+
+        $url = title_parser($request->title);
+        $exists = DB::table('articles')->where('url', $url)->first();
+        if ($exists) {
+            $currentID = (DB::table('articles')->orderByDesc('id')->first()->id + 1);
+            $url = title_parser($url, $currentID);
+        }
+
+        $new_text = article_text_to_html($request->text);
+
+        $old_article = DB::table('articles')->where('id', $id)->first();
+        if ($old_article) {
+            $messages = [];
+            if (isset($old_article->images_absolute_path)) {
+                $files = glob(base_path($old_article->images_absolute_path) . '/*');
+                foreach ($files as $file) {
+                    if (is_file($file)) unlink($file);
+                }
+                rmdir(base_path($old_article->images_absolute_path));
+                $messages[] = "Imagens excluídas com sucesso";
+
+
+                $images_path = null;
+                $images_absolute_path = null;
+                $images_names = null;
+            }
+        } else {
+            return response()->json(['error' => ['ID inválido']], 404);
+        }
+
+        if ($request->file('image')) {
+            $zip = new ZipArchive;
+            $res = $zip->open($request->file('image'));
+            if ($res === TRUE) {
+                $imgs_counter = $zip->numFiles;
+            } else {
+                return response()->json(['error' => ['Ocorreu um erro com seu arquivo .zip']]);
+            }
+
+            check_num_of_article_imgs($new_text, $imgs_counter);
+
+            $public_path = 'storage/articles/' . $url;
+            $relative_path = 'storage/app/public/articles/' . $url;
+            $path = base_path($relative_path);
+            $zip->extractTo($path);
+
+            $imgs_name = array_slice(scandir($path), 2);
+
+            foreach ($imgs_name as $name) {
+                $ext = explode('.', $name)[1];
+                if (!in_array($ext, ['jpg', 'png', 'svg', 'jpeg', '.gif'])) {
+                    $files = glob($path . '/*'); // get all file names
+                    foreach ($files as $file) { // iterate files
+                        if (is_file($file)) {
+                            unlink($file); // delete file
+                        }
+                    }
+                    abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                }
+            }
+
+            $new_text = article_img_treatment($new_text, $imgs_name, $public_path);
+
+            $images_path = $public_path;
+            $images_absolute_path = $relative_path;
+            $images_names = join(',', $imgs_name);
+        }
+
+        DB::table('articles')->where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'tags' => $request->tags,
+            'unformatted_text' => $request->text,
+            'formatted_text' => $new_text,
+            'url' => $url,
+            'images_path' => $images_path,
+            'images_absolute_path'=>$images_absolute_path,
+            'images_names'=>$images_names,
+        ]);
+
+        $messages[] = "Artigo atualizado com sucesso";
+        return response()->json(['messages' => $messages]);
     }
 }

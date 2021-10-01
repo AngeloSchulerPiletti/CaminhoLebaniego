@@ -103,25 +103,12 @@ export default {
   },
   methods: {
     submit() {
-      this.disabled = "disabled";
-      this.$store.commit("setTitle", "Enviando Artigo...");
-
-      var formData = new FormData();
-      this.images ? formData.append("image", this.images) : null;
-      Object.keys(this.article).forEach((input) => {
-        this.article[input]
-          ? formData.append(input, this.article[input])
-          : null;
-      });
-
-      apiRequestProtocol(this.$store.state.sessionData.token)
-        .post("novo-artigo", formData, {
-          "Content-type": "multipart/form-data",
-        })
-        .then((response) => {
-          this.disabled = "";
-          this.$store.commit("setTitle", "Admin");
-        });
+      if(this.articleId){
+        this.edit();
+      }
+      else{
+        this.create();
+      }
     },
     clean() {
       console.log("clean");
@@ -145,9 +132,56 @@ export default {
         .then((response) => {
           this.article.title = response.data.title;
           this.article.description = response.data.description;
-          this.article.text = response.data.text;
           this.article.tags = response.data.tags;
           this.article.text = response.data.unformatted_text;
+        });
+    },
+    create(){
+      this.disabled = "disabled";
+      this.$store.commit("setTitle", "Enviando Artigo...");
+
+      var formData = new FormData();
+      this.images ? formData.append("image", this.images) : null;
+      Object.keys(this.article).forEach((input) => {
+        this.article[input]
+          ? formData.append(input, this.article[input])
+          : null;
+      });
+
+      let token = this.$store.state.logged
+        ? this.$store.state.sessionData.token
+        : null;
+      apiRequestProtocol(token)
+        .post("novo-artigo", formData, {
+          "Content-type": "multipart/form-data",
+        })
+        .then((response) => {
+          this.disabled = "";
+          this.$store.commit("setTitle", "Admin");
+        });
+    },
+    edit(){
+      this.disabled = "disabled";
+      this.$store.commit("setTitle", "Enviando Artigo...");
+
+      var formData = new FormData();
+      this.images ? formData.append("image", this.images) : null;
+      Object.keys(this.article).forEach((input) => {
+        this.article[input]
+          ? formData.append(input, this.article[input])
+          : null;
+      });
+
+      let token = this.$store.state.logged
+        ? this.$store.state.sessionData.token
+        : null;
+      apiRequestProtocol(token)
+        .post(`editar-artigo/${this.articleId}`, formData, {
+          "Content-type": "multipart/form-data",
+        })
+        .then((response) => {
+          this.disabled = "";
+          this.$store.commit("setTitle", "Admin");
         });
     },
   },
