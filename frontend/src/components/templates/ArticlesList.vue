@@ -35,9 +35,12 @@
           class="controll_container"
         >
           <ul>
-            <li @click="callControll('del', article.id)">Deletar</li>
-            <li @click="callControll('viz')">Vizualizar</li>
-            <li @click="callControll('edi')">Editar</li>
+            <li @click="callControll('deletar-artigo', article.id)" v-if="$route.name == 'alterar_artigos' || $route.name == 'drafts'">Deletar</li>
+            <li >Vizualizar</li>
+            <li >Editar</li>
+            <li @click="callControll('restaurar-artigo', article.id)" v-if="$route.name == 'trash'">Restaurar</li>
+            <li @click="callControll('excluir-artigo', article.id)" v-if="$route.name == 'trash'">Excluir</li>
+            <li @click="callControll('publicar-artigo', article.id)" v-if="$route.name == 'drafts'">Publicar</li>
           </ul>
         </div>
       </div>
@@ -94,7 +97,7 @@ export default {
         ? this.$store.state.sessionData.token
         : null;
       apiRequestProtocol(token)
-        .get(`deletar-artigo/${articleId}`)
+        .get(`${action}/${articleId}`)
         .then((response) => {
           this.$router.go(0);
         })

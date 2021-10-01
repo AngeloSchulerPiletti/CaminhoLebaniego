@@ -10,11 +10,11 @@ use ZipArchive;
 
 class ArticleController extends Controller
 {
-    public function index($url){
+    public function index($url)
+    {
         if (!auth('sanctum')->user()) { // PRECISA SER CORRIGIDO
             $article = DB::table('articles')->where('url', $url)->where('status', 1)->first();
-        }
-        else{
+        } else {
             $article = DB::table('articles')->where('url', $url)->first();
         }
         if ($article) {
@@ -84,7 +84,7 @@ class ArticleController extends Controller
                 foreach ($imgs_name as $name) {
                     $ext = explode('.', $name)[1];
                     if (!in_array($ext, ['jpg', 'png', 'svg', 'jpeg', '.gif'])) {
-                        $files = glob($path.'/*'); // get all file names
+                        $files = glob($path . '/*'); // get all file names
                         foreach ($files as $file) { // iterate files
                             if (is_file($file)) {
                                 unlink($file); // delete file
@@ -96,6 +96,7 @@ class ArticleController extends Controller
 
                 $text = article_img_treatment($text, $imgs_name, $public_path);
                 $article->images_path = $public_path;
+                $article->images_absolute_path = $relative_path;
                 $article->images_names = join(',', $imgs_name);
             }
 
@@ -107,10 +108,50 @@ class ArticleController extends Controller
         }
     }
 
-    public function logic_deletation($id){
+    public function logic_deletation($id)
+    {
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '3']);
-        if($id < 0 || $result == 0) return response()->json(['error'=>['id do artigo é inválido']], 400);
-        return response()->json(['message'=>['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        return response()->json(['message' => ['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
+    }
+
+    public function fisic_deletation($id)
+    {
+        $id = (int)$id;
+        $article = DB::table('articles')->where('id', $id)->first();
+        if ($id < 0 || !$article) return response()->json(['error' => ['id do artigo é inválido']], 400);
+
+        $messages = [];
+        if (isset($article->images_absolute_path)) {
+            $files = glob(base_path($article->images_absolute_path).'/*');
+            foreach ($files as $file) {
+                if (is_file($file)) unlink($file);
+            }
+            rmdir(base_path($article->images_absolute_path));
+            $messages[] = "Imagens excluídas com sucesso";
+        }
+
+        $result = DB::table('articles')->delete($id);
+        if($result) $messages[] = "Artigo excluído com sucesso";
+        else $messages[] = "Artigo não pôde ser excluído";
+
+        return response()->json(['message' => $messages]);
+    }
+
+    public function restore($id)
+    {
+        $id = (int)$id;
+        $result = DB::table('articles')->where('id', $id)->update(['status' => '2']);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        return response()->json(['message' => ['Artigo restaurado com sucesso, você pode vê-lo nos rascunhos']]);
+    }
+
+    public function publish($id)
+    {
+        $id = (int)$id;
+        $result = DB::table('articles')->where('id', $id)->update(['status' => '1']);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        return response()->json(['message' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
     }
 }

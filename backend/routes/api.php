@@ -26,10 +26,17 @@ use App\Http\Controllers\ArticleListController;
 /* +==========================+
    |     ASK FOR CONTENT      | 
    +==========================+*/
+
 Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
 Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}/{status?}', [ArticleListController::class, 'getArticles']);
 Route::get('/artigo/{url}', [ArticleController::class, 'index']);
-Route::middleware('auth:sanctum')->get('deletar-artigo/{id}', [ArticleController::class, 'logic_deletation']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+   Route::get('deletar-artigo/{id}',   [ArticleController::class, 'logic_deletation']);
+   Route::get('excluir-artigo/{id}',   [ArticleController::class, 'fisic_deletation']);
+   Route::get('restaurar-artigo/{id}', [ArticleController::class, 'restore']);
+   Route::get('publicar-artigo/{id}',  [ArticleController::class, 'publish']);
+});
 
 
 
@@ -51,6 +58,6 @@ Route::middleware('auth:sanctum')->post('/novo-artigo', [ArticleController::clas
 /* +==========================+
    |       ROTA DE TESTE      | 
    +==========================+*/
-Route::middleware('auth:sanctum')->get('/teste', function(Request $request){
-    return 'deu certo!!';
+Route::middleware('auth:sanctum')->get('/teste', function (Request $request) {
+   return 'deu certo!!';
 });
