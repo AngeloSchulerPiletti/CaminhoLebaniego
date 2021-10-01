@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class ArticleListController extends Controller
 {
-    static function getArticles($keyword, $page = 1, $perpage = 10, $status = 1)
+    static function getArticles(Request $request, $keyword, $page = 1, $perpage = 10, $status = 1)
     {
-        // return response()->json([$keyword], 400);
+        if ($status != 1 && !auth('sanctum')->user()) {
+            return response()->json(['error' => ['Você não tem permissão para ver esses artigos']], 403);
+        }
         if ($keyword == "todos") {
             $articles_selection = DB::table('articles')->where('status', $status)->orderByDesc('updated_at')->skip($perpage * ($page - 1))->take($perpage)->get();
             $articles_selection = chared_string_to_array($articles_selection, 'tags', ',', true);
