@@ -66,7 +66,8 @@ export default {
   methods: {
     requestArticleList() {
       let status = this.status ? this.status : "";
-      apiRequestProtocol()
+      let token = this.$store.state.logged ? this.$store.state.sessionData.token : null;
+      apiRequestProtocol(token)
         .get(`lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`)
         .then((response) => {
           this.articlesList = response.data;
