@@ -133,18 +133,17 @@ export default {
   margin: 0 4vw;
 }
 .list_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 3vw;
-  padding: 5vw 0;
+  padding: 5vw 3vw;
 
   .card {
     box-shadow: 0 0 0.8vw 0.3vw #000;
-    width: 80%;
     display: flex;
-    padding: 1vw;
+    padding: 1.2vw 1.8vw;
     background-color: darken($white, 5%);
+    border-radius: 5px;
 
     .content_container {
       display: flex;
@@ -152,12 +151,15 @@ export default {
       gap: 1vw;
       h2 {
         cursor: pointer;
+        font-size: 26px;
       }
       p {
         cursor: default;
       }
       .tags_container {
         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         gap: 1vw;
         span {
           font-size: 12px;
@@ -211,10 +213,10 @@ export default {
         right: 0;
       }
       &:hover::before {
-        left: -4vw;
+        left: -1vw;
       }
       &:hover::after {
-        right: -4vw;
+        right: -1vw;
       }
     }
   }

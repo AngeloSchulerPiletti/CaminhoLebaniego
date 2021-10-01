@@ -282,6 +282,11 @@
   border-radius: 0.4em;
   @include Title3;
   cursor: pointer;
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  display: block;
+  white-space: nowrap;
 }
 /*+--------------------------------------+
   |                BADGES                |
