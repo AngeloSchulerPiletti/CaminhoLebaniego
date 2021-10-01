@@ -29,6 +29,7 @@ use App\Http\Controllers\ArticleListController;
 Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
 Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}/{status?}', [ArticleListController::class, 'getArticles']);
 Route::get('/artigo/{url}', [ArticleController::class, 'index']);
+Route::middleware('auth:sanctum')->get('deletar-artigo/{id}', [ArticleController::class, 'logic_deletation']);
 
 
 

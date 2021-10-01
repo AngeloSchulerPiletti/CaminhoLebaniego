@@ -35,7 +35,7 @@
           class="controll_container"
         >
           <ul>
-            <li @click="callControll('del')">Deletar</li>
+            <li @click="callControll('del', article.id)">Deletar</li>
             <li @click="callControll('viz')">Vizualizar</li>
             <li @click="callControll('edi')">Editar</li>
           </ul>
@@ -66,9 +66,13 @@ export default {
   methods: {
     requestArticleList() {
       let status = this.status ? this.status : "";
-      let token = this.$store.state.logged ? this.$store.state.sessionData.token : null;
+      let token = this.$store.state.logged
+        ? this.$store.state.sessionData.token
+        : null;
       apiRequestProtocol(token)
-        .get(`lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`)
+        .get(
+          `lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`
+        )
         .then((response) => {
           this.articlesList = response.data;
         })
@@ -80,20 +84,30 @@ export default {
       this.$router.push({ name: "artigo-show", query: { titulo: url } });
     },
     searchFor(tag) {
-        this.$router.push({
-          name: "search_result",
-          params: { query: tag },
+      this.$router.push({
+        name: "search_result",
+        params: { query: tag },
+      });
+    },
+    callControll(action, articleId) {
+      let token = this.$store.state.logged
+        ? this.$store.state.sessionData.token
+        : null;
+      apiRequestProtocol(token)
+        .get(`deletar-artigo/${articleId}`)
+        .then((response) => {
+          this.$router.go(0);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
-    callControll(action) {
-      console.log("asking for " + action + " article");
-    },
   },
-  watch:{
-    'this.$route.params.query'(newval){
-      console.log('watched: '+newval);
+  watch: {
+    "this.$route.params.query"(newval) {
+      console.log("watched: " + newval);
       this.query = newval;
-    }
+    },
   },
   props: {
     canControll: Boolean,

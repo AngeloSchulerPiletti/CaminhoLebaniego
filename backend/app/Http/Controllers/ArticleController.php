@@ -106,4 +106,11 @@ class ArticleController extends Controller
             return response()->json(['success' => 'Você criou um artigo!']);
         }
     }
+
+    public function logic_deletation($id){
+        $id = (int)$id;
+        $result = DB::table('articles')->where('id', $id)->update(['status' => '3']);
+        if($id < 0 || $result == 0) return response()->json(['error'=>['id do artigo é inválido']], 400);
+        return response()->json(['message'=>['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
+    }
 }
