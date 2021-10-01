@@ -12,7 +12,7 @@ class ArticleController extends Controller
 {
     public function index($url)
     {
-        if (!auth('sanctum')->user()) { // PRECISA SER CORRIGIDO
+        if (!auth('sanctum')->user()) {
             $article = DB::table('articles')->where('url', $url)->where('status', 1)->first();
         } else {
             $article = DB::table('articles')->where('url', $url)->first();
