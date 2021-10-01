@@ -11,7 +11,7 @@ use ZipArchive;
 class ArticleController extends Controller
 {
     public function index($url){
-        if (!auth()->user()) {
+        if (!auth('sanctum')->user()) { // PRECISA SER CORRIGIDO
             $article = DB::table('articles')->where('url', $url)->where('status', 1)->first();
         }
         else{
