@@ -1,17 +1,22 @@
 <template>
-  <section id="sec1">
-    <div class="header"></div>
-    <article-component
-      :article="article.formatted_text"
-      :imgs_path="article.images_path"
-      :imgs_names="article.images_names"
-    />
-  </section>
+  <app-layout :isArticle="true">
+    <template v-slot:main>
+      <section id="sec1">
+        <div class="header"></div>
+        <article-component
+          :article="article.formatted_text"
+          :imgs_path="article.images_path"
+          :imgs_names="article.images_names"
+        />
+      </section>
+    </template>
+  </app-layout>
 </template>
 
 <script>
 import Article from "@/components/templates/Article";
 import { apiRequestProtocol } from "@/service/api.js";
+import Public from "@/layouts/Public";
 
 export default {
   data() {
@@ -52,8 +57,9 @@ export default {
   },
   components: {
     "article-component": Article,
+    "app-layout": Public,
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
