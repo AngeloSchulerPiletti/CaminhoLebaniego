@@ -38,7 +38,7 @@ class ArticleController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:150',
-            'description' => 'required|string|max:500',
+            'description' => 'required|string|max:254',
             'text' => 'required|string',
             'tags' => 'required|string|max:800',
             'draft' => 'required|string',
@@ -166,7 +166,7 @@ class ArticleController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:150',
-            'description' => 'required|string|max:500',
+            'description' => 'required|string|max:254',
             'text' => 'required|string',
             'tags' => 'required|string|max:800',
             'draft' => 'required|string',
@@ -192,6 +192,11 @@ class ArticleController extends Controller
 
         $new_text = article_text_to_html($request->text);
 
+        
+        $images_path = null;
+        $images_absolute_path = null;
+        $images_names = null;
+
         $old_article = DB::table('articles')->where('id', $id)->first();
         if ($old_article) {
             $messages = [];
@@ -202,11 +207,6 @@ class ArticleController extends Controller
                 }
                 rmdir(base_path($old_article->images_absolute_path));
                 $messages[] = "Imagens excluídas com sucesso";
-
-
-                $images_path = null;
-                $images_absolute_path = null;
-                $images_names = null;
             }
         } else {
             return response()->json(['error' => ['ID inválido']], 404);
