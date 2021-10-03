@@ -1,10 +1,11 @@
 <template>
   <admin pageTitle="Criar Artigo">
+    <info-modal :whichInfo="whichInfo" @modalClosed="whichInfo = ''"/>
     <div>
       <form @submit.prevent>
         <div class="inputs">
           <div class="input_container">
-            <label for="title">Título do Artigo</label>
+            <label for="title" @click="whichInfo = 'title'">Título do Artigo</label>
             <input
               type="text"
               id="title"
@@ -14,7 +15,7 @@
             />
           </div>
           <div class="input_container">
-            <label for="description">Descrição</label>
+            <label for="description" @click="whichInfo = 'description'">Descrição</label>
             <textarea
               name="description"
               id="description"
@@ -23,7 +24,7 @@
             ></textarea>
           </div>
           <div class="input_container">
-            <label for="text">Artigo</label>
+            <label for="text" @click="whichInfo = 'article'">Artigo</label>
             <textarea
               name="text"
               id="text"
@@ -32,7 +33,7 @@
             ></textarea>
           </div>
           <div class="input_container">
-            <label for="tags">TAGS do Artigo</label>
+            <label for="tags" @click="whichInfo = 'tags'">TAGS do Artigo</label>
             <input
               type="text"
               id="tags"
@@ -42,14 +43,14 @@
             />
           </div>
           <div class="input_container">
-            <label for="draft">Salvar como Rascunho?</label>
+            <label for="draft" @click="whichInfo = 'draft'">Salvar como Rascunho?</label>
             <select name="draft" id="draft" v-model="article.draft">
               <option value="on">Sim</option>
               <option value="off" selected>Não</option>
             </select>
           </div>
           <div class="input_container">
-            <label for="images">Adicione as Imagens Zipadas ao Artigo</label>
+            <label for="images" @click="whichInfo = 'files'">Adicione as Imagens Zipadas ao Artigo</label>
             <input
               @change="uploadFile"
               type="file"
@@ -73,6 +74,7 @@
 <script>
 import { apiRequestProtocol } from "@/service/api.js";
 import Admin from "@/layouts/Admin";
+import InfoModal from "@/components/admin/InfoModal";
 
 export default {
   data() {
@@ -88,6 +90,7 @@ export default {
       },
       images: null,
       disabled: "",
+      whichInfo: "",
     };
   },
   computed: {
@@ -191,6 +194,7 @@ export default {
   },
   components: {
     Admin,
+    InfoModal,
   },
 };
 </script>
@@ -198,5 +202,35 @@ export default {
 <style lang="scss" scoped>
 form {
   @include form1(50vw, 700px);
+
+  .input_container{
+    label{
+      cursor: pointer;
+      position: relative;
+      padding-left: 6px;
+
+      transition: padding-left 200ms;
+      
+      &::before{
+        position: absolute;
+        content: "";
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 3px;
+        background-color: $red;
+
+        transition: width 200ms;
+      }
+
+      &:hover{
+        padding-left: 12px;
+
+        &::before{
+          width: 10px;
+        }
+      }
+    }
+  }
 }
 </style>
