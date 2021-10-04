@@ -55,7 +55,7 @@ export default {
   methods: {
     logout() {
       apiRequestProtocol(this.$store.state.sessionData.token)
-        .post("logot")
+        .post("logout")
         .then((response) => {
           this.$store.commit("setSessionData", {
             user: undefined,
