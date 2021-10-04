@@ -187,6 +187,8 @@ export default {
           "Content-type": "multipart/form-data",
         })
         .then((response) => {
+          response.data.error ? this.$store.commit('setErrors', response.data.error) : null;
+          console.log(response);
           this.disabled = "";
           this.$store.commit("setTitle", "Admin");
         });

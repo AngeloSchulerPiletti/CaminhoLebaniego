@@ -31,18 +31,22 @@ export default {
 
         setTimeout(() => {
           var cards = this.$el.querySelectorAll(".err_card");
+          const time = 500;
 
-          cards.forEach((card) => {
-            setTimeout(() => {
-              card.dataset.anim = "on";
+          function onAndOff(item, index) {
+            return new Promise(() => {
               setTimeout(() => {
-                card.dataset.anim = "off";
+                item.dataset.anim = "on";
                 setTimeout(() => {
-                  this.errorsToShow.pop();
-                }, 400);
-              }, 6000);
-            }, 500);
-          });
+                  item.dataset.anim = "off";
+                }, time * 12);
+              }, time * (index + 1));
+            });
+          }
+
+          for (let i = 0; i < cards.length; i++) {
+            onAndOff(cards[i], i);
+          }
         }, 0);
       },
     },
@@ -56,6 +60,9 @@ export default {
   z-index: 100000;
   top: 18vh;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 
   .err_card {
     background: linear-gradient(60deg, #fffffff0 20%, #ffffffc0);
@@ -71,17 +78,17 @@ export default {
     }
   }
 
-  [data-anim]{
-      transition: transform 400ms ease;
+  [data-anim] {
+    transition: transform 400ms ease;
   }
-  [data-anim="none"]{
-      transform: translateX(-100%);
+  [data-anim="none"] {
+    transform: translateX(-100%);
   }
-  [data-anim="on"]{
-      transform: translateX(0);
+  [data-anim="on"] {
+    transform: translateX(0);
   }
-  [data-anim="off"]{
-      transform: translateX(-100%);
+  [data-anim="off"] {
+    transform: translateX(-100%);
   }
 }
 </style>
