@@ -1,27 +1,35 @@
 <template>
   <admin pageTitle="Criar Artigo">
-    <info-modal :whichInfo="whichInfo" @modalClosed="whichInfo = ''"/>
+    <info-modal :whichInfo="whichInfo" @modalClosed="whichInfo = ''" />
     <div>
       <form @submit.prevent>
         <div class="inputs">
           <div class="input_container">
-            <label for="title" @click="whichInfo = 'title'">Título do Artigo</label>
+            <label for="title" @click="whichInfo = 'title'"
+              >Título do Artigo</label
+            >
             <input
               type="text"
               id="title"
               name="title"
               placeholder="Exemplo de Título"
               v-model="article.title"
+              @input="counter.actual.title = article.title.length"
             />
+            <span :class="'counter '+checkMaxLength('title')">{{ counter.actual.title }}/150</span>
           </div>
           <div class="input_container">
-            <label for="description" @click="whichInfo = 'description'">Descrição</label>
+            <label for="description" @click="whichInfo = 'description'"
+              >Descrição</label
+            >
             <textarea
               name="description"
               id="description"
               placeholder="Adicione aqui uma descrição para o seu artigo!"
               v-model="article.description"
+              @input="counter.actual.description = article.description.length"
             ></textarea>
+            <span :class="'counter '+checkMaxLength('description')">{{ counter.actual.description }}/254</span>
           </div>
           <div class="input_container">
             <label for="text" @click="whichInfo = 'article'">Artigo</label>
@@ -40,17 +48,23 @@
               name="tags"
               placeholder="Insira tags, separando-as por vírgula"
               v-model="article.tags"
+              @input="counter.actual.tags = article.tags.length"
             />
+            <span :class="'counter '+checkMaxLength('tags')">{{ counter.actual.tags }}/800</span>
           </div>
           <div class="input_container">
-            <label for="draft" @click="whichInfo = 'draft'">Salvar como Rascunho?</label>
+            <label for="draft" @click="whichInfo = 'draft'"
+              >Salvar como Rascunho?</label
+            >
             <select name="draft" id="draft" v-model="article.draft">
               <option value="on">Sim</option>
               <option value="off" selected>Não</option>
             </select>
           </div>
           <div class="input_container">
-            <label @click="whichInfo = 'images'">Adicione as Imagens Zipadas ao Artigo</label>
+            <label @click="whichInfo = 'images'"
+              >Adicione as Imagens Zipadas ao Artigo</label
+            >
             <input
               @change="uploadFile"
               type="file"
@@ -80,17 +94,27 @@ export default {
   data() {
     return {
       article: {
-        title: "Título de exemplo do artigo",
-        description:
-          "Essaé uma descrição que serve apenas de exemplo para descrições futuras. Ás vezes podem ser maiores, ou menores. Tudo depende de quem escreve!",
-        text: "Test",
-        tags:
-          "Artigo, Exemplo de artigo, Segundo Artigo, Mais um artigo, Teste",
+        title: "",
+        description: "",
+        text: "",
+        tags: "",
         draft: "off",
       },
       images: null,
       disabled: "",
       whichInfo: "",
+      counter: {
+        actual: {
+          title: 0,
+          description: 0,
+          tags: 0,
+        },
+        max: {
+          title: 150,
+          description: 254,
+          tags: 800,
+        },
+      },
     };
   },
   computed: {
@@ -107,6 +131,9 @@ export default {
     },
   },
   methods: {
+    checkMaxLength(type) {
+      return this.counter.actual[type] > this.counter.max[type] ? "_over" : "";
+    },
     submit() {
       if (this.articleId) {
         this.edit();
@@ -203,15 +230,15 @@ export default {
 form {
   @include form1(50vw, 700px);
 
-  .input_container{
-    label{
+  .input_container {
+    label {
       cursor: pointer;
       position: relative;
       padding-left: 6px;
 
       transition: padding-left 200ms;
-      
-      &::before{
+
+      &::before {
         position: absolute;
         content: "";
         height: 100%;
@@ -223,13 +250,21 @@ form {
         transition: width 200ms;
       }
 
-      &:hover{
+      &:hover {
         padding-left: 12px;
 
-        &::before{
+        &::before {
           width: 10px;
         }
       }
+    }
+    .counter {
+      color: $black;
+      width: fit-content;
+      margin-left: auto;
+    }
+    ._over{
+      color: $red;
     }
   }
 }
