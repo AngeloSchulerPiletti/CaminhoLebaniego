@@ -1,6 +1,7 @@
 <template>
   <app-layout :isArticle="true">
     <template v-slot:main>
+      <share-button v-if="article.status == 1" :url="article.url"/>
       <section id="sec1">
         <div class="header"></div>
         <article-component
@@ -17,6 +18,7 @@
 import Article from "@/components/templates/Article";
 import { apiRequestProtocol } from "@/service/api.js";
 import Public from "@/layouts/Public";
+import ShareButton from "@/components/ShareButton";
 
 export default {
   data() {
@@ -58,6 +60,7 @@ export default {
   components: {
     "article-component": Article,
     "app-layout": Public,
+    ShareButton,
   },
 };
 </script>

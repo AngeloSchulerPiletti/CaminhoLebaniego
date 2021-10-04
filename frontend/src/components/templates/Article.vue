@@ -9,7 +9,7 @@ export default {
       setTimeout(() => {
         var imgs = this.$el.querySelectorAll("img");
         for (let i = 0; i < imgs.length; i++) {
-          imgs[i].src = `${this.$store.state.urlBase}${this.imgs_path}/${this.imgs_names[i]}`;
+          imgs[i].src = `${this.$store.state.urlApiBase}${this.imgs_path}/${this.imgs_names[i]}`;
         }
       }, 0);
 
