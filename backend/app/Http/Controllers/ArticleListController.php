@@ -37,7 +37,7 @@ class ArticleListController extends Controller
         }
 
         if (count($articles_selection) < 1) {
-            return response()->json(['error' => ['Nenhum artigo foi encontrado']], 404);
+            return response()->json(['error' => ['Nenhum artigo foi encontrado']]);
         }
         return response()->json(['articlesList' => $articles_selection, 'totalArticles' => $total_articles]);
     }
