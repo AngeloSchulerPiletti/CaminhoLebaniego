@@ -9,8 +9,20 @@
       <button class="btn_4" v-if="!logged" @click="$router.go(-1)">
         voltar
       </button>
-      <button class="btn_4" @click="$router.push({name: 'criar_artigos'})" v-if="logged">criar artigo</button>
-      <button class="btn_4" @click="$router.push({name: 'alterar_artigos'})" v-if="logged">alterar artigos</button>
+      <button
+        class="btn_4"
+        @click="$router.push({ name: 'criar_artigos' })"
+        v-if="logged"
+      >
+        criar artigo
+      </button>
+      <button
+        class="btn_4"
+        @click="$router.push({ name: 'alterar_artigos' })"
+        v-if="logged"
+      >
+        alterar artigos
+      </button>
       <!-- <button class="btn_4" @click="$router.push({name: 'alterar_paginas'})" v-if="logged">alterar páginas</button> -->
       <button class="btn_4" @click="logout" v-if="logged">logout</button>
     </div>
@@ -42,15 +54,22 @@ export default {
   },
   methods: {
     logout() {
-      apiRequestProtocol(this.$store.state.sessionData.token).post("logout").then((response) => {
-        this.$store.commit("setSessionData", {
-          user: undefined,
-          token: undefined,
-          logged: false,
-        })
+      apiRequestProtocol(this.$store.state.sessionData.token)
+        .post("logot")
+        .then((response) => {
+          this.$store.commit("setSessionData", {
+            user: undefined,
+            token: undefined,
+            logged: false,
+          });
 
-        this.$router.push("/caminho");
-      }).catch(error => console.log(error));
+          this.$router.push("/caminho");
+        })
+        .catch((error) => {
+          this.$store.commit("setErrors", [
+            "Houve um erro ao tentar deslogar, é possível que você já esteja deslogado",
+          ]);
+        });
     },
   },
   components: {
@@ -78,7 +97,6 @@ header {
     gap: 40px;
 
     button {
-      
     }
   }
 }

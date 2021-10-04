@@ -22,7 +22,6 @@
 
 <script>
 import SearchIcon from "@/components/SVGs/SearchIcon.vue";
-import { apiRequestProtocol } from "@/service/api";
 
 export default {
   data() {
