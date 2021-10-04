@@ -6,7 +6,13 @@
     <div class="controlls">
       <label
         >Artigos por página
-        <select v-model="perpage" @change="page=1; requestArticleList()">
+        <select
+          v-model="perpage"
+          @change="
+            page = 1;
+            requestArticleList();
+          "
+        >
           <option value="4">4</option>
           <option value="10">10</option>
           <option value="20">20</option>
@@ -77,15 +83,43 @@
         </div>
       </div>
     </div>
-      <div class="pagination">
-        <span @click="page = 1; requestArticleList()" v-show="page > 2">{{ 1 }}</span>
-        <p v-show="page > 2">...</p>
-        <span @click="page -= 1; requestArticleList()" v-show="page > 1">{{ page - 1 }}</span>
-        <span class="actual">{{ page }}</span>
-        <span @click="page += 1; requestArticleList()" v-show="page < totalPages">{{ page + 1 }}</span>
-        <p v-show="page < totalPages-1">...</p>
-        <span @click="page = totalPages; requestArticleList()" v-show="page < totalPages-1">{{ totalPages }}</span>
-      </div>
+    <div v-if="totalArticles>0" class="pagination">
+      <span
+        @click="
+          page = 1;
+          requestArticleList();
+        "
+        v-show="page > 2"
+        >{{ 1 }}</span
+      >
+      <p v-show="page > 2">...</p>
+      <span
+        @click="
+          page -= 1;
+          requestArticleList();
+        "
+        v-show="page > 1"
+        >{{ page - 1 }}</span
+      >
+      <span class="actual">{{ page }}</span>
+      <span
+        @click="
+          page += 1;
+          requestArticleList();
+        "
+        v-show="page < totalPages"
+        >{{ page + 1 }}</span
+      >
+      <p v-show="page < totalPages - 1">...</p>
+      <span
+        @click="
+          page = totalPages;
+          requestArticleList();
+        "
+        v-show="page < totalPages - 1"
+        >{{ totalPages }}</span
+      >
+    </div>
   </section>
 </template>
 
@@ -287,35 +321,35 @@ export default {
     }
   }
 }
-  .pagination{
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 4vw;
-    align-items:center;
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 4vw;
+  align-items: center;
 
-    span{
-      cursor: pointer;
-      @include Font0;
-      font-family: Arial, Roboto, sans-serif;
-      color: $white;
-      font-size: 18px;
-      text-decoration: underline;
-      transition: color 300ms;
+  span {
+    cursor: pointer;
+    @include Font0;
+    font-family: Arial, Roboto, sans-serif;
+    color: $white;
+    font-size: 18px;
+    text-decoration: underline;
+    transition: color 300ms;
 
-      &.actual{
-        font-size: 24px;
-        text-decoration: none;
-        color: $red;
-      }
-      &:hover{
-        color: $red;
-      }
+    &.actual {
+      font-size: 24px;
+      text-decoration: none;
+      color: $red;
     }
-    p{
-      @include Font0;
-      color: $white;
-      font-size: 18px;
+    &:hover {
+      color: $red;
     }
   }
+  p {
+    @include Font0;
+    color: $white;
+    font-size: 18px;
+  }
+}
 </style>
