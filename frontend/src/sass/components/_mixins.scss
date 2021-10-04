@@ -26,34 +26,30 @@
   border: 2px solid $red;
 }
 
-
-
 @mixin headerLogo($pad_top) {
-    padding-top: $pad_top;
+  padding-top: $pad_top;
 
+  svg:deep(text) {
+    tspan {
+      transition: fill 600ms;
+    }
+  }
+
+  &:hover {
     svg:deep(text) {
       tspan {
-        transition: fill 600ms;
+        fill: $red;
       }
     }
-
-    &:hover {
-      svg:deep(text) {
-        tspan {
-          fill: $red;
-        }
+  }
+  a.router-link-active {
+    svg:deep(text) {
+      tspan {
+        fill: $red;
       }
     }
-    a.router-link-active {
-      svg:deep(text) {
-        tspan {
-          fill: $red;
-        }
-      }
-    }
+  }
 }
-
-
 
 @mixin defaultInputsStyle {
   font-size: 16px;
@@ -62,81 +58,93 @@
 }
 @mixin form1($width, $maxWidth) {
   display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: fit-content;
-    margin: auto;
-    width: $width;
-    max-width: $maxWidth;
+  flex-direction: column;
+  gap: 20px;
+  width: fit-content;
+  margin: auto;
+  width: $width;
+  max-width: $maxWidth;
 
-    h1 {
-      position: relative;
-      z-index: 10;
-    }
-    .inputs {
+  h1 {
+    position: relative;
+    z-index: 10;
+  }
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 2vw;
+    background-color: $white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3vw 1.5vw $blackest;
+
+    .input_container {
+      @include Font0;
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      padding: 2vw;
-      background-color: $white;
-      border-radius: 10px;
-      box-shadow: 0px 0px 3vw 1.5vw $blackest;
+      gap: 5px;
 
-      .input_container {
+      &.half{
+        width: 40%;
+      }
+
+      .counter {
+        color: $black;
+        width: fit-content;
+        margin-left: auto;
+      }
+      ._over {
+        color: $red;
+      }
+
+      label {
+        font-size: 14px;
+      }
+
+      input {
+        @include defaultInputsStyle;
+        border-bottom: 1px solid $black;
+
+        &[type="file"] {
+          border: none;
+        }
+
+        &:target,
+        &:focus {
+          border-bottom: 1px solid $red;
+        }
+      }
+      select {
+        @include defaultInputsStyle;
+        border: 1px solid $black;
+        width: fit-content;
+        margin-top: 4px;
+      }
+      textarea {
         @include Font0;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        @include defaultInputsStyle;
+        resize: vertical;
+        border: 1px solid $black;
 
-        label {
-          font-size: 14px;
+        &#text {
+          height: 35vh;
+        }
+        &#description {
+          height: 16vh;
+        }
+        &#message{
+          height: 30vh;
         }
 
-
-        input {
-          @include defaultInputsStyle;
-          border-bottom: 1px solid $black;
-
-          &[type="file"]{
-            border: none;
-
-            
-          }
-
-          &:target,
-          &:focus {
-            border-bottom: 1px solid $red;
-          }
-        }
-        select{
-          @include defaultInputsStyle;
-          border: 1px solid $black;
-          width: fit-content;
-          margin-top: 4px;
-        }
-        textarea{
-          @include Font0;
-          @include defaultInputsStyle;
-          resize: vertical;
-          border: 1px solid $black;
-
-          &#text{
-            height: 35vh;
-          }
-          &#description{
-            height: 16vh;
-          }
-
-          &:target,
-          &:focus {
-            border: 1px solid $red;
-          }
-
+        &:target,
+        &:focus {
+          border: 1px solid $red;
         }
       }
     }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-    }
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
 }

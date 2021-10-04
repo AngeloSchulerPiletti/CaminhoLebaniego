@@ -1,22 +1,104 @@
 <template>
   <app-layout backID="5">
     <template v-slot:header_sec>
-      <banner-content :pageData="pageData"/>
+      <banner-content :pageData="pageData" />
     </template>
-    <template v-slot:main><h1>ISSO É A main</h1></template>
+    <template v-slot:main>
+      <form @submit.prevent>
+        <div class="inputs">
+          <div class="input_container half">
+            <label for="name">Nome Completo</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              v-model="form.name"
+              placeholder="Virginia Eliza"
+            />
+          </div>
+          <div class="input_container half">
+            <label for="phone">Telefone</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              v-model="form.phone"
+              placeholder="+NN DDD XXXXX-XXXX"
+            />
+          </div>
+          <div class="input_container half">
+            <label for="email">E-Mail</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              v-model="form.email"
+              placeholder="exemplo@exemplo.com"
+            />
+          </div>
+          <div class="input_container">
+            <label for="message">Mensagem</label>
+            <textarea
+              name="message"
+              id="message"
+              @input="counter.actual.message = form.message.length"
+              v-model="form.message"
+              placeholder="Digite aqui sua mensagem"
+            ></textarea>
+            <span :class="'counter ' + checkMaxLength('message')"
+              >{{ counter.actual.message }}/1000</span
+            >
+          </div>
+        </div>
+
+        <div class="actions">
+          <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </template>
   </app-layout>
 </template>
+
 <script>
-// @ is an alias to /src
+import { apiRequestProtocol } from "@/service/api.js";
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
- 
+
 export default {
-  name: "contato",
-  methods: {
+  data() {
+    return {
+      form: {
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      },
+      counter: {
+        actual: {
+          message: 0,
+        },
+        max: {
+          message: 1000,
+        },
+      },
+      disabled: "",
+    };
   },
-  created(){
-    this.$store.commit('setTitle', "Contato");
+  methods: {
+    submit() {
+      apiRequestProtocol()
+        .post(`contato/mensagem`, this.form)
+        .then((response) => console.log(response))
+        .catch((err) => console.log(erro));
+    },
+    checkMaxLength(type) {
+      return this.counter.actual[type] > this.counter.max[type] ? "_over" : "";
+    },
+  },
+  created() {
+    this.$store.commit("setTitle", "Contato");
   },
   props: {
     pageData: Object,
@@ -29,4 +111,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+form {
+  @include form1(80vw, 100vw);
+}
 </style>

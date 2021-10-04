@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ArticleListController;
+use App\Http\Controllers\ClientMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,6 @@ use App\Http\Controllers\ArticleListController;
 /* +==========================+
    |     ASK FOR CONTENT      | 
    +==========================+*/
-
 Route::get('/content/{page}',      [ViewsController::class, 'getPageContent']);
 Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}/{status?}', [ArticleListController::class, 'getArticles']);
 Route::get('/artigo/{url}',        [ArticleController::class, 'index']);
@@ -47,6 +47,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
    +==========================+*/
 Route::post('/login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [UserController::class, 'logout']);
+
+
+
+/* +==========================+
+   |        FROM CLIENT       | 
+   +==========================+*/
+   Route::post('/contato/mensagem', [ClientMessageController::class, 'index']);
 
 
 

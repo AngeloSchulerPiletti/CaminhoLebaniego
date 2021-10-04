@@ -228,7 +228,7 @@ export default {
 
 <style lang="scss" scoped>
 form {
-  @include form1(50vw, 700px);
+  @include form1(50vw, 100px);
 
   .input_container {
     label {
@@ -257,14 +257,6 @@ form {
           width: 10px;
         }
       }
-    }
-    .counter {
-      color: $black;
-      width: fit-content;
-      margin-left: auto;
-    }
-    ._over{
-      color: $red;
     }
   }
 }
