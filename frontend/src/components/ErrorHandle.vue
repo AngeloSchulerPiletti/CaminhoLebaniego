@@ -33,19 +33,14 @@ export default {
           var cards = this.$el.querySelectorAll(".err_card");
           const time = 500;
 
-          function onAndOff(item, index) {
-            return new Promise(() => {
-              setTimeout(() => {
-                item.dataset.anim = "on";
-                setTimeout(() => {
-                  item.dataset.anim = "off";
-                }, time * 12);
-              }, time * (index + 1));
-            });
-          }
-
           for (let i = 0; i < cards.length; i++) {
-            onAndOff(cards[i], i);
+            setTimeout(() => {
+              cards[i].dataset.anim = "on";
+              setTimeout(() => {
+                cards[i].dataset.anim = "off";
+                if (i + 1 == cards.length) this.errorsToShow = [];
+              }, time * 12);
+            }, time * (i + 1));
           }
         }, 0);
       },

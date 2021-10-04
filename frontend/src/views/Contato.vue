@@ -90,7 +90,9 @@ export default {
     submit() {
       apiRequestProtocol()
         .post(`contato/mensagem`, this.form)
-        .then((response) => console.log(response))
+        .then((response) => {
+          response.data.error ? this.$store.commit('setErrors', response.data.error) : null;
+        })
         .catch((err) => {
           this.$store.commit('setErrors', ['Houve um erro ao enviar']);
         });
