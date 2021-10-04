@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div v-if="totalArticles>0" class="pagination">
+    <div v-if="totalArticles > 0" class="pagination">
       <span
         @click="
           page = 1;
@@ -160,10 +160,17 @@ export default {
           `lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`
         )
         .then((response) => {
+          if (response.data.error) {
+            this.$store.commit("setErrors", response.data.error);
+            this.articlesList = false;
+            return;
+          }
+
           this.articlesList = response.data.articlesList;
           this.totalArticles = response.data.totalArticles;
         })
         .catch((error) => {
+          this.$store.commit("setErrors", [error]);
           this.articlesList = false;
         });
     },
@@ -183,10 +190,14 @@ export default {
       apiRequestProtocol(token)
         .get(`${action}/${articleId}`)
         .then((response) => {
+          if (response.data.error) {
+            this.$store.commit("setErrors", response.data.error);
+            return;
+          }
           this.$router.go(0);
         })
         .catch((error) => {
-          console.log(error);
+          this.$store.commit("setErrors", [error]);
         });
     },
     askForEdit(articleId) {

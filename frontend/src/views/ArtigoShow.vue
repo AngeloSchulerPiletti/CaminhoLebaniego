@@ -1,7 +1,7 @@
 <template>
   <app-layout :isArticle="true">
     <template v-slot:main>
-      <share-button v-if="article.status == 1" :url="article.url"/>
+      <share-button v-if="article.status == 1" :url="article.url" />
       <section id="sec1">
         <div class="header"></div>
         <article-component
@@ -46,6 +46,10 @@ export default {
       apiRequestProtocol(token)
         .get(`artigo/${url}`)
         .then((response) => {
+          if (response.data.error) {
+            this.$store.commit("setErrors", response.data.error);
+            return;
+          }
           this.article = response.data;
           this.$store.commit("setTitle", response.data.title);
         })

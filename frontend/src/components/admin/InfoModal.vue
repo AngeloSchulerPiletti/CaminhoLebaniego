@@ -46,7 +46,7 @@ export default {
             this.paragraphs = response.data.infoModal.paragraphs;
           })
           .catch((error) => {
-            console.log(error);
+            this.$store.commit("setErrors", [error]);
           });
       }
     },
@@ -112,9 +112,9 @@ export default {
       max-height: 60vh;
 
       &:deep() {
-          display: flex;
-          flex-direction: column;
-          gap: 1vw;
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
 
         p {
           @include Font0;
@@ -141,9 +141,9 @@ export default {
               top: 0;
             }
           }
-          ul{
-              margin-left: 2em;
-              margin-bottom: 0.8em;
+          ul {
+            margin-left: 2em;
+            margin-bottom: 0.8em;
           }
         }
         strong {
@@ -152,11 +152,11 @@ export default {
         em {
           font-style: italic;
         }
-        h5{
-            font-size: 2vw;
+        h5 {
+          font-size: 2vw;
         }
-        h6{
-            font-size: 1.6vw;
+        h6 {
+          font-size: 1.6vw;
         }
       }
     }

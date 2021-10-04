@@ -16,7 +16,9 @@
               v-model="article.title"
               @input="counter.actual.title = article.title.length"
             />
-            <span :class="'counter '+checkMaxLength('title')">{{ counter.actual.title }}/150</span>
+            <span :class="'counter ' + checkMaxLength('title')"
+              >{{ counter.actual.title }}/150</span
+            >
           </div>
           <div class="input_container">
             <label for="description" @click="whichInfo = 'description'"
@@ -29,7 +31,9 @@
               v-model="article.description"
               @input="counter.actual.description = article.description.length"
             ></textarea>
-            <span :class="'counter '+checkMaxLength('description')">{{ counter.actual.description }}/254</span>
+            <span :class="'counter ' + checkMaxLength('description')"
+              >{{ counter.actual.description }}/254</span
+            >
           </div>
           <div class="input_container">
             <label for="text" @click="whichInfo = 'article'">Artigo</label>
@@ -50,7 +54,9 @@
               v-model="article.tags"
               @input="counter.actual.tags = article.tags.length"
             />
-            <span :class="'counter '+checkMaxLength('tags')">{{ counter.actual.tags }}/800</span>
+            <span :class="'counter ' + checkMaxLength('tags')"
+              >{{ counter.actual.tags }}/800</span
+            >
           </div>
           <div class="input_container">
             <label for="draft" @click="whichInfo = 'draft'"
@@ -161,6 +167,10 @@ export default {
       apiRequestProtocol(token)
         .get(`artigo-pelo-id/${articleId}`)
         .then((response) => {
+          if (response.data.error) {
+            this.$store.commit("setErrors", response.data.error);
+            return;
+          }
           this.article.title = response.data.title;
           this.article.description = response.data.description;
           this.article.tags = response.data.tags;
@@ -187,10 +197,14 @@ export default {
           "Content-type": "multipart/form-data",
         })
         .then((response) => {
-          response.data.error ? this.$store.commit('setErrors', response.data.error) : null;
-          console.log(response);
           this.disabled = "";
+          response.data.error
+            ? this.$store.commit("setErrors", response.data.error)
+            : null;
           this.$store.commit("setTitle", "Admin");
+        })
+        .catch((err) => {
+          this.$store.commit("setErrors", [err]);
         });
     },
     edit() {
@@ -213,8 +227,14 @@ export default {
           "Content-type": "multipart/form-data",
         })
         .then((response) => {
+          response.data.error
+            ? this.$store.commit("setErrors", response.data.error)
+            : null;
           this.disabled = "";
           this.$store.commit("setTitle", "Admin");
+        })
+        .catch((err) => {
+          this.$store.commit("setErrors", [err]);
         });
     },
   },

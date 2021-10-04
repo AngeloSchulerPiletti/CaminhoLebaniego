@@ -53,19 +53,24 @@ export default {
       console.log("submitado");
       this.disabled = "disabled";
 
-      apiRequestProtocol().post("login", this.formUser).then((response) => {
-        this.disabled = "";
-
-        if (response.status >= 200 && response.status < 300) {
+      apiRequestProtocol()
+        .post("login", this.formUser)
+        .then((response) => {
+          this.disabled = "";
+          if (response.data.error) {
+            this.$store.commit("setErrors", response.data.error);
+            return;
+          }
           this.$store.commit("setSessionData", {
             user: response.data.user,
             token: response.data.token,
             logged: true,
           });
-
           this.$router.push("/area-do-administrador");
-        }
-      });
+        })
+        .catch((err) => {
+          this.$store.commit("setErrors", [err]);
+        });
     },
   },
   components: {
