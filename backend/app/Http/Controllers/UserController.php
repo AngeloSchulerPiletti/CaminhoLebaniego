@@ -23,15 +23,15 @@ class UserController extends Controller
             'password' => 'Senha',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 406);
+            return response()->json(['error' => array_values($validator->errors()->all())]);
         }
 
         $credentials = $request->only('email', 'password');
         $user = User::where('email', $credentials['email'])->first();
         if (!$user) {
-            return response()->json(['error' => ['Você não tem acesso a está área']], 401);
+            return response()->json(['error' => ['Você não tem acesso a está área']]);
         } else if (!Hash::check($credentials['password'], $user->password)) {
-            return response()->json(['error' => ['Dados inválidos']], 401);
+            return response()->json(['error' => ['Dados inválidos']]);
         }
 
         return response()->json(['user' => $user, 'token' => $user->createToken('API_token')->plainTextToken], 201);
@@ -40,6 +40,6 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $totalTokens = auth()->user()->tokens()->delete();
-        return response()->json(['message' => "Você foi deslogado e " . $totalTokens . " tokens foram apagados"]);
+        return response()->json(['message' => ["Você foi deslogado e " . $totalTokens . " tokens foram apagados"]]);
     }
 }

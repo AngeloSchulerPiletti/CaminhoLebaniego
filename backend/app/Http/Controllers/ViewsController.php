@@ -62,7 +62,7 @@ class ViewsController extends Controller
                 break;
 
             default:
-                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']], 404);
+                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']]);
                 break;
         }
         return $pageData;
@@ -102,7 +102,7 @@ class ViewsController extends Controller
                 break;
             
             default:
-                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']], 404);
+                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']]);
                 break;
         }
         

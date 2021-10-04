@@ -52,7 +52,7 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => [$validator->errors()]]);
+            return response()->json(['error' => array_values($validator->errors()->all())]);
         }
         $article = new Article();
 
@@ -98,7 +98,7 @@ class ArticleController extends Controller
                             unlink($file); // delete file
                         }
                     }
-                    abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                    return response()->json(['error'=>["As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif"]]);
                 }
             }
 
@@ -112,14 +112,14 @@ class ArticleController extends Controller
         $article->unformatted_text = $request->text;
         $article->save();
 
-        return response()->json(['success' => 'Você criou um artigo!']);
+        return response()->json(['message' => ['Você criou um artigo!']]);
     }
 
     public function logic_deletation($id)
     {
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '3']);
-        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
         return response()->json(['message' => ['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
     }
 
@@ -127,7 +127,7 @@ class ArticleController extends Controller
     {
         $id = (int)$id;
         $article = DB::table('articles')->where('id', $id)->first();
-        if ($id < 0 || !$article) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        if ($id < 0 || !$article) return response()->json(['error' => ['id do artigo é inválido']]);
 
         $messages = [];
         if (isset($article->images_absolute_path)) {
@@ -150,7 +150,7 @@ class ArticleController extends Controller
     {
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '2']);
-        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
         return response()->json(['message' => ['Artigo restaurado com sucesso, você pode vê-lo nos rascunhos']]);
     }
 
@@ -158,7 +158,7 @@ class ArticleController extends Controller
     {
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '1']);
-        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']], 400);
+        if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
         return response()->json(['message' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
     }
 
@@ -180,7 +180,7 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => [$validator->errors()]]);
+            return response()->json(['error' => array_values($validator->errors()->all())]);
         }
 
         $url = title_parser($request->title);
@@ -209,7 +209,7 @@ class ArticleController extends Controller
                 $messages[] = "Imagens excluídas com sucesso";
             }
         } else {
-            return response()->json(['error' => ['ID inválido']], 404);
+            return response()->json(['error' => ['ID inválido']]);
         }
 
         if ($request->file('image')) {
