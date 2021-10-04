@@ -38,7 +38,7 @@ export default {
               cards[i].dataset.anim = "on";
               setTimeout(() => {
                 cards[i].dataset.anim = "off";
-                if (i + 1 == cards.length) this.errorsToShow = [];
+                if (i + 1 == cards.length) setTimeout(() => {this.errorsToShow = []}, time);
               }, time * 12);
             }, time * (i + 1));
           }
@@ -66,6 +66,7 @@ export default {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     box-shadow: 0 0 10px #000;
+      max-width: 30vw;
 
     p {
       @include Font0;
