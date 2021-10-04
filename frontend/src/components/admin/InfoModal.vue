@@ -39,13 +39,14 @@ export default {
   methods: {
     getInfo(which) {
       if (which && which != "") {
-          apiRequestProtocol(this.$store.state.sessionData.token)
+        apiRequestProtocol(this.$store.state.sessionData.token)
           .post(`admin-information/article/${which}`)
-          .then(response => {
-              this.title = response.data.infoModal.title;
-              this.paragraphs = response.data.infoModal.paragraphs;
-          }).catch(error => {
-              console.log(error);
+          .then((response) => {
+            this.title = response.data.infoModal.title;
+            this.paragraphs = response.data.infoModal.paragraphs;
+          })
+          .catch((error) => {
+            console.log(error);
           });
       }
     },
@@ -86,10 +87,35 @@ export default {
     padding: 2vw;
 
     .top {
+      padding-bottom: 1vw;
+      margin-bottom: 2vw;
+      position: relative;
 
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        border-bottom: 2px solid $red;
+      }
+      &::before {
+        left: 0;
+        width: 25%;
+      }
+      &::after{
+          left: 26%;
+          width: 2%;
+      }
     }
-    .main{
-        overflow-y: auto;
+    .main {
+      overflow-y: auto;
+
+      &:deep() {
+        p {
+          @include Font0;
+          font-size: 15px;
+        }
+      }
     }
   }
 }
