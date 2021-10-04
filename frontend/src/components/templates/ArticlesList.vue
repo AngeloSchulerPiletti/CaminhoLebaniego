@@ -252,6 +252,7 @@ export default {
       h2 {
         cursor: pointer;
         font-size: 26px;
+        word-break: break-all;
       }
       p {
         cursor: default;
