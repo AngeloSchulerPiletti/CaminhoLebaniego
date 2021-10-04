@@ -13,8 +13,7 @@ function currentYPosition() {
 function elmYPosition(sec_id, scope, preMargin) {
     
     var elm = scope.querySelector('#'+sec_id);
-    var margin = preMargin;
-    var y = elm.offsetTop - margin;
+    var y = elm.offsetTop - preMargin;
     var node = elm;
     while (node.offsetParent && node.offsetParent != document.body) {
         node = node.offsetParent;

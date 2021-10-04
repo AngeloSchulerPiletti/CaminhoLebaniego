@@ -1,7 +1,18 @@
 <template>
-  <section class="wrapper">
+  <section class="wrapper" id="articles_list-component">
     <div class="title" v-if="title">
       <h1 class="title2">{{ title }}</h1>
+    </div>
+    <div class="controlls">
+      <label
+        >Artigos por página
+        <select v-model="perpage" @change="page=1; requestArticleList()">
+          <option value="4">4</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </label>
     </div>
     <div v-if="articlesList === false" class="problem">
       Tivemos um problema ao carregar os artigos
@@ -35,29 +46,67 @@
           class="controll_container"
         >
           <ul>
-            <li @click="callControll('deletar-artigo', article.id)" v-if="$route.name == 'alterar_artigos' || $route.name == 'drafts'">Deletar</li>
-            <li @click="askForEdit(article.id)" v-if="$route.name != 'trash'">Editar</li>
-            <li @click="callControll('restaurar-artigo', article.id)" v-if="$route.name == 'trash'">Restaurar</li>
-            <li @click="callControll('excluir-artigo', article.id)" v-if="$route.name == 'trash'">Excluir</li>
-            <li @click="callControll('publicar-artigo', article.id)" v-if="$route.name == 'drafts'">Publicar</li>
+            <li
+              @click="callControll('deletar-artigo', article.id)"
+              v-if="$route.name == 'alterar_artigos' || $route.name == 'drafts'"
+            >
+              Deletar
+            </li>
+            <li @click="askForEdit(article.id)" v-if="$route.name != 'trash'">
+              Editar
+            </li>
+            <li
+              @click="callControll('restaurar-artigo', article.id)"
+              v-if="$route.name == 'trash'"
+            >
+              Restaurar
+            </li>
+            <li
+              @click="callControll('excluir-artigo', article.id)"
+              v-if="$route.name == 'trash'"
+            >
+              Excluir
+            </li>
+            <li
+              @click="callControll('publicar-artigo', article.id)"
+              v-if="$route.name == 'drafts'"
+            >
+              Publicar
+            </li>
           </ul>
         </div>
       </div>
     </div>
+      <div class="pagination">
+        <span @click="page = 1; requestArticleList()" v-show="page > 2">{{ 1 }}</span>
+        <p v-show="page > 2">...</p>
+        <span @click="page -= 1; requestArticleList()" v-show="page > 1">{{ page - 1 }}</span>
+        <span class="actual">{{ page }}</span>
+        <span @click="page += 1; requestArticleList()" v-show="page < totalPages">{{ page + 1 }}</span>
+        <p v-show="page < totalPages-1">...</p>
+        <span @click="page = totalPages; requestArticleList()" v-show="page < totalPages-1">{{ totalPages }}</span>
+      </div>
   </section>
 </template>
 
 <script>
 import { apiRequestProtocol } from "@/service/api.js";
+import { scrollToSec } from "@/modules/scrolling.js";
 
 export default {
   data() {
     return {
       page: 1,
       perpage: 10,
+      totalArticles: 0,
       articlesList: {},
       query: "todos",
     };
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.totalArticles / this.perpage);
+    },
   },
   mounted() {
     if (this.$route.params.query) {
@@ -67,6 +116,7 @@ export default {
   },
   methods: {
     requestArticleList() {
+      scrollToSec(this.$el.id, document, 40);
       let status = this.status ? this.status : "";
       let token = this.$store.state.logged
         ? this.$store.state.sessionData.token
@@ -76,7 +126,8 @@ export default {
           `lista-de-artigos/${this.query}/${this.page}/${this.perpage}/${status}`
         )
         .then((response) => {
-          this.articlesList = response.data;
+          this.articlesList = response.data.articlesList;
+          this.totalArticles = response.data.totalArticles;
         })
         .catch((error) => {
           this.articlesList = false;
@@ -104,8 +155,11 @@ export default {
           console.log(error);
         });
     },
-    askForEdit(articleId){
-      this.$router.push({name: 'criar_artigos', params: {articleId: articleId, pageTitle: "Editar Artigo"}});
+    askForEdit(articleId) {
+      this.$router.push({
+        name: "criar_artigos",
+        params: { articleId: articleId, pageTitle: "Editar Artigo" },
+      });
     },
   },
   watch: {
@@ -125,8 +179,19 @@ export default {
 <style lang="scss" scoped>
 .title {
   margin: 0 5vw;
+  margin-bottom: 2vw;
 }
-.problem, .loading{
+.controlls {
+  margin-right: 5vw;
+  margin-left: auto;
+  width: fit-content;
+  label {
+    @include Font1;
+    color: $white;
+  }
+}
+.problem,
+.loading {
   @include Font1_I;
   color: $white;
   font-size: 20px;
@@ -136,7 +201,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3vw;
-  padding: 5vw 3vw;
+  padding: 0vw 3vw;
+  padding-top: 2vw;
 
   .card {
     box-shadow: 0 0 0.8vw 0.3vw #000;
@@ -221,4 +287,35 @@ export default {
     }
   }
 }
+  .pagination{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 4vw;
+    align-items:center;
+
+    span{
+      cursor: pointer;
+      @include Font0;
+      font-family: Arial, Roboto, sans-serif;
+      color: $white;
+      font-size: 18px;
+      text-decoration: underline;
+      transition: color 300ms;
+
+      &.actual{
+        font-size: 24px;
+        text-decoration: none;
+        color: $red;
+      }
+      &:hover{
+        color: $red;
+      }
+    }
+    p{
+      @include Font0;
+      color: $white;
+      font-size: 18px;
+    }
+  }
 </style>
