@@ -102,18 +102,61 @@ export default {
         left: 0;
         width: 25%;
       }
-      &::after{
-          left: 26%;
-          width: 2%;
+      &::after {
+        left: 26%;
+        width: 2%;
       }
     }
     .main {
       overflow-y: auto;
+      max-height: 60vh;
 
       &:deep() {
+          display: flex;
+          flex-direction: column;
+          gap: 1vw;
+
         p {
           @include Font0;
           font-size: 15px;
+          text-align: justify;
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2em;
+          font-size: 16px;
+          @include Font0;
+
+          li {
+            margin-left: 1em;
+            padding-left: 0.5em;
+            position: relative;
+            &::before {
+              position: absolute;
+              content: "";
+              border-left: 2px solid $red;
+              height: 100%;
+              left: 0;
+              top: 0;
+            }
+          }
+          ul{
+              margin-left: 2em;
+              margin-bottom: 0.8em;
+          }
+        }
+        strong {
+          font-weight: 700;
+        }
+        em {
+          font-style: italic;
+        }
+        h5{
+            font-size: 2vw;
+        }
+        h6{
+            font-size: 1.6vw;
         }
       }
     }

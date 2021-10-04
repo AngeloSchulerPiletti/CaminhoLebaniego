@@ -50,7 +50,7 @@
             </select>
           </div>
           <div class="input_container">
-            <label for="images" @click="whichInfo = 'images'">Adicione as Imagens Zipadas ao Artigo</label>
+            <label @click="whichInfo = 'images'">Adicione as Imagens Zipadas ao Artigo</label>
             <input
               @change="uploadFile"
               type="file"
