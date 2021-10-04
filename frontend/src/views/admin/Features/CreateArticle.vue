@@ -228,7 +228,7 @@ export default {
 
 <style lang="scss" scoped>
 form {
-  @include form1(50vw, 100px);
+  @include form1(50vw, 700px);
 
   .input_container {
     label {
