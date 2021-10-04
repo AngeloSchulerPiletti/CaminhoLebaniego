@@ -91,7 +91,9 @@ export default {
       apiRequestProtocol()
         .post(`contato/mensagem`, this.form)
         .then((response) => console.log(response))
-        .catch((err) => console.log(erro));
+        .catch((err) => {
+          this.$store.commit('setErrors', ['Houve um erro ao enviar']);
+        });
     },
     checkMaxLength(type) {
       return this.counter.actual[type] > this.counter.max[type] ? "_over" : "";

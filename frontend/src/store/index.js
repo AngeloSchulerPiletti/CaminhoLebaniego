@@ -12,13 +12,22 @@ export default createStore({
     },
     imgSrc: "",
     hasScroll: "off",
-    sessionData:{
+    sessionData: {
       user: undefined,
       token: undefined,
     },
+    errors: [],
     logged: false,
   },
   mutations: {
+    setErrors(state, errors) {
+      var actualTitle = document.title;
+      document.title = state.htmlMetaData.titleTemplate.replace('%%', 'Ops!');
+      setTimeout(() => {
+        document.title = actualTitle;
+      }, 1000);
+      state.errors = errors;
+    },
     setTitle(state, addTitle) {
       document.title = state.htmlMetaData.titleTemplate.replace('%%', addTitle);
     },
@@ -33,7 +42,7 @@ export default createStore({
         state.hasScroll = "off";
       }
     },
-    setSessionData(state, sessionData){
+    setSessionData(state, sessionData) {
       state.sessionData.user = sessionData.user;
       state.sessionData.token = sessionData.token;
       state.logged = sessionData.logged;

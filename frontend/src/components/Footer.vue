@@ -1,18 +1,18 @@
 <template>
   <footer>
       <div class="top">
-          <h2 class="title3">Um título qualquer</h2>
+          <h2 class="title3">Links Úteis</h2>
       </div>
       <div class="center">
           <ul>
               <router-link to="/area-do-administrador"><li>Área do Administrador</li></router-link>
-              <router-link to="/"><li>Fale Conosco</li></router-link>
+              <!-- <router-link to="/"><li>Fale Conosco</li></router-link> -->
               <a href="https://www.linkedin.com/in/angelo-schuler-piletti/" target="_blank"><li>Quem desenvolveu o site?</li></a>
           </ul>
           <ul>
-              <router-link to="/"><li>Política de Privacidade</li></router-link>
+              <!-- <router-link to="/"><li>Política de Privacidade</li></router-link> -->
               <a href="https://www.caminolebaniego.com/" target="_blank"><li>Site Oficial</li></a>
-              <router-link to="/"><li>Patrocínio ou Doações</li></router-link>
+              <!-- <router-link to="/"><li>Patrocínio ou Doações</li></router-link> -->
           </ul>
       </div>
           <div class="bottom">

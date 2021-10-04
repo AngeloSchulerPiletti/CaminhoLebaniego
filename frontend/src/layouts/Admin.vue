@@ -1,6 +1,7 @@
 <template>
   <div>
     <header-component />
+    <error-handle />
     <main>
       <h2 v-if="pageTitle" class="title4">{{ pageTitle }}</h2>
       <slot></slot>
@@ -12,6 +13,7 @@
 <script>
 import Header from "@/components/admin/Header";
 import LateralMenuBottom from "@/components/LateralMenuBottom";
+import ErrorHandle from "@/components/ErrorHandle";
 
 export default {
   data() {
@@ -25,6 +27,7 @@ export default {
   components: {
     "header-component": Header,
     LateralMenuBottom,
+    ErrorHandle,
   },
   props: {
     pageTitle: String,

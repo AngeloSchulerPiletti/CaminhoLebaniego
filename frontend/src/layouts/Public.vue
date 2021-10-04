@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
     <div id="website_container" v-if="show">
+      <error-handle/>
       <great-modal
         :modalPage="modal['html']"
         :modalOptions="modal['options']"
@@ -27,6 +28,7 @@ import Footer from "@/components/Footer";
 import ModalImage from "@/components/templates/ModalImage";
 import SearchModal from "@/components/SearchModal";
 import HeaderBanner from "../components/HeaderBanner.vue";
+import ErrorHandle from "@/components/ErrorHandle";
 
 export default {
   data() {
@@ -59,6 +61,7 @@ export default {
     ModalImage,
     SearchModal,
     HeaderBanner,
+    ErrorHandle,
   },
 };
 </script>
