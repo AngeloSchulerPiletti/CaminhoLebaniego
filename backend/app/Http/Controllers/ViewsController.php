@@ -6,13 +6,8 @@ use Illuminate\Http\Request;
 
 class ViewsController extends Controller
 {
-    protected const ACCEPTED_PAGES = ["inicio", "preparacao", "caminho", "experiencia", "artigos", "contato", "search_result"]; 
-
     public function getPageContent($pageContent)
     {
-        if (!in_array($pageContent, $this::ACCEPTED_PAGES)) {
-            abort(404, "Por favor, corrija a URL de destino da requisição para a API.");
-        }
         $pageData = [];
         switch ($pageContent) {
             case 'inicio':
@@ -67,9 +62,50 @@ class ViewsController extends Controller
                 break;
 
             default:
-                # code...
+                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']], 404);
                 break;
         }
         return $pageData;
+    }
+
+    public function getModalAdminInfo($field){
+        $modalData = [];
+        switch ($field) {
+            case 'title':
+                $modalData['title'] = "Título";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/title.html'));
+                break;
+                
+            case 'description':
+                $modalData['title'] = "Descrição";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/description.html'));
+                break;
+                
+            case 'article':
+                $modalData['title'] = "O Artigo";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/article.html'));
+                break;
+                
+            case 'tags':
+                $modalData['title'] = "Tags do Artigo";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/tags.html'));
+                break;
+                
+            case 'draft':
+                $modalData['title'] = "Rascunho";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/draft.html'));
+                break;
+                
+            case 'images':
+                $modalData['title'] = "Imagens";
+                $modalData['paragraphs'] = file_get_contents(base_path('resources/html/infoModal/images.html'));
+                break;
+            
+            default:
+                return response()->json(['error' => ['Por favor, corrija a URL de destino da requisição para a API.']], 404);
+                break;
+        }
+        
+        return response()->json(['infoModal' => $modalData]);
     }
 }

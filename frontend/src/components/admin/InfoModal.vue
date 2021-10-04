@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="back_view" v-show="show" @click="closeModal($event)">
+    <div class="back_view" v-if="show" @click="closeModal($event)">
       <div class="container">
         <div class="top">
           <h3 class="title4-1">{{ title }}</h3>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { apiRequestProtocol } from "@/service/api.js";
+
 export default {
   data() {
     return {
@@ -36,14 +38,24 @@ export default {
   },
   methods: {
     getInfo(which) {
-      console.log(which);
+      if (which && which != "") {
+          apiRequestProtocol(this.$store.state.sessionData.token)
+          .post(`admin-information/article/${which}`)
+          .then(response => {
+              this.title = response.data.infoModal.title;
+              this.paragraphs = response.data.infoModal.paragraphs;
+          }).catch(error => {
+              console.log(error);
+          });
+      }
     },
     closeModal(event = null) {
       if (!event || event.path.length <= 8) {
-        console.log(event);
         this.show = false;
         this.$emit("modalClosed");
         document.body.style.overflowY = "auto";
+        this.paragraphs = null;
+        this.title = "Carregando...";
       }
     },
   },
@@ -74,6 +86,10 @@ export default {
     padding: 2vw;
 
     .top {
+
+    }
+    .main{
+        overflow-y: auto;
     }
   }
 }

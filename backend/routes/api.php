@@ -27,7 +27,7 @@ use App\Http\Controllers\ArticleListController;
    |     ASK FOR CONTENT      | 
    +==========================+*/
 
-Route::get('/content/{page}', [ViewsController::class, 'getPageContent']);
+Route::get('/content/{page}',      [ViewsController::class, 'getPageContent']);
 Route::get('/lista-de-artigos/{keyword}/{page?}/{perpage?}/{status?}', [ArticleListController::class, 'getArticles']);
 Route::get('/artigo/{url}',        [ArticleController::class, 'index']);
 Route::get('/artigo-pelo-id/{id}', [ArticleController::class, 'getArticleById']);
@@ -53,7 +53,8 @@ Route::middleware('auth:sanctum')->post('/logout', [UserController::class, 'logo
 /* +==========================+
    |       ADMIN ROUTES       | 
    +==========================+*/
-Route::middleware('auth:sanctum')->post('/novo-artigo', [ArticleController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/novo-artigo',                        [ArticleController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/admin-information/article/{field}',  [ViewsController::class, 'getModalAdminInfo']);
 
 
 
