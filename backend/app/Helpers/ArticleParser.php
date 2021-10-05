@@ -83,11 +83,11 @@ if (!function_exists('article_text_to_html')) {
     {
         $text .= "\u{000A}";
 
-        $text = preg_replace_callback('/(<-)(.+)(->)/U', function ($matches) {
+        $text = preg_replace_callback('/(<-)(.+)(->)/Us', function ($matches) {
             return make_opened_html_tag('hr', $matches[2]);
         }, $text);
 
-        $text = preg_replace_callback('/\$(.+)\[(.+)\]\$/U', function ($matches) {
+        $text = preg_replace_callback('/\$(.+)\[(.+)\][$]/Us', function ($matches) {
             return make_closer_html_tag('a', $matches[1], " ", attr_arr_to_attr_html(['href' => $matches[2]]));
         }, $text);
 
@@ -120,7 +120,7 @@ if (!function_exists('article_text_to_html')) {
         }, $text);
 
         $text = preg_replace_callback('/(<\"[\r\n]{1})(.+)(\">[\r\n]{1})/Us', function ($matches) {
-            $inside_p = preg_replace_callback('/(.+)[\r\n]{1}/', function ($matches2) {
+            $inside_p = preg_replace_callback('/(.+)[\r\n]{1}/U', function ($matches2) {
                 return make_closer_html_tag('p', $matches2[1], 'inside_p');
             }, $matches[2]);
             return make_closer_html_tag('div', $inside_p, "quotes");
@@ -129,7 +129,7 @@ if (!function_exists('article_text_to_html')) {
 
 
         $text = preg_replace_callback('/\@\@(.+)([\r\n]{1})/U', function ($matches) {
-            return make_closer_html_tag('p', $matches[1]);
+            return make_closer_html_tag('p', $matches[1], "simple_p");
         }, $text);
 
         $text = preg_replace_callback('/\n/', function ($matches) {
@@ -146,7 +146,7 @@ if (!function_exists('check_num_of_article_imgs')) {
     {
         $result = preg_match_all('/<\/(.+)\/>/U', $text);
         if ($result != $imgs_on_zip) {
-            abort(400, "O número de imagens no artigo não é o mesmo número de imagens enviadas");
+            return response()->json(['error' => ["O número de imagens no artigo não é o mesmo número de imagens enviadas"]]);
         }
     }
 }
@@ -156,7 +156,7 @@ if (!function_exists('article_img_treatment')) {
     function article_img_treatment($text, $imgs_name, $imgs_path)
     {
         $imgs_on_text = 0;
-        $text = preg_replace_callback('/<\/(.+)\/>/U', function ($matches) use (&$imgs_on_text, $imgs_path, $imgs_name) {
+        $text = preg_replace_callback('/\!\[(.+)\]\!/U', function ($matches) use (&$imgs_on_text, $imgs_path, $imgs_name) {
             return make_opened_html_tag('img', $matches[1], attr_arr_to_attr_html(["src" => $imgs_path . '/' . $imgs_name[$imgs_on_text]]));
             $imgs_on_text++;
         }, $text);
