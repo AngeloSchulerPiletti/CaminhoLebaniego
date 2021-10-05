@@ -231,11 +231,14 @@ export default {
           "Content-type": "multipart/form-data",
         })
         .then((response) => {
+          this.$store.commit("setTitle", "Admin");
           response.data.error
             ? this.$store.commit("setErrors", response.data.error)
             : null;
+          response.data.messages
+            ? this.$store.commit("setMessages", response.data.messages)
+            : null;
           this.disabled = "";
-          this.$store.commit("setTitle", "Admin");
         })
         .catch((err) => {
           this.$store.commit("setErrors", [err]);

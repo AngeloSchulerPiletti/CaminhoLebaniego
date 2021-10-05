@@ -260,6 +260,8 @@ export default {
       display: flex;
       flex-direction: column;
       gap: 1vw;
+      flex-grow: 1;
+
       h2 {
         cursor: pointer;
         font-size: 26px;
