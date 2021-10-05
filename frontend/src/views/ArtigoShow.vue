@@ -2,6 +2,7 @@
   <app-layout :isArticle="true">
     <template v-slot:main>
       <share-button v-if="article.status == 1" :url="article.url" />
+      <page-top-button/>
       <section id="sec1">
         <div class="header"></div>
         <article-component
@@ -19,6 +20,7 @@ import Article from "@/components/templates/Article";
 import { apiRequestProtocol } from "@/service/api.js";
 import Public from "@/layouts/Public";
 import ShareButton from "@/components/ShareButton";
+import PageTopButton from '@/components/PageTopButton.vue';
 
 export default {
   data() {
@@ -65,6 +67,7 @@ export default {
     "article-component": Article,
     "app-layout": Public,
     ShareButton,
+    PageTopButton,
   },
 };
 </script>
