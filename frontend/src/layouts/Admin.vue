@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-component />
-    <error-handle />
+    <bags-handle />
     <main>
       <h2 v-if="pageTitle" class="title4">{{ pageTitle }}</h2>
       <slot></slot>
@@ -13,7 +13,7 @@
 <script>
 import Header from "@/components/admin/Header";
 import LateralMenuBottom from "@/components/LateralMenuBottom";
-import ErrorHandle from "@/components/ErrorHandle";
+import BagsHandle from "@/components/BagsHandle";
 
 export default {
   data() {
@@ -27,7 +27,7 @@ export default {
   components: {
     "header-component": Header,
     LateralMenuBottom,
-    ErrorHandle,
+    BagsHandle,
   },
   props: {
     pageTitle: String,
