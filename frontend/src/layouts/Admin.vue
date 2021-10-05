@@ -3,7 +3,7 @@
     <header-component />
     <bags-handle />
     <main>
-      <h2 v-if="pageTitle" class="title4">{{ pageTitle }}</h2>
+      <h2 id="page_title" v-if="pageTitle" class="title4">{{ pageTitle }}</h2>
       <slot></slot>
     </main>
     <lateral-menu-bottom v-if="$route.name != 'login'" :locations="admin_links" />
@@ -39,7 +39,7 @@ export default {
 main {
   margin: 10vh 0;
 
-  h2 {
+  #page_title {
     padding: 0 4vw;
     margin-bottom: 4vw;
   }

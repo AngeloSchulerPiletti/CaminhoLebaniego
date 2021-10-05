@@ -9,10 +9,11 @@ export default {
       setTimeout(() => {
         var imgs = this.$el.querySelectorAll("img");
         for (let i = 0; i < imgs.length; i++) {
-          imgs[i].src = `${this.$store.state.urlApiBase}${this.imgs_path}/${this.imgs_names[i]}`;
+          imgs[
+            i
+          ].src = `${this.$store.state.urlApiBase}${this.imgs_path}/${this.imgs_names[i]}`;
         }
       }, 0);
-
     },
   },
   props: {
@@ -25,12 +26,15 @@ export default {
 
 <style lang="scss" scoped>
 .article_wrapper {
-  width: 80vw;
+  width: 50vw;
+  min-width: 500px;
+  max-width: 800px;
   margin: auto;
 
   &::v-deep() {
+    color: $white;
+
     .simple_p {
-      color: $white;
       text-align: justify;
       text-indent: 1.2em;
       margin: 0.6em 0;
@@ -44,6 +48,12 @@ export default {
       &::after {
         position: absolute;
         content: "";
+      }
+
+      figcaption {
+        @include Font2_I;
+        font-size: 14px;
+        margin-top: 3px;
       }
 
       img {
@@ -81,6 +91,7 @@ export default {
           @include pseudoStyle1(right, $img_padding);
         }
       }
+
       &.left.style2 {
         &::before {
           @include pseudoStyle2(top, left);
@@ -118,10 +129,147 @@ export default {
 
     hr {
       background-color: $red;
-      height: 1px;
       outline: 0 0 0 0;
       border: none;
       margin: 1vw 0;
+      width: 50%;
+
+      &.gorgeous {
+        height: 2px;
+      }
+      &.tiny {
+        height: 1px;
+      }
+
+      &.left {
+        margin-right: auto;
+      }
+      &.center {
+        margin: auto;
+      }
+      &.right {
+        margin-left: auto;
+      }
+      &.all {
+        width: 90%;
+        margin: auto;
+      }
+    }
+
+    h1 {
+      margin: 0.2em 0;
+      @include Drawed1;
+      font-size: 54px;
+
+      &::first-letter {
+        color: $red;
+        font-size: 1.25em;
+      }
+    }
+    h2 {
+      margin: 0.3em 0;
+      @include Title2;
+      font-size: 28px;
+      position: relative;
+      padding-left: 8px;
+
+      &::before{
+        position: absolute;
+        content: "";
+        border-left: 3px solid $red;
+        left: 0;
+        top: 0;
+        bottom: 0;
+      }
+    }
+    h3 {
+      margin: 0.3em 0;
+      @include Title3;
+      font-size: 26px;
+    }
+    h4 {
+      margin: 0.2em 0;
+      @include Title3;
+      font-size: 22px;
+    }
+    h5,h6{
+      margin: 0.2em 0;
+      &::before {
+        content: ">";
+        color: $red;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-left: 5px;
+      }
+
+    }
+    h5 {
+      margin: 0.2em 0;
+      @include Title3;
+      font-size: 20px;
+    }
+    h6 {
+      margin: 0.2em 0;
+      @include Title3_I;
+      font-size: 18px;
+    }
+
+
+
+    ul{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-left: 1.2em;
+
+      li{
+        @include Font1;
+        position: relative;
+
+        &::before{
+          content: "-";
+          margin-right: 6px;
+          color: $red;
+        }
+      }
+    }
+
+
+    a{
+      color: lighten($red, 5%);
+      font-weight: 700;
+      position: relative;
+
+      transition: color 100ms;
+
+      &::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid $red;
+
+        transition: right 200ms, left 200ms;
+      }
+
+      &:hover{
+        color: $red;
+        &::before{
+          left: 50%;
+          right: 50%;
+        }
+      }
+    }
+
+
+
+    .warn{
+      @include observationPreset(80%);
+      margin: 45px 0;
+    }
+    .quotes{
+      @include observationPreset(80%);
+      margin: 25px 0;
     }
   }
 }

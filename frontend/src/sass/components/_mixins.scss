@@ -84,7 +84,7 @@
       flex-direction: column;
       gap: 5px;
 
-      &.half{
+      &.half {
         width: 40%;
       }
 
@@ -132,7 +132,7 @@
         &#description {
           height: 16vh;
         }
-        &#message{
+        &#message {
           height: 30vh;
         }
 
@@ -146,5 +146,65 @@
   .actions {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@mixin observationPreset($width) {
+  width: $width;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 16px 30px;
+
+  position: relative;
+
+  p {
+    text-indent: 1.5em;
+    color: $white;
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  &.warn {
+    border: 2px solid $red;
+
+    &::after {
+      content: "!";
+      font-size: 30px;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 900;
+      color: $red;
+      position: absolute;
+      right: 50px;
+      top: 0;
+      transform: translateY(-65%);
+      background-color: $white;
+      border-radius: 100%;
+    }
+  }
+
+  &.quotes {
+    background-color: $white;
+    position: relative;
+    
+    p{
+      color: $black;
+      @include Font0;
+    }
+
+    &::before{
+      content: '"';
+      font-family: 'Secular One', sans-serif;
+      color: $black;
+      font-size: 50px;
+      position: absolute;
+
+      top: 10px;
+      left: 10px;
+    }
   }
 }
