@@ -36,20 +36,32 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:150',
-            'description' => 'required|string|max:254',
-            'text' => 'required|string',
-            'tags' => 'required|string|max:800',
-            'draft' => 'required|string',
-            'image' => 'file|mimetypes:application/zip',
-        ], [
-            'required' => 'Preencha o campo :attribute',
-            'string' => 'O campo :attribute precisa ser uma string',
-            'max' => 'O campo :attribute precisa ser menor que :max',
-            'file' => 'A :attribute precisa ser um arquivo',
-            'mimetypes' => 'O arquivo precisa ser do tipo zip'
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|string|max:150',
+                'description' => 'required|string|max:254',
+                'text' => 'required|string',
+                'tags' => 'required|string|max:800',
+                'draft' => 'required|string',
+                'image' => 'file|mimetypes:application/zip',
+            ],
+            [
+                'required' => 'Preencha o campo :attribute',
+                'string' => 'O campo :attribute precisa ser uma string',
+                'max' => 'O campo :attribute precisa ser menor que :max',
+                'file' => 'A :attribute precisa ser um arquivo',
+                'mimetypes' => 'O arquivo precisa ser do tipo zip'
+            ],
+            [
+                'title' => 'Título',
+                'description' => 'Descrição',
+                'text' => 'Artigo',
+                'tags' => 'Tags',
+                'draft' => 'Rascunho',
+                'image' => 'Imagem'
+            ]
+        );
 
         if ($validator->fails()) {
             return response()->json(['error' => array_values($validator->errors()->all())]);
@@ -98,7 +110,7 @@ class ArticleController extends Controller
                             unlink($file); // delete file
                         }
                     }
-                    return response()->json(['error'=>["As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif"]]);
+                    return response()->json(['error' => ["As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif"]]);
                 }
             }
 
@@ -164,20 +176,32 @@ class ArticleController extends Controller
 
     public function edit($id, Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:150',
-            'description' => 'required|string|max:254',
-            'text' => 'required|string',
-            'tags' => 'required|string|max:800',
-            'draft' => 'required|string',
-            'image' => 'file|mimetypes:application/zip',
-        ], [
-            'required' => 'Preencha o campo :attribute',
-            'string' => 'O campo :attribute precisa ser uma string',
-            'max' => 'O campo :attribute precisa ser menor que :max',
-            'file' => 'A :attribute precisa ser um arquivo',
-            'mimetypes' => 'O arquivo precisa ser do tipo zip'
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|string|max:150',
+                'description' => 'required|string|max:254',
+                'text' => 'required|string',
+                'tags' => 'required|string|max:800',
+                'draft' => 'required|string',
+                'image' => 'file|mimetypes:application/zip',
+            ],
+            [
+                'required' => 'Preencha o campo :attribute',
+                'string' => 'O campo :attribute precisa ser uma string',
+                'max' => 'O campo :attribute precisa ser menor que :max',
+                'file' => 'A :attribute precisa ser um arquivo',
+                'mimetypes' => 'O arquivo precisa ser do tipo zip'
+            ],
+            [
+                'title' => 'Título',
+                'description' => 'Descrição',
+                'text' => 'Artigo',
+                'tags' => 'Tags',
+                'draft' => 'Rascunho',
+                'image' => 'Imagem'
+            ]
+        );
 
         if ($validator->fails()) {
             return response()->json(['error' => array_values($validator->errors()->all())]);
@@ -192,7 +216,7 @@ class ArticleController extends Controller
 
         $new_text = article_text_to_html($request->text);
 
-        
+
         $images_path = null;
         $images_absolute_path = null;
         $images_names = null;
@@ -258,8 +282,8 @@ class ArticleController extends Controller
             'formatted_text' => $new_text,
             'url' => $url,
             'images_path' => $images_path,
-            'images_absolute_path'=>$images_absolute_path,
-            'images_names'=>$images_names,
+            'images_absolute_path' => $images_absolute_path,
+            'images_names' => $images_names,
         ]);
 
         $messages[] = "Artigo atualizado com sucesso";
