@@ -156,8 +156,8 @@ if (!function_exists('article_img_treatment')) {
     function article_img_treatment($text, $imgs_name, $imgs_path)
     {
         $imgs_on_text = 0;
-        $text = preg_replace_callback('/\!\[(.+)\]\!/U', function ($matches) use (&$imgs_on_text, $imgs_path, $imgs_name) {
-            return make_opened_html_tag('img', $matches[1], attr_arr_to_attr_html(["src" => $imgs_path . '/' . $imgs_name[$imgs_on_text]]));
+        $text = preg_replace_callback('/\!\[(.+)\|(.+)\]\!/U', function ($matches) use (&$imgs_on_text, $imgs_path, $imgs_name) {
+            return make_img_html_tag($matches[2], $matches[1], attr_arr_to_attr_html(["src" => $imgs_path . '/' . $imgs_name[$imgs_on_text]]));
             $imgs_on_text++;
         }, $text);
 
