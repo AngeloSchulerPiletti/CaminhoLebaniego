@@ -77,9 +77,6 @@ footer{
     .bottom{
         display: flex;
         justify-content: center;
-        p{
-            
-        }
     }
 }
 
