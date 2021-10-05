@@ -16,7 +16,10 @@ export default createStore({
       user: undefined,
       token: undefined,
     },
-    errors: [],
+    bags: {
+      errors: [],
+      messages: [],
+    },
     logged: false,
   },
   mutations: {
@@ -25,8 +28,16 @@ export default createStore({
       document.title = state.htmlMetaData.titleTemplate.replace('%%', 'Ops!');
       setTimeout(() => {
         document.title = actualTitle;
-      }, 1000);
-      state.errors = errors;
+      }, 2000);
+      state.bags.errors = errors;
+    },
+    setMessages(state, messages) {
+      var actualTitle = document.title;
+      document.title = state.htmlMetaData.titleTemplate.replace('%%', 'Sucesso!');
+      setTimeout(() => {
+        document.title = actualTitle;
+      }, 2000);
+      state.bags.messages = messages;
     },
     setTitle(state, addTitle) {
       document.title = state.htmlMetaData.titleTemplate.replace('%%', addTitle);

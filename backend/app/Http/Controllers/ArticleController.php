@@ -124,7 +124,7 @@ class ArticleController extends Controller
         $article->unformatted_text = $request->text;
         $article->save();
 
-        return response()->json(['message' => ['Você criou um artigo!']]);
+        return response()->json(['messages' => ['Você criou um artigo!']]);
     }
 
     public function logic_deletation($id)
@@ -132,7 +132,7 @@ class ArticleController extends Controller
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '3']);
         if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
-        return response()->json(['message' => ['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
+        return response()->json(['messages' => ['Artigo deletado com sucesso, você pode vê-lo na lixeira']]);
     }
 
     public function fisic_deletation($id)
@@ -155,7 +155,7 @@ class ArticleController extends Controller
         if ($result) $messages[] = "Artigo excluído com sucesso";
         else $messages[] = "Artigo não pôde ser excluído";
 
-        return response()->json(['message' => $messages]);
+        return response()->json(['messages' => $messages]);
     }
 
     public function restore($id)
@@ -163,7 +163,7 @@ class ArticleController extends Controller
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '2']);
         if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
-        return response()->json(['message' => ['Artigo restaurado com sucesso, você pode vê-lo nos rascunhos']]);
+        return response()->json(['messages' => ['Artigo restaurado com sucesso, você pode vê-lo nos rascunhos']]);
     }
 
     public function publish($id)
@@ -171,7 +171,7 @@ class ArticleController extends Controller
         $id = (int)$id;
         $result = DB::table('articles')->where('id', $id)->update(['status' => '1']);
         if ($id < 0 || $result == 0) return response()->json(['error' => ['id do artigo é inválido']]);
-        return response()->json(['message' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
+        return response()->json(['messages' => ['Artigo publicado com sucesso, você pode vê-lo nos artigos']]);
     }
 
     public function edit($id, Request $request)

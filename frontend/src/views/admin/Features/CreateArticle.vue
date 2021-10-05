@@ -197,13 +197,17 @@ export default {
           "Content-type": "multipart/form-data",
         })
         .then((response) => {
+          this.$store.commit("setTitle", "Admin");
           this.disabled = "";
           response.data.error
             ? this.$store.commit("setErrors", response.data.error)
             : null;
-          this.$store.commit("setTitle", "Admin");
+          response.data.messages
+            ? this.$store.commit("setMessages", response.data.messages)
+            : null;
         })
         .catch((err) => {
+          this.$store.commit("setTitle", "Admin");
           this.$store.commit("setErrors", [err]);
         });
     },
