@@ -42,11 +42,13 @@ export default {
     errors: {
       immediate: false,
       handler(newErrors) {
-        this.errorsToShow = newErrors;
-        setTimeout(() => {
-          var cards = this.$el.querySelectorAll(".errors");
-          this.settingTimeoutCard(cards, 500, "errors");
-        }, 0);
+        if (newErrors && newErrors.length > 0) {
+          this.errorsToShow = newErrors;
+          setTimeout(() => {
+            var cards = this.$el.querySelectorAll(".errors");
+            this.settingTimeoutCard(cards, 500, "errors");
+          }, 0);
+        }
       },
     },
     messages: {
@@ -117,13 +119,13 @@ export default {
     transition: transform 400ms ease;
   }
   [data-anim="none"] {
-    transform: translateX(-100%);
+    transform: translateX(-105%);
   }
   [data-anim="on"] {
     transform: translateX(0);
   }
   [data-anim="off"] {
-    transform: translateX(-100%);
+    transform: translateX(-105%);
   }
 }
 </style>
