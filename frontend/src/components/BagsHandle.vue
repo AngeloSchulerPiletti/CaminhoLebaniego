@@ -45,23 +45,25 @@ export default {
         this.errorsToShow = newErrors;
         setTimeout(() => {
           var cards = this.$el.querySelectorAll(".errors");
-          this.settingTimeoutCard(cards, 500, 'errorsToShow');
+          this.settingTimeoutCard(cards, 500, "errors");
         }, 0);
       },
     },
     messages: {
-      immediate: false,
+      immediate: true,
       handler(newMessages) {
-        this.messagesToShow = newMessages;
-        setTimeout(() => {
-          var cards = this.$el.querySelectorAll(".messages");
-          this.settingTimeoutCard(cards, 500, 'messagesToShow');
-        }, 10);
+        if (newMessages && newMessages.length > 0) {
+          this.messagesToShow = newMessages;
+          setTimeout(() => {
+            var cards = this.$el.querySelectorAll(".messages");
+            this.settingTimeoutCard(cards, 500, "messages");
+          }, 10);
+        }
       },
     },
   },
   methods: {
-    settingTimeoutCard(cards, time, type) {
+    settingTimeoutCard(cards, time, bagToClean) {
       for (let i = 0; i < cards.length; i++) {
         setTimeout(() => {
           cards[i].dataset.anim = "on";
@@ -69,7 +71,8 @@ export default {
             cards[i].dataset.anim = "off";
             if (i + 1 == cards.length)
               setTimeout(() => {
-                this[type] = [];
+                this[`${bagToClean}ToShow`] = [];
+                this.$store.commit("cleanBag", bagToClean);
               }, time);
           }, time * 12);
         }, time * (i + 1));

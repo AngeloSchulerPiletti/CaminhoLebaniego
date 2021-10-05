@@ -39,6 +39,9 @@ export default createStore({
       }, 2000);
       state.bags.messages = messages;
     },
+    cleanBag(state, bag){
+      state.bags[bag] = [];
+    },
     setTitle(state, addTitle) {
       document.title = state.htmlMetaData.titleTemplate.replace('%%', addTitle);
     },
@@ -63,5 +66,9 @@ export default createStore({
   },
   modules: {
   },
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage,
+    }),
+  ],
 })

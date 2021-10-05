@@ -194,6 +194,9 @@ export default {
             this.$store.commit("setErrors", response.data.error);
             return;
           }
+          response.data.messages
+            ? this.$store.commit("setMessages", response.data.messages)
+            : null;
           this.$router.go(0);
         })
         .catch((error) => {
@@ -250,6 +253,8 @@ export default {
   padding-top: 2vw;
 
   .card {
+    flex-shrink: 1;
+    height: fit-content;
     box-shadow: 0 0 0.8vw 0.3vw #000;
     display: flex;
     padding: 1.2vw 1.8vw;
@@ -266,9 +271,19 @@ export default {
         cursor: pointer;
         font-size: 26px;
         word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        -webkit-box-orient: vertical;
       }
       p {
         cursor: default;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        -webkit-box-orient: vertical;
       }
       .tags_container {
         display: flex;
