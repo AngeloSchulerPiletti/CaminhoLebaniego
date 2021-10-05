@@ -124,6 +124,13 @@ const routes = [
     meta: { autoAxios: false, mobileDenied: true},
   },
   {
+    path: "/area-do-administrador/editar-artigo/:articleId",
+    component: CreateArticle,
+    name: "editar_artigo",
+    meta: { autoAxios: false, mobileDenied: true},
+    props: {editation: true},
+  },
+  {
     path: "/area-do-administrador/lixeira",
     component: ManageTrash,
     name: "trash",

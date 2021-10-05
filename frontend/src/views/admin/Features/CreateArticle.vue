@@ -1,5 +1,5 @@
 <template>
-  <admin pageTitle="Criar Artigo">
+  <admin :pageTitle="editation ? 'Editar Artigo' : 'Criar Artigo'">
     <info-modal :whichInfo="whichInfo" @modalClosed="whichInfo = ''" />
     <div>
       <form @submit.prevent>
@@ -83,7 +83,7 @@
         <div class="actions">
           <button class="btn_3" @click="clean">Limpar</button>
           <button :class="'btn_3 ' + disabled" type="submit" @click="submit">
-            {{ articleId ? "Editar" : "Criar" }}
+            {{ editation ? "Editar" : "Criar" }}
           </button>
         </div>
       </form>
@@ -124,12 +124,12 @@ export default {
     };
   },
   computed: {
-    checkArticleId() {
-      return this.articleId;
+    articleId() {
+      return this.$route.params.articleId;
     },
   },
   watch: {
-    checkArticleId: {
+    articleId: {
       immediate: true,
       handler(newval) {
         if (newval) this.requestArticleToEdit(newval);
@@ -246,7 +246,7 @@ export default {
     },
   },
   props: {
-    articleId: String,
+    editation: Boolean,
   },
   components: {
     Admin,

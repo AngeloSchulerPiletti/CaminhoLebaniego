@@ -205,8 +205,8 @@ export default {
     },
     askForEdit(articleId) {
       this.$router.push({
-        name: "criar_artigos",
-        params: { articleId: articleId, pageTitle: "Editar Artigo" },
+        name: "editar_artigo",
+        params: { articleId: articleId},
       });
     },
   },
