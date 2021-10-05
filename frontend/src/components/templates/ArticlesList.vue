@@ -280,6 +280,7 @@ export default {
       p {
         cursor: default;
         overflow: hidden;
+        word-break: break-all;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 4; /* number of lines to show */
