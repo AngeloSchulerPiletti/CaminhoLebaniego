@@ -1,7 +1,15 @@
 <template>
   <admin :pageTitle="editation ? 'Editar Artigo' : 'Criar Artigo'">
     <info-modal :whichInfo="whichInfo" @modalClosed="whichInfo = ''" />
-    <div>
+    <div v-if="editation">
+      <div class="loading" v-if="loadStatus == 1">
+        Carregando...
+      </div>
+      <div class="problem" v-else-if="loadStatus == 2">
+        Tivemos um problema ao carregar os artigos
+      </div>
+    </div>
+    <div v-if="!editation || loadStatus < 1">
       <form @submit.prevent>
         <div class="inputs">
           <div class="input_container">
@@ -121,6 +129,7 @@ export default {
           tags: 800,
         },
       },
+      loadStatus: 1,
     };
   },
   computed: {
@@ -160,6 +169,7 @@ export default {
       this.images = event.target.files[0];
     },
     requestArticleToEdit(articleId) {
+      this.loadStatus = 1;
       let token = this.$store.state.logged
         ? this.$store.state.sessionData.token
         : null;
@@ -168,12 +178,14 @@ export default {
         .then((response) => {
           if (response.data.error) {
             this.$store.commit("setErrors", response.data.error);
+            this.loadStatus = 2;
             return;
           }
           this.article.title = response.data.title;
           this.article.description = response.data.description;
           this.article.tags = response.data.tags;
           this.article.text = response.data.unformatted_text;
+          this.loadStatus = 0;
         });
     },
     create() {
@@ -255,6 +267,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.problem,
+.loading {
+  @include Font1_I;
+  color: $white;
+  font-size: 20px;
+  margin: 0 4vw;
+}
 form {
   @include form1(50vw, 700px);
 
