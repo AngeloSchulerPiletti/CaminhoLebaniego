@@ -103,9 +103,4 @@ export default {
   background-position-x: center;
   background-repeat: no-repeat;
 }
-
-
-@media (max-width: 900px) {
-  
-}
 </style>

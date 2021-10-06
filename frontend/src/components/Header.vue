@@ -145,4 +145,63 @@ header {
     }
   }
 }
+
+
+
+
+
+@media (max-width: 900px) {
+  #admin_header {
+  padding: 8px 15px;
+  font-size: 20px;
+}
+
+$pad_top: 2vw;
+header {
+  grid-template-columns: 4fr 7fr;
+  gap: 5vw;
+
+  padding: 0 4vw 6vw 6vw;
+
+  #logo_container {
+    @include headerLogo($pad_top);
+  }
+  nav {
+    ul {
+      li {
+        padding-top: $pad_top;
+      }
+    }
+    .search_btn {
+      position: fixed;
+      z-index: 1000;
+      top: 45vh;
+      left: 0;
+      padding: 6px;
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      background-color: $red;
+      box-shadow: 0 0 10px #000;
+      transition: opacity 200ms;
+
+      svg {
+        padding: 0px;
+        border-bottom: 0px;
+        transition: none;
+      }
+
+      &:hover {
+        opacity: 0.6;
+        svg {
+          border-bottom: 0px;
+
+          &:deep(path) {
+            fill: $white;
+          }
+        }
+      }
+    }
+  }
+}
+}
 </style>
