@@ -43,7 +43,6 @@ export default {
 #pic_background {
   width: 100%;
   height: 100vh;
-  max-height: 80vw;
 
   display: flex;
   flex-direction: column;
@@ -67,6 +66,7 @@ export default {
 }
 .back-0 {
   background-image: url("../assets/images/template/walkerman.jpg");
+  overflow-y: hidden;
 }
 .back-1 {
   background-image: url("../assets/images/template/equipment.jpg");
@@ -102,5 +102,10 @@ export default {
   background-position-y: top;
   background-position-x: center;
   background-repeat: no-repeat;
+}
+
+
+@media (max-width: 900px) {
+  
 }
 </style>
