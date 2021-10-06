@@ -131,7 +131,7 @@ export default {
   .controllers {
     display: flex;
     justify-content: space-around;
-    padding: 5px 10vw;
+    padding: 8px 10vw;
     border-top: 2px solid $red;
     border-bottom: 2px solid $red;
     box-shadow: 0 0 18px 0px #000;
@@ -229,5 +229,43 @@ export default {
       }
     }
   }
+}
+
+@media (max-width: 900px){
+  .wrapper {
+  gap: 9vw;
+
+  .top {
+    gap: 18px;
+
+    p {
+      font-size: 16px;
+    }
+  }
+  .content_wrapper {
+    .hasTrekData {
+      grid-template-columns: 9fr 4fr;
+    }
+    .day_info {
+      .text_wrapper {
+        p {
+          text-indent: 2em;
+        }
+      }
+      .trek_info {
+        padding: 15px;
+        gap: 7px;
+
+        p {
+          font-size: 0.9em;
+        }
+      }
+    }
+    .img_colection {
+      grid-template-columns: 1fr 1fr;
+      gap: 3vw;
+    }
+  }
+}
 }
 </style>
