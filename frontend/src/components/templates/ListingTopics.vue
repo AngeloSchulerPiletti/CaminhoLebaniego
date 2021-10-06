@@ -121,4 +121,18 @@ export default {
     }
   }
 }
+
+
+
+@media (max-width: 900px){
+  .wrapper {
+  .bottom {
+    grid-template-columns: 5fr 11fr;
+
+    aside {
+      top: 2%;
+    }
+  }
+}
+}
 </style>
