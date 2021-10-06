@@ -21,10 +21,10 @@ export default {
       hasScroll: "off",
     };
   },
-  methods:{
-      scrollHeight(){
-          scrollingTo(window.innerHeight);
-      }
+  methods: {
+    scrollHeight() {
+      scrollingTo(window.innerHeight);
+    },
   },
   computed: {
     checkHasScrollState() {
@@ -49,57 +49,65 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text_content {
-  margin-left: 10vw;
-  margin-top: 5vw;
-  padding: 4vw;
-  width: fit-content;
-  color: $white;
-  background: radial-gradient(
-    closest-side at 40%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.4) 60%,
-    rgba(0, 0, 0, 0.2) 75%,
-    transparent
-  );
-
-  h1 {
-    // @include Title1;
-    @include Drawed1;
-    font-size: 50px;
-  }
-  p {
-    font-size: 18px;
-    margin-top: 18px;
-    @include Font1;
-  }
-}
-.double_arrow {
-  $arrow_width: 150px;
+#bannerContent {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  width: $arrow_width;
-  height: $arrow_width;
-  padding: $arrow_width/2;
-  cursor: pointer;
-  background: radial-gradient(
-    closest-side at 40%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.4) 60%,
-    rgba(0, 0, 0, 0.2) 75%,
-    transparent
-  );
+  justify-content: space-between;
 
-  position: relative;
-  .arrow {
-    position: absolute;
-    fill: $red;
+  .text_content {
+    margin-left: 10vw;
+    margin-top: 5vw;
+    padding: 4vw;
+    width: fit-content;
+    color: $white;
+    background: radial-gradient(
+      closest-side at 40%,
+      rgba(0, 0, 0, 0.6) 30%,
+      rgba(0, 0, 0, 0.4) 60%,
+      rgba(0, 0, 0, 0.2) 75%,
+      transparent
+    );
+
+    h1 {
+      // @include Title1;
+      @include Drawed1;
+      font-size: 50px;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 18px;
+      @include Font1;
+    }
+  }
+  .double_arrow {
+    $arrow_width: 150px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-bottom: 10%;
     width: $arrow_width;
-    animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
-    
-    &:nth-child(2) {
-      top: $arrow_width/3;
+    height: $arrow_width;
+    padding: $arrow_width/2;
+    cursor: pointer;
+    background: radial-gradient(
+      closest-side at 40%,
+      rgba(0, 0, 0, 0.6) 30%,
+      rgba(0, 0, 0, 0.4) 60%,
+      rgba(0, 0, 0, 0.2) 75%,
+      transparent
+    );
+
+    position: relative;
+    .arrow {
+      position: absolute;
+      fill: $red;
+      width: $arrow_width;
+      animation: movingY 800ms ease-in-out 0ms infinite alternate-reverse both;
+
+      &:nth-child(2) {
+        top: $arrow_width/3;
+      }
     }
   }
 }
