@@ -77,14 +77,14 @@ export default {
     background-color: $white;
     border-radius: 10px;
     width: fit-content;
-    padding: 2vw;
-    max-height: 80vh;
+    padding: 20px 30px;
     margin: 0 auto;
     box-shadow: 0 0 6vw 2vw #000;
 
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+    transform: translateY(-50%);
+    gap: 1.5vw;
 
     .searcher {
       display: flex;
@@ -94,12 +94,33 @@ export default {
       input {
         @include Font0;
         border-bottom: 1px solid $red;
-        font-size: 18px;
+        font-size: 16px;
         width: 30vw;
         padding: 0.7em 0.7em 0.3em 0.7em;
       }
     }
   }
+}
+
+
+@media (max-width: 900px){
+  .wrapper {
+  .content_container {
+    border-radius: 7px;
+
+    .searcher {
+      display: flex;
+      align-items: center;
+      gap: 2vw;
+
+      input {
+        border-bottom: 1px solid $red;
+        font-size: 18px;
+        width: 50vw;
+      }
+    }
+  }
+}
 }
 
 /*+------------------------------------+
