@@ -207,22 +207,23 @@ class ArticleController extends Controller
             return response()->json(['error' => array_values($validator->errors()->all())]);
         }
 
+        $old_article = DB::table('articles')->where('id', $id)->first();
+        if ($old_article) {
+
         $url = title_parser($request->title);
-        $exists = DB::table('articles')->where('url', $url)->first();
-        if ($exists) {
+        $exists = $url == $old_article->url ? false : DB::table('articles')->where('url', $url)->first();
+        while ($exists) {
             $currentID = (DB::table('articles')->orderByDesc('id')->first()->id + 1);
             $url = title_parser($url, $currentID);
+            $exists = DB::table('articles')->where('url', $url)->first();
         }
 
         $new_text = article_text_to_html($request->text);
-
 
         $images_path = null;
         $images_absolute_path = null;
         $images_names = null;
 
-        $old_article = DB::table('articles')->where('id', $id)->first();
-        if ($old_article) {
             $messages = [];
             if (isset($old_article->images_absolute_path)) {
                 $files = glob(base_path($old_article->images_absolute_path) . '/*');
