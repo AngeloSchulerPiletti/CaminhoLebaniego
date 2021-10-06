@@ -40,9 +40,9 @@ export default {
   },
   watch: {
     errors: {
-      immediate: false,
+      immediate: true,
       handler(newErrors) {
-        if (newErrors && newErrors.length > 0) {
+        if (newErrors && newErrors.length > 0 && newErrors != this.errorsToShow) {
           this.errorsToShow = newErrors;
           setTimeout(() => {
             var cards = this.$el.querySelectorAll(".errors");
@@ -54,7 +54,7 @@ export default {
     messages: {
       immediate: true,
       handler(newMessages) {
-        if (newMessages && newMessages.length > 0) {
+        if (newMessages && newMessages.length > 0 && newMessages != this.messagesToShow) {
           this.messagesToShow = newMessages;
           setTimeout(() => {
             var cards = this.$el.querySelectorAll(".messages");
@@ -69,12 +69,12 @@ export default {
       for (let i = 0; i < cards.length; i++) {
         setTimeout(() => {
           cards[i].dataset.anim = "on";
+          this.$store.commit("cleanBag", bagToClean);
           setTimeout(() => {
             cards[i].dataset.anim = "off";
             if (i + 1 == cards.length)
               setTimeout(() => {
                 this[`${bagToClean}ToShow`] = [];
-                this.$store.commit("cleanBag", bagToClean);
               }, time);
           }, time * 12);
         }, time * (i + 1));
