@@ -206,7 +206,7 @@ export default {
     askForEdit(articleId) {
       this.$router.push({
         name: "editar_artigo",
-        params: { articleId: articleId},
+        params: { articleId: articleId },
       });
     },
   },
@@ -379,6 +379,50 @@ export default {
     @include Font0;
     color: $white;
     font-size: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    margin: 0 8vw;
+    margin-bottom: 5vw;
+  }
+  .controlls {
+    margin-right: 7vw;
+  }
+  .problem,
+  .loading {
+    margin: 0 6vw;
+  }
+  .list_container {
+    grid-template-columns: 1fr;
+    gap: 4.5vw;
+    padding: 0vw 6vw;
+    padding-top: 3.5vw;
+
+    .card {
+      padding: 12px 18px;
+      border-radius: 4px;
+
+      .content_container {
+        gap: 15px;
+      }
+    }
+  }
+  .pagination {
+    gap: 24px;
+    margin-top: 5vw;
+
+    span {
+      font-size: 20px;
+
+      &.actual {
+        font-size: 24px;
+      }
+    }
+    p {
+      font-size: 20px;
+    }
   }
 }
 </style>
