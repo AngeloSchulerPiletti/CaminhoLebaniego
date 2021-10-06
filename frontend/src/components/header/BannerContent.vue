@@ -85,7 +85,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-bottom: 10%;
+    margin-bottom: 0;
     width: $arrow_width;
     height: $arrow_width;
     padding: $arrow_width/2;
