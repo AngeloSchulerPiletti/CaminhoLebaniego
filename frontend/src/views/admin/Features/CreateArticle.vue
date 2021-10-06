@@ -148,7 +148,6 @@ export default {
       }
     },
     clean() {
-      console.log("clean");
       this.article = {
         title: null,
         description: null,

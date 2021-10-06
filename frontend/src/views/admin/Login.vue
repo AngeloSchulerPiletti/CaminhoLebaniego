@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     submit: function() {
-      console.log("submitado");
       this.disabled = "disabled";
 
       apiRequestProtocol()

@@ -212,7 +212,6 @@ export default {
   },
   watch: {
     "this.$route.params.query"(newval) {
-      console.log("watched: " + newval);
       this.query = newval;
     },
   },
