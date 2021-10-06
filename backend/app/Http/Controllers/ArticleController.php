@@ -264,7 +264,7 @@ class ArticleController extends Controller
                             unlink($file); // delete file
                         }
                     }
-                    abort(400, "As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif");
+                    return response()->json(['error' => ["As imagens no arquivo ip precisam ser do tipo jpg, png, svg, jpeg ou gif"]]);
                 }
             }
 
