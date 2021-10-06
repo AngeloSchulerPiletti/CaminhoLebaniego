@@ -173,7 +173,7 @@ export default {
       position: relative;
       padding-left: 8px;
 
-      &::before{
+      &::before {
         position: absolute;
         content: "";
         border-left: 3px solid $red;
@@ -192,7 +192,8 @@ export default {
       @include Title3;
       font-size: 22px;
     }
-    h5,h6{
+    h5,
+    h6 {
       margin: 0.2em 0;
       &::before {
         content: ">";
@@ -200,7 +201,6 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
         margin-left: 5px;
       }
-
     }
     h5 {
       margin: 0.2em 0;
@@ -213,19 +213,17 @@ export default {
       font-size: 18px;
     }
 
-
-
-    ul{
+    ul {
       display: flex;
       flex-direction: column;
       gap: 4px;
       margin-left: 1.2em;
 
-      li{
+      li {
         @include Font1;
         position: relative;
 
-        &::before{
+        &::before {
           content: "-";
           margin-right: 6px;
           color: $red;
@@ -233,15 +231,14 @@ export default {
       }
     }
 
-
-    a{
+    a {
       color: lighten($red, 5%);
       font-weight: 700;
       position: relative;
 
       transition: color 100ms;
 
-      &::before{
+      &::before {
         content: "";
         position: absolute;
         bottom: 0;
@@ -252,24 +249,53 @@ export default {
         transition: right 200ms, left 200ms;
       }
 
-      &:hover{
+      &:hover {
         color: $red;
-        &::before{
+        &::before {
           left: 50%;
           right: 50%;
         }
       }
     }
 
-
-
-    .warn{
-      @include observationPreset(80%);
+    .warn {
+      @include observationPreset(100%);
       margin: 45px 0;
     }
-    .quotes{
-      @include observationPreset(80%);
+    .quotes {
+      @include observationPreset(100%);
       margin: 25px 0;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .article_wrapper {
+    width: 80vw;
+
+    &::v-deep() {
+      .img_container {
+        &.small {
+          width: 30%;
+        }
+        &.medium {
+          width: 45%;
+        }
+        &.big {
+          width: 60%;
+        }
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      .warn {
+        margin: 45px 0;
+      }
+      .quotes {
+        margin: 25px 0;
+      }
     }
   }
 }
