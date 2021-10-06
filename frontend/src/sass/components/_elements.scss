@@ -55,12 +55,12 @@
   &:hover {
     background-color: $red;
   }
-  &.disabled{
+  &.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
 }
-.btn_4{
+.btn_4 {
   @include Title1;
   color: $red;
   font-size: 1vw;
@@ -71,7 +71,7 @@
   background-color: $white;
 
   position: relative;
-  &::before{
+  &::before {
     content: "";
     position: absolute;
     left: 0px;
@@ -83,7 +83,7 @@
 
     transition: background-color 300ms, transform 300ms;
   }
-  &:hover::before{
+  &:hover::before {
     background-color: $white;
     transform: translateX(-180%);
   }
@@ -215,10 +215,10 @@
 .title3 {
   @include titleFamily3($blackest, $blackest);
 }
-.title3-1{
+.title3-1 {
   @include titleFamily3($white, $red);
 }
-.title3-2{
+.title3-2 {
   @include titleFamily3(#000, $red);
 }
 @mixin titleFamily4($color, $arrowColor) {
@@ -228,16 +228,16 @@
   color: $color;
   width: fit-content;
 
-  &::before{
+  &::before {
     content: ">";
     color: $arrowColor;
     margin-right: 10px;
   }
 }
-.title4{
- @include titleFamily4($white, $red);
+.title4 {
+  @include titleFamily4($white, $red);
 }
-.title4-1{
+.title4-1 {
   @include titleFamily4($black, $red);
 }
 /*+--------------------------------------+
@@ -247,12 +247,12 @@
 /*+--------------------------------------+
   |               PARAGRAPH              |
   +--------------------------------------+*/
-.tiny_p{
+.tiny_p {
   @include Font1_I;
   text-indent: 1.5em;
   text-align: justify;
 }
-.simple_p{
+.simple_p {
   @include Font0;
   text-indent: 2em;
   text-align: justify;
@@ -271,13 +271,11 @@
 /*+--------------------------------------+
   |              HIGHLIGHTER             |
   +--------------------------------------+*/
-  
-
 
 /*+--------------------------------------+
   |                BADGES                |
   +--------------------------------------+*/
-.badge_1{
+.badge_1 {
   padding: 0.25em 0.6em;
   border-radius: 0.4em;
   @include Title3;
@@ -291,8 +289,6 @@
 /*+--------------------------------------+
   |                BADGES                |
   +--------------------------------------+*/
-
-
 
 /*+--------------------------------------+
   |              SELECTORS               |

@@ -51,4 +51,36 @@ export default {
     }
   }
 }
+
+
+@media (max-width: 900px){
+  .wrapper {
+  left: 0;
+
+  &.button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+
+    transition: box-shadow 200ms, opacity 300ms;
+
+    &:deep() {
+      svg {
+        width: 100%;
+        height: 100%;
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    &:hover{
+        box-shadow: 0;
+        opacity: 0.7;
+    }
+  }
+}
+}
 </style>

@@ -177,7 +177,7 @@ header {
       z-index: 1000;
       top: 45vh;
       left: 0;
-      padding: 6px;
+      padding: 8px;
       border-top-right-radius: 50%;
       border-bottom-right-radius: 50%;
       background-color: $red;
