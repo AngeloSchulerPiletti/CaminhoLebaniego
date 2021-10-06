@@ -69,6 +69,14 @@ export default {
           this.$store.commit("setErrors", [
             "Houve um erro ao tentar deslogar, é possível que você já esteja deslogado",
           ]);
+          
+          this.$store.commit("setSessionData", {
+            user: undefined,
+            token: undefined,
+            logged: false,
+          });
+
+          this.$router.go(0);
         });
     },
   },
