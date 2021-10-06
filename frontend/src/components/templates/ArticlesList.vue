@@ -414,14 +414,14 @@ export default {
     margin-top: 5vw;
 
     span {
-      font-size: 20px;
+      font-size: 17px;
 
       &.actual {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
     p {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 }
