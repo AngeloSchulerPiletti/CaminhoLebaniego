@@ -271,12 +271,13 @@ header {
       right: 0;
       bottom: 0;
       width: 40vw;
+    transform: translateX(100%);
       
       &.close_menu ul {
-        transform: translateX(100%);
+        transform: translateX(0);
       }
       &.open_menu ul {
-        transform: translateX(0);
+        transform: translateX(-100%);
       }
       ul {
         transition: transform 400ms ease-in-out;
@@ -286,7 +287,7 @@ header {
         align-items: flex-start;
         justify-content: flex-start;
         background-color: $black;
-        transform: translateX(100%);
+        transform: translateX(0);
         box-shadow: 0 0 10px #000;
 
         transform-style: preserve-3d;
@@ -380,6 +381,14 @@ header {
         }
       }
       }
+
+      .search_btn {
+        z-index: 1000;
+        top: 45vh;
+        left: 0;
+        transform: translateX(calc(-100vw + 15px));
+      }
+
     }
   }
 }

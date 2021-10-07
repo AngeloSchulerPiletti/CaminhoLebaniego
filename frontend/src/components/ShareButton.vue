@@ -84,7 +84,7 @@ $reference: 30px;
   display: flex;
   flex-direction: column;
   gap: $reference/5;
-  z-index: 10000;
+  z-index: 100;
 
   label {
     position: relative;
