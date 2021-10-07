@@ -3,7 +3,7 @@
     <div class="title" v-if="title">
       <h1 class="title2">{{ title }}</h1>
     </div>
-    <div class="controlls">
+    <div class="controlls" v-if="articlesList">
       <label
         >Artigos por página
         <select
@@ -28,19 +28,19 @@
     </div>
     <div v-else class="list_container">
       <div
-        :class="'card ' + canControll"
+        :class="`card ${canControll}`"
         v-for="(article, index) in articlesList"
         :key="index"
+        @click="goToArticle(article.url, $event)"
       >
         <div class="content_container">
-          <h2 class="title3-2" @click="goToArticle(article.url)">
+          <h2 class="title3-2">
             {{ article.title }}
           </h2>
           <p class="simple_p">{{ article.description }}</p>
           <div class="tags_container">
             <span
               class="badge_1"
-              @click="searchFor(tag)"
               v-for="tag in article.tags"
               :key="tag"
               >{{ tag }}</span
@@ -174,8 +174,14 @@ export default {
           this.articlesList = false;
         });
     },
-    goToArticle(url) {
-      this.$router.push({ name: "artigo_show", query: { titulo: url } });
+    goToArticle(url, event) {
+      console.log(event.target.tagName);
+      if(event.target.tagName != "SPAN"){
+        this.$router.push({ name: "artigo_show", query: { titulo: url } });
+      }
+      else{
+        this.searchFor(event.target.innerHTML);
+      }
     },
     searchFor(tag) {
       this.$router.push({
@@ -224,7 +230,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper{
+.wrapper {
   margin-top: 6vw;
 }
 .title {
@@ -272,7 +278,6 @@ export default {
       h2 {
         cursor: pointer;
         font-size: 26px;
-        word-break: break-all;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -282,7 +287,6 @@ export default {
       p {
         cursor: default;
         overflow: hidden;
-        word-break: break-all;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 4; /* number of lines to show */
@@ -332,7 +336,7 @@ export default {
         position: absolute;
         height: 80%;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) translateZ(-2px);
         border: 1px solid $red;
         z-index: -1;
         width: 10vw;
@@ -425,6 +429,90 @@ export default {
     }
     p {
       font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    margin-top: 15vw;
+  }
+  .title {
+    margin-bottom: 9vw;
+  }
+  .problem,
+  .loading {
+    margin: 5vw 6vw;
+  }
+  .list_container {
+    gap: 7vw;
+    padding: 0vw 8vw;
+    padding-top: 5vw;
+
+    .card {
+      .content_container {
+        gap: 15px;
+
+        h2 {
+          font-size: 22px;
+        }
+        p {
+          font-size: 15px;
+        }
+        .tags_container {
+          span {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
+    margin-top: 90px;
+  }
+  .title {
+    margin-bottom: 22px;
+  }
+  .problem,
+  .loading {
+    margin: 5vw 6vw;
+  }
+  .controlls {
+    margin-bottom: 12px;
+  }
+  .list_container {
+    gap: 25px;
+    padding: 0vw 10vw;
+    padding-top: 0;
+
+    .card {
+      .content_container {
+        gap: 12px;
+
+        h2 {
+          font-size: 19px;
+        }
+        .tags_container{
+          span{
+            transition: transform 100ms;
+          }
+          span:active{
+            transform: scale(1.12);
+          }
+        }
+      }
+
+      &.false {
+        &:hover::before {
+          left: -13px;
+        }
+        &:hover::after {
+          right: -13px;
+        }
+      }
     }
   }
 }

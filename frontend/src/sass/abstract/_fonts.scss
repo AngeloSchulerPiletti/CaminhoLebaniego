@@ -47,4 +47,8 @@
 
 @mixin Drawed1 {
     font-family: MonAmour;
+
+    @media(max-width: 600px){
+        font-size: 45px;
+    }
 }
