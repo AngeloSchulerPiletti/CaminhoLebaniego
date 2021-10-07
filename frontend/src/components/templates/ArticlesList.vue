@@ -224,6 +224,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrapper{
+  margin-top: 6vw;
+}
 .title {
   margin: 0 5vw;
   margin-bottom: 2vw;

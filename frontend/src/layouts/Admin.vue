@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   margin: 10vh 0;
 
