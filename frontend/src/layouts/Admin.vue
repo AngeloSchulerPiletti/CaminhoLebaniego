@@ -2,7 +2,7 @@
   <div>
     <header-component />
     <bags-handle />
-    <main>
+    <main id="admin-main">
       <h2 id="page_title" v-if="pageTitle" class="title4">{{ pageTitle }}</h2>
       <slot></slot>
     </main>
@@ -35,8 +35,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-main {
+<style lang="scss">
+#admin-main {
   margin: 10vh 0;
 
   #page_title {
