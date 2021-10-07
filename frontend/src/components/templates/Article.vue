@@ -203,12 +203,10 @@ export default {
       }
     }
     h5 {
-      margin: 0.2em 0;
       @include Title3;
       font-size: 20px;
     }
     h6 {
-      margin: 0.2em 0;
       @include Title3_I;
       font-size: 18px;
     }
@@ -288,6 +286,65 @@ export default {
 
       h1 {
         font-size: 50px;
+      }
+
+      .warn {
+        margin: 45px 0;
+      }
+      .quotes {
+        margin: 25px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .article_wrapper {
+    width: calc(100vw - 100px);
+    min-width: 0;
+    margin: auto;
+
+    &::v-deep() {
+      .simple_p {
+        text-indent: 1.8em;
+        font-size: 15px;
+      }
+      .img_container {
+        &.small {
+          width: 45%;
+        }
+        &.medium {
+          width: 70%;
+        }
+        &.big {
+          width: 100%;
+        }
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+      h2 {
+        margin: 0.45em 0;
+        font-size: 25px;
+        padding-left: 10px;
+      }
+      h3 {
+        font-size: 22px;
+      }
+      h4 {
+        margin: 0.3em 0;
+        font-size: 20px;
+      }
+      h5,
+      h6 {
+        margin: 0.2em 0;
+      }
+      h5 {
+        font-size: 20px;
+      }
+      h6 {
+        font-size: 18px;
       }
 
       .warn {
