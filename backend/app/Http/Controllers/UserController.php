@@ -40,6 +40,6 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $totalTokens = auth()->user()->tokens()->delete();
-        return response()->json([messages => ["Você foi deslogado e " . $totalTokens . " tokens foram apagados"]]);
+        return response()->json(['messages' => ["Você foi deslogado e " . $totalTokens . " tokens foram apagados"]]);
     }
 }
