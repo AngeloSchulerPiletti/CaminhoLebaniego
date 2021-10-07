@@ -20,13 +20,13 @@
 // @ is an alias to /src
 import AppLayout from "@/layouts/Public.vue";
 import BannerContent from "@/components/header/BannerContent.vue";
-import { computed } from '@vue/reactivity';
+import { computed } from "@vue/reactivity";
 
 export default {
   name: "inicio",
   methods: {},
-  created(){
-    this.$store.commit('setTitle', "Início");
+  created() {
+    this.$store.commit("setTitle", "Início");
   },
   props: {
     pageData: Object,
@@ -48,6 +48,12 @@ export default {
 
   display: flex;
   justify-content: space-between;
-  
+}
+
+@media (max-width: 700px) {
+  #actions {
+    flex-direction: column;
+    gap: 5vw;
+  }
 }
 </style>
