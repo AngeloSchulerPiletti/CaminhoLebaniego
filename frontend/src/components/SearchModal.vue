@@ -10,6 +10,7 @@
             id="search_field"
             placeholder="Ex: Caminho do Norte"
             v-model="query"
+            autocomplete="off"
           />
           <div class="btn_2" @click="searchFor(query)">
             buscar
@@ -68,7 +69,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 10000;
+  z-index: 100000;
 
   display: flex;
   align-items: center;
@@ -102,25 +103,75 @@ export default {
   }
 }
 
-
-@media (max-width: 900px){
+@media (max-width: 900px) {
   .wrapper {
-  .content_container {
-    border-radius: 7px;
+    .content_container {
+      border-radius: 7px;
 
-    .searcher {
-      display: flex;
-      align-items: center;
-      gap: 2vw;
+      .searcher {
+        display: flex;
+        align-items: center;
+        gap: 2vw;
 
-      input {
-        border-bottom: 1px solid $red;
-        font-size: 18px;
-        width: 50vw;
+        input {
+          border-bottom: 1px solid $red;
+          font-size: 18px;
+          width: 50vw;
+        }
       }
     }
   }
 }
+
+@media (max-width: 600px) {
+  .wrapper {
+    .content_container {
+      padding: 16px 22px;
+      h2 {
+        font-size: 24px;
+      }
+      .searcher {
+        gap: 26px;
+
+        input {
+          font-size: 18px;
+          width: 45vw;
+          padding: 4px;
+        }
+        div {
+          font-size: 13px;
+          padding: 7px 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .wrapper {
+    .content_container {
+      padding: 16px 22px;
+      gap: 24px;
+      width: 75vw;
+
+      .searcher {
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        input {
+          font-size: 16px;
+          padding: 4px;
+          width: 100%;
+        }
+        div {
+          font-size: 13px;
+          padding: 7px 15px;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
 }
 
 /*+------------------------------------+
