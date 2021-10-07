@@ -285,14 +285,19 @@ header {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        background-color: $white;
+        background-color: $black;
         transform: translateX(100%);
         box-shadow: 0 0 10px #000;
 
         a {
           width: 100%;
           display: inline-block;
-          padding: 8px;
+          padding: 10px 8px 10px 14px;
+
+          &:nth-child(1){
+            margin-top: 40px;
+            border-top: 1px solid $red;
+          }
 
           position: relative;
 
@@ -331,7 +336,7 @@ header {
           }
         }
         li {
-          color: $black;
+          color: $white;
           font-size: 20px;
           position: relative;
           padding: 0;
@@ -373,34 +378,23 @@ header {
         }
       }
       }
-      .search_btn {
-        position: fixed;
-        z-index: 1000;
-        top: 45vh;
-        left: 0;
-        padding: 8px;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
-        background-color: $red;
-        box-shadow: 0 0 10px #000;
-        transition: opacity 200ms;
+    }
+  }
+}
 
-        svg {
-          padding: 0px;
-          border-bottom: 0px;
-          transition: none;
-        }
 
-        &:hover {
-          opacity: 0.6;
-          svg {
-            border-bottom: 0px;
+@media (max-width: 600px){
+  header {
+    #logo_container {
+      padding: 8px;
+      padding-top: 10px !important;
+      width: 60%;
+    }
+    #header_nav {
+      width: 50vw;
 
-            &:deep(path) {
-              fill: $white;
-            }
-          }
-        }
+      ul a{
+          padding: 12px 8px 12px 18px;
       }
     }
   }
