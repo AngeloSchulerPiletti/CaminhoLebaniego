@@ -61,7 +61,7 @@ const routes = [
   },
   {
     path: '/artigo',
-    name: 'artigo-show',
+    name: 'artigo_show',
     component: ArtigoShow,
     props: true,
   },

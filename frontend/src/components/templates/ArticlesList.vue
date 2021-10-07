@@ -175,7 +175,7 @@ export default {
         });
     },
     goToArticle(url) {
-      this.$router.push({ name: "artigo-show", query: { titulo: url } });
+      this.$router.push({ name: "artigo_show", query: { titulo: url } });
     },
     searchFor(tag) {
       this.$router.push({

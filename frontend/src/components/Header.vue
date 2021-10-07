@@ -11,7 +11,10 @@
       </p>
     </div>
     <header>
-      <div id="logo_container">
+      <div
+        id="logo_container"
+        :class="$route.name == 'artigo_show' ? 'red' : 'black'"
+      >
         <router-link to="/">
           <header-logo />
         </router-link>
@@ -232,9 +235,9 @@ header {
       border-bottom: 0px;
       transition: none;
 
-        &:deep(path) {
-          fill: $white;
-        }
+      &:deep(path) {
+        fill: $white;
+      }
     }
 
     &:hover {
@@ -268,11 +271,17 @@ header {
     background: transparent;
 
     #logo_container {
-      background-color: #000;
       box-shadow: 0 0 20px #000;
       padding: 6px;
       padding-top: $pad_top !important;
       width: 40%;
+
+      &.black {
+        background-color: #000;
+      }
+      &.red {
+        background-color: $red;
+      }
     }
     #header_nav {
       position: fixed;
@@ -427,7 +436,7 @@ header {
       }
     }
   }
-  .search_btn-mobile{
+  .search_btn-mobile {
     width: 24px;
     height: 24px;
   }
