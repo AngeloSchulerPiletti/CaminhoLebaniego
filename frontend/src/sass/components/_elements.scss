@@ -92,26 +92,26 @@
 /*+--------------------------------------+
   |            PSEUDO ELEMENTS           |
   +--------------------------------------+*/
-.hover1 {
-  position: relative;
-  cursor: pointer;
+// .hover1 {
+//   position: relative;
+//   cursor: pointer;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    right: 50%;
-    bottom: -5px;
-    border-bottom: 1px solid transparent;
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     left: 50%;
+//     right: 50%;
+//     bottom: -5px;
+//     border-bottom: 1px solid transparent;
 
-    transition: right 300ms, left 300ms;
-  }
-  &:hover::before {
-    left: 0%;
-    right: 0%;
-    border-bottom: 1px solid $red;
-  }
-}
+//     transition: right 300ms, left 300ms;
+//   }
+//   &:hover::before {
+//     left: 0%;
+//     right: 0%;
+//     border-bottom: 1px solid $red;
+//   }
+// }
 .hover2 {
   position: relative;
   cursor: pointer;

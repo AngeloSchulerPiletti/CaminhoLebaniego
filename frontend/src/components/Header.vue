@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div :class="`backwall ${menuState}_backwall`" @click="openMenu"></div>
     <div v-if="$store.state.logged" id="admin_header">
       <p>
         Bem vindo, {{ $store.state.sessionData.user.name }}. Você é admin e está
@@ -15,23 +16,16 @@
           <header-logo />
         </router-link>
       </div>
-      <nav id="header_nav">
+      <nav id="header_nav" :class="`${menuState}_menu`">
         <ul>
-          <router-link to="/caminho"
-            ><li class="hover1">O Caminho</li></router-link
-          >
-          <router-link to="/preparacao"
-            ><li class="hover1">Preparação</li></router-link
-          >
-          <router-link to="/experiencia"
-            ><li class="hover1">Experiência</li></router-link
-          >
-          <router-link to="/artigos"
-            ><li class="hover1">Artigos</li></router-link
-          >
-          <router-link to="/contato"
-            ><li class="hover1">Contato</li></router-link
-          >
+          <router-link to="/caminho"><li>O Caminho</li></router-link>
+          <router-link to="/preparacao"><li>Preparação</li></router-link>
+          <router-link to="/experiencia"><li>Experiência</li></router-link>
+          <router-link to="/artigos"><li>Artigos</li></router-link>
+          <router-link to="/contato"><li>Contato</li></router-link>
+        <div id="header_menu" @click="openMenu" :class="menuState">
+          <menu-icon :menuState="menuState" />
+        </div>
         </ul>
         <div class="search_btn" @click="$store.state.searchModalShow = true">
           <search-icon />
@@ -44,16 +38,32 @@
 <script>
 import HeaderLogo from "@/components/SVGs/HeaderLogo.vue";
 import SearchIcon from "@/components/SVGs/SearchIcon";
+import MenuIcon from "@/components/SVGs/MenuIcon";
 
 export default {
+  data() {
+    return {
+      menuState: null,
+    };
+  },
+  methods: {
+    openMenu() {
+      this.menuState = this.menuState == "open" ? "close" : "open";
+    },
+  },
   components: {
     HeaderLogo,
     SearchIcon,
+    MenuIcon,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.backwall{
+  display: none;
+}
+
 #admin_header {
   background-color: $red;
   color: $white;
@@ -80,7 +90,7 @@ header {
   #logo_container {
     @include headerLogo($pad_top);
   }
-  nav {
+  #header_nav {
     display: flex;
     align-items: center;
     gap: 6vw;
@@ -112,6 +122,24 @@ header {
         @include Font1;
 
         position: relative;
+
+        cursor: pointer;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          right: 50%;
+          bottom: -5px;
+          border-bottom: 1px solid transparent;
+
+          transition: right 300ms, left 300ms;
+        }
+        &:hover::before {
+          left: 0%;
+          right: 0%;
+          border-bottom: 1px solid $red;
+        }
       }
     }
     .search_btn {
@@ -144,64 +172,237 @@ header {
       }
     }
   }
+  #header_menu {
+    display: none;
+  }
 }
-
-
-
-
 
 @media (max-width: 900px) {
   #admin_header {
-  padding: 8px 15px;
-  font-size: 20px;
-}
-
-$pad_top: 2vw;
-header {
-  grid-template-columns: 4fr 7fr;
-  gap: 5vw;
-
-  padding: 0 4vw 6vw 6vw;
-
-  #logo_container {
-    @include headerLogo($pad_top);
+    padding: 8px 15px;
+    font-size: 20px;
   }
-  nav {
-    ul {
-      li {
-        padding-top: $pad_top;
-      }
+
+  $pad_top: 2vw;
+  header {
+    grid-template-columns: 4fr 7fr;
+    gap: 5vw;
+
+    padding: 0 4vw 6vw 6vw;
+
+    #logo_container {
+      padding-top: $pad_top !important;
     }
-    .search_btn {
-      position: fixed;
-      z-index: 1000;
-      top: 45vh;
-      left: 0;
-      padding: 8px;
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
-      background-color: $red;
-      box-shadow: 0 0 10px #000;
-      transition: opacity 200ms;
-
-      svg {
-        padding: 0px;
-        border-bottom: 0px;
-        transition: none;
+    #header_nav {
+      ul {
+        li {
+          padding-top: $pad_top;
+        }
       }
+      .search_btn {
+        position: fixed;
+        z-index: 1000;
+        top: 45vh;
+        left: 0;
+        padding: 8px;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        background-color: $red;
+        box-shadow: 0 0 10px #000;
+        transition: opacity 200ms;
 
-      &:hover {
-        opacity: 0.6;
         svg {
+          padding: 0px;
           border-bottom: 0px;
+          transition: none;
+        }
 
-          &:deep(path) {
-            fill: $white;
+        &:hover {
+          opacity: 0.6;
+          svg {
+            border-bottom: 0px;
+
+            &:deep(path) {
+              fill: $white;
+            }
           }
         }
       }
     }
   }
 }
+
+@media (max-width: 760px) {
+  .backwall{
+    position: fixed;
+    background-color: #000;
+    z-index: 10000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+  }
+  .open_backwall{
+    display: block;
+    opacity: 0.4;
+  }
+
+  $pad_top: 2vw;
+
+  header {
+    display: block;
+
+    padding: 0 4vw 6vw 6vw;
+    background: transparent;
+
+    #logo_container {
+      background-color: #000;
+      box-shadow: 0 0 20px #000;
+      padding: 6px;
+      padding-top: $pad_top !important;
+      width: 40%;
+
+    }
+    #header_nav {
+      position: fixed;
+      z-index: 10000;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40vw;
+      
+      &.close_menu ul {
+        transform: translateX(100%);
+      }
+      &.open_menu ul {
+        transform: translateX(0);
+      }
+      ul {
+        transition: transform 400ms ease-in-out;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        background-color: $white;
+        transform: translateX(100%);
+        box-shadow: 0 0 10px #000;
+
+        a {
+          width: 100%;
+          display: inline-block;
+          padding: 8px;
+
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            border-bottom: 1px solid $red;
+            width: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            transition: none;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+
+            transition: border-left 100ms;
+          }
+          &:hover::after {
+            border-left: 6px solid $red;
+          }
+
+          &.router-link-active {
+            &::after {
+              border-bottom: 0px;
+              border-left: 3px solid $red;
+            }
+            li::before {
+              content: none;
+            }
+          }
+        }
+        li {
+          color: $black;
+          font-size: 20px;
+          position: relative;
+          padding: 0;
+
+          &::before {
+            content: none;
+          }
+        }
+
+        position: relative;
+
+        #header_menu {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 30vh;
+        width: 36px;
+        height: 36px;
+        background-color: $red;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 0 5px #000;
+        transform: translateX(-100%);
+
+        transition: opacity 300ms, box-shadow 200ms;
+
+        &:hover {
+          opacity: 0.7;
+          box-shadow: 0;
+        }
+
+        &:deep() {
+          path {
+            fill: $white;
+          }
+        }
+      }
+      }
+      .search_btn {
+        position: fixed;
+        z-index: 1000;
+        top: 45vh;
+        left: 0;
+        padding: 8px;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        background-color: $red;
+        box-shadow: 0 0 10px #000;
+        transition: opacity 200ms;
+
+        svg {
+          padding: 0px;
+          border-bottom: 0px;
+          transition: none;
+        }
+
+        &:hover {
+          opacity: 0.6;
+          svg {
+            border-bottom: 0px;
+
+            &:deep(path) {
+              fill: $white;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>
