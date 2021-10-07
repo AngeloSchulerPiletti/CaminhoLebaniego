@@ -56,7 +56,7 @@ export default {
   justify-content: space-between;
 
   .text_content {
-    margin:5vw 10vw 0 10vw;
+    margin: 5vw 10vw 0 10vw;
     padding: 4vw;
     width: fit-content;
     color: $white;
@@ -75,7 +75,7 @@ export default {
     }
     p {
       font-size: 18px;
-      margin-top: 18px;
+      margin-top: 1em;
       @include Font1;
     }
   }
@@ -106,6 +106,36 @@ export default {
 
       &:nth-child(2) {
         top: $arrow_width/3;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  #bannerContent {
+    .text_content {
+      margin: 6vh 10vw 0 10vw;
+
+      h1 {
+        font-size: 35px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 390px){
+  #bannerContent {
+    .text_content {
+      margin: 6vh 6vw 0 6vw;
+
+      h1 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 14px;
       }
     }
   }
