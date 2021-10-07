@@ -56,8 +56,7 @@ export default {
   justify-content: space-between;
 
   .text_content {
-    margin-left: 10vw;
-    margin-top: 5vw;
+    margin:5vw 10vw 0 10vw;
     padding: 4vw;
     width: fit-content;
     color: $white;
