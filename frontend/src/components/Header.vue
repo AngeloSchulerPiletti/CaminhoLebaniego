@@ -143,8 +143,8 @@ header {
       }
     }
     .search_btn {
-      height: 30px;
-      width: 30px;
+      height: $iconsLength;
+      width: $iconsLength;
       cursor: pointer;
 
       svg {
@@ -289,6 +289,8 @@ header {
         transform: translateX(100%);
         box-shadow: 0 0 10px #000;
 
+        transform-style: preserve-3d;
+
         a {
           width: 100%;
           display: inline-block;
@@ -353,8 +355,8 @@ header {
         position: absolute;
         left: 0;
         top: 30vh;
-        width: 36px;
-        height: 36px;
+        width: calc(#{$iconsLength} + 5px);
+        height: calc(#{$iconsLength} + 5px);
         background-color: $red;
         border-top-left-radius: 50%;
         border-bottom-left-radius: 50%;
@@ -362,7 +364,7 @@ header {
         cursor: pointer;
         z-index: 10000;
         box-shadow: 0 0 5px #000;
-        transform: translateX(-100%);
+        transform: translateX(-100%) translateZ(-1px);
 
         transition: opacity 300ms, box-shadow 200ms;
 

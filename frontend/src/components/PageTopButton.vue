@@ -23,14 +23,15 @@ export default {
   position: fixed;
   left: 5vw;
   bottom: 10vh;
+  z-index: 10000;
 
   &.button {
     border-radius: 50%;
     background-color: $red;
     box-shadow: 0 0 15px #000;
     padding: 5px;
-    width: 25px;
-    height: 25px;
+    width: $iconsLength;
+    height: $iconsLength;
     cursor: pointer;
 
     transition: box-shadow 200ms, opacity 300ms;
@@ -61,8 +62,6 @@ export default {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     padding: 8px;
-    width: 30px;
-    height: 30px;
 
     transition: box-shadow 200ms, opacity 300ms;
 
