@@ -143,8 +143,8 @@ header {
       }
     }
     .search_btn {
-      height: $iconsLength;
-      width: $iconsLength;
+      height: 30px;
+      width: 30px;
       cursor: pointer;
 
       svg {
@@ -355,8 +355,8 @@ header {
         position: absolute;
         left: 0;
         top: 30vh;
-        width: calc(#{$iconsLength} + 5px);
-        height: calc(#{$iconsLength} + 5px);
+        width: calc(30px + 5px);
+        height: calc(30px + 5px);
         background-color: $red;
         border-top-left-radius: 50%;
         border-bottom-left-radius: 50%;
@@ -395,8 +395,18 @@ header {
     #header_nav {
       width: 50vw;
 
-      ul a{
+      ul {
+        a{
           padding: 12px 8px 12px 18px;
+        }
+        #header_menu{
+          width: 24px;
+          height: 24px;
+        }
+      }
+      .search_btn{
+        width: 24px;
+        height: 24px;
       }
     }
   }

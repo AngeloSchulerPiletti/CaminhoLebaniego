@@ -30,8 +30,8 @@ export default {
     background-color: $red;
     box-shadow: 0 0 15px #000;
     padding: 5px;
-    width: $iconsLength;
-    height: $iconsLength;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 
     transition: box-shadow 200ms, opacity 300ms;
@@ -81,5 +81,14 @@ export default {
     }
   }
 }
+}
+
+@media (max-width: 600px){
+  .wrapper{
+    &.button{
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 </style>
