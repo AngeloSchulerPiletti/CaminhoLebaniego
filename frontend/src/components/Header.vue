@@ -23,15 +23,18 @@
           <router-link to="/experiencia"><li>Experiência</li></router-link>
           <router-link to="/artigos"><li>Artigos</li></router-link>
           <router-link to="/contato"><li>Contato</li></router-link>
-        <div id="header_menu" @click="openMenu" :class="menuState">
-          <menu-icon :menuState="menuState" />
-        </div>
+          <div id="header_menu" @click="openMenu" :class="menuState">
+            <menu-icon :menuState="menuState" />
+          </div>
         </ul>
         <div class="search_btn" @click="$store.state.searchModalShow = true">
           <search-icon />
         </div>
       </nav>
     </header>
+    <div class="search_btn-mobile" @click="$store.state.searchModalShow = true">
+      <search-icon />
+    </div>
   </div>
 </template>
 
@@ -60,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.backwall{
+.backwall {
   display: none;
 }
 
@@ -176,6 +179,9 @@ header {
     display: none;
   }
 }
+.search_btn-mobile {
+  display: none;
+}
 
 @media (max-width: 900px) {
   #admin_header {
@@ -200,40 +206,45 @@ header {
         }
       }
       .search_btn {
-        position: fixed;
-        z-index: 1000;
-        top: 45vh;
-        left: 0;
-        padding: 8px;
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
-        background-color: $red;
-        box-shadow: 0 0 10px #000;
-        transition: opacity 200ms;
-
-        svg {
-          padding: 0px;
-          border-bottom: 0px;
-          transition: none;
-        }
-
-        &:hover {
-          opacity: 0.6;
-          svg {
-            border-bottom: 0px;
-
-            &:deep(path) {
-              fill: $white;
-            }
-          }
-        }
+        display: none;
       }
+    }
+  }
+  .search_btn-mobile {
+    display: block;
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    z-index: 1000;
+    top: 45vh;
+    left: 0;
+    padding: 8px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    background-color: $red;
+    box-shadow: 0 0 10px #000;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+
+    svg {
+      padding: 0px;
+      border-bottom: 0px;
+      transition: none;
+
+        &:deep(path) {
+          fill: $white;
+        }
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   }
 }
 
 @media (max-width: 760px) {
-  .backwall{
+  .backwall {
     position: fixed;
     background-color: #000;
     z-index: 10000;
@@ -243,7 +254,7 @@ header {
     right: 0;
     opacity: 0;
   }
-  .open_backwall{
+  .open_backwall {
     display: block;
     opacity: 0.4;
   }
@@ -262,7 +273,6 @@ header {
       padding: 6px;
       padding-top: $pad_top !important;
       width: 40%;
-
     }
     #header_nav {
       position: fixed;
@@ -271,8 +281,8 @@ header {
       right: 0;
       bottom: 0;
       width: 40vw;
-    transform: translateX(100%);
-      
+      transform: translateX(100%);
+
       &.close_menu ul {
         transform: translateX(0);
       }
@@ -297,7 +307,7 @@ header {
           display: inline-block;
           padding: 10px 8px 10px 14px;
 
-          &:nth-child(1){
+          &:nth-child(1) {
             margin-top: 40px;
             border-top: 1px solid $red;
           }
@@ -352,34 +362,34 @@ header {
         position: relative;
 
         #header_menu {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 30vh;
-        width: calc(30px + 5px);
-        height: calc(30px + 5px);
-        background-color: $red;
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
-        padding: 5px;
-        cursor: pointer;
-        z-index: 10000;
-        box-shadow: 0 0 5px #000;
-        transform: translateX(-100%) translateZ(-1px);
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 30vh;
+          width: calc(30px + 5px);
+          height: calc(30px + 5px);
+          background-color: $red;
+          border-top-left-radius: 50%;
+          border-bottom-left-radius: 50%;
+          padding: 5px;
+          cursor: pointer;
+          z-index: 10000;
+          box-shadow: 0 0 5px #000;
+          transform: translateX(-100%) translateZ(-1px);
 
-        transition: opacity 300ms, box-shadow 200ms;
+          transition: opacity 300ms, box-shadow 200ms;
 
-        &:hover {
-          opacity: 0.7;
-          box-shadow: 0;
-        }
+          &:hover {
+            opacity: 0.7;
+            box-shadow: 0;
+          }
 
-        &:deep() {
-          path {
-            fill: $white;
+          &:deep() {
+            path {
+              fill: $white;
+            }
           }
         }
-      }
       }
 
       .search_btn {
@@ -388,13 +398,11 @@ header {
         left: 0;
         transform: translateX(calc(-100vw + 15px));
       }
-
     }
   }
 }
 
-
-@media (max-width: 600px){
+@media (max-width: 600px) {
   header {
     #logo_container {
       padding: 8px;
@@ -405,19 +413,23 @@ header {
       width: 50vw;
 
       ul {
-        a{
+        a {
           padding: 12px 8px 12px 18px;
         }
-        #header_menu{
+        #header_menu {
           width: 24px;
           height: 24px;
         }
       }
-      .search_btn{
+      .search_btn {
         width: 24px;
         height: 24px;
       }
     }
+  }
+  .search_btn-mobile{
+    width: 24px;
+    height: 24px;
   }
 }
 </style>
