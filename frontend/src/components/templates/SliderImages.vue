@@ -2,7 +2,7 @@
   <div :class="'wrapper f_' + alignment">
     <div :class="'img_container ' + img1Class">
       <img
-        :class="{'hided' : (img-1) !== this.index}"
+        :class="{ hided: img - 1 !== this.index }"
         v-for="img in total"
         :key="img"
         :src="
@@ -86,6 +86,8 @@ export default {
   .img_container {
     box-shadow: 0 0 10px 2px #000;
     position: relative;
+        width: 40vw;
+        height: 30vw;
 
     &::before {
       content: "";
@@ -107,7 +109,7 @@ export default {
       height: 30vw;
       object-fit: cover;
 
-      &.hided{
+      &.hided {
         display: none;
       }
     }
@@ -126,6 +128,7 @@ export default {
 
       p {
         text-indent: 1em;
+        text-align: justify;
       }
     }
     .bottom {
@@ -134,6 +137,47 @@ export default {
 
       .btn_3.active {
         pointer-events: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    .img_container {
+      box-shadow: 0 0 12px 3px #000;
+        width: 52vw;
+        height: 38vw;
+
+      img {
+        width: 52vw;
+        height: 38vw;
+      }
+    }
+    .asider {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 0;
+
+      .top {
+        color: $white;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        p {
+          text-indent: 1em;
+        }
+      }
+      .bottom {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+
+        .btn_3.active {
+          pointer-events: none;
+        }
       }
     }
   }
