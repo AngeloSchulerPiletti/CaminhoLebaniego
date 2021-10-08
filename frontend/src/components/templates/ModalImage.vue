@@ -6,7 +6,7 @@
       @click="closeModal($event)"
     >
       <div class="img_container">
-        <img :src="$store.state.imgSrc" alt="" />
+        <img :src="$store.state.imgSrc" alt="" draggable="false"/>
       </div>
     </div>
   </transition>
@@ -43,16 +43,27 @@ export default {
   z-index: 10000;
 
   .img_container {
-    width: fit-content;
-    height: fit-content;
+    width: 80vw;
+    height: 50vw;
     box-shadow: 0 0 4vw 1vw $blackest;
     margin: 10vh auto;
 
     img {
-      max-width: 80vw;
-      max-height: 80vh;
-      object-fit: contain;
+      width: 80vw;
+      height: 50vw;
+      object-fit: cover;
     }
   }
+}
+
+
+@media (max-width: 600px){
+
+.wrapper {
+  .img_container {
+    margin: 50% auto;
+    transform: translateY(-25%);
+  }
+}
 }
 </style>
