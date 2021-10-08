@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import Modal from "@/components/Modal";
 import Footer from "@/components/Footer";
-import ModalImage from "@/components/templates/ModalImage";
+import ModalImage from "@/components/ModalImage";
 import SearchModal from "@/components/SearchModal";
-import HeaderBanner from "../components/HeaderBanner.vue";
+import HeaderBanner from "@/components/Header/HeaderBanner.vue";
 import BagsHandle from "@/components/BagsHandle";
 
 export default {

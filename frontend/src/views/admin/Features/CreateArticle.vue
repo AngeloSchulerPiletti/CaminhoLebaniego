@@ -100,8 +100,8 @@
 </template>
 
 <script>
-import { apiRequestProtocol } from "@/service/api.js";
-import Admin from "@/layouts/Admin";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
+import Admin from "@/views/layouts/Admin";
 import InfoModal from "@/components/admin/InfoModal";
 
 export default {

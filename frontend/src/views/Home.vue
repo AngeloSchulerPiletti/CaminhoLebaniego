@@ -18,9 +18,8 @@
 
 <script>
 // @ is an alias to /src
-import AppLayout from "@/layouts/Public.vue";
-import BannerContent from "@/components/header/BannerContent.vue";
-import { computed } from "@vue/reactivity";
+import AppLayout from "@/views/layouts/Public.vue";
+import BannerContent from "@/components/Header/BannerContent.vue";
 
 export default {
   name: "inicio",

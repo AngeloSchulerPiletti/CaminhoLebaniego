@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Admin from "@/layouts/Admin";
+import Admin from "@/views/layouts/Admin";
 import ArticlesList from "@/components/templates/ArticlesList";
 
 export default {

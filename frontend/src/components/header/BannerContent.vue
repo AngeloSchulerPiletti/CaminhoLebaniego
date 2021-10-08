@@ -13,7 +13,7 @@
 
 <script>
 import TinyArrow from "@/components/SVGs/TinyArrow";
-import { scrollingTo, scrollToSec } from "@/modules/scrolling.js";
+import { scrollingTo, scrollToSec } from "@/scripts/modules/scrolling.js";
 
 export default {
   data() {

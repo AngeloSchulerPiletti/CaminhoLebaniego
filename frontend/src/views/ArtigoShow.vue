@@ -17,8 +17,8 @@
 
 <script>
 import Article from "@/components/templates/Article";
-import { apiRequestProtocol } from "@/service/api.js";
-import Public from "@/layouts/Public";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
+import Public from "@/views/layouts/Public";
 import ShareButton from "@/components/ShareButton";
 import PageTopButton from '@/components/PageTopButton.vue';
 

@@ -12,9 +12,9 @@
 </template>
 <script>
 // @ is an alias to /src
-import AppLayout from "@/layouts/Public.vue";
-import BannerContent from "@/components/header/BannerContent.vue";
-import ListingTopics from "@/components/templates/ListingTopics";
+import AppLayout from "@/views/layouts/Public.vue";
+import BannerContent from "@/components/Header/BannerContent.vue";
+import ListingTopics from "@/components/ListingTopics";
  
 export default {
   name: "preparacao",

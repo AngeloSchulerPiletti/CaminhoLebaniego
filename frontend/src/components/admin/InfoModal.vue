@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { apiRequestProtocol } from "@/service/api.js";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
 
 export default {
   data() {

@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import Admin from "@/layouts/Admin";
-import { apiRequestProtocol } from "@/service/api.js";
+import Admin from "@/views/layouts/Admin";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
 
 export default {
   name: "login",

@@ -48,7 +48,7 @@
 
 <script>
 import Arrow from "@/components/SVGs/Arrow";
-import TitleSpecial from "@/components/elements/TitleSpecial.vue";
+import TitleSpecial from "@/components/TitleSpecial.vue";
 
 export default {
   data() {
@@ -222,9 +222,6 @@ export default {
 
 @media (max-width: 600px) {
   .wrapper {
-    .slider_title {
-      // margin: 0 -4vw;
-    }
     .paragraphs_slider {
       padding: 0 6vw;
 

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header.vue";
 
 export default {
     data(){
@@ -65,16 +65,16 @@ export default {
   background-repeat: no-repeat;
 }
 .back-0 {
-  background-image: url("../assets/images/template/walkerman.jpg");
+  background-image: url("../../assets/images/template/walkerman.jpg");
   overflow-y: hidden;
 }
 .back-1 {
-  background-image: url("../assets/images/template/equipment.jpg");
+  background-image: url("../../assets/images/template/equipment.jpg");
   background-position-x: left;
 }
 .back-2 {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../assets/images/template/santiago.jpg");
+    url("../../assets/images/template/santiago.jpg");
   background-size: cover;
   background-position-y: 70%;
   background-position-x: center;
@@ -82,7 +82,7 @@ export default {
 }
 .back-3 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/template/trekkingman.jpg");
+    url("../../assets/images/template/trekkingman.jpg");
   background-size: cover;
   background-position-y: top;
   background-position-x: center;
@@ -90,7 +90,7 @@ export default {
 }
 .back-4 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../assets/images/template/writter.jpg");
+    url("../../assets/images/template/writter.jpg");
   background-size: cover;
   background-position-y: 80%;
   background-position-x: 28%;
@@ -98,7 +98,7 @@ export default {
 }
 .back-5 {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../assets/images/template/mail.jpg");
+    url("../../assets/images/template/mail.jpg");
   background-size: cover;
   background-position-y: top;
   background-position-x: 40%;

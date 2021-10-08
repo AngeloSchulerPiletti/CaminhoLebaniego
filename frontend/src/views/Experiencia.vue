@@ -19,8 +19,8 @@
 
 <script>
 // @ is an alias to /src
-import AppLayout from "@/layouts/Public.vue";
-import BannerContent from "@/components/header/BannerContent.vue";
+import AppLayout from "@/views/layouts/Public.vue";
+import BannerContent from "@/components/Header/BannerContent.vue";
 import Article from "@/components/templates/Article.vue";
 
 export default {

@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import TitleSpecial from "@/components/elements/TitleSpecial.vue";
-import { scrollToSec } from "@/modules/scrolling.js";
+import TitleSpecial from "@/components/TitleSpecial.vue";
+import { scrollToSec } from "@/scripts/modules/scrolling.js";
 
 export default {
   data() {

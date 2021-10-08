@@ -10,7 +10,7 @@ import Contato from "@/views/Contato.vue";
 import Experiencia from "@/views/Experiencia.vue";
 import Error404 from "@/views/error/Error404.vue";
 import Login from "@/views/admin/Login.vue";
-import Admin from "@/layouts/Admin";
+import Admin from "@/views/layouts/Admin";
 import CreateArticle from "@/views/admin/Features/CreateArticle";
 import ChangePages from "@/views/admin/Features/ChangePages";
 import ChangeArticles from "@/views/admin/Features/ChangeArticles";
@@ -154,7 +154,7 @@ const router = createRouter({
   },
 })
 
-import { apiRequestProtocol } from "@/service/api.js";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
 
 router.beforeEach(async to => {
   store.state.modalShow = false;

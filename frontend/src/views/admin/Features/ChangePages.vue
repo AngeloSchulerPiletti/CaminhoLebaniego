@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Admin from "@/layouts/Admin";
+import Admin from "@/views/layouts/Admin";
 export default {
   components: {
   },

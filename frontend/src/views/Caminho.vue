@@ -44,13 +44,12 @@
 </template>
 <script>
 // @ is an alias to /src
-import AppLayout from "@/layouts/Public.vue";
-import BannerContent from "@/components/header/BannerContent.vue";
-import SliderParagraphs from "@/components/templates/SliderParagraphs";
-import SliderImages from "@/components/templates/SliderImages";
-import DaysExcerptsNav from "@/components/templates/DaysExcerptsNav";
-import Observation from "@/components/templates/Observation";
-import ErrorSection from "@/components/templates/errors/ErrorSection";
+import AppLayout from "@/views/layouts/Public.vue";
+import BannerContent from "@/components/Header/BannerContent.vue";
+import SliderParagraphs from "@/components/SliderParagraphs";
+import SliderImages from "@/components/SliderImages";
+import DaysExcerptsNav from "@/components/DaysExcerptsNav";
+import Observation from "@/components/Observation";
 
 export default {
   name: "caminho",
@@ -74,15 +73,11 @@ export default {
     SliderImages,
     DaysExcerptsNav,
     Observation,
-    ErrorSection,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#sec1 {
-  
-}
 #sec2 {
   margin-top: 170px;
 }

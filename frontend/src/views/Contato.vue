@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import { apiRequestProtocol } from "@/service/api.js";
-import AppLayout from "@/layouts/Public.vue";
-import BannerContent from "@/components/header/BannerContent.vue";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
+import AppLayout from "@/views/layouts/Public.vue";
+import BannerContent from "@/components/Header/BannerContent.vue";
 
 export default {
   data() {

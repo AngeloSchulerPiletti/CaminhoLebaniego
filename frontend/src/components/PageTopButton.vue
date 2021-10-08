@@ -6,7 +6,7 @@
 
 <script>
 import ArrowUp from "@/components/SVGs/ArrowUp.vue";
-import { scrollingTo } from "@/modules/scrolling.js";
+import { scrollingTo } from "@/scripts/modules/scrolling.js";
 
 export default {
   components: { ArrowUp },

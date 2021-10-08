@@ -124,8 +124,8 @@
 </template>
 
 <script>
-import { apiRequestProtocol } from "@/service/api.js";
-import { scrollToSec } from "@/modules/scrolling.js";
+import { apiRequestProtocol } from "@/scripts/service/api.js";
+import { scrollToSec } from "@/scripts/modules/scrolling.js";
 
 export default {
   data() {

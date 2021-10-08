@@ -31,7 +31,7 @@
 
 <script>
 import HeaderLogo from "@/components/SVGs/HeaderLogo.vue";
-import { apiRequestProtocol } from "@/service/api";
+import { apiRequestProtocol } from "@/scripts/service/api";
 
 export default {
   data() {
