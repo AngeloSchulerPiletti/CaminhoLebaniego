@@ -1,6 +1,12 @@
 <template>
   <div :class="'wrapper f_' + alignment">
-    <div :class="'img_container ' + img1Class">
+    <div
+      :class="'img_container ' + img1Class"
+      @touchstart="dragStart = $event.changedTouches[0].clientX"
+      @touchend="draged($event.changedTouches[0].clientX)"
+      @mousedown="dragStart = $event.x"
+      @mouseup="draged($event.x)"
+    >
       <img
         :class="{ hided: img - 1 !== this.index }"
         v-for="img in total"
@@ -37,25 +43,46 @@ export default {
     return {
       img1Class: "",
       index: 0,
+      dragStart: 0,
+      dragAvailable: true,
+      promiseRunning: false,
     };
   },
   methods: {
-    changeImage(action) {
-      this.img1Class = "active";
+    draged(dragEnd) {
+      if (!this.dragAvailable && Math.abs(this.dragStart - dragEnd) < 20)
+        return;
+      this.dragAvailable = false;
+      if (this.dragStart > dragEnd) {
+        this.changeImage(1);
+      } else if (this.dragStart < dragEnd) {
+        this.changeImage(-1);
+      }
+    },
+    async changeImage(action) {
+      if (this.promiseRunning) return;
+      this.promiseRunning = true;
+      return new Promise((resolve, reject) => {
+        this.img1Class = "active";
 
-      setTimeout(() => {
-        var result = this.index;
-        result += action;
-        this.index +=
-          result >= 0
-            ? result < this.total
-              ? action
-              : -(this.total - 1)
-            : this.total - 1;
-      }, 300);
-      setTimeout(() => {
-        this.img1Class = "";
-      }, 600);
+        setTimeout(() => {
+          var result = this.index;
+          result += action;
+          this.index +=
+            result >= 0
+              ? result < this.total
+                ? action
+                : -(this.total - 1)
+              : this.total - 1;
+        }, 300);
+        setTimeout(() => {
+          this.img1Class = "";
+          resolve();
+        }, 600);
+      }).then(() => {
+        this.dragAvailable = true;
+        this.promiseRunning = false;
+      });
     },
   },
   props: {
