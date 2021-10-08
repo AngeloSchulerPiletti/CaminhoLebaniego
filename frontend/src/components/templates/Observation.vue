@@ -18,6 +18,5 @@ export default {
 <style lang="scss" scoped>
 .wrapper{
     @include observationPreset(80vw);
-    
 }
 </style>

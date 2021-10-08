@@ -192,21 +192,31 @@
   &.quotes {
     background-color: $white;
     position: relative;
-    
-    p{
+
+    p {
       color: $black;
       @include Font0;
     }
 
-    &::before{
+    &::before {
       content: '"';
-      font-family: 'Secular One', sans-serif;
+      font-family: "Secular One", sans-serif;
       color: $black;
       font-size: 50px;
       position: absolute;
 
       top: 10px;
       left: 10px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    gap: 0.7em;
+    padding: 16px 20px;
+
+    p {
+      text-indent: 1.8em;
+      font-size: 14px;
     }
   }
 }
