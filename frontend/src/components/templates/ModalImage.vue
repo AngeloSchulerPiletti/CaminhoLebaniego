@@ -58,8 +58,8 @@ export default {
 
 
 @media (max-width: 600px){
-
 .wrapper {
+  background-color: #000000D4;
   .img_container {
     margin: 50% auto;
     transform: translateY(-25%);
