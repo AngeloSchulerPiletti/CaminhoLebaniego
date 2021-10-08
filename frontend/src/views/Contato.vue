@@ -4,6 +4,7 @@
       <banner-content :pageData="pageData" />
     </template>
     <template v-slot:main>
+      <div class="form_container">
       <form @submit.prevent>
         <div class="inputs">
           <div class="input_container half">
@@ -57,6 +58,7 @@
           </button>
         </div>
       </form>
+      </div>
     </template>
   </app-layout>
 </template>
@@ -115,6 +117,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form_container{
+  margin-top: 100px;
+}
 form {
   @include form1(80vw, 100vw);
 }

@@ -148,6 +148,37 @@
     display: flex;
     justify-content: space-between;
   }
+
+  @media (max-width: 900px) {
+    .inputs {
+      padding: 20px;
+
+      .input_container {
+        &.half {
+          width: 70%;
+        }
+        input {
+          font-size: 15px;
+        }
+        select {
+          font-size: 15px;
+        }
+        textarea {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .inputs {
+      .input_container {
+        &.half {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 @mixin observationPreset($width) {
