@@ -186,6 +186,9 @@ header {
   display: none;
 }
 
+
+
+
 @media (max-width: 900px) {
   #admin_header {
     padding: 8px 15px;

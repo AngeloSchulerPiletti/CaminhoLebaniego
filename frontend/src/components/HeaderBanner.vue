@@ -70,6 +70,7 @@ export default {
 }
 .back-1 {
   background-image: url("../assets/images/template/equipment.jpg");
+  background-position-x: left;
 }
 .back-2 {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -92,7 +93,7 @@ export default {
     url("../assets/images/template/writter.jpg");
   background-size: cover;
   background-position-y: 80%;
-  background-position-x: center;
+  background-position-x: 28%;
   background-repeat: no-repeat;
 }
 .back-5 {
@@ -100,7 +101,7 @@ export default {
     url("../assets/images/template/mail.jpg");
   background-size: cover;
   background-position-y: top;
-  background-position-x: center;
+  background-position-x: 40%;
   background-repeat: no-repeat;
 }
 </style>
