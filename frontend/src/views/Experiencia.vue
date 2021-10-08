@@ -66,7 +66,7 @@ export default {
 @media (max-width: 600px){
   .top {
   width: 86%;
-  margin: 7vw auto;
+  margin: 90px auto 50px auto;
 
   h3 {
     font-size: 30px;
@@ -83,7 +83,6 @@ export default {
 @media (max-width: 400px){
   .top {
   width: 80%;
-  margin: 8vw auto;
   padding: 18px 28px;
 
   h3 {
