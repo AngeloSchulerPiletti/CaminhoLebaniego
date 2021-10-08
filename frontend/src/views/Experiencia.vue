@@ -42,19 +42,56 @@ export default {
 
 <style lang="scss" scoped>
 .top {
+  margin-top: 100px;
+  border: 1px solid $red;
+  width: 80%;
+  margin: 6vw auto;
+  padding: 20px 35px;
+  box-sizing: border-box;
+
   h3 {
-    margin: 5vw 10vw 1.5vw 10vw;
+    margin-bottom: 10px;
   }
   p {
     color: $white;
     font-size: 17px;
     margin: auto;
-    width: 80vw;
     text-align: justify;
-    padding-bottom: 1.4vw;
-    margin-bottom: 4vw;
-    border-bottom: 2px solid $red;
-    box-shadow: inset 0 -10px 8px -5px $blackest;
   }
+}
+
+
+
+
+@media (max-width: 600px){
+  .top {
+  width: 86%;
+  margin: 7vw auto;
+
+  h3 {
+    font-size: 30px;
+  }
+  p {
+    font-size: 17px;
+  }
+}
+}
+
+
+
+
+@media (max-width: 400px){
+  .top {
+  width: 80%;
+  margin: 8vw auto;
+  padding: 18px 28px;
+
+  h3 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 17px;
+  }
+}
 }
 </style>
