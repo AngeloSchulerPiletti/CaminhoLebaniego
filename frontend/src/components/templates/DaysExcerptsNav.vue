@@ -175,11 +175,6 @@ export default {
           color: $black;
           font-size: 1.1em;
           @include Font0;
-
-          span {
-            // color: $white;
-            // font-size: 1.25em;
-          }
         }
       }
     }
@@ -310,8 +305,6 @@ export default {
 
 @media (max-width: 400px){
   .wrapper {
-    .top{
-    }
   .controllers{
     padding: 8px 20px;
     .hover2{
