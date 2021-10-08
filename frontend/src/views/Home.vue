@@ -53,6 +53,7 @@ export default {
 @media (max-width: 700px) {
   #actions {
     flex-direction: column;
+    align-items: center;
     gap: 5vw;
   }
 }
