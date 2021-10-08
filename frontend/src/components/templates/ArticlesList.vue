@@ -176,11 +176,14 @@ export default {
     },
     goToArticle(url, event) {
       console.log(event.target.tagName);
-      if(event.target.tagName != "SPAN"){
-        this.$router.push({ name: "artigo_show", query: { titulo: url } });
+      if(event.target.tagName == "SPAN"){
+        this.searchFor(event.target.innerHTML);
+      }
+      else if(event.target.tagName == "LI"){
+        return;
       }
       else{
-        this.searchFor(event.target.innerHTML);
+        this.$router.push({ name: "artigo_show", query: { titulo: url } });
       }
     },
     searchFor(tag) {
