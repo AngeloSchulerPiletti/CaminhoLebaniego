@@ -193,11 +193,12 @@ export default {
             li {
               white-space: nowrap;
               height: min-content;
-              border-bottom: 1px solid transparent;
               padding: 15px 18px 8px 18px;
               line-height: 1.2em;
-              background-color: $black;
+              background-color: $red;
               user-select: none;
+              box-shadow: inset 0 0 4px #000;
+              border: none;
 
               transition: font-size 200ms, padding 200ms, box-shadow 200ms;
 
