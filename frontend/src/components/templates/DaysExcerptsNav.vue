@@ -320,7 +320,7 @@ export default {
   }
   .content_wrapper {
     .img_colection {
-      grid-template-columns: 80%;
+      grid-template-columns: 90%;
       justify-content: center;
     }
   }
