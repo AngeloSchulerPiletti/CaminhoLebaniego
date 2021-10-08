@@ -1,83 +1,102 @@
 <template>
   <footer>
-      <div class="top">
-          <h2 class="title3">Links Úteis</h2>
-      </div>
-      <div class="center">
-          <ul>
-              <router-link to="/area-do-administrador"><li>Área do Administrador</li></router-link>
-              <!-- <router-link to="/"><li>Fale Conosco</li></router-link> -->
-              <a href="https://www.linkedin.com/in/angelo-schuler-piletti/" target="_blank"><li>Quem desenvolveu o site?</li></a>
-          </ul>
-          <ul>
-              <!-- <router-link to="/"><li>Política de Privacidade</li></router-link> -->
-              <a href="https://www.caminolebaniego.com/" target="_blank"><li>Site Espanhol</li></a>
-              <!-- <router-link to="/"><li>Patrocínio ou Doações</li></router-link> -->
-          </ul>
-      </div>
-          <div class="bottom">
-              <p>&copy; Jone Mario Piletti, All rights reserved</p>
-          </div>
+    <div class="top">
+      <h2 class="title3">Links Úteis</h2>
+    </div>
+    <div class="center">
+      <ul>
+        <router-link to="/area-do-administrador"
+          ><li>Área do Administrador</li></router-link
+        >
+        <!-- <router-link to="/"><li>Fale Conosco</li></router-link> -->
+        <a
+          href="https://www.linkedin.com/in/angelo-schuler-piletti/"
+          target="_blank"
+          ><li>Quem desenvolveu o site?</li></a
+        >
+      </ul>
+      <ul>
+        <!-- <router-link to="/"><li>Política de Privacidade</li></router-link> -->
+        <a href="https://www.caminolebaniego.com/" target="_blank"
+          ><li>Site Espanhol</li></a
+        >
+        <!-- <router-link to="/"><li>Patrocínio ou Doações</li></router-link> -->
+      </ul>
+    </div>
+    <div class="bottom">
+      <p>&copy; Jone Mario Piletti, All rights reserved</p>
+    </div>
   </footer>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
-footer{
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  padding: 55px 0;
+  gap: 30px;
+  color: $blackest;
+
+  .top {
     display: flex;
-    flex-direction: column;
-    background-color: $white;
-    padding: 55px 0;
-    gap: 30px;
-    color: $blackest;
+    justify-content: center;
+  }
+  .center {
+    display: flex;
+    justify-content: space-around;
 
-    .top{
-        display: flex;
-        justify-content: center;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
 
-    }
-    .center{
-        display: flex;
-        justify-content: space-around;
+      a {
+        color: $black;
+        @include Font0;
 
-        ul{
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
+        li {
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            border-left: 2px solid transparent;
+            left: 0;
+            top: 0;
+            bottom: 0;
 
-            a{
-            color: $black;
-            @include Font0;
-
-                li{
-                    position: relative;
-                    &::before{
-                        content: "";
-                        position: absolute;
-                        border-left: 2px solid transparent;
-                        left: 0;
-                        top: 0;
-                        bottom: 0;
-
-                        transition: left 300ms, border-left 300ms;
-                    }
-                    &:hover::before{
-                        left: -10px;
-                        border-left: 2px solid $red;
-                    }
-                }
-            }
+            transition: left 300ms, border-left 300ms;
+          }
+          &:hover::before {
+            left: -10px;
+            border-left: 2px solid $red;
+          }
         }
+      }
     }
-    .bottom{
-        display: flex;
-        justify-content: center;
-    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: center;
+  }
 }
 
+@media (max-width: 600px) {
+  footer {
+    gap: 40px;
+    
+    .center {
+      flex-direction: column;
+      gap: 0.6em;
+
+      ul {
+        align-items: center;
+      }
+    }
+  }
+}
 </style>
