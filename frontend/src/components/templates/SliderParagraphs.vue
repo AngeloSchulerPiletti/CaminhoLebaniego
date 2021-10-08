@@ -223,7 +223,7 @@ export default {
 @media (max-width: 600px) {
   .wrapper {
     .slider_title {
-      margin: 0 -4vw;
+      // margin: 0 -4vw;
     }
     .paragraphs_slider {
       padding: 0 6vw;
