@@ -32,15 +32,15 @@ export default {
   },
   computed: {
     modalState() {
-        this.show = this.$store.state.modalShow;
+      this.show = this.$store.state.modalShow;
     },
   },
-  methods:{
-    closeModal(event){
-        if (event.path.length <= 7) {
-            this.$store.state.modalShow = false;
-        }
-    }
+  methods: {
+    closeModal(event) {
+      if (event.path.length <= 7) {
+        this.$store.state.modalShow = false;
+      }
+    },
   },
   watch: {
     modalState() {},
@@ -62,34 +62,56 @@ export default {
   z-index: 100000;
   background-color: #000000a0;
 
-
   #modal_container {
     margin: 10vh 10vw 0 10vw;
     overflow-y: auto;
     border-radius: 7px;
     max-height: 90vh;
 
-
     #markdown_article {
-      background-color: $white;
+      background-color: $black;
       border-radius: 7px 7px 0px 0px;
-      padding: 2vw;
+      padding: 30px;
       max-height: 60vh;
       overflow-y: auto;
 
-      &:deep() {
-        @include markdownArticle;
-      }
+      @include articleStyle;
+      
     }
     #modal_options {
       background-color: $gray3;
-      padding: 2vw;
+      padding: 20px;
       border-radius: 0px 0px 7px 7px;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+}
 
+@media (max-width: 600px) {
+  #great_modal {
+    background-color: #000000c0;
+
+    #modal_container {
+      margin: 10vh 30px 0 30px;
+      max-height: 90vh;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  #great_modal {
+    background-color: #000000d0;
+
+    #modal_container {
+      #markdown_article {
+        padding: 20px;
+      }
+      #modal_options {
+        padding: 16px;
+      }
     }
   }
 }

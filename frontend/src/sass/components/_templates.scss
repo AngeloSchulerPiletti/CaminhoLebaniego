@@ -1,99 +1,99 @@
 @use "../abstract" as *;
 
-@mixin markdownArticle {
-    h1{
-        @include Title1;
-        font-size: 28px;
-        margin: 28px 0 16px 0;
+// @mixin markdownArticle {
+//     h1{
+//         @include Title1;
+//         font-size: 28px;
+//         margin: 28px 0 16px 0;
 
-        display: flex;
-        gap: 30px;
-        align-items: center;
-        padding-right: 10px;
+//         display: flex;
+//         gap: 30px;
+//         align-items: center;
+//         padding-right: 10px;
 
-        &::before{
-            content: "";
-            border-top: 2px solid $red;
-            width: 4vw;
-        }
-        &::after{
-            content: "";
-            border-top: 2px solid $red;
-            flex-grow: 1;
-        }
-    }
-    h2{
-        @include Title2;
-        font-size: 25px;
-        margin: 20px 0 12px 0;
-        width: fit-content;
-        padding-bottom: 4px;
-        position: relative;
+//         &::before{
+//             content: "";
+//             border-top: 2px solid $red;
+//             width: 4vw;
+//         }
+//         &::after{
+//             content: "";
+//             border-top: 2px solid $red;
+//             flex-grow: 1;
+//         }
+//     }
+//     h2{
+//         @include Title2;
+//         font-size: 25px;
+//         margin: 20px 0 12px 0;
+//         width: fit-content;
+//         padding-bottom: 4px;
+//         position: relative;
 
-        &::before{
-            content: "";
-            width: 30%;
-            max-width: 200px;
-            border-bottom: 2px solid $red;
-            position: absolute;
-            right: 0;
-            bottom: 0px;
-        }
+//         &::before{
+//             content: "";
+//             width: 30%;
+//             max-width: 200px;
+//             border-bottom: 2px solid $red;
+//             position: absolute;
+//             right: 0;
+//             bottom: 0px;
+//         }
 
-    }
-    h3{
-        @include Title2;
-        font-size: 22px;
-        margin: 16px 0 12px 0;
-    }
-    h4{
-        @include Title3;
-        font-size: 20px;
-        margin: 12px 0 10px 0;
-    }
-    h5{
-        @include Title3;
-        font-size: 20px;
-        text-transform: capitalize;
-        margin: 10px 0 8px 0;
-    }
-    h6{
-        @include Title3;
-        font-size: 18px;
-        text-transform: capitalize;
-        margin: 10px 0 8px 0;
-        border-left: 2px solid $red;
-        padding-left: 10px;
-    }
-    p{
-        @include Font0;
-        text-indent: 1em;
-        font-size: 16px;
-        line-height: 1.4em;
-        margin: 10px 0;
-    }
-    ul{
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+//     }
+//     h3{
+//         @include Title2;
+//         font-size: 22px;
+//         margin: 16px 0 12px 0;
+//     }
+//     h4{
+//         @include Title3;
+//         font-size: 20px;
+//         margin: 12px 0 10px 0;
+//     }
+//     h5{
+//         @include Title3;
+//         font-size: 20px;
+//         text-transform: capitalize;
+//         margin: 10px 0 8px 0;
+//     }
+//     h6{
+//         @include Title3;
+//         font-size: 18px;
+//         text-transform: capitalize;
+//         margin: 10px 0 8px 0;
+//         border-left: 2px solid $red;
+//         padding-left: 10px;
+//     }
+//     p{
+//         @include Font0;
+//         text-indent: 1em;
+//         font-size: 16px;
+//         line-height: 1.4em;
+//         margin: 10px 0;
+//     }
+//     ul{
+//         display: flex;
+//         flex-direction: column;
+//         gap: 4px;
 
-        li{
-            @include Font1;
-            font-size: 16px;
-            text-indent: 1.5em;
-            list-style: none;
+//         li{
+//             @include Font1;
+//             font-size: 16px;
+//             text-indent: 1.5em;
+//             list-style: none;
             
-            &::before{
-                content: "•";
-                color: $red;
-                margin-right: 5px;
-            }
-        }
-    }
-    strong{
-        font-weight: 700;
-    }
-    em{
-        font-style: italic;
-    }
-}
+//             &::before{
+//                 content: "•";
+//                 color: $red;
+//                 margin-right: 5px;
+//             }
+//         }
+//     }
+//     strong{
+//         font-weight: 700;
+//     }
+//     em{
+//         font-style: italic;
+//     }
+// }
