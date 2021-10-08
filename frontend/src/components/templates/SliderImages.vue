@@ -11,6 +11,7 @@
             '.jpg'
         "
         alt=""
+        draggable="false"
       />
     </div>
     <div class="asider">
@@ -86,8 +87,8 @@ export default {
   .img_container {
     box-shadow: 0 0 10px 2px #000;
     position: relative;
-        width: 40vw;
-        height: 30vw;
+    width: 40vw;
+    height: 30vw;
 
     &::before {
       content: "";
@@ -146,8 +147,8 @@ export default {
   .wrapper {
     .img_container {
       box-shadow: 0 0 12px 3px #000;
-        width: 52vw;
-        height: 38vw;
+      width: 52vw;
+      height: 38vw;
 
       img {
         width: 52vw;
@@ -179,6 +180,28 @@ export default {
           pointer-events: none;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    flex-direction: column !important;
+
+    .img_container {
+      width: 80vw;
+      height: 50vw;
+      margin: auto;
+
+      img {
+        width: 80vw;
+        height: 50vw;
+      }
+    }
+    .asider {
+      width: 80%;
+      margin: auto;
+      padding: 0;
     }
   }
 }

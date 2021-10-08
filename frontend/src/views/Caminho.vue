@@ -81,22 +81,23 @@ export default {
 
 <style lang="scss" scoped>
 #sec1 {
+  
 }
 #sec2 {
-  margin-top: 8vw;
+  margin-top: 170px;
 }
 #sec3 {
-  margin-top: 9vw;
+  margin-top: 170px;
 }
 #sec4{
-  margin-top: 10vw;
+  margin-top: 170px;
 
   .top{
     padding-left: 10vw;
-    margin-bottom: 1vw;
+    margin-bottom: 20px;
   }
 }
 #sec5{
-  margin-top: 10vw;
+  margin-top: 170px;
 }
 </style>
