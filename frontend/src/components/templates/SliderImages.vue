@@ -6,7 +6,7 @@
         v-for="img in total"
         :key="img"
         :src="
-          'http://localhost:8000/images/pages/caminho/slider/img' +
+          'http://192.168.0.12:8000/images/pages/caminho/slider/img' +
             (img - 1) +
             '.jpg'
         "

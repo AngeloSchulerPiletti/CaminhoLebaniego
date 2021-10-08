@@ -1,8 +1,19 @@
 <template>
   <div class="wrapper">
-    <title-special char="O" rest="Caminho Lebaniego" broken="off" />
+    <title-special
+      class="slider_title"
+      char="O"
+      rest="Caminho Lebaniego"
+      broken="off"
+    />
     <div class="paragraphs_slider">
-      <p :class="pClass">
+      <p
+        :class="pClass"
+        @touchstart="dragStart = $event.changedTouches[0].clientX"
+        @touchend="draged($event.changedTouches[0].clientX)"
+        @mousedown="dragStart = $event.x"
+        @mouseup="draged($event.x)"
+      >
         {{ sliderParagraphs[index] }}
       </p>
       <div class="controllers">
@@ -44,6 +55,7 @@ export default {
     return {
       pClass: "",
       index: 0,
+      dragStart: 0,
     };
   },
   watch: {
@@ -64,6 +76,14 @@ export default {
       let result = this.index + action;
       if (result >= 0 && result < this.total && result != this.index) {
         this.increaseIndex(action);
+      }
+    },
+    draged(dragEnd) {
+      if (Math.abs(this.dragStart - dragEnd) < 20) return;
+      if (this.dragStart > dragEnd) {
+        this.changeParagraphByIncrease(1);
+      } else if (this.dragStart < dragEnd) {
+        this.changeParagraphByIncrease(-1);
       }
     },
     setEnabledAndDisabledArrow(timeout = 0) {
@@ -123,6 +143,7 @@ export default {
       padding: 10px 20px;
       display: flex;
       align-items: center;
+      text-align: justify;
 
       &::before {
         content: "";
@@ -192,6 +213,21 @@ export default {
         .arrow:nth-child(2) {
           transform: translateX(-50%) scaleX(-1);
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    .slider_title {
+      margin: 0 -4vw;
+    }
+    .paragraphs_slider {
+      padding: 0 6vw;
+
+      .controllers {
+        margin-top: 20px;
       }
     }
   }
