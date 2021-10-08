@@ -1,7 +1,7 @@
 <template>
   <app-layout backID="5">
     <template v-slot:header_sec>
-      <banner-content :pageData="pageData" />
+      <banner-content :hasArrow="true" :pageData="pageData" />
     </template>
     <template v-slot:main>
       <div class="form_container">

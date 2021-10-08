@@ -4,7 +4,7 @@
       <h1>{{ pageData["title"] }}</h1>
       <p v-if="pageData['paragraph']">{{ pageData["paragraph"] }}</p>
     </div>
-    <div class="double_arrow" v-if="hasScroll == 'on'" @click="scrollHeight">
+    <div class="double_arrow" v-if="hasArrow" @click="scrollHeight">
       <tiny-arrow class="arrow" />
       <tiny-arrow class="arrow" />
     </div>
@@ -41,6 +41,7 @@ export default {
   },
   props: {
     pageData: Object,
+    hasArrow: Boolean,
   },
   components: {
     TinyArrow,

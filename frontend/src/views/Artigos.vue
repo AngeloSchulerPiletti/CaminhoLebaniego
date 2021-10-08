@@ -1,7 +1,7 @@
 <template>
   <app-layout backID="4">
     <template v-slot:header_sec>
-      <banner-content :pageData="pageData"/>
+      <banner-content :hasArrow="true" :pageData="pageData"/>
     </template>
     <template v-slot:main>
       <articles-list :canControll="false" title="Todos os artigos"/>
