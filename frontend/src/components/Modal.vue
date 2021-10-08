@@ -2,11 +2,12 @@
   <transition name="fade">
     <aside v-if="show" id="great_modal" @click="closeModal">
       <div id="modal_container">
-        <article
+        <article-component :article="modalPage"/>
+        <!-- <article
           id="markdown_article"
           v-if="modalPage != ''"
           v-html="modalPage"
-        ></article>
+        ></article> -->
         <div id="modal_options" v-if="modalOptions != {}">
           <router-link
             v-for="(route, name) in modalOptions"
@@ -24,6 +25,8 @@
 </template>
 
 <script>
+import Article from './templates/Article.vue';
+
 export default {
   data() {
     return {
@@ -49,6 +52,7 @@ export default {
     modalPage: String,
     modalOptions: Object,
   },
+  components: { 'article-component': Article, },
 };
 </script>
 
@@ -68,15 +72,13 @@ export default {
     border-radius: 7px;
     max-height: 90vh;
 
-    #markdown_article {
+    &:deep(article) {
       background-color: $black;
       border-radius: 7px 7px 0px 0px;
       padding: 30px;
       max-height: 60vh;
       overflow-y: auto;
-
-      @include articleStyle;
-      
+      width: auto;
     }
     #modal_options {
       background-color: $gray3;
