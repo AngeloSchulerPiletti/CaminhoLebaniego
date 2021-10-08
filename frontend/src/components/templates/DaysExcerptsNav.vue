@@ -126,6 +126,7 @@ export default {
       color: $white;
       font-size: 18px;
       @include Font0;
+      text-align: justify;
     }
   }
   .controllers {
@@ -233,7 +234,7 @@ export default {
 
 @media (max-width: 900px){
   .wrapper {
-  gap: 9vw;
+  gap: 50px;
 
   .top {
     gap: 18px;
@@ -264,6 +265,63 @@ export default {
     .img_colection {
       grid-template-columns: 1fr 1fr;
       gap: 3vw;
+    }
+  }
+}
+}
+
+
+
+@media (max-width: 600px){
+  .wrapper {
+  .top {
+    p {
+      font-size: 15px;
+    }
+  }
+  .controllers{
+    .hover2{
+      font-size: 25px;
+    }
+  }
+  .content_wrapper {
+    .hasTrekData {
+      grid-template-columns: auto;
+    }
+    .day_info {
+      padding: 0 38px;
+      .trek_info {
+        p {
+          font-size: 1em;
+        }
+      }
+    }
+    .img_colection {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+}
+}
+
+
+
+
+
+@media (max-width: 400px){
+  .wrapper {
+    .top{
+    }
+  .controllers{
+    padding: 8px 20px;
+    .hover2{
+      font-size: 22px;
+    }
+  }
+  .content_wrapper {
+    .img_colection {
+      grid-template-columns: 80%;
+      justify-content: center;
     }
   }
 }
