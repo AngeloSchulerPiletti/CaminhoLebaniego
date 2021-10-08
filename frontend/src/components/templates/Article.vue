@@ -339,6 +339,7 @@ export default {
       h5,
       h6 {
         margin: 0.2em 0;
+        line-height: 1.1em;
       }
       h5 {
         font-size: 20px;
