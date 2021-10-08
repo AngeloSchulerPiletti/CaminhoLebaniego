@@ -144,6 +144,8 @@ export default {
       display: flex;
       align-items: center;
       text-align: justify;
+      cursor: default;
+      user-select: none;
 
       &::before {
         content: "";
