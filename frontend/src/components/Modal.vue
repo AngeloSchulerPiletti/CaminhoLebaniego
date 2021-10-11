@@ -2,7 +2,7 @@
   <transition name="fade">
     <aside v-if="show" id="great_modal" @click="closeModal">
       <div id="modal_container">
-        <article-component :article="modalPage"/>
+        <article-component :article="modalPage" />
         <!-- <article
           id="markdown_article"
           v-if="modalPage != ''"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Article from './templates/Article.vue';
+import Article from "./templates/Article.vue";
 
 export default {
   data() {
@@ -52,7 +52,7 @@ export default {
     modalPage: String,
     modalOptions: Object,
   },
-  components: { 'article-component': Article, },
+  components: { "article-component": Article },
 };
 </script>
 
@@ -68,9 +68,9 @@ export default {
 
   #modal_container {
     margin: 10vh 10vw 0 10vw;
-    overflow-y: auto;
     border-radius: 7px;
     max-height: 90vh;
+    overflow: hidden;
 
     &:deep(article) {
       background-color: $black;
@@ -79,6 +79,22 @@ export default {
       max-height: 60vh;
       overflow-y: auto;
       width: auto;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #1d1d1d;
+      }
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: darken($red, 3%);
+      }
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: darken($red, 10%);
+      }
     }
     #modal_options {
       background-color: $gray3;
@@ -108,6 +124,11 @@ export default {
     background-color: #000000d0;
 
     #modal_container {
+      &:deep(article) {
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      }
       #markdown_article {
         padding: 20px;
       }
