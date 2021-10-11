@@ -15,7 +15,7 @@
         :class="(day == 1 ? 'active' : '') + ' hover2 selector2'"
         @click="changeDailyExcerpt(day, $event)"
       >
-        {{ day }}dia
+        <span class="number">{{ day }}</span>dia
       </div>
     </div>
     <div class="content_wrapper">
@@ -149,6 +149,10 @@ export default {
     border-bottom: 2px solid $red;
     box-shadow: 0 0 18px 0px #000;
     margin-bottom: 2vw;
+
+    .number{
+      font-size: 2em;
+    }
   }
   .content_wrapper {
     display: flex;
