@@ -6,11 +6,11 @@
         <div class="btn_1" @click="$store.state.modalShow = true">
           História do Caminho
         </div>
-        <router-link to="/caminho">
+        <!-- <router-link to="/caminho">
           <div class="btn_1">
             Primeiros Passos
           </div>
-        </router-link>
+        </router-link> -->
       </div>
     </template>
   </app-layout>
