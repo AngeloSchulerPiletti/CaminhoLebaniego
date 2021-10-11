@@ -164,6 +164,12 @@ export default {
 
 @media (max-width: 600px) {
   .wrapper {
+    position: relative;
+
+    #el_top{
+      padding: 0;
+      padding-top: 65px;
+    }
     .bottom {
       grid-template-columns: auto;
       gap: 0;
@@ -171,7 +177,7 @@ export default {
       margin-top: 35px;
 
       aside {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
@@ -186,7 +192,7 @@ export default {
             scrollbar-width: none;
             overflow-x: scroll;
             display: flex;
-            font-size: 15px;
+            font-size: 13px;
             background-color: #000000b0;
             position: relative;
 
@@ -209,21 +215,6 @@ export default {
                 box-shadow: 0 0 5px #000;
                 z-index: 10;
               }
-            }
-
-            position: relative;
-
-            &::before,
-            &::after {
-              content: "";
-              position: fixed;
-              box-shadow: 0 0 50px 22px #000;
-            }
-            &::before {
-              left: 0;
-            }
-            &::after {
-              right: 0;
             }
           }
         }
