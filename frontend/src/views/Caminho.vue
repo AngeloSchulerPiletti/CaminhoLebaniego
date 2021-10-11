@@ -24,7 +24,7 @@
           title="Trechos"
         />
       </section>
-      <section id="sec4">
+      <!-- <section id="sec4">
         <div class="top">
           <h3 class="title1">Observação</h3>
         </div>
@@ -32,8 +32,8 @@
           :paragraphs="pageData.observations[0][0].paragraphs"
           :type="pageData.observations[0][0].type"
         />
-      </section>
-      <section id="sec5">
+      </section> -->
+      <section id="sec4">
         <days-excerpts-nav 
           :daysExcerptsData="pageData.trekObservations[0]"
           :total="pageData.trekObservations[1]"
@@ -85,14 +85,6 @@ export default {
   margin-top: 170px;
 }
 #sec4{
-  margin-top: 170px;
-
-  .top{
-    padding-left: 10vw;
-    margin-bottom: 20px;
-  }
-}
-#sec5{
   margin-top: 170px;
 }
 </style>

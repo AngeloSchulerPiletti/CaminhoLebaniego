@@ -35,8 +35,8 @@ class ViewsController extends Controller
                 $dailyExcerptsArr = getJsonAsArray('caminho/dailyExcerpts.json');
                 $pageData["dailyExcerpts"] = [$dailyExcerptsArr, count($dailyExcerptsArr['content'])];
 
-                $observationsArr = getJsonAsArray('caminho/observations.json');
-                $pageData["observations"] = [$observationsArr, count($observationsArr)]; 
+                // $observationsArr = getJsonAsArray('caminho/observations.json');
+                // $pageData["observations"] = [$observationsArr, count($observationsArr)]; 
 
                 $trekObservationsArr = getJsonAsArray('caminho/trekObservations.json');
                 $pageData["trekObservations"] = [$trekObservationsArr, count($trekObservationsArr['content'])]; 
