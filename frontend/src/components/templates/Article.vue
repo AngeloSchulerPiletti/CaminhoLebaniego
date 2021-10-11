@@ -27,8 +27,6 @@ export default {
 <style lang="scss" scoped>
 .article_wrapper {
   width: 50vw;
-  min-width: 500px;
-  max-width: 800px;
   margin: auto;
 
   &::v-deep() {
