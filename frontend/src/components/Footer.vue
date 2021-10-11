@@ -18,7 +18,7 @@
       <ul>
         <!-- <router-link to="/"><li>Política de Privacidade</li></router-link> -->
         <a href="https://www.caminolebaniego.com/" target="_blank"
-          ><li>Site Espanhol</li></a
+          ><li>Site Oficial</li></a
         >
         <!-- <router-link to="/"><li>Patrocínio ou Doações</li></router-link> -->
       </ul>
