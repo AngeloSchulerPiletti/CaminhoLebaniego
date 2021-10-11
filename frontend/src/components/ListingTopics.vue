@@ -31,7 +31,7 @@
           :key="title"
         >
           <h3 class="title3-1" v-if="title != 'paragraphs'">{{ title }}</h3>
-          <p v-for="(p, i) in paragraphsArr" :key="i">{{ p }}</p>
+          <p v-for="(p, i) in paragraphsArr" :key="i" v-html="p"></p>
         </section>
       </article>
     </div>
@@ -52,10 +52,10 @@ export default {
       },
       secIndex: "",
       lastSelection: 0,
-      asideDrag:{
+      asideDrag: {
         clicked: false,
         lastDragPos: 0,
-      }
+      },
     };
   },
   methods: {
@@ -144,6 +144,18 @@ export default {
           color: $white;
           text-align: justify;
           text-indent: 1em;
+
+          &:deep() {
+            .item {
+              font-weight: 600;
+              font-size: 1.1em;
+            }
+            img{
+              float: right;
+              margin: 18px;
+              width: 50%;
+            }
+          }
         }
       }
     }
@@ -166,7 +178,7 @@ export default {
   .wrapper {
     position: relative;
 
-    #el_top{
+    #el_top {
       padding: 0;
       padding-top: 65px;
     }
@@ -188,7 +200,7 @@ export default {
           ul::-webkit-scrollbar {
             display: none;
           }
-          ul{
+          ul {
             scrollbar-width: none;
             overflow-x: scroll;
             display: flex;
