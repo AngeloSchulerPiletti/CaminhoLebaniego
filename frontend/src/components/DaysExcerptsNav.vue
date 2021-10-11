@@ -286,7 +286,10 @@ export default {
     .day_info {
       padding: 0 38px;
       .trek_info {
+        background-color: transparent;
+        border: 1px solid $red;
         p {
+        color: $white;
           font-size: 1em;
         }
       }
