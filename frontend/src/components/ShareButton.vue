@@ -28,9 +28,9 @@ export default {
     };
   },
   computed: {
-      urlCompleta(){
-          return `${this.$store.state.urlAppBase}/artigo?titulo=${this.url}`;
-      },
+    urlCompleta() {
+      return `${this.$store.state.urlAppBase}/artigo?titulo=${this.url}`;
+    },
   },
   methods: {
     copy() {
@@ -50,18 +50,31 @@ export default {
       window.getSelection().removeAllRanges();
     },
     share(which) {
-      switch (which) {
-        case "whatsapp":
-            window.open('https://api.whatsapp.com/send?text=Olha+que+legal+esse+artigo%21%0D%0A'+this.urlCompleta, '_blank');
-          break;
+      var time = 0;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        time = 400;
+      setTimeout(() => {
+        switch (which) {
+          case "whatsapp":
+            window.open(
+              "https://api.whatsapp.com/send?text=Olha+que+legal+esse+artigo%21%0D%0A" +
+                this.urlCompleta,
+              "_blank"
+            );
+            break;
 
-        case "linkedin":
-            window.open('https://www.linkedin.com/sharing/share-offsite/?url='+this.urlCompleta, '_blank');
-          break;
+          case "linkedin":
+            window.open(
+              "https://www.linkedin.com/sharing/share-offsite/?url=" +
+                this.urlCompleta,
+              "_blank"
+            );
+            break;
 
-        default:
-          break;
-      }
+          default:
+            break;
+        }
+      }, time);
     },
   },
   props: {
@@ -99,6 +112,7 @@ $reference: 30px;
     height: $reference;
 
     transition: transform 400ms ease, background-color 300ms, color 300ms;
+
     &:hover {
       transform: translateX(0);
       color: $white;
@@ -122,9 +136,5 @@ $reference: 30px;
   .link-icon:hover {
     background-color: #4d4d4fd0;
   }
-
-//   input {
-//     display: none;
-//   }
 }
 </style>
