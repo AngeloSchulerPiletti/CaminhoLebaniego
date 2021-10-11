@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <section class="wrapper" v-if="show" @click="closeModal($event)">
+    <section class="wrapper" id="search_modal" v-if="show" @click="closeModal($event)">
       <div class="content_container">
         <h2 class="title4-1">Procurar artigos</h2>
         <div class="searcher">
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     closeModal(event = null) {
-      if (!event || event.path.length <= 7) {
+      if (!event || event.target.id == "search_modal") {
         this.$store.state.searchModalShow = false;
       }
     },

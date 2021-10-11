@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     closeModal(event) {
-      if (event.path.length <= 7) {
+      if (event.target.id == "great_modal") {
         this.$store.state.modalShow = false;
       }
     },
