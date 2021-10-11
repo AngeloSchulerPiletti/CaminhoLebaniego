@@ -231,6 +231,19 @@ export default {
           }
         }
       }
+      article{
+        section{
+          p{
+            &:deep() {
+            img{
+              float: right;
+              margin: 18px;
+              width: 90%;
+            }
+          }
+          }
+        }
+      }
     }
   }
 }
