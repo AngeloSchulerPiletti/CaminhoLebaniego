@@ -23,7 +23,9 @@
         :class="'day_info ' + daysExcerptsData.content[index].trekData.class"
       >
         <div class="text_wrapper">
-          <h3 class="title3-1" v-if="daysExcerptsData.content[index].title">{{daysExcerptsData.content[index].title}}</h3>
+          <h3 class="title3-1" v-if="daysExcerptsData.content[index].title">
+            {{ daysExcerptsData.content[index].title }}
+          </h3>
           <p
             v-for="(p, parIndex) in daysExcerptsData.content[index].paragraphs"
             :key="parIndex"
@@ -31,7 +33,10 @@
             {{ p }}
           </p>
         </div>
-        <div class="trek_info" v-if="daysExcerptsData.content[index].trekData.class == 'hasTrekData'">
+        <div
+          class="trek_info"
+          v-if="daysExcerptsData.content[index].trekData.class == 'hasTrekData'"
+        >
           <p>
             Local de Partida:
             <span>{{ daysExcerptsData.content[index].trekData.from }}</span>
@@ -48,10 +53,17 @@
           </p>
         </div>
       </div>
-      <div class="img_colection" v-if="daysExcerptsData.imgsBasePath && daysExcerptsData.imgsBasePath != ''">
+      <div
+        class="img_colection"
+        v-if="
+          daysExcerptsData.imgsBasePath && daysExcerptsData.imgsBasePath != ''
+        "
+      >
         <img
           :src="
-            'http://192.168.0.12:8000/images/pages'+daysExcerptsData.imgsBasePath+'day' +
+            'http://192.168.0.12:8000/images/pages' +
+              daysExcerptsData.imgsBasePath +
+              'day' +
               (index + 1) +
               '/img' +
               imgIndex +
@@ -61,7 +73,7 @@
             daysExcerptsData.content[index].totalImages
           )"
           :key="imgIndex"
-          :id="'img'+imgIndex"
+          :id="'img' + imgIndex"
           alt=""
           @click="showImg(imgIndex)"
         />
@@ -93,9 +105,9 @@ export default {
         imgColection.classList.remove("active");
       }, 400);
     },
-    showImg(imgIndex){
-      var img = this.$el.querySelector('#img'+imgIndex);
-      this.$store.commit('passingImgSrc', img.getAttribute('src'));
+    showImg(imgIndex) {
+      var img = this.$el.querySelector("#img" + imgIndex);
+      this.$store.commit("passingImgSrc", img.getAttribute("src"));
     },
   },
   mounted() {
@@ -191,7 +203,7 @@ export default {
         cursor: pointer;
         transition: opacity 400ms;
 
-        &:hover{
+        &:hover {
           opacity: 0.5;
         }
       }
@@ -227,99 +239,88 @@ export default {
   }
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
   .wrapper {
-  gap: 50px;
+    gap: 50px;
 
-  .top {
-    gap: 18px;
+    .top {
+      gap: 18px;
 
-    p {
-      font-size: 16px;
-    }
-  }
-  .content_wrapper {
-    .hasTrekData {
-      grid-template-columns: 9fr 4fr;
-    }
-    .day_info {
-      .text_wrapper {
-        p {
-          text-indent: 2em;
-        }
-      }
-      .trek_info {
-        padding: 15px;
-        gap: 7px;
-
-        p {
-          font-size: 0.9em;
-        }
+      p {
+        font-size: 16px;
       }
     }
-    .img_colection {
-      grid-template-columns: 1fr 1fr;
-      gap: 3vw;
-    }
-  }
-}
-}
+    .content_wrapper {
+      .hasTrekData {
+        grid-template-columns: 9fr 4fr;
+      }
+      .day_info {
+        .text_wrapper {
+          p {
+            text-indent: 2em;
+          }
+        }
+        .trek_info {
+          padding: 15px;
+          gap: 7px;
 
-
-
-@media (max-width: 600px){
-  .wrapper {
-  .top {
-    p {
-      font-size: 15px;
-    }
-  }
-  .controllers{
-    .hover2{
-      font-size: 25px;
-    }
-  }
-  .content_wrapper {
-    .hasTrekData {
-      grid-template-columns: auto;
-    }
-    .day_info {
-      padding: 0 38px;
-      .trek_info {
-        background-color: transparent;
-        border: 1px solid $red;
-        p {
-        color: $white;
-          font-size: 1em;
+          p {
+            font-size: 0.9em;
+          }
         }
       }
-    }
-    .img_colection {
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      .img_colection {
+        grid-template-columns: 1fr 1fr;
+        gap: 3vw;
+      }
     }
   }
 }
-}
 
-
-
-
-
-@media (max-width: 400px){
+@media (max-width: 600px) {
   .wrapper {
-  .controllers{
-    padding: 8px 20px;
-    .hover2{
-      font-size: 22px;
+    .top {
+      p {
+        font-size: 15px;
+      }
     }
-  }
-  .content_wrapper {
-    .img_colection {
-      grid-template-columns: 90%;
-      justify-content: center;
+    .controllers {
+      .hover2 {
+        font-size: 25px;
+      }
+    }
+    .content_wrapper {
+      .hasTrekData {
+        grid-template-columns: auto;
+      }
+      .day_info {
+        padding: 0 38px;
+        .trek_info {
+          background-color: transparent;
+          border: 1px solid $red;
+          p {
+            color: $white;
+            font-size: 1em;
+          }
+        }
+      }
+      .img_colection {
+        grid-template-columns: 90%;
+        justify-content: center;
+        gap: 20px;
+      }
     }
   }
 }
+
+@media (max-width: 400px) {
+  .wrapper {
+    .controllers {
+      padding: 8px 20px;
+      .hover2 {
+        font-size: 22px;
+      }
+    }
+  }
 }
 </style>
