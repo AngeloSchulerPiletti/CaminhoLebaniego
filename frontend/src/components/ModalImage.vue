@@ -45,12 +45,14 @@ export default {
   .img_container {
     width: 80vw;
     height: 50vw;
+    max-height: 80vh;
     box-shadow: 0 0 4vw 1vw $blackest;
     margin: 10vh auto;
 
     img {
       width: 80vw;
       height: 50vw;
+      max-height: 80vh;
       object-fit: cover;
     }
   }
