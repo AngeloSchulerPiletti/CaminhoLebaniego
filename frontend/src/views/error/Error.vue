@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 .error-view {
   position: absolute;
-  background: url("http://192.168.0.12:8000/images/errors/404/Camino.jpg");
+  background: url("../../assets/images/template/Camino.jpg");
   background-size: cover;
   background-position-x: 50%;
 
