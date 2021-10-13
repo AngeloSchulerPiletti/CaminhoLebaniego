@@ -22,7 +22,7 @@ export default {
   align-items: baseline;
   padding: 0 10vw;
   @include Drawed1;
-    font-size: 40px;
+  font-size: 40px;
 
   &.broken_off{
       gap: 20px;

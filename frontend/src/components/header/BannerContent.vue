@@ -68,7 +68,6 @@ export default {
     );
 
     h1 {
-      // @include Title1;
       @include Drawed1;
       font-size: 50px;
     }
