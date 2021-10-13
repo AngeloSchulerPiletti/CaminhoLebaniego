@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
-    <section class="wrapper" id="search_modal" v-if="show" @click="closeModal($event)">
-      <div class="content_container">
+    <section class="wrapper flex_r" id="search_modal" v-if="show" @click="closeModal($event)">
+      <div class="content_container flex_c">
         <h2 class="title4-1">Procurar artigos</h2>
         <div class="searcher">
           <input
@@ -71,7 +71,6 @@ export default {
   right: 0;
   z-index: 100000;
 
-  display: flex;
   align-items: center;
 
   .content_container {
@@ -82,8 +81,6 @@ export default {
     margin: 0 auto;
     box-shadow: 0 0 6vw 2vw #000;
 
-    display: flex;
-    flex-direction: column;
     transform: translateY(-50%);
     gap: 1.5vw;
 

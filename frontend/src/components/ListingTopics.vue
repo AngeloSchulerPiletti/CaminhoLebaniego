@@ -25,7 +25,7 @@
           </ul>
         </nav>
       </aside>
-      <article>
+      <article class="flex_c">
         <section
           v-for="(paragraphsArr, title) in Object.values(content)[secIndex]"
           :key="title"
@@ -132,8 +132,6 @@ export default {
       }
     }
     article {
-      display: flex;
-      flex-direction: column;
       gap: 60px;
 
       section {

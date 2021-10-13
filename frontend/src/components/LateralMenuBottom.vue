@@ -1,9 +1,9 @@
 <template>
-  <aside class="bottomnav_wrapper">
-    <div class="btn" @click="showOptions()">
+  <aside class="bottomnav_wrapper flex_r">
+    <div class="btn flex_r" @click="showOptions()">
       <menu-icon />
     </div>
-    <nav>
+    <nav class="flex_r">
       <div
       class="btn_4"
         @click="goTo(location.name)"
@@ -51,7 +51,6 @@ aside {
   bottom: 15vh;
   transform: translateX(100%);
 
-  display: flex;
   align-items: center;
 
   transition: transform 300ms ease;
@@ -67,7 +66,6 @@ aside {
     position: absolute;
     transform: translateX(-100%);
     cursor: pointer;
-    display: flex;
     align-items: center;
 
     svg {
@@ -82,14 +80,9 @@ aside {
     }
   }
   nav {
-    display: flex;
     align-items: center;
     gap: 2em;
     padding: 0 2em;
-
-    div{
-
-    }
   }
 }
 </style>

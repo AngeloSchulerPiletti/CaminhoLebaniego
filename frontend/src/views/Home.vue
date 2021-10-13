@@ -2,7 +2,7 @@
   <app-layout backID="0" :modalContent="pageData['modal']">
     <template v-slot:header_sec>
       <banner-content :pageData="pageData" />
-      <div id="actions">
+      <div id="actions" class="flex_r">
         <div class="btn_1" @click="$store.state.modalShow = true">
           História do Caminho
         </div>
@@ -45,7 +45,6 @@ export default {
   left: 0;
   padding: 0 10vw 0 10vw;
 
-  display: flex;
   justify-content: space-between;
 }
 

@@ -5,7 +5,7 @@
         <header-logo />
       </router-link>
     </div>
-    <div class="right">
+    <div class="right flex_r">
       <button class="btn_4" v-if="!logged" @click="$router.go(-1)">
         voltar
       </button>
@@ -99,13 +99,9 @@ header {
     @include headerLogo(0);
   }
   .right {
-    display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 40px;
-
-    button {
-    }
   }
 }
 </style>

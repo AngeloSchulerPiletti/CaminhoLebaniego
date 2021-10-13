@@ -1,13 +1,13 @@
 <template>
-  <aside class="wrapper">
-    <label class="whatsapp" @click="share('whatsapp')"
+  <aside class="wrapper flex_c">
+    <label class="whatsapp flex_r" @click="share('whatsapp')"
       ><whatsapp />Compartilhe via Whatsapp</label
     >
-    <label class="linkedin" @click="share('linkedin')"
+    <label class="linkedin flex_r" @click="share('linkedin')"
       ><linkedin />Compartilhe via LinkedIn</label
     >
     <label
-      class="link-icon"
+      class="link-icon flex_r"
       @click.stop.prevent="copy()"
       @mouseleave="linkIconText = 'Copiar Link'"
       ><link-icon />{{ linkIconText }}</label
@@ -94,14 +94,11 @@ $reference: 30px;
   position: fixed;
   right: 0;
   bottom: 10vh;
-  display: flex;
-  flex-direction: column;
   gap: $reference/5;
   z-index: 100;
 
   label {
     position: relative;
-    display: flex;
     align-items: center;
     transform: translateX(calc(100% - (#{$reference}/ 2)));
     padding: 0 $reference;

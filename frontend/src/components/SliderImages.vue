@@ -20,12 +20,12 @@
         draggable="false"
       />
     </div>
-    <div class="asider">
-      <div class="top">
+    <div class="asider flex_c">
+      <div class="top flex_c">
         <h2 class="title1">{{ sliderImagesData[index].title }}</h2>
         <p>{{ sliderImagesData[index].paragraph }}</p>
       </div>
-      <div class="bottom">
+      <div class="bottom flex_r">
         <div :class="'btn_3 ' + img1Class" @click="changeImage(-1)">
           Anterior
         </div>
@@ -143,15 +143,11 @@ export default {
     }
   }
   .asider {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     padding: 20px 0;
 
     .top {
       color: $white;
-      display: flex;
-      flex-direction: column;
       gap: 20px;
 
       p {
@@ -160,7 +156,6 @@ export default {
       }
     }
     .bottom {
-      display: flex;
       gap: 20px;
 
       .btn_3.active {
@@ -183,29 +178,8 @@ export default {
       }
     }
     .asider {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px 0;
-
-      .top {
-        color: $white;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        p {
-          text-indent: 1em;
-        }
-      }
       .bottom {
-        display: flex;
-        gap: 20px;
         margin-top: 15px;
-
-        .btn_3.active {
-          pointer-events: none;
-        }
       }
     }
   }

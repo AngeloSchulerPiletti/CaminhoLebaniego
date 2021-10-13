@@ -1,5 +1,5 @@
 <template>
-  <div class="error-view">
+  <div class="error-view flex_c">
     <div class="content-default">
       <h1 class="title4 error-code">{{ error.code }}</h1>
       <p class="error-message">{{ error.message }}</p>
@@ -27,8 +27,6 @@ export default {
 
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
 
   .content-default {
     padding: 5vw 4vw 7vw 4vw;

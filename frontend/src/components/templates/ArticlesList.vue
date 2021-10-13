@@ -28,17 +28,17 @@
     </div>
     <div v-else class="list_container">
       <div
-        :class="`card ${canControll}`"
+        :class="`card ${canControll} flex_r`"
         v-for="(article, index) in articlesList"
         :key="index"
         @click="goToArticle(article.url, $event)"
       >
-        <div class="content_container">
+        <div class="content_container flex_c">
           <h2 class="title3-2">
             {{ article.title }}
           </h2>
           <p class="simple_p">{{ article.description }}</p>
-          <div class="tags_container">
+          <div class="tags_container flex_r">
             <span
               class="badge_1"
               v-for="tag in article.tags"
@@ -51,7 +51,7 @@
           v-if="$store.state.logged && canControll"
           class="controll_container"
         >
-          <ul>
+          <ul class="flex_c">
             <li
               @click="callControll('deletar-artigo', article.id)"
               v-if="$route.name == 'alterar_artigos' || $route.name == 'drafts'"
@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div v-if="totalArticles > 0" class="pagination">
+    <div v-if="totalArticles > 0" class="pagination flex_r">
       <span
         @click="
           page = 1;
@@ -267,14 +267,11 @@ export default {
     flex-shrink: 1;
     height: fit-content;
     box-shadow: 0 0 0.8vw 0.3vw #000;
-    display: flex;
     padding: 1.2vw 1.8vw;
     background-color: darken($white, 5%);
     border-radius: 5px;
 
     .content_container {
-      display: flex;
-      flex-direction: column;
       gap: 1vw;
       flex-grow: 1;
 
@@ -296,7 +293,6 @@ export default {
         -webkit-box-orient: vertical;
       }
       .tags_container {
-        display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 1vw;
@@ -313,8 +309,6 @@ export default {
       margin-left: 1vw;
 
       ul {
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         gap: 1vw;
         height: 100%;
@@ -361,7 +355,6 @@ export default {
   }
 }
 .pagination {
-  display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 4vw;

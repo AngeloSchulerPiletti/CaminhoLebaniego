@@ -1,10 +1,10 @@
 <template>
-  <div id="bannerContent">
+  <div id="bannerContent" class="flex_c">
     <div class="text_content">
       <h1>{{ pageData["title"] }}</h1>
       <p v-if="pageData['paragraph']">{{ pageData["paragraph"] }}</p>
     </div>
-    <div class="double_arrow" v-if="hasArrow" @click="scrollHeight">
+    <div class="double_arrow flex_c" v-if="hasArrow" @click="scrollHeight">
       <tiny-arrow class="arrow" />
       <tiny-arrow class="arrow" />
     </div>
@@ -52,8 +52,6 @@ export default {
 <style lang="scss" scoped>
 #bannerContent {
   height: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
 
   .text_content {
@@ -82,8 +80,6 @@ export default {
   }
   .double_arrow {
     $arrow_width: 150px;
-    display: flex;
-    flex-direction: column;
     margin: auto;
     margin-bottom: 0;
     width: $arrow_width;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="`backwall ${menuState}_backwall`" @click="openMenu"></div>
-    <div v-if="$store.state.logged" id="admin_header">
+    <div v-if="$store.state.logged" id="admin_header" class="flex_r">
       <p>
         Bem vindo, {{ $store.state.sessionData.user.name }}. Você é admin e está
         logado!
@@ -73,7 +73,6 @@ export default {
 #admin_header {
   background-color: $red;
   color: $white;
-  display: flex;
   justify-content: space-between;
   padding: 3px 12px;
 

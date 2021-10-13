@@ -11,7 +11,7 @@
       <header-banner :backID="backID" :isArticle="isArticle">
         <template v-slot:header_sec><slot name="header_sec"></slot></template>
       </header-banner>
-      <div v-if="backID != 0" class="mainFooterWrapper">
+      <div v-if="backID != 0" class="mainFooterWrapper flex_c">
         <main>
           <slot name="main"></slot>
         </main>
@@ -77,8 +77,6 @@ export default {
 }
 
 .mainFooterWrapper {
-  display: flex;
-  flex-direction: column;
   gap: 15vw;
 }
 </style>

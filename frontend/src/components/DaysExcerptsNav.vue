@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper">
-    <div class="top">
+  <div class="wrapper flex_c">
+    <div class="top flex_c">
       <h2 class="title2">{{ title }}</h2>
       <p
         v-if="daysExcerptsData.observation"
         v-html="daysExcerptsData.observation"
       ></p>
     </div>
-    <div class="controllers" v-if="total && total > 1">
+    <div class="controllers flex_r" v-if="total && total > 1">
       <div
         :id="'day' + day"
         v-for="day in total"
@@ -18,11 +18,11 @@
         <span class="number">{{ day }}</span>dia
       </div>
     </div>
-    <div class="content_wrapper">
+    <div class="content_wrapper flex_c">
       <div
         :class="'day_info ' + daysExcerptsData.content[index].trekData.class"
       >
-        <div class="text_wrapper">
+        <div class="text_wrapper flex_c">
           <h3 class="title3-1" v-if="daysExcerptsData.content[index].title">
             {{ daysExcerptsData.content[index].title }}
           </h3>
@@ -34,7 +34,7 @@
           </p>
         </div>
         <div
-          class="trek_info"
+          class="trek_info flex_c"
           v-if="daysExcerptsData.content[index].trekData.class == 'hasTrekData'"
         >
           <p>
@@ -124,14 +124,10 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  display: flex;
-  flex-direction: column;
   gap: 2vw;
 
   .top {
     padding: 0 10vw;
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 
     p {
@@ -142,7 +138,6 @@ export default {
     }
   }
   .controllers {
-    display: flex;
     justify-content: space-around;
     padding: 8px 10vw;
     border-top: 2px solid $red;
@@ -155,8 +150,6 @@ export default {
     }
   }
   .content_wrapper {
-    display: flex;
-    flex-direction: column;
     gap: 8vw;
 
     .hasTrekData {
@@ -168,8 +161,6 @@ export default {
       padding: 0 5vw;
 
       .text_wrapper {
-        display: flex;
-        flex-direction: column;
         gap: 1em;
 
         p {
@@ -182,8 +173,6 @@ export default {
         background-color: $white;
         padding: 20px;
         box-shadow: 0 0 12px 3px #000;
-        display: flex;
-        flex-direction: column;
         height: fit-content;
         gap: 5px;
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="'title_special broken_'+broken">
+  <div :class="'title_special flex_r broken_'+broken">
     <div class="special_char">
       {{ char }}
     </div>
@@ -19,7 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .title_special {
-  display: flex;
   align-items: baseline;
   padding: 0 10vw;
   @include Drawed1;

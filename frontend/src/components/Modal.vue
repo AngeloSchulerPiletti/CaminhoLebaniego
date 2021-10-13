@@ -8,7 +8,7 @@
           v-if="modalPage != ''"
           v-html="modalPage"
         ></article> -->
-        <div id="modal_options" v-if="modalOptions != {}">
+        <div id="modal_options" class="flex_r" v-if="modalOptions != {}">
           <router-link
             v-for="(route, name) in modalOptions"
             :key="name"
@@ -101,7 +101,6 @@ export default {
       padding: 20px;
       border-radius: 0px 0px 7px 7px;
 
-      display: flex;
       justify-content: space-between;
       align-items: center;
     }

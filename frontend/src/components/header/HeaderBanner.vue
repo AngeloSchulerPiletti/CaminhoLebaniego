@@ -1,5 +1,5 @@
 <template>
-  <div :id="backType+'background'" :class="'background back-' + backID">
+  <div :id="backType+'background'" :class="'flex_c background back-' + backID">
     <header-component />
     <section id="header_content">
       <slot name="header_sec"></slot>
@@ -44,8 +44,6 @@ export default {
   width: 100%;
   height: 100vh;
 
-  display: flex;
-  flex-direction: column;
   z-index: 100;
   position: relative;
   box-shadow: 0 0 10px 4px #000;

@@ -1,10 +1,10 @@
 <template>
-  <footer>
-    <div class="top">
+  <footer class="flex_c">
+    <div class="top flex_r">
       <h2 class="title3">Links Úteis</h2>
     </div>
     <div class="center">
-      <ul>
+      <ul class="flex_c">
         <router-link to="/area-do-administrador"
           ><li>Área do Administrador</li></router-link
         >
@@ -15,7 +15,7 @@
           ><li>Quem desenvolveu o site?</li></a
         >
       </ul>
-      <ul>
+      <ul class="flex_c">
         <!-- <router-link to="/"><li>Política de Privacidade</li></router-link> -->
         <a href="https://www.caminolebaniego.com/" target="_blank"
           ><li>Site Oficial</li></a
@@ -23,7 +23,7 @@
         <!-- <router-link to="/"><li>Patrocínio ou Doações</li></router-link> -->
       </ul>
     </div>
-    <div class="bottom">
+    <div class="bottom flex_r">
       <p>&copy; Jone Mario Piletti, All rights reserved</p>
     </div>
   </footer>
@@ -35,15 +35,12 @@ export default {};
 
 <style lang="scss" scoped>
 footer {
-  display: flex;
-  flex-direction: column;
   background-color: $white;
   padding: 55px 0;
   gap: 30px;
   color: $blackest;
 
   .top {
-    display: flex;
     justify-content: center;
   }
   .center {
@@ -51,8 +48,6 @@ footer {
     justify-content: space-around;
 
     ul {
-      display: flex;
-      flex-direction: column;
       gap: 0.5em;
 
       a {
@@ -80,7 +75,6 @@ footer {
     }
   }
   .bottom {
-    display: flex;
     justify-content: center;
   }
 }

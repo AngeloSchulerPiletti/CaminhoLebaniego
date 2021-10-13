@@ -1,7 +1,7 @@
 <template>
   <error :error="error">
     <h6 class="title">O que você pode fazer:</h6>
-    <ul>
+    <ul class="flex_c">
       <li @click="$router.go(-2)">Voltar</li>
       <li @click="$router.push('/')">Página inicial</li>
     </ul>
@@ -51,8 +51,6 @@ h6{
 ul {
   @include Font1;
   margin-left: 50px;
-  display: flex;
-  flex-direction: column;
   gap: 0.5em;
 
   li {

@@ -8,7 +8,7 @@
     />
     <div class="paragraphs_slider">
       <p
-        :class="pClass"
+        :class="pClass+' flex_r'"
         @touchstart="dragStart = $event.changedTouches[0].clientX"
         @touchend="draged($event.changedTouches[0].clientX)"
         @mousedown="dragStart = $event.x"
@@ -16,7 +16,7 @@
       >
         {{ sliderParagraphs[index] }}
       </p>
-      <div class="controllers">
+      <div class="controllers flex_r">
         <div
           class="backest_controller arrow_containers"
           @click="changeParagraphByValue(0)"
@@ -141,7 +141,6 @@ export default {
       position: relative;
       color: $white;
       padding: 10px 20px;
-      display: flex;
       align-items: center;
       text-align: justify;
       cursor: default;
@@ -166,7 +165,6 @@ export default {
 
     .controllers {
       margin-top: 1vw;
-      display: flex;
       gap: 10px;
       justify-content: space-between;
 

@@ -5,7 +5,7 @@
         <div class="top">
           <h3 class="title4-1">{{ title }}</h3>
         </div>
-        <div v-if="paragraphs" v-html="paragraphs" class="main"></div>
+        <div v-if="paragraphs" v-html="paragraphs" class="main flex_c"></div>
       </div>
     </div>
   </transition>
@@ -110,12 +110,9 @@ export default {
     .main {
       overflow-y: auto;
       max-height: 60vh;
+      gap: 1vw;
 
       &:deep() {
-        display: flex;
-        flex-direction: column;
-        gap: 1vw;
-
         p {
           @include Font0;
           font-size: 15px;

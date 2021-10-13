@@ -1,6 +1,6 @@
 <template>
   <div
-    class="wrapper"
+    class="wrapper flex_c"
     v-if="errorsToShow.length > 0 || messagesToShow.length > 0"
   >
     <div
@@ -90,8 +90,6 @@ export default {
   z-index: 100000;
   top: 18vh;
   left: 0;
-  display: flex;
-  flex-direction: column;
   gap: 1vw;
 
   .card {
