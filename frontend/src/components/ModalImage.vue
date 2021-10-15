@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 500ms ease;
+  transition: opacity 400ms ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -43,15 +43,13 @@ export default {
   z-index: 10000;
 
   .img_container {
-    width: 80vw;
-    height: 50vw;
-    max-height: 80vh;
+    height: fit-content;
+    width: fit-content;
     box-shadow: 0 0 4vw 1vw $blackest;
     margin: 10vh auto;
 
     img {
-      width: 80vw;
-      height: 50vw;
+      max-width: 80vw;
       max-height: 80vh;
       object-fit: cover;
     }

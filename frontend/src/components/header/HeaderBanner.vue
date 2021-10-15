@@ -71,10 +71,10 @@ export default {
   background-position-x: left;
 }
 .back-2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../../assets/images/template/santiago.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("../../assets/images/template/SantoToribio.jpg");
   background-size: cover;
-  background-position-y: 70%;
+  background-position-y: 30%;
   background-position-x: center;
   background-repeat: no-repeat;
 }
