@@ -18,6 +18,9 @@
         />
       </section>
       <section id="sec3">
+        <map-component />
+      </section>
+      <section id="sec4">
         <days-excerpts-nav
           :daysExcerptsData="pageData.dailyExcerpts[0]"
           :total="pageData.dailyExcerpts[1]"
@@ -33,11 +36,12 @@
           :type="pageData.observations[0][0].type"
         />
       </section> -->
-      <section id="sec4">
-        <days-excerpts-nav 
+      <section id="sec5">
+        <days-excerpts-nav
           :daysExcerptsData="pageData.trekObservations[0]"
           :total="pageData.trekObservations[1]"
-          title="As Setas do Caminho"/>
+          title="As Setas do Caminho"
+        />
       </section>
     </template>
   </app-layout>
@@ -50,6 +54,7 @@ import SliderParagraphs from "@/components/SliderParagraphs";
 import SliderImages from "@/components/SliderImages";
 import DaysExcerptsNav from "@/components/DaysExcerptsNav";
 import Observation from "@/components/Observation";
+import MapComponent from "@/components/MapComponent";
 
 export default {
   name: "caminho",
@@ -73,6 +78,7 @@ export default {
     SliderImages,
     DaysExcerptsNav,
     Observation,
+    MapComponent,
   },
 };
 </script>
@@ -82,9 +88,12 @@ export default {
   margin-top: 170px;
 }
 #sec3 {
-  margin-top: 170px;
+  margin-top: 120px;
 }
-#sec4{
+#sec4 {
+  margin-top: 120px;
+}
+#sec5 {
   margin-top: 170px;
 }
 </style>

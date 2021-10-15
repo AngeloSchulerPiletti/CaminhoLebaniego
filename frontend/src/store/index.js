@@ -3,7 +3,7 @@ import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
   state: {
-    urlApiBase: "http://127.0.0.1:8000/",
+    urlApiBase: "http://192.168.0.12:8000/",
     urlAppBase: "caminholebaniego.com.br",
     modalShow: false,
     searchModalShow: false,
