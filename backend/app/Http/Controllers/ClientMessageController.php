@@ -38,11 +38,23 @@ class ClientMessageController extends Controller
 
         try {
             Mail::raw($request->message, function ($message) {
-                $message->to('angelopiletti@gmail.com', 'Angelo S. Piletti')->subject('Mensagem de Usuário do Site');
-                $message->from('angelopiletti@gmail.com', "Angelo De novo");
+                $message->to('contato@caminholebaniego.com.br', 'Jone Mario Piletti')->subject('Mensagem do Site');
+                $message->from('site@caminholebaniego.com.br', "Contato do Site");
             });
+
+            try {
+                Mail::raw($request->message, function ($message) {
+                    $message->to('piletti@bol.com.br', 'Jone Mario Piletti')->subject('Mensagem do Site');
+                    $message->from('site@caminholebaniego.com.br', "Contato do Site");
+                });
+            } catch (\Exception $e) {
+                return response()->json(['messages'=> ['Mensagem enviada apenas ao email do site'], 'error' => [$e->getMessage()]]);
+            }
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return response()->json(['error' => [$e->getMessage()]]);
         }
+
+        return response()->json(['messages' => ['Sua mensagem foi enviada com sucesso!']]);
     }
 }

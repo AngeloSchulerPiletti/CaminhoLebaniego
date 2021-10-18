@@ -30,7 +30,16 @@
         },
         "Higiene": {
             "0": "<span class='item'>Toalha de banho (1):</span> Existem toalhas próprias para Trekking, que são pequenas, leves e absorvem muita água. Você torce ela e está pronta para outra.",
-            "1": "<span class='item'>Higiene e cuidados pessoais:</span> Os chuveiros dos albergues normalmente são bem simples. Assim, é bom levar uma necessaire que possa ser pendurada, para deixar tudo à mão"
+            "1": "<span class='item'>Higiene e cuidados pessoais:</span> Os chuveiros dos albergues normalmente são bem simples. Assim, é bom levar uma necessaire que possa ser pendurada, para deixar tudo à mão, com:",
+            "2": "Escova de dentes e creme dental.",
+            "3": "Sabonete e/ou shampoo. Existem algumas opções que cumprem as duas funções. tenha sempre em mente reduzir o peso.",
+            "4": "Esparadrapo micropore. Essencial. Se houver bolhas, ou o início que seja, o micropore aplicado no local certo vai ajudar.",
+            "5": "Agulha esterilizada e linha de algodão, para \"costurar as bolhas\".",
+            "6": "Remédios de uso contínuo. ",
+            "7": "Sugiro levar um analgésico que seja relaxante muscular. No mais, ao invés de levar tudo o que \"pode ser que precise\", é melhor comprar lá o que necessitar. A maioria dos albergues dispõe também de um kit básico de medicamentos. É só pedir.",
+            "8": "Papel higiênico, como reserva. Vá que...",
+            "9": "Filtro solar (ou não)."
+
         },
         "Equipamentos Diversos": {
             "0": "<span class='item'>Mochila:</span> Ela deve ser bem ajustada ao seu corpo. De preferência impermeável, caso contrário providencie capa para ela. Algumas vêm com capa embutida, e existem opções de ponchos impermeáveis que cobrem a mochila também. Seja qual for a sua decisão, teste antes da viagem. É desanimador chegar ao albergue com tudo molhado. Dê atenção ao peso da mochila. Algumas oferecem muitos recursos, mas pesam demais. a faixa que prende à cintura é onde você deve apoiar o peso da mochila, nunca nos ombros. Essa faixa deve ser larga e acolchoada, e fácil de ajustar. Eu sugiro uma mochila de no máximo 50 litros.",
@@ -51,7 +60,7 @@
     "Credencial do Peregrino": {
         "paragraphs": {
             "0": "A Credencial do Peregrino vai identificá-lo como peregrino do Caminho Lebaniego, e permitir seu acesso aos albergues. Nela constam seus dados pessoais e é onde você vai atestar sua passagem pelos povoados, através dos \"sellos\" (carimbos). Ela pode ser carimbada em diversos locais, além dos albergues, e vai ficando semelhante à essa da foto. ",
-            "1": "<img src='http://192.168.0.12:8000/images/pages/preparacao/credencial/credencial.png'/> Eu espero poder disponibilizar a credencial aqui no Brasil, mas enquanto isso, solicitando a mesma no email parroquiaelcristo@gmail.com eles a enviam para o cá, a menos que você esteja disposto a conhecer Santander e retirá-la pessoalmente. Um pouco complicado, mas uma bela opção, e pode-se começar a peregrinação de lá mesmo.",
+            "1": "<img src='https://caminholebaniego.com.br/api-access/images/pages/preparacao/credencial/credencial.png'/> Eu espero poder disponibilizar a credencial aqui no Brasil, mas enquanto isso, solicitando a mesma no email parroquiaelcristo@gmail.com eles a enviam para o cá, a menos que você esteja disposto a conhecer Santander e retirá-la pessoalmente. Um pouco complicado, mas uma bela opção, e pode-se começar a peregrinação de lá mesmo.",
             "2": "Outra opção é usar a Credencial de Peregrino do Caminho de Santiago, que também é aceita e é muito mais fácil de encontrar. Na Espanha é vendida em lojas de souvenir, aeroportos e nos próprios albergues."
         }
     },
