@@ -3,7 +3,7 @@
 Saudações meu caro, esse é o repositório de um projeto que está atualmente na web. Veja ele em: [caminholebaniego.com.br](https://caminholebaniego.com.br).
 
 ## Licença
-Esse não é um projeto open-source. Ainda que o código esteja aqui para você vizualizar e ter ideias, você não pode usá-lo comercialmente ou de modo criativo. Dessa forma, não dou a você autorização para copiar nenhuma parte do código. Para mais informações veja a [licença](./LICENSE).
+Esse não é um projeto open-source. Ainda que o código esteja aqui para você vizualizar e ter ideias, você não pode usá-lo comercialmente ou de modo criativo. Dessa forma, não dou a você autorização para copiar nenhuma parte do código. Para mais informações veja a [licença](./LICENSE.md).
 
 ## Estrutura do projeto
 O modelo básico do projeto é um frontend em VueJS que se comunica com uma API Laravel privada. A função dessa API é fornecer o conteúdo alfanumérico das páginas e, em alguns momentos, as imagens. 
