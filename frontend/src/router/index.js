@@ -142,6 +142,10 @@ const routes = [
     name: "drafts",
     meta: { autoAxios: false, mobileDenied: true},
   },
+  {
+    path: "/:pathMatch(.*)*",
+    component: Error404,
+  }
 
 
 ]
