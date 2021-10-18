@@ -7,7 +7,8 @@ import axios from "axios";
 export function apiRequestProtocol(token = null, headers = null) {
     var api_instance = axios.create({
         // baseURL: "http://127.0.0.1:8000/api/",
-        baseURL: "http://192.168.0.12:8000/api/",
+        // baseURL: "http://192.168.0.12:8000/api-access/api",
+        baseURL: "https://caminholebaniego.com.br/api-access/api",
     });
 
     if (token) {
