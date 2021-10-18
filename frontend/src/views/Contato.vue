@@ -94,6 +94,10 @@ export default {
         .post(`contato/mensagem`, this.form)
         .then((response) => {
           response.data.error ? this.$store.commit('setErrors', response.data.error) : null;
+          response.data.messages
+            ? this.$store.commit("setMessages", response.data.messages)
+            : null;
+          this.form = {};
         })
         .catch((err) => {
           this.$store.commit('setErrors', ['Houve um erro ao enviar']);
