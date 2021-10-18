@@ -11,12 +11,7 @@
         :class="{ hided: img - 1 !== this.index }"
         v-for="img in total"
         :key="img"
-        :src="
-          'http://192.168.0.12:8000/images/pages/caminho/slider/img' +
-            (img - 1) +
-            '.jpg'
-        "
-        alt=""
+        :src="`${$store.state.urlApiBase}images/pages/caminho/slider/img${(img - 1)}.jpg`"
         draggable="false"
       />
     </div>

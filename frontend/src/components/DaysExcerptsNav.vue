@@ -60,15 +60,7 @@
         "
       >
         <img
-          :src="
-            'http://192.168.0.12:8000/images/pages' +
-              daysExcerptsData.imgsBasePath +
-              'day' +
-              (index + 1) +
-              '/img' +
-              imgIndex +
-              '.jpg'
-          "
+          :src="`${$store.state.urlApiBase}images/pages${daysExcerptsData.imgsBasePath}day${(index + 1)}/img${imgIndex}.jpg`"
           v-for="imgIndex in Number(
             daysExcerptsData.content[index].totalImages
           )"
